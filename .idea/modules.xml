@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../processors/.idea/modules/core.iml" filepath="$PROJECT_DIR$/../processors/.idea/modules/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../processors/.idea/modules/core-build.iml" filepath="$PROJECT_DIR$/../processors/.idea/modules/core-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" filepath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" filepath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../processors/.idea/modules/models.iml" filepath="$PROJECT_DIR$/../processors/.idea/modules/models.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../processors/.idea/modules/models-build.iml" filepath="$PROJECT_DIR$/../processors/.idea/modules/models-build.iml" />
     </modules>
   </component>
 </project>
