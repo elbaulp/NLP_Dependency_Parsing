@@ -34,22 +34,22 @@ class Node(val lex: String,
   def this(lex: String, position: Int, posTag: String, dependency: Int) =
     this(lex, position, posTag, dependency, Vector.empty, Vector.empty)
 
-  def insertRight(child: Node) = {
+  def insertRight(child: Node): Unit = {
     child.dependency = position
     right = right :+ child
   }
 
-  def insertLeft(child: Node) = {
+  def insertLeft(child: Node): Unit = {
     child.dependency = position
     left = left :+ child
   }
 
-  /**
-    * Check if the tree is parsed correctly completely (Ignoring punctiation tags) against the Gold sentence tags
-    *
-    * @param goldSentence The sentences corretly annotated
-    * @return True if the tree is 100% correctly parsed
-    */
+//  /**
+//    * Check if the tree is parsed correctly completely (Ignoring punctiation tags) against the Gold sentence tags
+//    *
+//    * @param goldSentence The sentences corretly annotated
+//    * @return True if the tree is 100% correctly parsed
+//    */
   //  def matchAll(goldSentence: String): Boolean = {
   //
   //  }

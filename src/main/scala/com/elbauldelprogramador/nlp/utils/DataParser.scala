@@ -1,3 +1,4 @@
+
 /*
  *     Reader.scala is part of grado_informatica_tfg_naturallanguageprocessing (grado_informatica_TFG_NaturalLanguageProcessing).
  *
@@ -17,9 +18,9 @@
 
 package com.elbauldelprogramador.nlp.utils
 
-import java.io.InputStream
-
 import scala.io.Source
+import scala.language.reflectiveCalls
+import scala.util.control.NonFatal
 
 
 /**
@@ -27,16 +28,48 @@ import scala.io.Source
   *
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/20/16.
   */
-class DataParser(val fileName: String,
-                 val isTraining: Boolean = true) {
+object DataParser {
 
-  val document: InputStream = {
-    getClass.getResourceAsStream(fileName)
+  def parseDataSet(file: String): Any = {
+    val filePath = getClass.getResource(file).getPath
+
+    Manage(Source.fromFile(filePath)) { source =>
+
+      val parsedTuples = source getLines() map (s => s.split("\t") match {
+        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
+        case Array(lex, posTag, dep) => Some((lex, posTag, "", dep.toInt)) // Training
+        case _ => None
+      })
+
+      val tuples = Array.newBuilder[(String, String, String, Int)]
+
+      for (Some(t) <- parsedTuples) tuples += t
+
+      tuples.result
+    }
   }
+}
 
-  def parseTrainingData = {
-    val s = Source.fromInputStream(document).getLines().mkString("\\n")
-    val x = s.foreach(s => print(s))
-    print(s)
+/**
+  * An implementation of a reusable application resource manager,
+  *
+  * Taken from the book “Programing scala, 2nd Edition”
+  */
+
+object Manage {
+  //noinspection ScalaStyle
+  def apply[R <: {def close() : Unit}, T](resource: => R)(f: R => T): Any = {
+    var res: Option[R] = None
+    try {
+      res = Some(resource) // Only reference "resource" once!!
+      f(res.get)
+    } catch {
+      case NonFatal(ex) => System.err.println(s"Non fatal exception! $ex")
+    } finally {
+      if (res.isDefined) {
+        System.err.println(s"Closing resource...")
+        res.get.close()
+      }
+    }
   }
 }

@@ -1,4 +1,4 @@
-Partidario	ADJ	ADJ	16
+Partidario	ADJ	16
 de	ADP	ADP	4
 la	DET	DET	4
 "	PUNCT	PUNCT	4
@@ -49,4 +49,5 @@ democráticos	ADJ	ADJ	45
 de	ADP	ADP	49
 gobierno	NOUN	NOUN	45
 .	PUNCT	PUNCT	16
+
 

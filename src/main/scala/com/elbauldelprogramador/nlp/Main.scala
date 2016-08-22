@@ -1,3 +1,4 @@
+
 /*
  *     Main.scala is part of grado_informatica_tfg_naturallanguageprocessing (grado_informatica_TFG_NaturalLanguageProcessing).
  *
@@ -17,9 +18,7 @@
 
 package com.elbauldelprogramador.nlp
 
-import java.io.InputStream
-
-import com.elbauldelprogramador.nlp.datastructures.Node
+import com.elbauldelprogramador.nlp.utils.DataParser
 
 /*
  *     Main.scala is part of grado_informatica_tfg_naturallanguageprocessing (grado_informatica_TFG_NaturalLanguageProcessing).
@@ -64,31 +63,9 @@ object Main extends App {
   val TrainSentencesFile = "/es_ancora-converted-train"
   val TestSentencesFile = "/ancora-test-one-sentence"
 
-  val TrainSet = getClass.getResourceAsStream(DataSourcePath + TrainSentencesFile)
-  val TestSet = getClass.getResourceAsStream(DataSourcePath + TestSentencesFile)
+  val a = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
+  val trainingData = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
 
-  val TrainSetLines = scala.io.Source.fromInputStream(TrainSet).getLines
-  val TestSetLines = scala.io.Source.fromInputStream(TestSet).getLines
-
-  TrainSetLines.map(_.split("\\t")).foreach(r => println(r))
-
-  TestSetLines.foreach(System.out.println)
-
-  val stream: InputStream = getClass.getResourceAsStream(DataSourcePath + TestSentencesFile)
-  val lines = scala.io.Source.fromInputStream(stream).getLines
-
-  //  val trainingData = new DataParser(DataSourcePath + TestSentencesFile)
-  //
-  //  System.out.println(trainingData.parseTrainingData)
-
-  //  lines.foreach(System.out.println)
-
-
-  val lista = new Node("UNO", 2, "fd", 2)
-
-  println(lista)
-
-  //  val s = new Sentence()
 }
 
 
