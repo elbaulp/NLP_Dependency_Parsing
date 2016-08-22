@@ -30,7 +30,9 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
-  def parseDataSet(file: String): Any = {
+  type SentenceTokens = (String, String, String, Int)
+
+  def parseDataSet(file: String): Option[Array[SentenceTokens]] = {
     val filePath = getClass.getResource(file).getPath
 
     Manage(Source.fromFile(filePath)) { source =>
@@ -41,11 +43,11 @@ object DataParser {
         case _ => None
       })
 
-      val tuples = Array.newBuilder[(String, String, String, Int)]
+      val tuples = Array.newBuilder[SentenceTokens]
 
       for (Some(t) <- parsedTuples) tuples += t
 
-      tuples.result
+      Some(tuples.result)
     }
   }
 }
@@ -58,13 +60,16 @@ object DataParser {
 
 object Manage {
   //noinspection ScalaStyle
-  def apply[R <: {def close() : Unit}, T](resource: => R)(f: R => T): Any = {
+  def apply[R <: {def close() : Unit}, T](resource: => R)(f: R => Option[T]): Option[T] = {
     var res: Option[R] = None
     try {
       res = Some(resource) // Only reference "resource" once!!
       f(res.get)
     } catch {
-      case NonFatal(ex) => System.err.println(s"Non fatal exception! $ex")
+      case NonFatal(ex) => {
+        System.err.println(s"Non fatal exception! $ex")
+        None
+      }
     } finally {
       if (res.isDefined) {
         System.err.println(s"Closing resource...")

@@ -63,8 +63,12 @@ object Main extends App {
   val TrainSentencesFile = "/es_ancora-converted-train"
   val TestSentencesFile = "/ancora-test-one-sentence"
 
-  val a = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
-  val trainingData = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
+  val testTuples = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
+  val trainTuples = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
+
+  for (s <- testTuples) {
+    s foreach println
+  }
 
 }
 
