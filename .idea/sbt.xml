@@ -17,7 +17,6 @@
         <option name="useOurOwnAutoImport" value="true" />
       </SbtProjectSettings>
       <SbtProjectSettings>
-        <option name="createEmptyContentRootDirectories" value="true" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/../processors" />
         <option name="jdk" value="1.8" />
         <option name="modules">
