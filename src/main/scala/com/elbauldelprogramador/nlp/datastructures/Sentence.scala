@@ -23,16 +23,16 @@ package com.elbauldelprogramador.nlp.datastructures
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
   */
 class Sentence(/** Actual tokens in this sentence */
-               val words: Array[String],
+               val words: Vector[String],
 
                /** POS tags for words */
-               val tags: Option[Array[String]]) {
+               val tags: Vector[String]) {
 
   /** Constituent tree of this sentence; includes head words */
   private val tree: Vector[Node] = words.map(w => {
     val i = words.indexOf(w)
-    new Node(w, i, tags.get(i), 0)
-  }).toVector
+    new Node(w, i, tags.head, 0)
+  })
 
   /**
     * Sentence's length

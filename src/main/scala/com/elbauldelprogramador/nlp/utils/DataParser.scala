@@ -30,24 +30,32 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
-  type SentenceTokens = (String, String, String, Int)
+  type SentenceTokens = (Vector[String], Vector[String], Vector[Int])
 
-  def parseDataSet(file: String): Option[Array[SentenceTokens]] = {
+  def parseDataSet(file: String): Option[SentenceTokens] = {
     val filePath = getClass.getResource(file).getPath
 
     Manage(Source.fromFile(filePath)) { source =>
 
       val parsedTuples = source getLines() map (s => s.split("\t") match {
-        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
-        case Array(lex, posTag, dep) => Some((lex, posTag, "", dep.toInt)) // Training
+//        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
+        case Array(lex, posTag, dep) => Some((lex, posTag, dep.toInt)) // Training
         case _ => None
       })
 
-      val tuples = Array.newBuilder[SentenceTokens]
+      val lex = Vector.newBuilder[String]
+      val po = Vector.newBuilder[String]
+      val d = Vector.newBuilder[Int]
 
-      for (Some(t) <- parsedTuples) tuples += t
+      for(Some(t) <- parsedTuples){
+        lex += t._1
+        po += t._2
+        d += t._3
+      }
 
-      Some(tuples.result)
+      val tuples = new SentenceTokens(lex.result(), po.result(), d.result())
+
+      Some(tuples)
     }
   }
 }
