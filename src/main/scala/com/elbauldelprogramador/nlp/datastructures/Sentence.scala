@@ -34,6 +34,7 @@ class Sentence(/** Actual tokens in this sentence */
                val dep: Vector[Int]) {
 
   /** Constituent tree of this sentence; includes head words */
+  // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
   private val tree: Vector[Node] = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex

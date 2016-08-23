@@ -32,20 +32,24 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
-  def parseDataSet(file: String): Option[Vector[Sentence]] = {
+  def parseDataSet(file: String,
+                   isTrain: Boolean = true): Option[Vector[Sentence]] = {
+
     val filePath = getClass.getResource(file).getPath
-    val EoS = ("EOS", "EOS", -1)
+    val EoS = if (isTrain) ("EOS", "EOS", -1) else ("EOS", "EOS", "EOS", -1)
 
     Manage(Source.fromFile(filePath)) { source =>
 
       val parsedTuples = source getLines() map (s => s.split("\t") match {
-        case Array(lex, posTag, dep) => Some((lex, posTag, dep.toInt))
+        case Array(l, posTag, dep) => Some((l, posTag, dep.toInt))
+        case Array(l, posTag, goldTag, dep) => Some((l, posTag, goldTag, dep.toInt))
         case _ => Some(EoS) // End Of Sentence
       })
 
       val sentences = Vector.newBuilder[Sentence]
       val lex = Vector.newBuilder[String]
       val po = Vector.newBuilder[String]
+      val gold = Vector.newBuilder[String]
       val d = Vector.newBuilder[Int]
 
       for (Some(t) <- parsedTuples) {
@@ -55,10 +59,16 @@ object DataParser {
             lex.clear()
             po.clear()
             d.clear()
-          case _ =>
-            lex += t._1
-            po += t._2
-            d += t._3
+            if (isTrain) gold.clear()
+          case _ if isTrain =>
+            lex += t.asInstanceOf[(String, String, Int)]._1
+            po += t.asInstanceOf[(String, String, Int)]._2
+            d += t.asInstanceOf[(String, String, Int)]._3
+          case _ if !isTrain =>
+            lex += t.asInstanceOf[(String, String, String, Int)]._1
+            po += t.asInstanceOf[(String, String, String, Int)]._2
+            gold += t.asInstanceOf[(String, String, String, Int)]._3
+            d += t.asInstanceOf[(String, String, String, Int)]._4
         }
       }
 

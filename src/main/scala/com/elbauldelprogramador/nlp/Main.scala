@@ -48,9 +48,9 @@ object Main extends App {
   val TestSentencesFile = "/ancora-test-one-sentence"
 
   // Read and parse training data
-  val testTuples = DataParser.parseDataSet(DataSourcePath + TrainSentencesFile)
-
-  println(testTuples)
+  val trainSentences = DataParser.parseDataSet(DataSourcePath + TrainSentencesFile)
+  val testSentences = DataParser.parseDataSet(DataSourcePath + TestSentencesFile, false)
+  println(trainSentences)
   //  val trainTuples = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
 
 
