@@ -18,6 +18,8 @@
 
 package com.elbauldelprogramador.nlp.utils
 
+import com.elbauldelprogramador.nlp.datastructures.Sentence
+
 import scala.io.Source
 import scala.language.reflectiveCalls
 import scala.util.control.NonFatal
@@ -30,32 +32,39 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
-  type SentenceTokens = (Vector[String], Vector[String], Vector[Int])
-
-  def parseDataSet(file: String): Option[SentenceTokens] = {
+  def parseDataSet(file: String): Option[Vector[Sentence]] = {
     val filePath = getClass.getResource(file).getPath
 
     Manage(Source.fromFile(filePath)) { source =>
 
       val parsedTuples = source getLines() map (s => s.split("\t") match {
-//        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
+        //        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
         case Array(lex, posTag, dep) => Some((lex, posTag, dep.toInt)) // Training
-        case _ => None
+//        case Array(".", posTag, dep) => Some((".", posTag, dep.toInt)) // End of sentence ("")
+        case _ => Some(("EOL", "EOL", -1))// End of sentence
       })
 
+      val sentences = Vector.newBuilder[Sentence]
       val lex = Vector.newBuilder[String]
       val po = Vector.newBuilder[String]
       val d = Vector.newBuilder[Int]
 
-      for(Some(t) <- parsedTuples){
-        lex += t._1
-        po += t._2
-        d += t._3
+      for (Some(t) <- parsedTuples) {
+
+        t match {
+          case ("EOL", "EOL", -1) =>
+            sentences += new Sentence(lex.result(), po.result(), d.result())
+            lex.clear()
+            po.clear()
+            d.clear()
+          case _ =>
+            lex += t._1
+            po += t._2
+            d += t._3
+        }
       }
 
-      val tuples = new SentenceTokens(lex.result(), po.result(), d.result())
-
-      Some(tuples)
+      Some(sentences.result())
     }
   }
 }

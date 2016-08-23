@@ -18,7 +18,6 @@
 
 package com.elbauldelprogramador.nlp
 
-import com.elbauldelprogramador.nlp.datastructures.Sentence
 import com.elbauldelprogramador.nlp.utils.DataParser
 
 
@@ -48,15 +47,18 @@ object Main extends App {
   val TrainSentencesFile = "/es_ancora-converted-train-one.txt"
   val TestSentencesFile = "/ancora-test-one-sentence"
 
+  // Read and parse training data
   val testTuples = DataParser.parseDataSet(DataSourcePath + TrainSentencesFile)
+
+  println(testTuples)
   //  val trainTuples = DataParser.parseDataSet(DataSourcePath + TestSentencesFile)
 
 
-  val sentences = if (testTuples.isDefined) {
-    new Sentence(testTuples.get._1, testTuples.get._2)
-  } else None
+//  val sentences = if (testTuples.isDefined) {
+//    new Sentence(testTuples.get._1, testTuples.get._2, testTuples.get._3)
+//  } else None
 
-  println(sentences)
+//  println(sentences)
 }
 
 

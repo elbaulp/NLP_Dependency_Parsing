@@ -17,6 +17,8 @@
 
 package com.elbauldelprogramador.nlp.datastructures
 
+import com.elbauldelprogramador.nlp.utils.DataTypes.SentenceTokens
+
 /**
   * Represents an unlabeled sentence
   *
@@ -26,13 +28,18 @@ class Sentence(/** Actual tokens in this sentence */
                val words: Vector[String],
 
                /** POS tags for words */
-               val tags: Vector[String]) {
+               val tags: Vector[String],
+
+               /** Dependency order */
+               val dep: Vector[Int]) {
 
   /** Constituent tree of this sentence; includes head words */
   private val tree: Vector[Node] = words.map(w => {
     val i = words.indexOf(w)
     new Node(w, i, tags.head, 0)
   })
+
+  def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
 
   /**
     * Sentence's length
