@@ -34,14 +34,13 @@ object DataParser {
 
   def parseDataSet(file: String): Option[Vector[Sentence]] = {
     val filePath = getClass.getResource(file).getPath
+    val EoS = ("EOS", "EOS", -1)
 
     Manage(Source.fromFile(filePath)) { source =>
 
       val parsedTuples = source getLines() map (s => s.split("\t") match {
-        //        case Array(lex, posTag, goldTag, dep) => Some((lex, posTag, goldTag, dep.toInt)) // Test
-        case Array(lex, posTag, dep) => Some((lex, posTag, dep.toInt)) // Training
-//        case Array(".", posTag, dep) => Some((".", posTag, dep.toInt)) // End of sentence ("")
-        case _ => Some(("EOL", "EOL", -1))// End of sentence
+        case Array(lex, posTag, dep) => Some((lex, posTag, dep.toInt))
+        case _ => Some(EoS) // End Of Sentence
       })
 
       val sentences = Vector.newBuilder[Sentence]
@@ -50,9 +49,8 @@ object DataParser {
       val d = Vector.newBuilder[Int]
 
       for (Some(t) <- parsedTuples) {
-
         t match {
-          case ("EOL", "EOL", -1) =>
+          case EoS =>
             sentences += new Sentence(lex.result(), po.result(), d.result())
             lex.clear()
             po.clear()
