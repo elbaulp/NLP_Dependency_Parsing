@@ -34,10 +34,16 @@ class Sentence(/** Actual tokens in this sentence */
                val dep: Vector[Int]) {
 
   /** Constituent tree of this sentence; includes head words */
-  private val tree: Vector[Node] = words.map(w => {
-    val i = words.indexOf(w)
-    new Node(w, i, tags.head, 0)
-  })
+  private val tree: Vector[Node] = {
+    // In order to be able to access the index, zip with index
+    val indexedWords = words.zipWithIndex
+
+    // Iterate thought all three collections and create Nodes
+    (indexedWords, tags, dep).zipped.map {
+      (w, t, d) => new Node(w._1, w._2, t, d)
+    }
+  }
+
 
   def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
 
