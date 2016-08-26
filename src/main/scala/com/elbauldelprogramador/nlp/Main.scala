@@ -18,6 +18,7 @@
 
 package com.elbauldelprogramador.nlp
 
+import com.elbauldelprogramador.nlp.datastructures.MultiSet
 import com.elbauldelprogramador.nlp.utils.DataParser
 
 /**
@@ -36,8 +37,20 @@ object Main extends App {
   val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
   val testSentences = DataParser.readDataSet(DataSourcePath + TestSentencesFile, false)
 
+  val counter = new MultiSet[String]
 
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("OLA")
+  counter.add("Adios")
 
+  println(counter)
+
+  println("EOP")
 }
 
 
