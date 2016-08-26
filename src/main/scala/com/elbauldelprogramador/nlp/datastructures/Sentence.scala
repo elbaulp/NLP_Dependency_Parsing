@@ -45,7 +45,6 @@ class Sentence(/** Actual tokens in this sentence */
     }
   }
 
-
   def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
 
   /**

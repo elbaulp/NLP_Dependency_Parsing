@@ -7,5 +7,19 @@
       <option name="uncheckedWarnings" value="true" />
       <option name="featureWarnings" value="true" />
     </profile>
+    <profile name="SBT 3" modules="scalaml-master">
+      <option name="uncheckedWarnings" value="true" />
+      <parameters>
+        <parameter value="-optimize" />
+        <parameter value="-Yinline-warnings" />
+      </parameters>
+    </profile>
+    <profile name="SBT 4" modules="scalaml">
+      <option name="postfixOps" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <parameters>
+        <parameter value="-optimize" />
+      </parameters>
+    </profile>
   </component>
 </project>

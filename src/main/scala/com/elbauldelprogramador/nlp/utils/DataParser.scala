@@ -52,6 +52,7 @@ object DataParser {
       val gold = Vector.newBuilder[String]
       val d = Vector.newBuilder[Int]
 
+
       for (Some(t) <- parsedTuples) {
         t match {
           case EoS =>
