@@ -87,24 +87,14 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99-sources.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99.pom" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/scala/dasdfs.sc" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/build.sbt" afterPath="$PROJECT_DIR$/../ScalaMl/build.sbt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/scalability/akka/MasterWithRouter.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/scalability/akka/MasterWithRouter.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/SVMKernel.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/SVMKernel.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" afterPath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" afterPath="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala" />
     </list>
     <ignored path="Spanish Dependency Parser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -179,7 +169,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="477">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+              <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -1002,7 +992,7 @@
       <workItem from="1472035490799" duration="3397000" />
       <workItem from="1472045842031" duration="12233000" />
       <workItem from="1472201156338" duration="608000" />
-      <workItem from="1472220039319" duration="687000" />
+      <workItem from="1472220039319" duration="715000" />
     </task>
     <task id="LOCAL-00001" summary="Added constants for data">
       <created>1471599203635</created>
@@ -1047,7 +1037,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123639000" />
+    <option name="totallyTimeSpent" value="123667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1482,7 +1472,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
           <folding />
         </state>
       </provider>

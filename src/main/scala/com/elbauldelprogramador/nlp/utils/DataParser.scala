@@ -32,8 +32,8 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
-  def parseDataSet(file: String,
-                   isTrain: Boolean = true): Option[Vector[Sentence]] = {
+  def readDataSet(file: String,
+                  isTrain: Boolean = true): Option[Vector[Sentence]] = {
 
     val filePath = getClass.getResource(file).getPath
     val EoS = if (isTrain) ("EOS", "EOS", -1) else ("EOS", "EOS", "EOS", -1)
