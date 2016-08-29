@@ -44,6 +44,8 @@ class Node(val lex: String,
     left = left :+ child
   }
 
+
+
 //  /**
 //    * Check if the tree is parsed correctly completely (Ignoring punctiation tags) against the Gold sentence tags
 //    *
@@ -53,4 +55,5 @@ class Node(val lex: String,
   //  def matchAll(goldSentence: String): Boolean = {
   //
   //  }
+  override def toString: String = s"<LEX: $lex, TAG: $posTag, DEP: $dependency, POS: $position, LEFT: $left, RIGHT:  $right>"
 }

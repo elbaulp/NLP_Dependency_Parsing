@@ -18,15 +18,13 @@
 
 package com.elbauldelprogramador.nlp
 
-import com.elbauldelprogramador.nlp.datastructures.MultiSet
+import com.elbauldelprogramador.nlp.parser.SVMParser
 import com.elbauldelprogramador.nlp.utils.DataParser
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
-
-  import scala.language.postfixOps
 
   val DataSourcePath = "/data/spanish"
   val ModelsPath = "/models"
@@ -37,20 +35,9 @@ object Main extends App {
   val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
   val testSentences = DataParser.readDataSet(DataSourcePath + TestSentencesFile, false)
 
-  val counter = new MultiSet[String]
+  val parser = new SVMParser
+  parser.train(trainSentences.get)
 
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("OLA")
-  counter.add("Adios")
-
-  println(counter)
-
-  println("EOP")
 }
 
 

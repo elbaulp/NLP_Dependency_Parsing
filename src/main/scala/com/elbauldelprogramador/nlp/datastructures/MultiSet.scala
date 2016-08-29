@@ -34,9 +34,6 @@ class MultiSet[T] {
       counter += (key -> 1)
   }
 
-
-
   //  private def count[T](s: Seq[T]) = s.groupBy(identity).mapValues(_.length)
   override def toString: String = counter.toString()
 }
-

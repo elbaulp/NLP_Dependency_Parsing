@@ -1,100 +1,99 @@
-lex,pos,dep
-El,DET,1
-presidente,NOUN,10
-de,ADP,4
-el,DET,4
-órgano,NOUN,1
-regulador,ADJ,4
-de,ADP,8
-las,DET,8
-Telecomunicaciones,PROPN,4
-se,PRON,10
-mostró,VERB,-1
-partidario,ADJ,10
-de,ADP,13
-completar,VERB,11
-esta,DET,15
-liberalización,NOUN,13
-de,ADP,18
-las,DET,18
-telecomunicaciones,NOUN,15
-con,ADP,21
-otras,DET,21
-medidas,NOUN,13
-que,PRON,23
-incentiven,VERB,21
-la,DET,25
-competencia,NOUN,23
-como,SCONJ,29
-puede,NOUN,26
-ser,NOUN,26
-abrir,VERB,21
-el,DET,31
-acceso,NOUN,29
-a,ADP,34
-la,DET,34
-información,NOUN,31
-de,ADP,37
-los,DET,37
-clientes,NOUN,34
-de,ADP,39
-Telefónica,PROPN,37
-a,ADP,42
-otros,DET,42
-operadores,NOUN,29
-.,PUNCT,10
+El	DET	1
+presidente	NOUN	10
+de	ADP	4
+el	DET	4
+órgano	NOUN	1
+regulador	ADJ	4
+de	ADP	8
+las	DET	8
+Telecomunicaciones	PROPN	4
+se	PRON	10
+mostró	VERB	-1
+partidario	ADJ	10
+de	ADP	13
+completar	VERB	11
+esta	DET	15
+liberalización	NOUN	13
+de	ADP	18
+las	DET	18
+telecomunicaciones	NOUN	15
+con	ADP	21
+otras	DET	21
+medidas	NOUN	13
+que	PRON	23
+incentiven	VERB	21
+la	DET	25
+competencia	NOUN	23
+como	SCONJ	29
+puede	NOUN	26
+ser	NOUN	26
+abrir	VERB	21
+el	DET	31
+acceso	NOUN	29
+a	ADP	34
+la	DET	34
+información	NOUN	31
+de	ADP	37
+los	DET	37
+clientes	NOUN	34
+de	ADP	39
+Telefónica	PROPN	37
+a	ADP	42
+otros	DET	42
+operadores	NOUN	29
+.	PUNCT	10
 
-Sobre,ADP,2
-la,DET,2
-oferta,NOUN,19
-de,ADP,4
-interconexión,NOUN,2
-con,ADP,6
-Telefónica,PROPN,4
-de,ADP,9
-otros,DET,9
-operadores,NOUN,2
-que,PRON,13
-acaba,AUX,13
-de,ADP,13
-aprobar,VERB,2
-la,DET,15
-CMT,PROPN,13
-,,PUNCT,2
-Vázquez,PROPN,19
-Quintana,PROPN,17
-dijo,VERB,-1
-que,SCONJ,25
-para,ADP,22
-desarrollar,VERB,25
-la,PRON,22
-han,AUX,25
-escuchado,VERB,19
-a,ADP,28
-los,DET,28
-operadores,NOUN,25
-actuales,ADJ,28
-y,CONJ,28
-a,ADP,32
-otros,PRON,28
-que,PRON,35
-pronto,ADV,35
-darán,VERB,32
-servicios,NOUN,35
-y,CONJ,25
-que,SCONJ,47
-a,ADP,41
-el,DET,41
-tener,VERB,47
-que,SCONJ,41
-aunar,VERB,41
-tantos,DET,45
-intereses,NOUN,43
-es,AUX,47
-imposible,ADJ,25
-dejar,AUX,49
-satisfechos,ADJ,47
-a,ADP,51
-todos,PRON,49
-.,PUNCT,19
+Sobre	ADP	2
+la	DET	2
+oferta	NOUN	19
+de	ADP	4
+interconexión	NOUN	2
+con	ADP	6
+Telefónica	PROPN	4
+de	ADP	9
+otros	DET	9
+operadores	NOUN	2
+que	PRON	13
+acaba	AUX	13
+de	ADP	13
+aprobar	VERB	2
+la	DET	15
+CMT	PROPN	13
+,	PUNCT	2
+Vázquez	PROPN	19
+Quintana	PROPN	17
+dijo	VERB	-1
+que	SCONJ	25
+para	ADP	22
+desarrollar	VERB	25
+la	PRON	22
+han	AUX	25
+escuchado	VERB	19
+a	ADP	28
+los	DET	28
+operadores	NOUN	25
+actuales	ADJ	28
+y	CONJ	28
+a	ADP	32
+otros	PRON	28
+que	PRON	35
+pronto	ADV	35
+darán	VERB	32
+servicios	NOUN	35
+y	CONJ	25
+que	SCONJ	47
+a	ADP	41
+el	DET	41
+tener	VERB	47
+que	SCONJ	41
+aunar	VERB	41
+tantos	DET	45
+intereses	NOUN	43
+es	AUX	47
+imposible	ADJ	25
+dejar	AUX	49
+satisfechos	ADJ	47
+a	ADP	51
+todos	PRON	49
+.	PUNCT	19
 
