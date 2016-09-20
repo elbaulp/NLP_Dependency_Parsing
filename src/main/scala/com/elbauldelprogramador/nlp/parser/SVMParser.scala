@@ -17,7 +17,10 @@
 
 package com.elbauldelprogramador.nlp.parser
 
-import com.elbauldelprogramador.nlp.datastructures.{MultiSet, Node, Sentence}
+import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
+
+import scala.collection.mutable.Map
+import scala.collection.mutable
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
@@ -27,14 +30,14 @@ class SVMParser {
   val Shift = 1
   val Right = 2
 
-  var positionVocab: Map[Int, MultiSet[String]] = Map.empty
+  var positionVocab = Map.empty[Int, Map[String, Int]]
 
   def train(sentences: Vector[Sentence]) = {
     for (s <- sentences) {
       var trees = s.tree
       var i = 0
       var noConstruction = false
-      while (trees.size > 0 && !noConstruction) {
+      while (trees.nonEmpty && !noConstruction) {
         if (i == trees.size - 1) {
           noConstruction = true
           i = 0
@@ -51,7 +54,9 @@ class SVMParser {
     }
 
     // Convert vocabulary to features
-    positionVocab foreach println
+    //    positionVocab foreach println
+    //    toFeatures(positionVocab)
+    println("hola")
   }
 
   def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: ACTION*/): (Int /*TODO: Action*/ ,
@@ -94,19 +99,23 @@ class SVMParser {
   def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
     !trees.exists(_.dependency == child.position)
 
-
   def buildVocabulary(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int) = {
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
     //    var positionVocab = Map.empty[Int, MultiSet[String]]
-    var positionTag = Map.empty[Int, MultiSet[String]]
+    //    var positionTag = Map.empty[Int, Map[String, Int]]
 
     for ((w, k) <- range) {
       if (w >= 0 && w < trees.size) {
         val targetNode = trees(w)
-        val word = positionVocab.getOrElse(k, new MultiSet[String])
-        word.add(targetNode.lex)
+        // Try to get the counter for this lex, if not, create one
+        val word = positionVocab getOrElseUpdate (k, mutable.Map(targetNode.lex -> 0))
+        // Increment the counter for this lex by 1, create one if not exists
+        word += (targetNode.lex -> (word.getOrElseUpdate(targetNode.lex, 0) + 1))
+
         positionVocab += (k -> word)
       }
     }
   }
+
+  def toFeatures(counter: Map[Int, Map[String, Int]]): Map[Int, Map[String, Int]] = ???
 }
