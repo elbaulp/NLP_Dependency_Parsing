@@ -18,6 +18,7 @@
 package com.elbauldelprogramador.nlp.parser
 
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
+import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 
 import scala.collection.mutable
 import scala.collection.mutable.Map
@@ -31,8 +32,8 @@ class SVMParser {
   val Right = 2
 
   // TODO: try to make them vals
-  var positionVocab = Map.empty[Int, Map[String, Int]]
-  var positionTag = Map.empty[Int, Map[String, Int]]
+  var positionVocab = Map.empty[Int, Counter]
+  var positionTag = Map.empty[Int, Counter]
 
   def train(sentences: Vector[Sentence]) = {
     for (s <- sentences) {
@@ -119,7 +120,7 @@ class SVMParser {
     }
   }
 
-  def toFeatures(counter: Map[Int, Map[String, Int]]): Map[Int, Map[String, Int]] = {
+  def toFeatures(counter: Map[Int,  Counter]): Map[Int,  Counter] = {
     // Assign to each string key a counter, starting from 0 to the map size
     counter foreach {
       case (_, map) =>

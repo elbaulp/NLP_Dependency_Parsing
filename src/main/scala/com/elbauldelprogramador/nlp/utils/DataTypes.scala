@@ -20,6 +20,7 @@ package com.elbauldelprogramador.nlp.utils
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/23/16.
   */
-final object DataTypes {
+object DataTypes {
   type SentenceTokens = (Vector[String], Vector[String], Vector[Int])
+  type Counter = scala.collection.mutable.Map[String, Int] // TODO: Try to make them inmutable
 }
