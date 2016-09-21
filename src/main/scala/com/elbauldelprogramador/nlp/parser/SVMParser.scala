@@ -19,8 +19,8 @@ package com.elbauldelprogramador.nlp.parser
 
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 
-import scala.collection.mutable.Map
 import scala.collection.mutable
+import scala.collection.mutable.Map
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
@@ -30,7 +30,9 @@ class SVMParser {
   val Shift = 1
   val Right = 2
 
+  // TODO: try to make them vals
   var positionVocab = Map.empty[Int, Map[String, Int]]
+  var positionTag = Map.empty[Int, Map[String, Int]]
 
   def train(sentences: Vector[Sentence]) = {
     for (s <- sentences) {
@@ -55,11 +57,11 @@ class SVMParser {
 
     // Convert vocabulary to features
     //    positionVocab foreach println
-    //    toFeatures(positionVocab)
+    toFeatures(positionVocab)
     println("hola")
   }
 
-  def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: ACTION*/): (Int /*TODO: Action*/ ,
+  def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
     Vector[Node]) = {
     val a = trees(index)
     val b = trees(index + 1)
@@ -108,7 +110,7 @@ class SVMParser {
       if (w >= 0 && w < trees.size) {
         val targetNode = trees(w)
         // Try to get the counter for this lex, if not, create one
-        val word = positionVocab getOrElseUpdate (k, mutable.Map(targetNode.lex -> 0))
+        val word = positionVocab getOrElseUpdate(k, mutable.Map(targetNode.lex -> 0))
         // Increment the counter for this lex by 1, create one if not exists
         word += (targetNode.lex -> (word.getOrElseUpdate(targetNode.lex, 0) + 1))
 
@@ -117,5 +119,14 @@ class SVMParser {
     }
   }
 
-  def toFeatures(counter: Map[Int, Map[String, Int]]): Map[Int, Map[String, Int]] = ???
+  def toFeatures(counter: Map[Int, Map[String, Int]]): Map[Int, Map[String, Int]] = {
+    // Assign to each string key a counter, starting from 0 to the map size
+    counter foreach {
+      case (_, map) =>
+        for ((lexKey, value) <- map.keys.zipWithIndex) map update(lexKey, value)
+        map update("UNKNOWN", map.size) // For previously unknown features during training
+    }
+
+    counter
+  }
 }

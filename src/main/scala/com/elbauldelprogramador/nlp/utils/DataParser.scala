@@ -32,6 +32,8 @@ import scala.util.control.NonFatal
   */
 object DataParser {
 
+  // TODO: issue #2 Use Either instead of Option to read train/test data
+
   def readDataSet(file: String,
                   isTrain: Boolean = true): Option[Vector[Sentence]] = {
 
