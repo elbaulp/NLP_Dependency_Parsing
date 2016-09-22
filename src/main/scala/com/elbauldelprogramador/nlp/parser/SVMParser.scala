@@ -21,7 +21,6 @@ import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 
 import scala.collection.mutable
-import scala.collection.mutable.Map
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
@@ -32,10 +31,15 @@ class SVMParser {
   val Right = 2
 
   // TODO: try to make them vals
-  var positionVocab = Map.empty[Int, Counter]
-  var positionTag = Map.empty[Int, Counter]
+  var positionVocab = mutable.Map.empty[Int, Counter]
+  var positionTag = mutable.Map.empty[Int, Counter]
+  var chLVocab = mutable.Map.empty[Int, Counter]
+  var chLTag = mutable.Map.empty[Int, Counter]
+  var chRVocab = mutable.Map.empty[Int, Counter]
+  var chRTag = mutable.Map.empty[Int, Counter]
 
   def train(sentences: Vector[Sentence]) = {
+    // TODO: Optimize this, may be tail rec?
     for (s <- sentences) {
       var trees = s.tree
       var i = 0
@@ -52,14 +56,16 @@ class SVMParser {
           val (newI, newTrees) = takeAction(trees, i, y)
           i = newI
           trees = newTrees
+
+          // Execute the action and modify the trees
+          if ( y != Shift)
+            noConstruction = false
         }
       }
     }
 
     // Convert vocabulary to features
-    //    positionVocab foreach println
     toFeatures(positionVocab)
-    println("hola")
   }
 
   def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
@@ -72,13 +78,13 @@ class SVMParser {
       case Right /*TODO: Action */ =>
         b.insertRight(a)
         // Update the tree and remove a
-        val updatedTree = trees updated(index + 1, b) diff (Vector(a))
+        val updatedTree = trees updated(index + 1, b) diff Vector(a)
         if (i == 0)
           i = 1
         (i - 1, updatedTree)
       case Left /*TODO: Action */ =>
         a.insertLeft(b)
-        val updatedTree = trees updated(index, a) diff (Vector(b))
+        val updatedTree = trees updated(index, a) diff Vector(b)
         if (i == 0)
           i = 1
         (i - 1, updatedTree)
@@ -102,25 +108,55 @@ class SVMParser {
   def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
     !trees.exists(_.dependency == child.position)
 
+  /**
+    *
+    * TODO: Issue #3 Refactor this function
+    */
   def buildVocabulary(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int) = {
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
-    //    var positionVocab = Map.empty[Int, MultiSet[String]]
-    //    var positionTag = Map.empty[Int, Map[String, Int]]
 
     for ((w, k) <- range) {
       if (w >= 0 && w < trees.size) {
         val targetNode = trees(w)
         // Try to get the counter for this lex, if not, create one
         val word = positionVocab getOrElseUpdate(k, mutable.Map(targetNode.lex -> 0))
+        // Same for POS Tag
+        val tag = positionTag getOrElseUpdate(k, mutable.Map(targetNode.posTag -> 0))
+
         // Increment the counter for this lex by 1, create one if not exists
         word += (targetNode.lex -> (word.getOrElseUpdate(targetNode.lex, 0) + 1))
+        tag += (targetNode.posTag -> (word.getOrElseUpdate(targetNode.posTag, 0) + 1))
 
         positionVocab += (k -> word)
+        positionTag += (k -> tag)
+
+        // Check left and righ childs
+        for (leftChild <- targetNode.left) {
+          val word = chLVocab getOrElseUpdate(k, mutable.Map(leftChild.lex -> 0))
+          val tag = chLTag getOrElseUpdate(k, mutable.Map(leftChild.posTag -> 0))
+
+          word += (leftChild.lex -> (word.getOrElseUpdate(leftChild.lex, 0) + 1))
+          tag += (leftChild.posTag -> (word.getOrElseUpdate(leftChild.posTag, 0) + 1))
+
+          chLVocab += (k -> word)
+          chLTag += (k -> tag)
+        }
+
+        for (rightChild <- targetNode.right) {
+          val word = chRVocab getOrElseUpdate(k, mutable.Map(rightChild.lex -> 0))
+          val tag = chRTag getOrElseUpdate(k, mutable.Map(rightChild.posTag -> 0))
+
+          word += (rightChild.lex -> (word.getOrElseUpdate(rightChild.lex, 0) + 1))
+          tag += (rightChild.posTag -> (word.getOrElseUpdate(rightChild.posTag, 0) + 1))
+
+          chRVocab += (k -> word)
+          chRTag += (k -> tag)
+        }
       }
     }
   }
 
-  def toFeatures(counter: Map[Int,  Counter]): Map[Int,  Counter] = {
+  def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
     // Assign to each string key a counter, starting from 0 to the map size
     counter foreach {
       case (_, map) =>
