@@ -37,6 +37,7 @@ class SVMParser {
   var chLTag = mutable.Map.empty[Int, Counter]
   var chRVocab = mutable.Map.empty[Int, Counter]
   var chRTag = mutable.Map.empty[Int, Counter]
+  var NFeatures = 0
 
   def train(sentences: Vector[Sentence]) = {
     // TODO: Optimize this, may be tail rec?
@@ -58,7 +59,7 @@ class SVMParser {
           trees = newTrees
 
           // Execute the action and modify the trees
-          if ( y != Shift)
+          if (y != Shift)
             noConstruction = false
         }
       }
@@ -72,7 +73,18 @@ class SVMParser {
     toFeatures(chLVocab)
     toFeatures(chRVocab)
 
+    // Set the total number of features
+    NFeatures = countFeatures(positionVocab) +
+                countFeatures(positionTag) +
+                countFeatures(chLTag) +
+                countFeatures(chRTag) +
+                countFeatures(chLVocab) +
+                countFeatures(chRVocab)
+
+    println(NFeatures)
   }
+
+  def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum
 
   def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
     Vector[Node]) = {
@@ -172,4 +184,5 @@ class SVMParser {
 
     counter
   }
+
 }
