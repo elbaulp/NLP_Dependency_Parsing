@@ -65,7 +65,13 @@ class SVMParser {
     }
 
     // Convert vocabulary to features
+    toFeatures(positionTag)
     toFeatures(positionVocab)
+    toFeatures(chLTag)
+    toFeatures(chRTag)
+    toFeatures(chLVocab)
+    toFeatures(chRVocab)
+
   }
 
   def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
