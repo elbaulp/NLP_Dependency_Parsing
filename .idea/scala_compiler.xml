@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="SBT 1" modules="models,grado_informatica_tfg_naturallanguageprocessing" />
+    <profile name="SBT 1" modules="models">
+      <option name="postfixOps" value="true" />
+    </profile>
     <profile name="SBT 2" modules="core">
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
@@ -21,5 +23,6 @@
         <parameter value="-optimize" />
       </parameters>
     </profile>
+    <profile name="SBT 5" modules="grado_informatica_tfg_naturallanguageprocessing" />
   </component>
 </project>

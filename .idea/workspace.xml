@@ -6,7 +6,7 @@
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb879252-8d95-4084-9779-65ca7b600c1a" name="Default" comment="">
+    <list default="true" id="bb879252-8d95-4084-9779-65ca7b600c1a" name="Default" comment="Added constants for data">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_kryo_shaded_3_0_3_jar.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_minlog_1_3_0_jar.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_annotations_2_6_5_jar.xml" />
@@ -93,6 +93,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
     </list>
@@ -157,32 +158,10 @@
       <file leaf-file-name="SVMParser.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="84" column="3" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
+            <state relative-caret-position="891">
+              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
                 <element signature="e#980#1047#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TraversableOnce.scala" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/TraversableOnce.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="207" column="6" selection-start-line="207" selection-start-column="6" selection-end-line="207" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-              <folding>
-                <element signature="e#969#1021#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -390,7 +369,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -403,14 +382,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -420,7 +392,7 @@
     <property name="project.structure.side.proportion" value="0.52873564" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="multi&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;mu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;senten&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;ancora&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;an&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train&#10;par&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala&#10;Sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;Main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;toggle distra&#9;ACTION&#9;ToggleDistractionFreeMode&#10;Node&#9;null&#9;null&#10;Sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;SVM&#9;null&#9;null&#10;XtSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Types&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/types.scala&#10;XTSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Display&#9;null&#9;null&#10;XtSeri&#9;null&#9;null&#10;XtSeries&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/learningmodel/core/XTSeries.scala&#10;XTSer&#9;null&#9;null&#10;FormatUtils&#9;null&#9;null&#10;test-on&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;BufferedSource&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/io/BufferedSource.scala&#10;reader&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/java/org/maltparserx/core/syntaxgraph/reader/NegraReader.java&#10;Document.scala&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/scala/org/clulab/processors/Document.scala&#10;ShallowNLPProcessor&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala&#10;MaxentTagger&#9;PSI&#9;JAVA://edu.stanford.nlp.tagger.maxent.MaxentTagger" />
+    <property name="SearchEverywhereHistoryKey" value="one-sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;multi&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;mu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;senten&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;ancora&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;an&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train&#10;par&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala&#10;Sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;Main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;toggle distra&#9;ACTION&#9;ToggleDistractionFreeMode&#10;Node&#9;null&#9;null&#10;Sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;SVM&#9;null&#9;null&#10;XtSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Types&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/types.scala&#10;XTSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Display&#9;null&#9;null&#10;XtSeri&#9;null&#9;null&#10;XtSeries&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/learningmodel/core/XTSeries.scala&#10;XTSer&#9;null&#9;null&#10;FormatUtils&#9;null&#9;null&#10;test-on&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;BufferedSource&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/io/BufferedSource.scala&#10;reader&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/java/org/maltparserx/core/syntaxgraph/reader/NegraReader.java&#10;Document.scala&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/scala/org/clulab/processors/Document.scala&#10;ShallowNLPProcessor&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala&#10;MaxentTagger&#9;PSI&#9;JAVA://edu.stanford.nlp.tagger.maxent.MaxentTagger" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScalaMl" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -879,7 +851,7 @@
     </configuration>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1474567077850" />
+    <option name="lastUpdateTimestamp" value="1474908904264" />
     <option name="availableProjects">
       <map>
         <entry>
@@ -952,7 +924,10 @@
       <workItem from="1474471500162" duration="1547000" />
       <workItem from="1474476857067" duration="6959000" />
       <workItem from="1474557834021" duration="4111000" />
-      <workItem from="1474567038054" duration="982000" />
+      <workItem from="1474567038054" duration="3236000" />
+      <workItem from="1474616639314" duration="942000" />
+      <workItem from="1474902608173" duration="5995000" />
+      <workItem from="1474908868973" duration="4564000" />
     </task>
     <task id="LOCAL-00001" summary="Added constants for data">
       <created>1471599203635</created>
@@ -997,7 +972,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206143000" />
+    <option name="totallyTimeSpent" value="219898000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1010,58 +985,58 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3840" y="0" width="1920" height="1067" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327852" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21993834" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21891059" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799589" sideWeight="0.5021299" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19732785" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32682425" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09371672" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327852" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21993834" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799589" sideWeight="0.5021299" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33504626" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09371672" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15827338" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3524962" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22096609" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14799589" sideWeight="0.5021299" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33524904" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30511183" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.5" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
     </layout-to-restore>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
@@ -1174,6 +1149,12 @@
           <properties />
           <option name="timeStamp" value="155" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala</url>
+          <line>143</line>
+          <properties />
+          <option name="timeStamp" value="265" />
+        </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/pipeline/StanfordCoreNLP.java</url>
           <line>288</line>
@@ -1221,18 +1202,15 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="247" />
+      <option name="time" value="266" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="chLVocab" language="Scala" custom="" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.4-sources.jar!/scala/package.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="90" column="7" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalatest/scalatest_2.10/srcs/scalatest_2.10-2.1.6-sources.jar!/org/scalatest/concurrent/ScalaFutures.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -1444,13 +1422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/IterableLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1469,16 +1440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="34" column="72" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-          <folding>
-            <element signature="e#969#1021#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1510,18 +1471,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data/spanish/ancora-test-one-sentence">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/TraversableOnce.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="207" column="6" selection-start-line="207" selection-start-column="6" selection-end-line="207" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/IterableLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="75" column="35" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="84" column="3" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
+        <state relative-caret-position="891">
+          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
             <element signature="e#980#1047#0" expanded="true" />
           </folding>

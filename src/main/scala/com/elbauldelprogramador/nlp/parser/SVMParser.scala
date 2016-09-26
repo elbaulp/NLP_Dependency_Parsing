@@ -29,6 +29,10 @@ class SVMParser {
   val Left = 0
   val Shift = 1
   val Right = 2
+  val LeftCtx = 2
+  val RightCtx = 4
+
+  val Unknown = "UNKNOWN"
 
   // TODO: try to make them vals
   var positionVocab = mutable.Map.empty[Int, Counter]
@@ -51,7 +55,7 @@ class SVMParser {
           i = 0
         } else {
           // Build vocabulary
-          buildVocabulary(trees, i, 2, 4)
+          buildVocabulary(trees, i, LeftCtx, RightCtx)
 
           val y = estimateTrainAction(trees, i)
           val (newI, newTrees) = takeAction(trees, i, y)
@@ -75,16 +79,114 @@ class SVMParser {
 
     // Set the total number of features
     NFeatures = countFeatures(positionVocab) +
-                countFeatures(positionTag) +
-                countFeatures(chLTag) +
-                countFeatures(chRTag) +
-                countFeatures(chLVocab) +
-                countFeatures(chRVocab)
+      countFeatures(positionTag) +
+      countFeatures(chLTag) +
+      countFeatures(chRTag) +
+      countFeatures(chLVocab) +
+      countFeatures(chRVocab)
 
-    println(NFeatures)
+    // TODO Check if we have a previously trained model before try to train a new one
+
+    for (s <- sentences) {
+      val trees = s.tree
+      var i = 0
+      var noConstruction = false
+      while (trees.nonEmpty && !noConstruction) {
+        if (i == trees.size - 1) {
+          noConstruction = true
+          i = 0
+        } else {
+          val posTag = trees(i) posTag
+
+          // extract features
+          val extractedFeatures = extractTestFeatures(trees, i, 2, 4)
+
+          val y = estimateTrainAction(trees, i)
+          val (newI, newTrees) = takeAction(trees, i, y)
+          i = newI
+          //          trees = newTrees
+
+          // Execute the action and modify the trees
+          if (y != Shift)
+            noConstruction = false
+        }
+      }
+    }
   }
 
   def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum
+
+  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int) = {
+    // Method to extract features for the given context window
+    val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
+    var offset = 0
+    var features = Vector.empty[Int]
+
+    for ((w, k) <- range) {
+      if (w >= 0 && w < trees.size) {
+        val targetNode = trees(w)
+
+        val lexTemp = lexFeature(k, targetNode, offset) +: Vector.empty
+        offset += positionVocab(k).size
+        val tagTemp = posTagFeature(k, targetNode, offset) +: Vector.empty
+        offset += positionTag(k).size
+        val chLLexTemp = childFeatures(k, targetNode.left,
+          offset, chLVocab getOrElseUpdate(k, mutable.Map(Unknown -> 0)), 0)
+        offset += chLVocab(k).size
+        val chLTagTemp = childFeatures(k, targetNode.left, offset, chLTag getOrElseUpdate(k, mutable.Map(Unknown ->
+          0)), 1)
+        offset += chLTag(k).size
+        val chRLexTemp = childFeatures(k, targetNode.right, offset, chRVocab getOrElseUpdate(k, mutable.Map(Unknown -> 0)), 0)
+        offset += chRVocab(k).size
+        val chRTagTemp = childFeatures(k, targetNode.right, offset, chRTag getOrElseUpdate(k, mutable.Map(Unknown -> 0)), 0)
+        offset += chRTag(k).size
+
+        features = features ++ lexTemp ++ tagTemp ++ chLLexTemp ++ chLTagTemp ++ chRLexTemp ++ chRTagTemp
+      }
+    }
+  }
+
+  def posTagFeature(position: Int, node: Node, offset: Int): Int = {
+    val vocab = positionTag(position) // TODO: Match better
+
+    if (vocab.contains(node.posTag))
+      vocab(node.posTag) + offset
+    else
+      vocab(Unknown) + offset
+  }
+
+  def lexFeature(position: Int, node: Node, offset: Int): Int = {
+    val vocab = positionVocab(position) // TODO: Match better
+
+    if (vocab.contains(node.lex))
+      vocab(node.lex) + offset
+    else
+      vocab(Unknown) + offset
+  }
+
+  // TODO: To recursive
+  def childFeatures(position: Int, children: Vector[Node], offset: Int, family: Counter, featureType: Int):
+  Vector[Int] =  {
+    var indices = Vector.empty[Int]
+    for (child <- children){
+      indices = indices :+ childFeature(position, child, offset, family, featureType)
+    }
+    indices
+  }
+
+  def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int):Int = {
+    val vocab = family
+
+    if (featureType == 0) /* EXTRACT_LEX */ {
+      if(vocab contains node.lex)
+        vocab(node.lex) + offset
+      else {
+        if (vocab contains node.posTag)
+          vocab(node.posTag) + offset
+      }
+    }
+    vocab(Unknown) + offset
+  }
 
   def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
     Vector[Node]) = {
@@ -175,14 +277,13 @@ class SVMParser {
   }
 
   def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
+    //    counter map (_._2.size) zipWithIndex ()
     // Assign to each string key a counter, starting from 0 to the map size
     counter foreach {
       case (_, map) =>
         for ((lexKey, value) <- map.keys.zipWithIndex) map update(lexKey, value)
-        map update("UNKNOWN", map.size) // For previously unknown features during training
+        map update(Unknown, map.size) // For previously unknown features during training
     }
-
     counter
   }
-
 }
