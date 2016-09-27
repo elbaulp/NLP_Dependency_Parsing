@@ -35,12 +35,13 @@ class SVMParser {
   val Unknown = "UNKNOWN"
 
   // TODO: try to make them vals
-  var positionVocab = mutable.Map.empty[Int, Counter]
-  var positionTag = mutable.Map.empty[Int, Counter]
-  var chLVocab = mutable.Map.empty[Int, Counter]
-  var chLTag = mutable.Map.empty[Int, Counter]
-  var chRVocab = mutable.Map.empty[Int, Counter]
-  var chRTag = mutable.Map.empty[Int, Counter]
+  val positionVocab = mutable.Map.empty[Int, Counter]
+  val positionTag = mutable.Map.empty[Int, Counter]
+  val chLVocab = mutable.Map.empty[Int, Counter]
+  val chLTag = mutable.Map.empty[Int, Counter]
+  val chRVocab = mutable.Map.empty[Int, Counter]
+  val chRTag = mutable.Map.empty[Int, Counter]
+  val tagActions = mutable.Map[String, mutable.Map[Int,Int]]()
   var NFeatures = 0
 
   def train(sentences: Vector[Sentence]) = {
@@ -87,8 +88,11 @@ class SVMParser {
 
     // TODO Check if we have a previously trained model before try to train a new one
 
+    val trainX = mutable.Map.empty[String, Vector[Int]]
+    val trainY = mutable.Map.empty[String, Vector[Int]]
+
     for (s <- sentences) {
-      val trees = s.tree
+      var trees = s.tree
       var i = 0
       var noConstruction = false
       while (trees.nonEmpty && !noConstruction) {
@@ -96,15 +100,23 @@ class SVMParser {
           noConstruction = true
           i = 0
         } else {
-          val posTag = trees(i) posTag
+          val posTag = trees(i).posTag
 
           // extract features
-          val extractedFeatures = extractTestFeatures(trees, i, 2, 4)
+          val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
 
           val y = estimateTrainAction(trees, i)
+
+          // Update pos Action
+          val actionCounter = tagActions getOrElseUpdate (posTag, mutable.Map(y -> 0)) getOrElseUpdate (y, 0)
+          tagActions(posTag)(y) = actionCounter + 1
+
+          trainX getOrElseUpdate(posTag, extractedFeatures ++ Vector.empty)
+          trainY getOrElseUpdate(posTag, y +: Vector.empty)
+
           val (newI, newTrees) = takeAction(trees, i, y)
           i = newI
-          //          trees = newTrees
+          trees = newTrees
 
           // Execute the action and modify the trees
           if (y != Shift)
@@ -112,11 +124,20 @@ class SVMParser {
         }
       }
     }
+
+    for (lp <- trainX.keys){
+      println(lp)
+      println(s"Size of $lp: ${lp.size}")
+      println(s"# features: $NFeatures")
+
+      val classes = trainY.values.toSet.flatten
+      println(classes)
+    }
   }
 
   def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum
 
-  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int) = {
+  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int):Vector[Int] = {
     // Method to extract features for the given context window
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
     var offset = 0
@@ -144,6 +165,8 @@ class SVMParser {
         features = features ++ lexTemp ++ tagTemp ++ chLLexTemp ++ chLTagTemp ++ chRLexTemp ++ chRTagTemp
       }
     }
+
+    features
   }
 
   def posTagFeature(position: Int, node: Node, offset: Int): Int = {
