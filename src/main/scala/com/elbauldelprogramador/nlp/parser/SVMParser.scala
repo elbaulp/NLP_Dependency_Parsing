@@ -17,7 +17,11 @@
 
 package com.elbauldelprogramador.nlp.parser
 
+import java.io.File
+
+import breeze.linalg.CSCMatrix
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
+import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 
 import scala.collection.mutable
@@ -35,6 +39,8 @@ class SVMParser {
   val Unknown = "UNKNOWN"
 
   // TODO: try to make them vals
+  // TODO: Replace with breeze Counter val c = Counter("a"->1, "b"->2, "x"->3)
+  // TODO: Initialize with http://www.scala-lang.org/old/node/11944.html
   val positionVocab = mutable.Map.empty[Int, Counter]
   val positionTag = mutable.Map.empty[Int, Counter]
   val chLVocab = mutable.Map.empty[Int, Counter]
@@ -90,6 +96,8 @@ class SVMParser {
 
     val trainX = mutable.Map.empty[String, Vector[Int]]
     val trainY = mutable.Map.empty[String, Vector[Int]]
+    val features = mutable.Map.empty[String, CSCMatrix[Boolean]]
+
 
     for (s <- sentences) {
       var trees = s.tree
@@ -138,9 +146,17 @@ class SVMParser {
 //          data.foreach(p.println)
 //        }
         // TODO: Check if the model already exists, if not, we need to train
-        
-
+        if (new File(s"${Constants.ModelPath}$lp.p").exists()){
+          println(s"Loaded ${Constants.ModelPath}$lp.p")
+        } else {
+          val tempFeatures = new CSCMatrix.Builder[Boolean](rows = trainX(lp) size, cols = NFeatures)
+          trainX.zipWithIndex foreach{
+            case ((_,vec), index) => vec foreach (int => tempFeatures add(index,int,true))
+          }
+          features getOrElseUpdate (lp, tempFeatures.result())
+        }
       }
+      println(features)
     }
   }
 
