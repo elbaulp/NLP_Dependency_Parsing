@@ -41,7 +41,7 @@ class SVMParser {
   val chLTag = mutable.Map.empty[Int, Counter]
   val chRVocab = mutable.Map.empty[Int, Counter]
   val chRTag = mutable.Map.empty[Int, Counter]
-  val tagActions = mutable.Map[String, mutable.Map[Int,Int]]()
+  val tagActions = mutable.Map[String, mutable.Map[Int, Int]]()
   var NFeatures = 0
 
   def train(sentences: Vector[Sentence]) = {
@@ -108,7 +108,7 @@ class SVMParser {
           val y = estimateTrainAction(trees, i)
 
           // Update pos Action
-          val actionCounter = tagActions getOrElseUpdate (posTag, mutable.Map(y -> 0)) getOrElseUpdate (y, 0)
+          val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
           tagActions(posTag)(y) = actionCounter + 1
 
           trainX getOrElseUpdate(posTag, extractedFeatures ++ Vector.empty)
@@ -125,19 +125,28 @@ class SVMParser {
       }
     }
 
-    for (lp <- trainX.keys){
+    for (lp <- trainX.keys) {
       println(lp)
       println(s"Size of $lp: ${lp.size}")
       println(s"# features: $NFeatures")
 
       val classes = trainY.values.toSet.flatten
-      println(classes)
+
+      // Train only if there are at least two classes
+      if (classes.size > 1) {
+//        FileUtils.printToFile(new File(s"${Constants.ModelPath}$lp.p")) { p =>
+//          data.foreach(p.println)
+//        }
+        // TODO: Check if the model already exists, if not, we need to train
+        
+
+      }
     }
   }
 
   def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum
 
-  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int):Vector[Int] = {
+  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int): Vector[Int] = {
     // Method to extract features for the given context window
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
     var offset = 0
@@ -189,19 +198,19 @@ class SVMParser {
 
   // TODO: To recursive
   def childFeatures(position: Int, children: Vector[Node], offset: Int, family: Counter, featureType: Int):
-  Vector[Int] =  {
+  Vector[Int] = {
     var indices = Vector.empty[Int]
-    for (child <- children){
+    for (child <- children) {
       indices = indices :+ childFeature(position, child, offset, family, featureType)
     }
     indices
   }
 
-  def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int):Int = {
+  def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int): Int = {
     val vocab = family
 
     if (featureType == 0) /* EXTRACT_LEX */ {
-      if(vocab contains node.lex)
+      if (vocab contains node.lex)
         vocab(node.lex) + offset
       else {
         if (vocab contains node.posTag)
