@@ -23,6 +23,10 @@ import breeze.linalg.CSCMatrix
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
+import libsvm.svm
+import org.apache.spark.mllib.classification.{SVMModel, SVMWithSGD}
+import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
+import org.apache.spark.mllib.util.MLUtils
 
 import scala.collection.mutable
 
@@ -94,7 +98,7 @@ class SVMParser {
 
     // TODO Check if we have a previously trained model before try to train a new one
 
-    val trainX = mutable.Map.empty[String, Vector[Int]]
+    val trainX = mutable.Map.empty[String, Vector[Vector[Int]]]
     val trainY = mutable.Map.empty[String, Vector[Int]]
     val features = mutable.Map.empty[String, CSCMatrix[Boolean]]
 
@@ -119,8 +123,9 @@ class SVMParser {
           val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
           tagActions(posTag)(y) = actionCounter + 1
 
-          trainX getOrElseUpdate(posTag, extractedFeatures ++ Vector.empty)
-          trainY getOrElseUpdate(posTag, y +: Vector.empty)
+          // Fill features, if there is no feature stored for a tag, create empty vector and append feature
+          trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
+          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Int]) :+ y
 
           val (newI, newTrees) = takeAction(trees, i, y)
           i = newI
@@ -142,21 +147,22 @@ class SVMParser {
 
       // Train only if there are at least two classes
       if (classes.size > 1) {
-//        FileUtils.printToFile(new File(s"${Constants.ModelPath}$lp.p")) { p =>
-//          data.foreach(p.println)
-//        }
+        //        FileUtils.printToFile(new File(s"${Constants.ModelPath}$lp.p")) { p =>
+        //          data.foreach(p.println)
+        //        }
         // TODO: Check if the model already exists, if not, we need to train
-        if (new File(s"${Constants.ModelPath}$lp.p").exists()){
+        if (new File(s"${Constants.ModelPath}$lp.p").exists()) {
           println(s"Loaded ${Constants.ModelPath}$lp.p")
         } else {
-          val tempFeatures = new CSCMatrix.Builder[Boolean](rows = trainX(lp) size, cols = NFeatures)
-          trainX.zipWithIndex foreach{
-            case ((_,vec), index) => vec foreach (int => tempFeatures add(index,int,true))
+          val tempFeatures = new CSCMatrix.Builder[Boolean](rows = trainX(lp).size, cols = NFeatures)
+          trainX(lp).zipWithIndex.foreach {
+            case (vector, index) => vector foreach (vectorItem => tempFeatures add(vectorItem, index, true))
           }
-          features getOrElseUpdate (lp, tempFeatures.result())
+          features(lp) = tempFeatures.result()
+
+
         }
       }
-      println(features)
     }
   }
 
