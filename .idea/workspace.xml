@@ -7,96 +7,100 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb879252-8d95-4084-9779-65ca7b600c1a" name="Default" comment="Added constants for data">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_kryo_shaded_3_0_3_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_minlog_1_3_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_annotations_2_6_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_core_2_6_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_databind_2_6_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_module_jackson_module_paranamer_2_6_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_module_jackson_module_scala_2_11_2_6_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_twitter_chill_2_11_0_8_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_twitter_chill_java_0_8_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_akka_akka_actor_2_11_2_4_9_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_config_1_3_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_univocity_univocity_parsers_2_1_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__commons_codec_commons_codec_1_10_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__commons_io_commons_io_2_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_annotation_javax_annotation_api_1_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_servlet_javax_servlet_api_3_1_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_validation_validation_api_1_1_0_Final_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_ws_rs_javax_ws_rs_api_2_0_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__net_razorvine_pyrolite_4_9_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__net_sf_py4j_py4j_0_10_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_antlr_antlr4_runtime_4_5_3_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_commons_commons_math3_3_6_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_catalyst_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_core_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_graphx_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_launcher_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_mllib_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_mllib_local_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_network_common_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_network_shuffle_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_sketch_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_sql_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_streaming_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_tags_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_unsafe_2_11_2_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_xbean_xbean_asm5_shaded_4_4_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_fusesource_leveldbjni_leveldbjni_all_1_8_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_external_aopalliance_repackaged_2_4_0_b34_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_external_javax_inject_2_4_0_b34_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_hk2_api_2_4_0_b34_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_hk2_locator_2_4_0_b34_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_hk2_utils_2_4_0_b34_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_hk2_osgi_resource_locator_1_0_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_containers_jersey_container_servlet_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_containers_jersey_container_servlet_core_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_core_jersey_client_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_core_jersey_common_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_core_jersey_server_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_glassfish_jersey_media_jersey_media_jaxb_2_22_2_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_javassist_javassist_3_18_1_GA_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jfree_jcommon_1_0_23_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jfree_jfreechart_1_0_19_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jpmml_pmml_model_1_2_15_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jpmml_pmml_schema_1_2_15_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_ast_2_11_3_2_11_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_core_2_11_3_2_11_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_jackson_2_11_3_2_11_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_objenesis_objenesis_2_1_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_roaringbitmap_RoaringBitmap_0_5_11_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_modules_scala_java8_compat_2_11_0_7_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_4_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_modules_scala_xml_2_11_1_0_5_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_scala_library_2_11_8_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_scala_reflect_2_11_8_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scalactic_scalactic_2_11_3_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scalatest_scalatest_2_11_3_0_0_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_jcl_over_slf4j_1_7_16_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_jul_to_slf4j_1_7_16_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_slf4j_api_1_7_16_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_slf4j_log4j12_1_7_16_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_xerial_snappy_snappy_java_1_1_2_4_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_spark_spark_mllib_2_11_2_0_0.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.10/ivy-0.99.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.10/scalaml_2.10-0.99-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.10/scalaml_2.10-0.99.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.10/scalaml_2.10-0.99.pom" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/ivy-0.99.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../ScalaMl/target/scala-2.11/scalaml_2.11-0.99.pom" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/build.sbt" afterPath="$PROJECT_DIR$/../ScalaMl/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/scalability/akka/MasterWithRouter.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/scalability/akka/MasterWithRouter.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/SVMKernel.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/SVMKernel.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" afterPath="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__asm_asm_3_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_kryo_kryo_2_21_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_minlog_minlog_1_2_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_esotericsoftware_reflectasm_reflectasm_1_07_shaded_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_annotations_2_4_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_core_2_4_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_core_jackson_databind_2_4_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_fasterxml_jackson_module_jackson_module_scala_2_11_2_4_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_istack_istack_commons_runtime_2_16_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_jersey_contribs_jersey_guice_1_9_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_jersey_jersey_core_1_9_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_jersey_jersey_json_1_9_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_jersey_jersey_server_1_9_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_jersey_jersey_test_framework_jersey_test_framework_grizzly2_1_9_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_xml_bind_jaxb_core_2_2_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_xml_bind_jaxb_impl_2_2_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_sun_xml_fastinfoset_FastInfoset_1_2_12_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_twitter_chill_2_11_0_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_twitter_chill_java_0_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_akka_akka_actor_2_11_2_3_11_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_akka_akka_remote_2_11_2_3_11_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_akka_akka_slf4j_2_11_2_3_11_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__com_typesafe_config_1_2_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__commons_codec_commons_codec_1_5_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__commons_io_commons_io_2_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_xml_bind_jaxb_api_2_2_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__javax_xml_bind_jsr173_api_1_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__jline_jline_0_9_94_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__net_razorvine_pyrolite_4_4_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__net_sf_py4j_py4j_0_8_2_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_commons_commons_math3_3_5_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_catalyst_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_core_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_graphx_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_launcher_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_mllib_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_network_common_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_network_shuffle_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_sql_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_streaming_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_apache_spark_spark_unsafe_2_11_1_5_0_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_codehaus_jackson_jackson_jaxrs_1_8_3_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_codehaus_jackson_jackson_xc_1_8_3_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_codehaus_jettison_jettison_1_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_eclipse_jetty_orbit_javax_servlet_3_0_0_v201112011016_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jfree_jcommon_1_0_21_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jfree_jfreechart_1_0_17_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jpmml_pmml_agent_1_1_15_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jpmml_pmml_model_1_1_15_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_jpmml_pmml_schema_1_1_15_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_ast_2_11_3_2_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_core_2_11_3_2_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_json4s_json4s_jackson_2_11_3_2_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_objenesis_objenesis_1_2_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_roaringbitmap_RoaringBitmap_0_4_5_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_modules_scala_xml_2_11_1_0_2_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_scala_library_2_11_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scala_lang_scala_reflect_2_11_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_scalatest_scalatest_2_11_2_2_2_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_jcl_over_slf4j_1_7_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_jul_to_slf4j_1_7_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_slf4j_api_1_7_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_slf4j_slf4j_log4j12_1_7_10_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_tachyonproject_tachyon_client_0_7_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_tachyonproject_tachyon_underfs_hdfs_0_7_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_tachyonproject_tachyon_underfs_local_0_7_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_uncommons_maths_uncommons_maths_1_2_2a_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__org_xerial_snappy_snappy_java_1_1_1_7_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__stax_stax_api_1_0_1_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/libraries/SBT__xml_apis_xml_apis_1_3_04_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/modules/scalaml-build.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/modules/scalaml.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/aaaaaaa.sc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/dfsad.sc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_la4j_la4j_0_6_0.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__com_chuusai_shapeless_2_11_2_0_0_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__com_github_fommil_netlib_core_1_1_2_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__com_github_rwl_jtransforms_2_4_0_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__junit_junit_4_8_2_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__net_sf_opencsv_opencsv_2_3_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__net_sourceforge_f2j_arpack_combined_all_0_1_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_apache_commons_commons_math3_3_2_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_scala_lang_scala_reflect_2_11_7_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_scalanlp_breeze_2_11_0_12_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_scalanlp_breeze_macros_2_11_0_12_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_slf4j_slf4j_api_1_7_5_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_spire_math_spire_2_11_0_7_4_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/SBT__org_spire_math_spire_macros_2_11_0_7_4_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/org_apache_spark_spark_mllib_2_11_2_0_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" afterPath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" afterPath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
     </list>
     <ignored path="Spanish Dependency Parser.iws" />
@@ -156,12 +160,12 @@
     <favorites_list name="Spanish Dependency Parser" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="SVMParser.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+            <state relative-caret-position="302">
+              <caret line="162" column="25" selection-start-line="162" selection-start-column="25" selection-end-line="162" selection-end-column="25" />
               <folding>
                 <element signature="e#980#999#0" expanded="true" />
               </folding>
@@ -246,15 +250,15 @@
         <option value="$PROJECT_DIR$/../ScalaMl/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/package.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
-        <option value="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/FileUtils.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Constants.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
         <option value="$PROJECT_DIR$/build.sbt" />
+        <option value="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
       </list>
     </option>
@@ -277,8 +281,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="Remote PHP 5.4" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1067" />
+    <option name="x" value="1920" />
+    <option name="width" value="1366" />
+    <option name="height" value="755" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -387,29 +392,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,10 +408,10 @@
     <property name="project.structure.side.proportion" value="0.52873564" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala&#10;bu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/build.sbt&#10;sbt&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/ScalaMl/build.sbt&#10;one-sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;multi&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;mu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;senten&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;ancora&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;an&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train&#10;par&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala&#10;Sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;Main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;toggle distra&#9;ACTION&#9;ToggleDistractionFreeMode&#10;Node&#9;null&#9;null&#10;Sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;SVM&#9;null&#9;null&#10;XtSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Types&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/types.scala&#10;XTSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Display&#9;null&#9;null&#10;XtSeri&#9;null&#9;null&#10;XtSeries&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/learningmodel/core/XTSeries.scala&#10;XTSer&#9;null&#9;null&#10;FormatUtils&#9;null&#9;null&#10;test-on&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;BufferedSource&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/io/BufferedSource.scala&#10;reader&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/java/org/maltparserx/core/syntaxgraph/reader/NegraReader.java&#10;Document.scala&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/scala/org/clulab/processors/Document.scala&#10;ShallowNLPProcessor&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala&#10;MaxentTagger&#9;PSI&#9;JAVA://edu.stanford.nlp.tagger.maxent.MaxentTagger" />
+    <property name="SearchEverywhereHistoryKey" value="ancora&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;es-&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;SVM&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala&#10;sbt&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/build.sbt&#10;main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;bu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/build.sbt&#10;one-sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;multi&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;mu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;senten&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;an&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train&#10;par&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala&#10;Sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;Main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;toggle distra&#9;ACTION&#9;ToggleDistractionFreeMode&#10;Node&#9;null&#9;null&#10;Sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;XtSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Types&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/types.scala&#10;XTSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Display&#9;null&#9;null&#10;XtSeri&#9;null&#9;null&#10;XtSeries&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/learningmodel/core/XTSeries.scala&#10;XTSer&#9;null&#9;null&#10;FormatUtils&#9;null&#9;null&#10;test-on&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;BufferedSource&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/io/BufferedSource.scala&#10;reader&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/java/org/maltparserx/core/syntaxgraph/reader/NegraReader.java&#10;Document.scala&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/scala/org/clulab/processors/Document.scala&#10;ShallowNLPProcessor&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala&#10;MaxentTagger&#9;PSI&#9;JAVA://edu.stanford.nlp.tagger.maxent.MaxentTagger" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScalaMl" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -879,7 +867,7 @@
     </configuration>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1475161883264" />
+    <option name="lastUpdateTimestamp" value="1475766319020" />
     <option name="availableProjects">
       <map>
         <entry>
@@ -962,6 +950,16 @@
       <workItem from="1475080086635" duration="2449000" />
       <workItem from="1475135176429" duration="3425000" />
       <workItem from="1475161845472" duration="7047000" />
+      <workItem from="1475221591333" duration="1405000" />
+      <workItem from="1475341678204" duration="211000" />
+      <workItem from="1475342638160" duration="1375000" />
+      <workItem from="1475516125298" duration="2801000" />
+      <workItem from="1475564035554" duration="12027000" />
+      <workItem from="1475594956379" duration="9626000" />
+      <workItem from="1475651505873" duration="7817000" />
+      <workItem from="1475690008511" duration="5494000" />
+      <workItem from="1475736208324" duration="1972000" />
+      <workItem from="1475766278415" duration="4657000" />
     </task>
     <task id="LOCAL-00001" summary="Added constants for data">
       <created>1471599203635</created>
@@ -1006,7 +1004,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259560000" />
+    <option name="totallyTimeSpent" value="306945000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1018,31 +1016,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1067" extended-state="0" />
-    <editor active="false" />
+    <frame x="1920" y="0" width="1366" height="755" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50359714" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.086330935" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32662836" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19667171" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23588924" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2012513" sideWeight="0.4884837" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39157245" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2012513" sideWeight="0.51151633" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57103825" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32471263" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1050,7 +1048,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50680786" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50359714" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1059,18 +1057,18 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19148937" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.086330935" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19667171" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24432677" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13539445" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6090652" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39157245" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
     </layout-to-restore>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
@@ -1099,66 +1097,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/Processor.scala</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/Processor.scala</url>
-          <line>104</line>
-          <properties />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/corenlp/CoreNLPProcessor.scala</url>
-          <line>70</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/corenlp/CoreNLPProcessor.scala</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/corenlp/CoreNLPProcessor.scala</url>
-          <line>117</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/corenlp/CoreNLPProcessor.scala</url>
-          <line>73</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/../processors/src/main/scala/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala</url>
-          <line>100</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/../processors/src/main/scala/org/clulab/processors/ProcessorFileExample.scala</url>
-          <line>14</line>
-          <properties />
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/../processors/src/main/scala/org/clulab/processors/ProcessorFileExample.scala</url>
-          <line>15</line>
-          <properties />
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/../../../Libros/ScalaMl-master/src/test/scala/org/scalaml/app/chap8/Chap8.scala</url>
           <line>49</line>
@@ -1178,52 +1116,16 @@
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/SVCEval.scala</url>
-          <line>79</line>
+          <url>file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala</url>
+          <line>85</line>
           <properties />
-          <option name="timeStamp" value="155" />
+          <option name="timeStamp" value="379" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala</url>
-          <line>160</line>
+          <line>158</line>
           <properties />
-          <option name="timeStamp" value="318" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/pipeline/StanfordCoreNLP.java</url>
-          <line>288</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/tagger/maxent/MaxentTagger.java</url>
-          <line>800</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/tagger/maxent/MaxentTagger.java</url>
-          <line>790</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/parser/lexparser/LexicalizedParserQuery.java</url>
-          <line>548</line>
-          <properties />
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/pipeline/StanfordCoreNLP.java</url>
-          <line>411</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>jar://$USER_HOME$/.ivy2/cache/edu.stanford.nlp/stanford-corenlp/srcs/stanford-corenlp-3.5.1-sources.jar!/edu/stanford/nlp/pipeline/StanfordCoreNLP.java</url>
-          <line>261</line>
-          <properties class="edu.stanford.nlp.pipeline.StanfordCoreNLP" method="construct" />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="383" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1236,55 +1138,21 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="319" />
+      <option name="time" value="384" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="trainX" language="Scala" custom="" />
-        <watch expression="posTag" language="Scala" custom="" />
-        <watch expression="" />
-        <watch expression="trainY" language="Scala" custom="" />
+        <watch expression="leftChild" language="Scala" custom="" />
+        <watch expression="targetNode.left" language="Scala" custom="" />
+        <watch expression="word" language="Scala" custom="" />
+        <watch expression="tag" language="Scala" custom="" />
+        <watch expression="chLVocab" language="Scala" custom="" />
+        <watch expression="chLTag" language="Scala" custom="" />
+        <watch expression="positionTag" language="Scala" custom="" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../Libros/ScalaMl-master/src/main/scala/org/scalaml/supervised/svm/SVM.scala" />
-    <entry file="file://$PROJECT_DIR$/../../../Libros/ScalaMl-master/pom.xml" />
-    <entry file="file://$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/trading/TradingSource.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="169" column="6" selection-start-line="169" selection-start-column="6" selection-end-line="169" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/KernelMonad.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm_model.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm_problem.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="659" column="0" selection-start-line="659" selection-start-column="0" selection-end-line="659" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/kernel/SVMKernel.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -1297,8 +1165,7 @@
         <state relative-caret-position="540">
           <caret line="46" column="118" selection-start-line="46" selection-start-column="118" selection-end-line="46" selection-end-column="118" />
           <folding>
-            <element signature="e#791#818#0" expanded="false" />
-            <element signature="e#1434#1455#0" expanded="false" />
+            <element signature="e#1534#1555#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1364,13 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="106" column="14" selection-start-line="106" selection-start-column="14" selection-end-line="106" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1455,13 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/TraversableOnce.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="207" column="6" selection-start-line="207" selection-start-column="6" selection-end-line="207" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1556,39 +1409,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/spark-mllib_2.11-2.0.0.jar!/org/apache/spark/mllib/util/MLUtils.class" />
+    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm_parameter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/TraversableOnce.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="282" column="6" selection-start-line="282" selection-start-column="6" selection-end-line="282" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+        <state relative-caret-position="103">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <marker date="1475579281045" expanded="true" signature="1:929" ph="/.../" />
+            <marker date="1475579281045" expanded="false" signature="976:1074" ph="..." />
+            <marker date="1475579281045" expanded="true" signature="1076:1165" ph="/**...*/" />
+            <marker date="1475579281045" expanded="true" signature="1190:1652" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalanlp/breeze_2.11/jars/breeze_2.11-0.12.jar!/breeze/linalg/CSCMatrix.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="1" column="168" selection-start-line="1" selection-start-column="168" selection-end-line="1" selection-end-column="168" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm_node.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm_problem.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.elbauldelprogramador.nlp.parser.SVMParser">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.elbauldelprogramador.nlp.parser.SVMParser</OriginalElement>
+          <nodes>
+            <node x="" y="">com.elbauldelprogramador.nlp.parser.SVMParser</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="47.0" y="14.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalanlp/breeze_2.11/srcs/breeze_2.11-0.12-sources.jar!/breeze/linalg/CSCMatrix.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="454" column="6" selection-start-line="454" selection-start-column="6" selection-end-line="454" selection-end-column="6" />
+        <state relative-caret-position="329">
+          <caret line="463" column="43" selection-start-line="463" selection-start-column="43" selection-end-line="463" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/mutable/ArrayBuilder.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="34" column="10" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.sbt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/spark-mllib_2.11-2.0.0.jar!/org/apache/spark/mllib/util/MLUtils.class">
+    <entry file="jar://$PROJECT_DIR$/lib/la4j-0.6.0.jar!/org/la4j/matrix/sparse/CRSMatrix.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="411">
+          <caret line="232" column="11" selection-start-line="232" selection-start-column="11" selection-end-line="232" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+        <state relative-caret-position="302">
+          <caret line="162" column="25" selection-start-line="162" selection-start-column="25" selection-end-line="162" selection-end-column="25" />
           <folding>
             <element signature="e#980#999#0" expanded="true" />
           </folding>
@@ -1684,7 +1610,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>org.apache.spark:spark-mllib_2.11:2.0.0</last-edited>
+          <last-edited>org.la4j:la4j:0.6.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

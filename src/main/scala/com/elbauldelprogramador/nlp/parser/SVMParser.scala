@@ -19,14 +19,11 @@ package com.elbauldelprogramador.nlp.parser
 
 import java.io.File
 
-import breeze.linalg.CSCMatrix
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
-import libsvm.svm
-import org.apache.spark.mllib.classification.{SVMModel, SVMWithSGD}
-import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
-import org.apache.spark.mllib.util.MLUtils
+import libsvm.{svm, svm_node, svm_parameter, svm_problem}
+import org.la4j.matrix.sparse.CRSMatrix
 
 import scala.collection.mutable
 
@@ -34,6 +31,11 @@ import scala.collection.mutable
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
   */
 class SVMParser {
+
+  type SVMNodes = Array[Array[svm_node]]
+  type DblVector = Vector[Double] // TODO: Make trainY this type
+  type DblArray = Array[Double]
+
   val Left = 0
   val Shift = 1
   val Right = 2
@@ -99,9 +101,9 @@ class SVMParser {
     // TODO Check if we have a previously trained model before try to train a new one
 
     val trainX = mutable.Map.empty[String, Vector[Vector[Int]]]
-    val trainY = mutable.Map.empty[String, Vector[Int]]
-    val features = mutable.Map.empty[String, CSCMatrix[Boolean]]
+    val trainY = mutable.Map.empty[String, DblVector]
 
+    val features = mutable.Map.empty[String, CRSMatrix]
 
     for (s <- sentences) {
       var trees = s.tree
@@ -125,7 +127,7 @@ class SVMParser {
 
           // Fill features, if there is no feature stored for a tag, create empty vector and append feature
           trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
-          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Int]) :+ y
+          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
 
           val (newI, newTrees) = takeAction(trees, i, y)
           i = newI
@@ -142,7 +144,7 @@ class SVMParser {
       println(lp)
       println(s"Size of $lp: ${lp.size}")
       println(s"# features: $NFeatures")
-
+      println(trainX(lp))
       val classes = trainY.values.toSet.flatten
 
       // Train only if there are at least two classes
@@ -154,23 +156,92 @@ class SVMParser {
         if (new File(s"${Constants.ModelPath}$lp.p").exists()) {
           println(s"Loaded ${Constants.ModelPath}$lp.p")
         } else {
-          val tempFeatures = new CSCMatrix.Builder[Boolean](rows = trainX(lp).size, cols = NFeatures)
+          val tempFeatures = new CRSMatrix(trainX(lp).size, NFeatures)
           trainX(lp).zipWithIndex.foreach {
-            case (vector, index) => vector foreach (vectorItem => tempFeatures add(vectorItem, index, true))
+            case (vector, index) => vector foreach (vectorItem => tempFeatures.set(index, vectorItem, 1.0))
           }
-          features(lp) = tempFeatures.result()
-
-
+          features(lp) = tempFeatures
         }
       }
+
+      // Params
+      val svmParams = new svm_parameter
+      svmParams.svm_type = svm_parameter.C_SVC
+      svmParams.kernel_type = svm_parameter.POLY
+      svmParams.degree = 2
+      svmParams.gamma = 1
+      svmParams.coef0 = 1
+      svmParams.cache_size = 8000
+
+      // Problem
+      // type SVMNodes = Array[Array[svm_node]]
+      //    class SVMProblem(numObs: Int, labels: DblArray) {
+      //      val problem = new svm_problem
+      //      problem.l = numObs
+      //      problem.y = labels
+      //      problem.x = new SVMNodes(numObs)
+      //
+      //      def update(n: Int, node: Array[svm_node]): Unit =
+      //        problem.x(n) = node
+      //    }
+      // TODO: Create class, objects and traits for this, in order to abstract the design
+      val svmProblem = new svm_problem
+      // Vector[Array[T]], XTseries
+      // Vector[Double].toarray // DBLVector
+      val labels = trainY(lp).toArray
+      svmProblem.l = trainY(lp).size //trainX(lp).size // TODO: Size of y?
+      svmProblem.y = labels
+
+//      val dim = dimension(xt)
+//
+//      // Creates a indexed time series, then
+//      // initialize the vector of LIBSVM nodes
+//      xt.zipWithIndex.foreach{ case (_x, n) =>
+//
+//        val nodeCol = createNode(dim, _x)
+//        // initialize the SVMMNodes
+//        svmProblem.update(n, nodeCol)
+//      }
+      // problem.x(n) = node
+      svmProblem.x = new SVMNodes(svmProblem.l) // type SVMNodes = Array[Array[svm_node]]
+      trainX(lp).foreach{
+        case x =>
+          val nodeCol = createNode(x.size, features(lp))
+      }
+
+//      features(lp).data.zip(features(lp).rowIndices).foreach{case(_x, n) =>
+//        val nodeCol = createNode(_x.size, _x.map(_.toDouble).toArray) // TODO: CHange trainX to double
+//        svmProblem.x(n) = nodeCol
+//      }
+
+      val model = svm.svm_train(svmProblem, svmParams)
+      println(model)
     }
+  }
+
+  // TODO: Move to SVM abstraction
+  def createNode(dim: Int, x: CRSMatrix): Array[svm_node] = {
+    val newNode = new Array[svm_node](dim)
+//    x.data.zip(x.rowIndices).foreach{case (i,j) =>
+//      val node = new svm_node
+//        node.index = j
+//        node.value = 1.0
+//        newNode(j) = node
+//    }
+//    x.zipWithIndex.foreach{ case (y, j) =>
+//      val node = new svm_node
+//      node.index= j
+//      node.value = y
+//      newNode(j) = node
+//    }
+    newNode
   }
 
   def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum
 
   def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int): Vector[Int] = {
     // Method to extract features for the given context window
-    val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex
+    val range = (i - leftCtx to (i + 1 + rightCtx)).zipWithIndex
     var offset = 0
     var features = Vector.empty[Int]
 
@@ -299,7 +370,7 @@ class SVMParser {
 
         // Increment the counter for this lex by 1, create one if not exists
         word += (targetNode.lex -> (word.getOrElseUpdate(targetNode.lex, 0) + 1))
-        tag += (targetNode.posTag -> (word.getOrElseUpdate(targetNode.posTag, 0) + 1))
+        tag += (targetNode.posTag -> (tag.getOrElseUpdate(targetNode.posTag, 0) + 1))
 
         positionVocab += (k -> word)
         positionTag += (k -> tag)
@@ -310,7 +381,7 @@ class SVMParser {
           val tag = chLTag getOrElseUpdate(k, mutable.Map(leftChild.posTag -> 0))
 
           word += (leftChild.lex -> (word.getOrElseUpdate(leftChild.lex, 0) + 1))
-          tag += (leftChild.posTag -> (word.getOrElseUpdate(leftChild.posTag, 0) + 1))
+          tag += (leftChild.posTag -> (tag.getOrElseUpdate(leftChild.posTag, 0) + 1))
 
           chLVocab += (k -> word)
           chLTag += (k -> tag)
@@ -321,7 +392,7 @@ class SVMParser {
           val tag = chRTag getOrElseUpdate(k, mutable.Map(rightChild.posTag -> 0))
 
           word += (rightChild.lex -> (word.getOrElseUpdate(rightChild.lex, 0) + 1))
-          tag += (rightChild.posTag -> (word.getOrElseUpdate(rightChild.posTag, 0) + 1))
+          tag += (rightChild.posTag -> (tag.getOrElseUpdate(rightChild.posTag, 0) + 1))
 
           chRVocab += (k -> word)
           chRTag += (k -> tag)
@@ -331,12 +402,25 @@ class SVMParser {
   }
 
   def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
-    //    counter map (_._2.size) zipWithIndex ()
     // Assign to each string key a counter, starting from 0 to the map size
-    counter foreach {
-      case (_, map) =>
-        for ((lexKey, value) <- map.keys.zipWithIndex) map update(lexKey, value)
-        map update(Unknown, map.size) // For previously unknown features during training
+//    counter foreach {
+//      case (_, map) =>
+//        for ((lexKey, value) <- map.keys.zipWithIndex) {
+//          println(s"$lexKey, $value")
+//          map update(lexKey, value)
+//        }
+//        map update(Unknown, map.size) // For previously unknown features during training
+//    }
+//    counter
+//    counter.toSeq.sortBy(_._1).foreach(a => a._2.zip(0 to a._2.size).foreach(r => a._2.update(r._1._1, r._2)))
+    // TODO: Instead of update, generate new immutable map
+    counter.foreach(a => a._2.zipWithIndex.foreach(r => a._2.update(r._1._1, r._2)))
+    counter.foreach{case (i,c) => c(Unknown) = c.size}
+    // When a counter does not have all context lenght, fill with Unkowns
+    if (counter.size < 2 + LeftCtx + RightCtx){
+      for (index <- counter.size to (1 + LeftCtx + RightCtx)){
+        counter(index) = mutable.Map(Unknown -> 0)
+      }
     }
     counter
   }
