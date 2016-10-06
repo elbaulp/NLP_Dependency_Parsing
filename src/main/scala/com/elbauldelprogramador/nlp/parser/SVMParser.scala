@@ -23,7 +23,6 @@ import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm.{svm, svm_node, svm_parameter, svm_problem}
-import org.la4j.matrix.sparse.CRSMatrix
 
 import scala.collection.mutable
 
@@ -104,7 +103,7 @@ class SVMParser {
     val trainX = mutable.Map.empty[String, Vector[Vector[Int]]]
     val trainY = mutable.Map.empty[String, DblVector]
 
-    val features = mutable.Map.empty[String, CRSMatrix]
+//    val features = mutable.Map.empty[String, CRSMatrix]
 
     for (s <- sentences) {
       var trees = s.tree
@@ -156,11 +155,11 @@ class SVMParser {
         if (new File(s"${Constants.ModelPath}$lp.p").exists()) {
           println(s"Loaded ${Constants.ModelPath}$lp.p")
         } else {
-          val tempFeatures = new CRSMatrix(trainX(lp).size, NFeatures)
-          trainX(lp).zipWithIndex.foreach {
-            case (vector, index) => vector foreach (vectorItem => tempFeatures.set(index, vectorItem, 1.0))
-          }
-          features(lp) = tempFeatures
+//          val tempFeatures = new CRSMatrix(trainX(lp).size, NFeatures)
+//          trainX(lp).zipWithIndex.foreach {
+//            case (vector, index) => vector foreach (vectorItem => tempFeatures.set(index, vectorItem, 1.0))
+//          }
+//          features(lp) = tempFeatures
         }
       }
 
@@ -203,7 +202,7 @@ class SVMParser {
       //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
       trainX(lp).zipWithIndex.foreach {
         case (x, i) =>
-          val nodeCol = createNode(x, features(lp))
+          val nodeCol = createNode(x)
           svmProblem.x(i) = nodeCol
       }
       val model = svm.svm_train(svmProblem, svmParams)
@@ -211,7 +210,7 @@ class SVMParser {
   }
 
   // TODO: Move to SVM abstraction
-  def createNode(features: Vector[Int], x: CRSMatrix): Array[svm_node] = {
+  def createNode(features: Vector[Int]): Array[svm_node] = {
     // Create a new row for SVM, with the format x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
     // Where each tuple correspont with the feature number and its value,
     val newNode = new Array[svm_node](features.size)
