@@ -322,42 +322,6 @@ class SVMParser {
       Shift
   }
 
-  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]):Int = {
-    val treePosTag = trees(position).posTag
-    // Params
-    val svmParams = new svm_parameter
-    svmParams.svm_type = svm_parameter.C_SVC
-    svmParams.kernel_type = svm_parameter.POLY
-    svmParams.degree = 2
-    svmParams.gamma = 1
-    svmParams.coef0 = 1
-    svmParams.cache_size = 8000
-    svmParams.eps = 0.1
-    svmParams.C = 1
-
-    val svmProblem = new svm_problem
-    // feature fectors, will be in sparse form, size lxNFeatures (But sparse)
-//    svmProblem.x = new SVMNodes(svmProblem.l)
-//
-//    // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
-//    //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
-//    //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
-//    //        [ ] -> (1,0.4) (-1,?)
-//    //        [ ] -> (2,0.1) (4,1.4) (5,0.5) (-1,?)
-//    //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
-//    trainX(lp).zipWithIndex.foreach {
-//      case (x, i) =>
-//        val nodeCol = createNode(x)
-//        svmProblem.x(i) = nodeCol
-//    }
-//    val error = svm.svm_check_parameter(svmProblem, svmParams)
-//    val model = svm.svm_train(svmProblem, svmParams)
-//
-//    svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
-////    val temFeatures =
-    ???
-  }
-
   def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
     !trees.exists(_.dependency == child.position)
 
@@ -429,7 +393,7 @@ class SVMParser {
       testS = Sentence(s.words, s.tags)
     } yield testS
 
-    for (s <- testSentences){
+    for (s <- testSentences) {
       val trees = s.tree
       // TODO: Issue #17, Remove iterators like this, make them functional
       var i = 0
@@ -443,24 +407,60 @@ class SVMParser {
           val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
           // estimate the action to be taken for i, i+ 1 target  nodes
           val y = estimateAction(trees, i, extractedFeatures)
-//
-//          // Update pos Action
-//          val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
-//          tagActions(posTag)(y) = actionCounter + 1
-//
-//          // Fill features, if there is no feature stored for a tag, create empty vector and append feature
-//          trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
-//          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
-//
-//          val (newI, newTrees) = takeAction(trees, i, y)
-//          i = newI
-//          trees = newTrees
-//
-//          // Execute the action and modify the trees
-//          if (y != Shift)
-//            noConstruction = false
+          //
+          //          // Update pos Action
+          //          val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
+          //          tagActions(posTag)(y) = actionCounter + 1
+          //
+          //          // Fill features, if there is no feature stored for a tag, create empty vector and append feature
+          //          trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
+          //          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
+          //
+          //          val (newI, newTrees) = takeAction(trees, i, y)
+          //          i = newI
+          //          trees = newTrees
+          //
+          //          // Execute the action and modify the trees
+          //          if (y != Shift)
+          //            noConstruction = false
         }
       }
     }
+  }
+
+  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]): Int = {
+    val treePosTag = trees(position).posTag
+    // Params
+    val svmParams = new svm_parameter
+    svmParams.svm_type = svm_parameter.C_SVC
+    svmParams.kernel_type = svm_parameter.POLY
+    svmParams.degree = 2
+    svmParams.gamma = 1
+    svmParams.coef0 = 1
+    svmParams.cache_size = 8000
+    svmParams.eps = 0.1
+    svmParams.C = 1
+
+    val svmProblem = new svm_problem
+    // feature fectors, will be in sparse form, size lxNFeatures (But sparse)
+    //    svmProblem.x = new SVMNodes(svmProblem.l)
+    //
+    //    // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
+    //    //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
+    //    //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
+    //    //        [ ] -> (1,0.4) (-1,?)
+    //    //        [ ] -> (2,0.1) (4,1.4) (5,0.5) (-1,?)
+    //    //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
+    //    trainX(lp).zipWithIndex.foreach {
+    //      case (x, i) =>
+    //        val nodeCol = createNode(x)
+    //        svmProblem.x(i) = nodeCol
+    //    }
+    //    val error = svm.svm_check_parameter(svmProblem, svmParams)
+    //    val model = svm.svm_train(svmProblem, svmParams)
+    //
+    //    svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
+    ////    val temFeatures =
+    ???
   }
 }
