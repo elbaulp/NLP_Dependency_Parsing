@@ -171,6 +171,8 @@ class SVMParser {
       svmParams.gamma = 1
       svmParams.coef0 = 1
       svmParams.cache_size = 8000
+      svmParams.eps = 0.1
+      svmParams.C = 1
 
       // Problem
       // type SVMNodes = Array[Array[svm_node]]
@@ -205,11 +207,13 @@ class SVMParser {
           val nodeCol = createNode(x)
           svmProblem.x(i) = nodeCol
       }
+      val error = svm.svm_check_parameter(svmProblem, svmParams)
       val model = svm.svm_train(svmProblem, svmParams)
+      svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
     }
   }
 
-  // TODO: Move to SVM abstraction
+  // TODO: Move to SVM abstr1action
   def createNode(features: Vector[Int]): Array[svm_node] = {
     // Create a new row for SVM, with the format x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
     // Where each tuple correspont with the feature number and its value,
