@@ -82,10 +82,12 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/modules/scalaml.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/aaaaaaa.sc" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/dfsad.sc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/com_datumbox_libsvm_3_21.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Action.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" afterPath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing-build.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" afterPath="$PROJECT_DIR$/.idea/modules/grado_informatica_tfg_naturallanguageprocessing.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
     </list>
@@ -147,12 +149,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
+      <file leaf-file-name="SVMParser.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-              <folding />
+            <state relative-caret-position="399">
+              <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
+              <folding>
+                <element signature="e#980#999#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,8 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/sbt.xml" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Reader.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Parser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/dfsa.sc" />
         <option value="$PROJECT_DIR$/project/plugins.sbt" />
@@ -234,16 +236,18 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/package.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/FileUtils.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Constants.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" />
         <option value="$PROJECT_DIR$/build.sbt" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Actions.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Action.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
       </list>
     </option>
   </component>
@@ -265,9 +269,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="Remote PHP 5.4" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1922" />
-    <option name="width" value="959" />
-    <option name="height" value="1078" />
+    <option name="x" value="1920" />
+    <option name="width" value="1366" />
+    <option name="height" value="755" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -513,21 +517,126 @@
       <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nlp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nlp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grado_informatica_TFG_NaturalLanguageProcessing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.52873564" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="SearchEverywhereHistoryKey" value="main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sbt&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/build.sbt&#10;ancora&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;es-&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train-one.txt&#10;SVM&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala&#10;bu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/build.sbt&#10;one-sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;multi&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;mu&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala&#10;senten&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;an&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/es_ancora-converted-train&#10;par&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala&#10;Sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;Main&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/Main.scala&#10;sente&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;toggle distra&#9;ACTION&#9;ToggleDistractionFreeMode&#10;Node&#9;null&#9;null&#10;Sentence&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala&#10;XtSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Types&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/types.scala&#10;XTSe&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/Libros/ScalaMl-master/src/main/scala/org/scalaml/core/XTSeries.scala&#10;Display&#9;null&#9;null&#10;XtSeri&#9;null&#9;null&#10;XtSeries&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/scala/com/elbauldelprogramador/nlp/learningmodel/core/XTSeries.scala&#10;XTSer&#9;null&#9;null&#10;FormatUtils&#9;null&#9;null&#10;test-on&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/grado_informatica_TFG_NaturalLanguageProcessing/src/main/resources/data/spanish/ancora-test-one-sentence&#10;BufferedSource&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/io/BufferedSource.scala&#10;reader&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/java/org/maltparserx/core/syntaxgraph/reader/NegraReader.java&#10;Document.scala&#9;FILE&#9;file:///home/hkr/Drive/Grado_Ing_Informatica/TFG/Desarrollo/processors/src/main/scala/org/clulab/processors/Document.scala&#10;ShallowNLPProcessor&#9;FILE&#9;jar:///home/hkr/.ivy2/cache/org.clulab/processors_2.11/srcs/processors_2.11-5.9.0-sources.jar!/org/clulab/processors/shallownlp/ShallowNLPProcessor.scala&#10;MaxentTagger&#9;PSI&#9;JAVA://edu.stanford.nlp.tagger.maxent.MaxentTagger" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScalaMl" />
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
@@ -1078,7 +1187,7 @@
       <workItem from="1475736208324" duration="1972000" />
       <workItem from="1475766278415" duration="12191000" />
       <workItem from="1475827242710" duration="1091000" />
-      <workItem from="1475852572513" duration="5610000" />
+      <workItem from="1475852572513" duration="17580000" />
     </task>
     <task id="LOCAL-00001" summary="Added constants for data">
       <created>1471599203635</created>
@@ -1123,7 +1232,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="321180000" />
+    <option name="totallyTimeSpent" value="333150000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1135,60 +1244,63 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1922" y="0" width="959" height="1078" extended-state="0" />
-    <editor active="false" />
+    <frame x="1920" y="0" width="1366" height="755" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905214" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45355192" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39750957" sideWeight="0.49093655" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32662836" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19667171" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1954023" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35354573" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20020854" sideWeight="0.4884837" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16302083" sideWeight="0.48406988" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3237548" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2012513" sideWeight="0.51151633" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43981043" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09691161" sideWeight="0.5159301" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="100" y="100" width="1720" height="880" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32471263" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50359714" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.086330935" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19667171" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35354573" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13539445" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22083333" sideWeight="0.50766283" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39157245" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31860226" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39750957" sideWeight="0.49093655" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="100" y="100" width="1720" height="880" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21788284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887974" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32662836" sideWeight="0.49574015" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1954023" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.48406988" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3237548" sideWeight="0.4978701" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09691161" sideWeight="0.5159301" order="3" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
@@ -1239,7 +1351,7 @@
           <url>file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala</url>
           <line>194</line>
           <properties />
-          <option name="timeStamp" value="396" />
+          <option name="timeStamp" value="399" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1252,7 +1364,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="397" />
+      <option name="time" value="400" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1262,34 +1374,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Option.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1124">
-          <caret line="332" column="17" selection-start-line="332" selection-start-column="17" selection-end-line="332" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/SeqLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="105" column="15" selection-start-line="105" selection-start-column="15" selection-end-line="105" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Tuple7.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/immutable/Map.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -1389,13 +1473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/IterableLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="75" column="35" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/mutable/MapLike.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1431,38 +1508,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Constants.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/FileUtils.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-882">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Predef.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="229" column="6" selection-start-line="229" selection-start-column="6" selection-end-line="229" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1580,55 +1629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="649" column="24" selection-start-line="649" selection-start-column="24" selection-end-line="649" selection-end-column="24" />
-          <folding>
-            <marker date="1471967944000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1471967944000" expanded="false" signature="130:683" ph="..." />
-            <marker date="1471967944000" expanded="true" signature="890:1010" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="928:1004" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="1174:1181" ph="{...}" />
-            <marker date="1471967944000" expanded="false" signature="1213:1224" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="1250:1256" ph=" }" />
-            <marker date="1471967944000" expanded="true" signature="1388:2184" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="2295:3486" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="3600:4265" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="4381:5214" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="5325:6138" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="6248:7527" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="7629:11166" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="11253:11409" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="11491:13281" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="13412:16281" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="16368:17304" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="17455:19628" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="19707:28149" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="28264:32273" ph="{...}" />
-            <marker date="1471967944000" expanded="false" signature="32330:32341" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="32369:32375" ph=" }" />
-            <marker date="1471967944000" expanded="false" signature="32432:32443" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="32465:32471" ph=" }" />
-            <marker date="1471967944000" expanded="true" signature="32541:32704" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="32780:32948" ph="{...}" />
-            <marker date="1471967944000" expanded="false" signature="33002:33013" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="33028:33034" ph=" }" />
-            <marker date="1471967944000" expanded="true" signature="33102:33390" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="33488:35942" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="36012:36420" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="36527:37868" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="37968:40781" ph="{...}" />
-            <marker date="1471967944000" expanded="false" signature="40823:40834" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="40873:40879" ph=" }" />
-            <marker date="1471967944000" expanded="false" signature="40918:40929" ph=" { " />
-            <marker date="1471967944000" expanded="false" signature="40956:40962" ph=" }" />
-            <marker date="1471967944000" expanded="true" signature="41045:45767" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="45855:45946" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="46029:47245" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="47331:50855" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="50924:51137" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="51224:51384" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="51397:51644" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="51681:51773" ph="{...}" />
-            <marker date="1471967944000" expanded="true" signature="51756:51767" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1636,33 +1637,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/IterableLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="280" column="6" selection-start-line="280" selection-start-column="6" selection-end-line="280" selection-end-column="6" />
           <folding>
-            <marker date="1471967944000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1471967944000" expanded="false" signature="130:204" ph="..." />
-            <marker date="1471967944000" expanded="true" signature="567:574" ph="{...}" />
+            <marker date="1457497060000" expanded="false" signature="0:524" ph="/.../" />
+            <marker date="1457497060000" expanded="false" signature="567:662" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="664:2000" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="2115:10534" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="2323:2444" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="2476:2796" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3433:3667" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3753:3954" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="4277:4597" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="4400:4593" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="4655:4898" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="4717:4894" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="4956:5167" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="5239:5407" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="5411:5737" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="5785:5889" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="5825:5889" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="5893:6386" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="6450:6990" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="7049:7160" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="7096:7160" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="7164:7426" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="7459:7701" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="7705:8006" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="8039:8242" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="8335:8501" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="8609:8795" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="8933:9247" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9341:9457" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9398:9438" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9519:9722" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9802:10217" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10323:10442" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="10349:10442" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-          <folding>
-            <marker date="1475857068319" expanded="false" signature="0:928" ph="/.../" />
-            <marker date="1475857068319" expanded="true" signature="983:1234" ph="/**...*/" />
-            <marker date="1475857068319" expanded="true" signature="1473:2407" ph="{...}" />
-            <marker date="1475857068319" expanded="true" signature="1783:1847" ph="{...}" />
-            <marker date="1475857068319" expanded="true" signature="1887:1949" ph="{...}" />
-            <marker date="1475857068319" expanded="true" signature="1953:2279" ph="/.../" />
-          </folding>
+    <entry file="uml://MODULES/mdl-grado_informatica_tfg_naturallanguageprocessing">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement>mdl-grado_informatica_tfg_naturallanguageprocessing</OriginalElement>
+          <nodes>
+            <node x="" y="">mdl-grado_informatica_tfg_naturallanguageprocessing</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="204.0" y="15.0" />
+          <SelectedNodes />
+          <Categories />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state relative-caret-position="540">
+          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
           <folding>
             <marker date="1475858198300" expanded="false" signature="0:932" ph="/.../" />
             <marker date="1475858198300" expanded="true" signature="1006:1658" ph="{...}" />
@@ -1678,73 +1719,219 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
+    <entry file="uml://JAVA/com.elbauldelprogramador.nlp">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.elbauldelprogramador.nlp</OriginalElement>
+          <nodes>
+            <node x="" y="">com.elbauldelprogramador.nlp.parser.SVMParser</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.utils.DataTypes</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.TestSentence</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.LabeledSentence</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.utils.DataParser</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.utils.FileUtils</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.Node</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.utils.Manage</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.Sentence</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.MultiSet</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.utils.Constants</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.Main</node>
+            <node x="" y="">com.elbauldelprogramador.nlp.datastructures.TrainSentence</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="198.0" y="167.5" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>packageLocal</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Option.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="199" column="49" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="49" />
+        <state relative-caret-position="314">
+          <caret line="332" column="17" selection-start-line="332" selection-start-column="17" selection-end-line="332" selection-end-column="17" />
           <folding>
-            <marker date="1475854908337" expanded="false" signature="0:933" ph="/.../" />
-            <marker date="1475854908337" expanded="true" signature="987:1236" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="1238:1327" ph="/**...*/" />
-            <marker date="1475854908337" expanded="true" signature="1344:13904" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="1602:1784" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="2218:6954" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="2290:2891" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="2449:2508" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="2514:2877" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="3621:4800" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="3780:3839" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="3845:4786" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="4830:6950" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="5064:5452" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="5074:5295" ph="/.../" />
-            <marker date="1475854908337" expanded="true" signature="5359:5427" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="5433:5444" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="6247:6603" ph="/.../" />
-            <marker date="1475854908337" expanded="true" signature="6642:6748" ph="(...)" />
-            <marker date="1475854908337" expanded="true" signature="6677:6740" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="7005:7011" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="7108:7491" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="7114:7267" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="7355:7475" ph="(...)" />
-            <marker date="1475854908337" expanded="true" signature="7378:7469" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="7686:8995" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="7899:8977" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="7937:8971" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="8237:8334" ph="(...)" />
-            <marker date="1475854908337" expanded="true" signature="8408:8503" ph="(...)" />
-            <marker date="1475854908337" expanded="true" signature="8474:8498" ph="(...)" />
-            <marker date="1475854908337" expanded="true" signature="9064:9240" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="9306:9478" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="9628:9803" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="9694:9787" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="9906:10182" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="9976:10150" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="10057:10144" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="10318:10896" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="10410:10892" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="10458:10648" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="10694:10839" ph="..." />
-            <marker date="1475854908337" expanded="true" signature="10992:11279" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="11403:11463" ph="/**...*/" />
-            <marker date="1475854908337" expanded="true" signature="11546:13270" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="11638:13266" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="11676:13260" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="12379:12789" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="12836:13252" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="13354:13902" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="13360:13490" ph="/.../" />
-            <marker date="1475854908337" expanded="true" signature="13756:13886" ph="{...}" />
-            <marker date="1475854908337" expanded="true" signature="13820:13880" ph="{...}" />
+            <marker date="1457497060000" expanded="false" signature="0:524" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="555:1183" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="605:682" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="760:967" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="1038:1147" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="1185:3462" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3640:11715" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="3655:3718" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3745:3823" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3863:4012" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="4029:4201" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="4302:4670" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="4766:5114" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="5214:5560" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="5665:5998" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="6205:6412" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="6520:6728" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="6840:6980" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="7017:7148" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="7232:7420" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="7457:7742" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="7746:8357" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="8445:8653" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="8740:8913" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="8995:9185" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="9228:9263" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9267:10066" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10187:10352" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10470:10607" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10726:10858" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10937:11227" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="11325:11618" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="11717:11844" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="12005:12044" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="12047:12163" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="12315:12396" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Constants.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding>
+            <marker date="1475053686501" expanded="false" signature="0:933" ph="/.../" />
+            <marker date="1475053686501" expanded="true" signature="979:1068" ph="/**...*/" />
+            <marker date="1475053686501" expanded="true" signature="1086:1136" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Action.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding>
+            <marker date="1475872802644" expanded="false" signature="0:931" ph="/.../" />
+            <marker date="1475872802644" expanded="true" signature="977:1108" ph="/**...*/" />
+            <marker date="1475872802644" expanded="true" signature="1123:1690" ph="{...}" />
+            <marker date="1475872802644" expanded="true" signature="1151:1279" ph="/**...*/" />
+            <marker date="1475872802644" expanded="true" signature="1328:1502" ph="{...}" />
+            <marker date="1475872802644" expanded="true" signature="1357:1498" ph="..." />
+            <marker date="1475872802644" expanded="true" signature="1370:1498" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/Predef.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="263" column="23" selection-start-line="263" selection-start-column="23" selection-end-line="263" selection-end-column="23" />
+          <folding>
+            <marker date="1457497060000" expanded="false" signature="0:524" ph="/.../" />
+            <marker date="1457497060000" expanded="false" signature="548:853" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="855:3501" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="3567:21148" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="3571:4020" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="4140:4468" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="5240:5552" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="5682:5908" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="6081:6307" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="6359:6671" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="6726:6908" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="7090:7402" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="7952:8081" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="8085:8245" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="8367:8608" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="8665:8751" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="8755:9064" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="9152:9249" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9253:9677" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="9735:9823" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="9827:10320" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10409:10508" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="10512:10759" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="10796:10886" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="10890:11207" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="11275:11376" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="11380:11492" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="11812:11935" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="12139:12283" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="12435:12542" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="12615:12918" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="12995:13238" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="13001:13163" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="13242:13385" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="13464:13533" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="13767:13836" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="13919:14088" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="14208:14582" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="14679:15045" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="15158:15264" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="16050:16600" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="16060:16573" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="18956:19706" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="19944:20112" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="20310:20450" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="20697:20779" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="20783:20903" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="20950:21146" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="20957:21076" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="21188:23894" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="23896:24175" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="24176:24370" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="24422:27804" ph="{...}" />
+            <marker date="1457497060000" expanded="false" signature="24433:24486" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="24490:25052" ph="/**...*/" />
+            <marker date="1457497060000" expanded="true" signature="25740:25791" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="25795:26007" ph="/.../" />
+            <marker date="1457497060000" expanded="true" signature="26082:26202" ph="{...}" />
+            <marker date="1457497060000" expanded="true" signature="27620:27802" ph="..." />
+            <marker date="1457497060000" expanded="true" signature="27673:27802" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="432">
+          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+          <folding>
+            <element signature="e#969#1021#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
+          <folding>
+            <element signature="e#980#999#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1813,7 +2000,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>grado_informatica_tfg_naturallanguageprocessing-build</last-edited>
+          <last-edited>grado_informatica_tfg_naturallanguageprocessing</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1837,7 +2024,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>SBT: org.scala-lang:scala-library:2.11.8:jar</last-edited>
+          <last-edited>com.datumbox:libsvm:3.21</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

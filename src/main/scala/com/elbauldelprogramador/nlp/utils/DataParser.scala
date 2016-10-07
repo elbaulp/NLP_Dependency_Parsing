@@ -33,7 +33,7 @@ import scala.util.control.NonFatal
 object DataParser {
 
   // TODO: issue #2 Use Either instead of Option to read train/test data
-  // TODO: Parse command line args like learning scala book, in section about Nothing Data Type
+  // TODO: issue #5 Parse command line args like learning scala book, in section about Nothing Data Type
 
   def readDataSet(file: String,
                   isTrain: Boolean = true): Option[Vector[LabeledSentence]] = {

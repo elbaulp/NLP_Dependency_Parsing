@@ -19,7 +19,8 @@ package com.elbauldelprogramador.nlp.parser
 
 import java.io.File
 
-import com.elbauldelprogramador.nlp.datastructures.{Node, LabeledSentence}
+import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Sentence}
+import com.elbauldelprogramador.nlp.utils.Action.{Action, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm._
@@ -31,33 +32,30 @@ import scala.collection.mutable
   */
 class SVMParser {
 
+  // TODO: Issue #9 move them to a better place
   type SVMNodes = Array[Array[svm_node]]
   type DblVector = Vector[Double]
-  // TODO: Make trainY this type
   type DblArray = Array[Double]
 
-  val Left = 0
-  val Shift = 1
-  val Right = 2
   val LeftCtx = 2
   val RightCtx = 4
 
   val Unknown = "UNKNOWN"
 
-  // TODO: try to make them vals
-  // TODO: Replace with breeze Counter val c = Counter("a"->1, "b"->2, "x"->3)
-  // TODO: Initialize with http://www.scala-lang.org/old/node/11944.html
+  // TODO: issue #10, try to make them vals
+  // TODO: issue #11, Initialize with http://www.scala-lang.org/old/node/11944.html
   val positionVocab = mutable.Map.empty[Int, Counter]
   val positionTag = mutable.Map.empty[Int, Counter]
   val chLVocab = mutable.Map.empty[Int, Counter]
   val chLTag = mutable.Map.empty[Int, Counter]
   val chRVocab = mutable.Map.empty[Int, Counter]
   val chRTag = mutable.Map.empty[Int, Counter]
-  val tagActions = mutable.Map[String, mutable.Map[Int, Int]]()
+  val tagActions = mutable.Map[String, mutable.Map[Action, Int]]()
   var NFeatures = 0
 
   def train(sentences: Vector[LabeledSentence]) = {
-    // TODO: Optimize this, may be tail rec?
+    // TODO: Issue #12, Optimize this, may be tail rec?
+    // FIXME: Need a deep refactor
     for (s <- sentences) {
       var trees = s.tree
       var i = 0
@@ -98,12 +96,12 @@ class SVMParser {
       countFeatures(chLVocab) +
       countFeatures(chRVocab)
 
-    // TODO Check if we have a previously trained model before try to train a new one
+    // TODO: Issue #13, Check if we have a previously trained model before try to train a new one
 
     val trainX = mutable.Map.empty[String, Vector[Vector[Int]]]
     val trainY = mutable.Map.empty[String, DblVector]
 
-//    val features = mutable.Map.empty[String, CRSMatrix]
+    //    val features = mutable.Map.empty[String, CRSMatrix]
 
     for (s <- sentences) {
       var trees = s.tree
@@ -133,7 +131,7 @@ class SVMParser {
           i = newI
           trees = newTrees
 
-          // Execute the action and modify the trees
+          // Execute the action and modify the treese
           if (y != Shift)
             noConstruction = false
         }
@@ -142,7 +140,7 @@ class SVMParser {
 
     for (lp <- trainX.keys) {
       println(lp)
-      println(s"Size of $lp: ${lp.size}")
+      println(s"Size of $lp: ${lp.length}")
       println(s"# features: $NFeatures")
       val classes = trainY.values.toSet.flatten
 
@@ -169,7 +167,7 @@ class SVMParser {
       svmParams.eps = 0.1
       svmParams.C = 1
 
-      // TODO: Create class, objects and traits for this, in order to abstract the design
+      // TODO: Issue #14, Create class, objects and traits for this, in order to abstract the design
       val svmProblem = new svm_problem
       val labels = trainY(lp).toArray
 
@@ -193,15 +191,12 @@ class SVMParser {
       }
       val error = svm.svm_check_parameter(svmProblem, svmParams)
       val model = svm.svm_train(svmProblem, svmParams)
+
       svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
     }
   }
 
-  def test(sentences: Vector[LabeledSentence]) = {
-
-  }
-
-  // TODO: Move to SVM abstr1action
+  // TODO: Issue #14, Move to SVM abstr1action
   def createNode(features: Vector[Int]): Array[svm_node] = {
     // Create a new row for SVM, with the format x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
     // Where each tuple correspont with the feature number and its value,
@@ -267,7 +262,7 @@ class SVMParser {
       vocab(Unknown) + offset
   }
 
-  // TODO: To recursive
+  // TODO: Issue #15 To recursive
   def childFeatures(position: Int, children: Vector[Node], offset: Int, family: Counter, featureType: Int):
   Vector[Int] = {
     var indices = Vector.empty[Int]
@@ -291,21 +286,20 @@ class SVMParser {
     vocab(Unknown) + offset
   }
 
-  def takeAction(trees: Vector[Node], index: Int, action: Int /*TODO: issue #1 ACTION*/): (Int /*TODO: Action*/ ,
-    Vector[Node]) = {
+  def takeAction(trees: Vector[Node], index: Int, action: Action): (Int, Vector[Node]) = {
     val a = trees(index)
     val b = trees(index + 1)
     var i = index
 
     action match {
-      case Right /*TODO: Action */ =>
+      case Right =>
         b.insertRight(a)
         // Update the tree and remove a
         val updatedTree = trees updated(index + 1, b) diff Vector(a)
         if (i == 0)
           i = 1
         (i - 1, updatedTree)
-      case Left /*TODO: Action */ =>
+      case Left =>
         a.insertLeft(b)
         val updatedTree = trees updated(index, a) diff Vector(b)
         if (i == 0)
@@ -316,16 +310,52 @@ class SVMParser {
     }
   }
 
-  def estimateTrainAction(trees: Vector[Node], index: Int): Int /*TODO: Return an ACTION */ = {
+  def estimateTrainAction(trees: Vector[Node], index: Int): Action = {
     val a = trees(index)
     val b = trees(index + 1)
 
     if (a.dependency == b.position && isCompleteSubtree(trees, a))
-      Right // TODO: RIGHT
+      Right
     else if (b.dependency == a.position && isCompleteSubtree(trees, b))
-      Left // TODO: LEFT
+      Left
     else
-      Shift // TODO: SHIFT
+      Shift
+  }
+
+  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]):Int = {
+    val treePosTag = trees(position).posTag
+    // Params
+    val svmParams = new svm_parameter
+    svmParams.svm_type = svm_parameter.C_SVC
+    svmParams.kernel_type = svm_parameter.POLY
+    svmParams.degree = 2
+    svmParams.gamma = 1
+    svmParams.coef0 = 1
+    svmParams.cache_size = 8000
+    svmParams.eps = 0.1
+    svmParams.C = 1
+
+    val svmProblem = new svm_problem
+    // feature fectors, will be in sparse form, size lxNFeatures (But sparse)
+//    svmProblem.x = new SVMNodes(svmProblem.l)
+//
+//    // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
+//    //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
+//    //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
+//    //        [ ] -> (1,0.4) (-1,?)
+//    //        [ ] -> (2,0.1) (4,1.4) (5,0.5) (-1,?)
+//    //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
+//    trainX(lp).zipWithIndex.foreach {
+//      case (x, i) =>
+//        val nodeCol = createNode(x)
+//        svmProblem.x(i) = nodeCol
+//    }
+//    val error = svm.svm_check_parameter(svmProblem, svmParams)
+//    val model = svm.svm_train(svmProblem, svmParams)
+//
+//    svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
+////    val temFeatures =
+    ???
   }
 
   def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
@@ -381,7 +411,7 @@ class SVMParser {
 
   def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
     // Assign to each string key a counter, starting from 0 to the map size
-    // TODO: Instead of update, generate new immutable map
+    // TODO: Issue #16, Instead of update, generate new immutable map
     counter.foreach(a => a._2.zipWithIndex.foreach(r => a._2.update(r._1._1, r._2)))
     counter.foreach { case (i, c) => c(Unknown) = c.size }
     // When a counter does not have all context lenght, fill with Unkowns
@@ -391,5 +421,46 @@ class SVMParser {
       }
     }
     counter
+  }
+
+  def test(sentences: Vector[LabeledSentence]) = {
+    val testSentences = for {
+      s <- sentences
+      testS = Sentence(s.words, s.tags)
+    } yield testS
+
+    for (s <- testSentences){
+      val trees = s.tree
+      // TODO: Issue #17, Remove iterators like this, make them functional
+      var i = 0
+      var noConstruction = false
+      while (trees.nonEmpty && !noConstruction) {
+        if (i == trees.size - 1) {
+          noConstruction = true
+          i = 0
+        } else {
+          // extract features
+          val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
+          // estimate the action to be taken for i, i+ 1 target  nodes
+          val y = estimateAction(trees, i, extractedFeatures)
+//
+//          // Update pos Action
+//          val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
+//          tagActions(posTag)(y) = actionCounter + 1
+//
+//          // Fill features, if there is no feature stored for a tag, create empty vector and append feature
+//          trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
+//          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
+//
+//          val (newI, newTrees) = takeAction(trees, i, y)
+//          i = newI
+//          trees = newTrees
+//
+//          // Execute the action and modify the trees
+//          if (y != Shift)
+//            noConstruction = false
+        }
+      }
+    }
   }
 }

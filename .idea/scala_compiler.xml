@@ -23,6 +23,8 @@
         <parameter value="-optimize" />
       </parameters>
     </profile>
-    <profile name="SBT 5" modules="grado_informatica_tfg_naturallanguageprocessing" />
+    <profile name="SBT 5" modules="grado_informatica_tfg_naturallanguageprocessing">
+      <option name="implicitConversions" value="true" />
+    </profile>
   </component>
 </project>
