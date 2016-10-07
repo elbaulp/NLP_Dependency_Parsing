@@ -19,7 +19,7 @@ package com.elbauldelprogramador.nlp.parser
 
 import java.io.File
 
-import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
+import com.elbauldelprogramador.nlp.datastructures.{Node, LabeledSentence}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm._
@@ -56,7 +56,7 @@ class SVMParser {
   val tagActions = mutable.Map[String, mutable.Map[Int, Int]]()
   var NFeatures = 0
 
-  def train(sentences: Vector[Sentence]) = {
+  def train(sentences: Vector[LabeledSentence]) = {
     // TODO: Optimize this, may be tail rec?
     for (s <- sentences) {
       var trees = s.tree
@@ -195,6 +195,10 @@ class SVMParser {
       val model = svm.svm_train(svmProblem, svmParams)
       svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
     }
+  }
+
+  def test(sentences: Vector[LabeledSentence]) = {
+
   }
 
   // TODO: Move to SVM abstr1action

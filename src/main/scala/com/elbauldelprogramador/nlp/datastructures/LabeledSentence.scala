@@ -17,21 +17,12 @@
 
 package com.elbauldelprogramador.nlp.datastructures
 
-import com.elbauldelprogramador.nlp.utils.DataTypes.SentenceTokens
+trait TestSentence {
+  /** Actual tokens in this sentence */
+  val words: Vector[String]
+  /** POS tags for words */
+  val tags: Vector[String]
 
-/**
-  * Represents an unlabeled sentence
-  *
-  * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
-  */
-class Sentence(/** Actual tokens in this sentence */
-               val words: Vector[String],
-
-               /** POS tags for words */
-               val tags: Vector[String],
-
-               /** Dependency order */
-               val dep: Vector[Int]) {
 
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
@@ -40,12 +31,10 @@ class Sentence(/** Actual tokens in this sentence */
     val indexedWords = words.zipWithIndex
 
     // Iterate thought all three collections and create Nodes
-    (indexedWords, tags, dep).zipped.map {
-      (w, t, d) => new Node(w._1, w._2, t, d)
+    (indexedWords, tags).zipped.map {
+      (w, t) => new Node(w._1, w._2, t)
     }
   }
-
-  def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
 
   /**
     * Sentence's length
@@ -54,3 +43,35 @@ class Sentence(/** Actual tokens in this sentence */
     */
   def size: Int = words.length
 }
+
+trait TrainSentence {
+  /** Dependency order */
+  val dep: Vector[Int]
+}
+
+/**
+  * Represents a labeled sentence (for training)
+  *
+  * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
+  */
+final case class LabeledSentence(words: Vector[String],
+                                 tags: Vector[String],
+                                 dep: Vector[Int]) extends TestSentence with TrainSentence {
+  /** Constituent tree of this sentence; includes head words */
+  // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
+  override val tree: Vector[Node] = {
+    // In order to be able to access the index, zip with index
+    val indexedWords = words.zipWithIndex
+
+    // Iterate thought all three collections and create Nodes
+    (indexedWords, tags, dep).zipped.map {
+      (w, t, d) => new Node(w._1, w._2, t, d)
+    }
+  }
+}
+
+//  def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
+
+
+final case class Sentence(words: Vector[String],
+                          tags: Vector[String]) extends TestSentence

@@ -82,9 +82,12 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/.idea/modules/scalaml.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/aaaaaaa.sc" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ScalaMl/src/main/scala/org/scalaml/supervised/svm/dfsad.sc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sbt.xml" afterPath="$PROJECT_DIR$/.idea/sbt.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
     </list>
     <ignored path="Spanish Dependency Parser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -144,14 +147,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SVMParser.scala" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
+      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="380" column="11" selection-start-line="380" selection-start-column="11" selection-end-line="380" selection-end-column="11" />
-              <folding>
-                <element signature="e#980#999#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="108">
+              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -192,7 +193,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/.idea/sbt.xml" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Reader.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Parser.scala" />
@@ -231,18 +231,19 @@
         <option value="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/ScalaMlTest.scala" />
         <option value="$PROJECT_DIR$/../ScalaMl/src/test/scala/org/scalaml/app/chap8/Chap8.scala" />
         <option value="$PROJECT_DIR$/../ScalaMl/build.sbt" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/package.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/MultiSet.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataTypes.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/DataParser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/FileUtils.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/utils/Constants.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/data/spanish/es_ancora-converted-train-one.txt" />
         <option value="$PROJECT_DIR$/build.sbt" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala" />
       </list>
     </option>
   </component>
@@ -276,9 +277,6 @@
             <id />
           </State>
           <State>
-            <id>CollectionsScala</id>
-          </State>
-          <State>
             <id>Assignment issuesGroovy</id>
           </State>
           <State>
@@ -301,6 +299,9 @@
           </State>
           <State>
             <id>Code style issuesJava</id>
+          </State>
+          <State>
+            <id>CollectionsScala</id>
           </State>
           <State>
             <id>Control FlowGroovy</id>
@@ -494,7 +495,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -507,7 +508,14 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -1070,7 +1078,7 @@
       <workItem from="1475736208324" duration="1972000" />
       <workItem from="1475766278415" duration="12191000" />
       <workItem from="1475827242710" duration="1091000" />
-      <workItem from="1475852572513" duration="1901000" />
+      <workItem from="1475852572513" duration="5610000" />
     </task>
     <task id="LOCAL-00001" summary="Added constants for data">
       <created>1471599203635</created>
@@ -1115,7 +1123,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="317471000" />
+    <option name="totallyTimeSpent" value="321180000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1128,11 +1136,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1922" y="0" width="959" height="1078" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32028112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35149023" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39924315" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905214" sideWeight="0.49093655" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12225476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32526475" sideWeight="0.5090634" order="8" side_tool="true" content_ui="tabs" />
@@ -1142,10 +1150,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19667171" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20058565" sideWeight="0.4884837" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20020854" sideWeight="0.4884837" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2012513" sideWeight="0.51151633" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49478674" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43981043" sideWeight="0.49093655" order="3" side_tool="false" content_ui="tabs" x="606" y="1" width="704" height="413" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1360,20 +1368,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Sentence.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar!/scala/collection/Map.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -1582,19 +1576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-          <folding>
-            <marker date="1475579281045" expanded="true" signature="1:929" ph="/.../" />
-            <marker date="1475579281045" expanded="false" signature="976:1074" ph="..." />
-            <marker date="1475579281045" expanded="true" signature="1076:1165" ph="/**...*/" />
-            <marker date="1475579281045" expanded="true" signature="1190:1652" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/libsvm-3.21.jar!/libsvm/svm.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -1663,13 +1644,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/Node.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding>
+            <marker date="1475857068319" expanded="false" signature="0:928" ph="/.../" />
+            <marker date="1475857068319" expanded="true" signature="983:1234" ph="/**...*/" />
+            <marker date="1475857068319" expanded="true" signature="1473:2407" ph="{...}" />
+            <marker date="1475857068319" expanded="true" signature="1783:1847" ph="{...}" />
+            <marker date="1475857068319" expanded="true" signature="1887:1949" ph="{...}" />
+            <marker date="1475857068319" expanded="true" signature="1953:2279" ph="/.../" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/datastructures/LabeledSentence.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+          <folding>
+            <marker date="1475858198300" expanded="false" signature="0:932" ph="/.../" />
+            <marker date="1475858198300" expanded="true" signature="1006:1658" ph="{...}" />
+            <marker date="1475858198300" expanded="true" signature="1310:1567" ph="{...}" />
+            <marker date="1475858198300" expanded="true" signature="1516:1563" ph="(...)" />
+            <marker date="1475858198300" expanded="true" signature="1571:1625" ph="/**...*/" />
+            <marker date="1475858198300" expanded="true" signature="1680:1732" ph="{...}" />
+            <marker date="1475858198300" expanded="true" signature="1734:1876" ph="/**...*/" />
+            <marker date="1475858198300" expanded="true" signature="2079:2537" ph="{...}" />
+            <marker date="1475858198300" expanded="true" signature="2267:2535" ph="{...}" />
+            <marker date="1475858198300" expanded="true" signature="2478:2531" ph="(...)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/parser/SVMParser.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="380" column="11" selection-start-line="380" selection-start-column="11" selection-end-line="380" selection-end-column="11" />
+        <state relative-caret-position="196">
+          <caret line="199" column="49" selection-start-line="199" selection-start-column="49" selection-end-line="199" selection-end-column="49" />
           <folding>
-            <element signature="e#980#999#0" expanded="true" />
+            <marker date="1475854908337" expanded="false" signature="0:933" ph="/.../" />
+            <marker date="1475854908337" expanded="true" signature="987:1236" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="1238:1327" ph="/**...*/" />
+            <marker date="1475854908337" expanded="true" signature="1344:13904" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="1602:1784" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="2218:6954" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="2290:2891" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="2449:2508" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="2514:2877" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="3621:4800" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="3780:3839" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="3845:4786" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="4830:6950" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="5064:5452" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="5074:5295" ph="/.../" />
+            <marker date="1475854908337" expanded="true" signature="5359:5427" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="5433:5444" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="6247:6603" ph="/.../" />
+            <marker date="1475854908337" expanded="true" signature="6642:6748" ph="(...)" />
+            <marker date="1475854908337" expanded="true" signature="6677:6740" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="7005:7011" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="7108:7491" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="7114:7267" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="7355:7475" ph="(...)" />
+            <marker date="1475854908337" expanded="true" signature="7378:7469" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="7686:8995" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="7899:8977" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="7937:8971" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="8237:8334" ph="(...)" />
+            <marker date="1475854908337" expanded="true" signature="8408:8503" ph="(...)" />
+            <marker date="1475854908337" expanded="true" signature="8474:8498" ph="(...)" />
+            <marker date="1475854908337" expanded="true" signature="9064:9240" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="9306:9478" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="9628:9803" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="9694:9787" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="9906:10182" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="9976:10150" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="10057:10144" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="10318:10896" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="10410:10892" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="10458:10648" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="10694:10839" ph="..." />
+            <marker date="1475854908337" expanded="true" signature="10992:11279" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="11403:11463" ph="/**...*/" />
+            <marker date="1475854908337" expanded="true" signature="11546:13270" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="11638:13266" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="11676:13260" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="12379:12789" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="12836:13252" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="13354:13902" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="13360:13490" ph="/.../" />
+            <marker date="1475854908337" expanded="true" signature="13756:13886" ph="{...}" />
+            <marker date="1475854908337" expanded="true" signature="13820:13880" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/elbauldelprogramador/nlp/Main.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -18,7 +18,7 @@
 
 package com.elbauldelprogramador.nlp.utils
 
-import com.elbauldelprogramador.nlp.datastructures.Sentence
+import com.elbauldelprogramador.nlp.datastructures.LabeledSentence
 
 import scala.io.Source
 import scala.language.reflectiveCalls
@@ -36,7 +36,7 @@ object DataParser {
   // TODO: Parse command line args like learning scala book, in section about Nothing Data Type
 
   def readDataSet(file: String,
-                  isTrain: Boolean = true): Option[Vector[Sentence]] = {
+                  isTrain: Boolean = true): Option[Vector[LabeledSentence]] = {
 
     val filePath = getClass.getResource(file).getPath
     val EoS = if (isTrain) ("EOS", "EOS", -1) else ("EOS", "EOS", "EOS", -1)
@@ -49,7 +49,7 @@ object DataParser {
         case _ => Some(EoS) // End Of Sentence
       })
 
-      val sentences = Vector.newBuilder[Sentence]
+      val sentences = Vector.newBuilder[LabeledSentence]
       val lex = Vector.newBuilder[String]
       val po = Vector.newBuilder[String]
       val gold = Vector.newBuilder[String]
@@ -59,7 +59,7 @@ object DataParser {
       for (Some(t) <- parsedTuples) {
         t match {
           case EoS =>
-            sentences += new Sentence(lex.result(), po.result(), d.result())
+            sentences += new LabeledSentence(lex.result(), po.result(), d.result())
             lex.clear()
             po.clear()
             d.clear()

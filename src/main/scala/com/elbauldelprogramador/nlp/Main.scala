@@ -38,6 +38,9 @@ object Main extends App {
   val parser = new SVMParser
   parser.train(trainSentences.get)
 
+  // Inference
+  val inferredTree = parser.test(testSentences.get)
+  // Evaluation
 }
 
 

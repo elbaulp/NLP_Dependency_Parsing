@@ -34,6 +34,9 @@ class Node(val lex: String,
   def this(lex: String, position: Int, posTag: String, dependency: Int) =
     this(lex, position, posTag, dependency, Vector.empty, Vector.empty)
 
+  def this(lex: String, position: Int, posTag: String) =
+    this(lex, position, posTag, 0, Vector.empty, Vector.empty)
+
   def insertRight(child: Node): Unit = {
     child.dependency = position
     right = right :+ child
