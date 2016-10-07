@@ -22,7 +22,7 @@ import java.io.File
 import com.elbauldelprogramador.nlp.datastructures.{Node, Sentence}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
-import libsvm.{svm, svm_node, svm_parameter, svm_problem}
+import libsvm._
 
 import scala.collection.mutable
 
@@ -155,11 +155,6 @@ class SVMParser {
         if (new File(s"${Constants.ModelPath}$lp.p").exists()) {
           println(s"Loaded ${Constants.ModelPath}$lp.p")
         } else {
-//          val tempFeatures = new CRSMatrix(trainX(lp).size, NFeatures)
-//          trainX(lp).zipWithIndex.foreach {
-//            case (vector, index) => vector foreach (vectorItem => tempFeatures.set(index, vectorItem, 1.0))
-//          }
-//          features(lp) = tempFeatures
         }
       }
 
@@ -174,17 +169,6 @@ class SVMParser {
       svmParams.eps = 0.1
       svmParams.C = 1
 
-      // Problem
-      // type SVMNodes = Array[Array[svm_node]]
-      //    class SVMProblem(numObs: Int, labels: DblArray) {
-      //      val problem = new svm_problem
-      //      problem.l = numObs
-      //      problem.y = labels
-      //      problem.x = new SVMNodes(numObs)
-      //
-      //      def update(n: Int, node: Array[svm_node]): Unit =
-      //        problem.x(n) = node
-      //    }
       // TODO: Create class, objects and traits for this, in order to abstract the design
       val svmProblem = new svm_problem
       val labels = trainY(lp).toArray
@@ -393,16 +377,6 @@ class SVMParser {
 
   def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
     // Assign to each string key a counter, starting from 0 to the map size
-    //    counter foreach {
-    //      case (_, map) =>
-    //        for ((lexKey, value) <- map.keys.zipWithIndex) {
-    //          println(s"$lexKey, $value")
-    //          map update(lexKey, value)
-    //        }
-    //        map update(Unknown, map.size) // For previously unknown features during training
-    //    }
-    //    counter
-    //    counter.toSeq.sortBy(_._1).foreach(a => a._2.zip(0 to a._2.size).foreach(r => a._2.update(r._1._1, r._2)))
     // TODO: Instead of update, generate new immutable map
     counter.foreach(a => a._2.zipWithIndex.foreach(r => a._2.update(r._1._1, r._2)))
     counter.foreach { case (i, c) => c(Unknown) = c.size }
