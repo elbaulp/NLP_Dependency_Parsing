@@ -168,7 +168,7 @@ class SVMParser {
       // TODO #18: Check if there is error or not, and act in consequence
       val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
       // TODO #19: Make SVMModel class to wrap this call
-      val model = svm.svm_train(svmProblem.problem, SVMConfig.param)
+      val model = trainSVM(svmProblem, SVMConfig.param)
       svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
     }
   }

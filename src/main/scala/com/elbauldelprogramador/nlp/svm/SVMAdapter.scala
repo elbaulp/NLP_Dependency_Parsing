@@ -20,6 +20,8 @@ package com.elbauldelprogramador.nlp.svm
 import com.elbauldelprogramador.nlp.svm.SVMTypes.DblArray
 import libsvm._
 
+import scala.collection.mutable.ArrayBuffer
+
 /**
   * Partially borrowed from https://github.com/prnicolas/ScalaMl/blob/master/src/main/scala/org/scalaml/libraries/libsvm/SVMAdapter.scala
   *
@@ -41,8 +43,20 @@ object SVMAdapter {
     newNode
   }
 
+  private def toNodes(x: DblArray): Array[svm_node] =
+    x.view.zipWithIndex.foldLeft(new ArrayBuffer[svm_node])((xs, f) =>  {
+      val node = new svm_node
+      node.index = f._2
+      node.value = f._1
+      xs.append(node)
+      xs
+    }).toArray
+
   def trainSVM(problem: SVMProblem, param: svm_parameter): svm_model =
     svm.svm_train(problem.problem, param)
+
+//  def predictSVM(model: SVMModel, x: DblArray): Double =
+//    svm.svm_predict(model.svmmodel, toNodes(x))
 
   class SVMProblem(numObs: Int, labels: DblArray) {
     val problem = new svm_problem
@@ -57,4 +71,5 @@ object SVMAdapter {
       problem.x(n) = node
     }
   }
+
 }

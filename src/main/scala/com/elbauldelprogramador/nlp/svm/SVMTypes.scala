@@ -26,4 +26,5 @@ package com.elbauldelprogramador.nlp.svm
 object SVMTypes {
   type DblVector = Vector[Double]
   type DblArray = Array[Double]
+  type DblMatrix = Array[DblArray]
 }
