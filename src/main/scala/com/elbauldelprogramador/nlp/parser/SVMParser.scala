@@ -20,6 +20,7 @@ package com.elbauldelprogramador.nlp.parser
 import java.io.File
 
 import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Sentence}
+import com.elbauldelprogramador.nlp.svm.SVMTypes.DblVector
 import com.elbauldelprogramador.nlp.utils.Action.{Action, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
@@ -31,11 +32,6 @@ import scala.collection.mutable
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
   */
 class SVMParser {
-
-  // TODO: Issue #9 move them to a better place
-  type SVMNodes = Array[Array[svm_node]]
-  type DblVector = Vector[Double]
-  type DblArray = Array[Double]
 
   val LeftCtx = 2
   val RightCtx = 4

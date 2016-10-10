@@ -28,14 +28,12 @@
     <orderEntry type="module-library">
       <library name="SBT: unmanaged-jars">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/la4j-0.6.0-javadoc.jar!/" />
-          <root url="jar://$MODULE_DIR$/../../lib/la4j-0.6.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/libsvm-3.21-javadoc.jar!/" />
           <root url="jar://$MODULE_DIR$/../../lib/libsvm-3.21.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="com.datumbox:libsvm:3.21" level="project" />
   </component>
 </module>
