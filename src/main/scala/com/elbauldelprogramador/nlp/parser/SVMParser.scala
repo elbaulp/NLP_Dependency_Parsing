@@ -207,22 +207,23 @@ class SVMParser {
     features
   }
 
+  // TODO #20: posTagFeature and lexFeature  very similar, look up a solution to reduce code
   def posTagFeature(position: Int, node: Node, offset: Int): Int = {
-    val vocab = positionTag(position) // TODO: Match better
+    val vocab = positionTag(position)
 
-    if (vocab.contains(node.posTag))
-      vocab(node.posTag) + offset
-    else
-      vocab(Unknown) + offset
+    vocab contains node.posTag match {
+      case true => vocab(node.posTag) + offset
+      case _ => vocab(Unknown) + offset
+    }
   }
 
   def lexFeature(position: Int, node: Node, offset: Int): Int = {
-    val vocab = positionVocab(position) // TODO: Match better
+    val vocab = positionVocab(position)
 
-    if (vocab.contains(node.lex))
-      vocab(node.lex) + offset
-    else
-      vocab(Unknown) + offset
+    vocab contains node.lex match {
+      case true => vocab(node.lex) + offset
+      case _ => vocab(Unknown) + offset
+    }
   }
 
   // TODO: Issue #15 To recursive
