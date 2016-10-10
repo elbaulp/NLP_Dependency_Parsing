@@ -20,6 +20,8 @@ package com.elbauldelprogramador.nlp.parser
 import java.io.File
 
 import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Sentence}
+import com.elbauldelprogramador.nlp.svm.SVMAdapter._
+import com.elbauldelprogramador.nlp.svm.SVMConfig
 import com.elbauldelprogramador.nlp.svm.SVMTypes.DblVector
 import com.elbauldelprogramador.nlp.utils.Action.{Action, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
@@ -152,58 +154,23 @@ class SVMParser {
         }
       }
 
-      // Params
-      val svmParams = new svm_parameter
-      svmParams.svm_type = svm_parameter.C_SVC
-      svmParams.kernel_type = svm_parameter.POLY
-      svmParams.degree = 2
-      svmParams.gamma = 1
-      svmParams.coef0 = 1
-      svmParams.cache_size = 8000
-      svmParams.eps = 0.1
-      svmParams.C = 1
-
-      // TODO: Issue #14, Create class, objects and traits for this, in order to abstract the design
-      val svmProblem = new svm_problem
-      val labels = trainY(lp).toArray
-
-      // Size of the problem (How many rows of data we have
-      svmProblem.l = trainY(lp).size
-      // Values of each class for the rows of data
-      svmProblem.y = labels
-      // feature fectors, will be in sparse form, size lxNFeatures (But sparse)
-      svmProblem.x = new SVMNodes(svmProblem.l)
+      val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
 
       // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
       //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
       //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
-      //        [ ] -> (1,0.4) (-1,?)
-      //        [ ] -> (2,0.1) (4,1.4) (5,0.5) (-1,?)
-      //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
+      //        ......................................
       trainX(lp).zipWithIndex.foreach {
         case (x, i) =>
           val nodeCol = createNode(x)
-          svmProblem.x(i) = nodeCol
+        svmProblem.update(i, nodeCol)
       }
-      val error = svm.svm_check_parameter(svmProblem, svmParams)
-      val model = svm.svm_train(svmProblem, svmParams)
-
+      // TODO #18: Check if there is error or not, and act in consequence
+      val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
+      // TODO #19: Make SVMModel class to wrap this call
+      val model = svm.svm_train(svmProblem.problem, SVMConfig.param)
       svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
     }
-  }
-
-  // TODO: Issue #14, Move to SVM abstr1action
-  def createNode(features: Vector[Int]): Array[svm_node] = {
-    // Create a new row for SVM, with the format x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
-    // Where each tuple correspont with the feature number and its value,
-    val newNode = new Array[svm_node](features.size)
-    features.zipWithIndex.foreach { case (f, i) =>
-      val node = new svm_node
-      node.index = f
-      node.value = 1.0
-      newNode(i) = node
-    }
-    newNode
   }
 
   def countFeatures(feature: mutable.Map[Int, Counter]): Int = (feature map (_._2.size)).sum

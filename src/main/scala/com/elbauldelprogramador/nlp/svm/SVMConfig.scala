@@ -1,5 +1,5 @@
 /*
- *     SVMTypes.scala is part of grado_informatica_tfg_naturallanguageprocessing (grado_informatica_TFG_NaturalLanguageProcessing).
+ *     SVMParams.scala is part of grado_informatica_tfg_naturallanguageprocessing (grado_informatica_TFG_NaturalLanguageProcessing).
  *
  *     grado_informatica_TFG_NaturalLanguageProcessing is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -17,13 +17,23 @@
 
 package com.elbauldelprogramador.nlp.svm
 
+import libsvm.svm_parameter
+
 /**
   *
-  * Encapsulates the types used for SMV
+  * Parameters for SVM
   *
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 10/10/16.
   */
-object SVMTypes {
-  type DblVector = Vector[Double]
-  type DblArray = Array[Double]
+object SVMConfig {
+  val param = new svm_parameter
+
+  param.svm_type = svm_parameter.C_SVC
+  param.kernel_type = svm_parameter.POLY
+  param.degree = 2
+  param.gamma = 1
+  param.coef0 = 1
+  param.cache_size = 8000
+  param.eps = 0.1
+  param.C = 1
 }
