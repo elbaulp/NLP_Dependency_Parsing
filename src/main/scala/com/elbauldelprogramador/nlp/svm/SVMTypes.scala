@@ -20,6 +20,9 @@ package com.elbauldelprogramador.nlp.svm
 import libsvm.svm_node
 
 /**
+  *
+  * Encapsulates the types used for SMV
+  *
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 10/10/16.
   */
 object SVMTypes {
