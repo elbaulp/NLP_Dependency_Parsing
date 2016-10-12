@@ -34,17 +34,15 @@ object DataParser {
 
   type Or[A, B] = Either[A,B]
 
+  // TODO: Better use some combinator? https://github.com/tpolecat/atto | http://www.lihaoyi.com/fastparse/
   // TODO: issue #5 Parse command line args like learning scala book, in section about Nothing Data Type
   def readDataSet(file: String): Option[Vector[LabeledSentence]] = {
 
-    def getSentenceType(s: Array[String]) =
-      if (s.length == 3) {
-        Left((s(0), s(1), s(2).toInt))
-      } else if (s.length == 4) {
-        Right((s(0), s(1), s(2), s(3).toInt))
-      } else {
-        Right(("EOS", "EOS", "EOS", -1))
-      }
+    def getSentenceType(s: Array[String]) = s.length match {
+      case 3 => Left((s(0), s(1), s(2).toInt))
+      case 4 => Right((s(0), s(1), s(2), s(3).toInt))
+      case _ => Right(("EOS", "EOS", "EOS", -1))
+    }
 
     val filePath = getClass.getResource(file).getPath
 

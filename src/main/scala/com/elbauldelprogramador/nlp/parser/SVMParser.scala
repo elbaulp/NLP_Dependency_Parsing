@@ -35,9 +35,6 @@ import scala.collection.mutable
   */
 //noinspection ScalaStyle
 class SVMParser {
-  def evaluate(inferredTree: Vector[Vector[Node]], goldSentence: Vector[LabeledSentence]) = ???
-
-
   //  private[this] val model: Vector[svm_model] = train
 
   val LeftCtx = 2
@@ -403,5 +400,11 @@ class SVMParser {
       Shift
 
     action
+  }
+
+  def evaluate(inferredTree: Vector[Vector[Node]], goldSentence: Vector[LabeledSentence]) = {
+    val punctuationTags = Set(",", ".", ":", "''", "``", "PUNCT", "SYM")
+
+
   }
 }
