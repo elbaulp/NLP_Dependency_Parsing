@@ -23,7 +23,7 @@ import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Sente
 import com.elbauldelprogramador.nlp.svm.SVMAdapter._
 import com.elbauldelprogramador.nlp.svm.SVMConfig
 import com.elbauldelprogramador.nlp.svm.SVMTypes.DblVector
-import com.elbauldelprogramador.nlp.utils.Action.{Action, Left, Right, Shift}
+import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm._
@@ -33,7 +33,12 @@ import scala.collection.mutable
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
   */
+//noinspection ScalaStyle
 class SVMParser {
+  def evaluate(inferredTree: Vector[Vector[Node]], goldSentence: Vector[LabeledSentence]) = ???
+
+
+  //  private[this] val model: Vector[svm_model] = train
 
   val LeftCtx = 2
   val RightCtx = 4
@@ -49,9 +54,10 @@ class SVMParser {
   val chRVocab = mutable.Map.empty[Int, Counter]
   val chRTag = mutable.Map.empty[Int, Counter]
   val tagActions = mutable.Map[String, mutable.Map[Action, Int]]()
+  val models = mutable.Map.empty[String, svm_model]
   var NFeatures = 0
 
-  def train(sentences: Vector[LabeledSentence]) = {
+  def train(sentences: Vector[LabeledSentence]): Unit = {
     // TODO: Issue #12, Optimize this, may be tail rec?
     // FIXME: Need a deep refactor
     for (s <- sentences) {
@@ -168,8 +174,8 @@ class SVMParser {
       // TODO #18: Check if there is error or not, and act in consequence
       val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
       // TODO #19: Make SVMModel class to wrap this call
-      val model = trainSVM(svmProblem, SVMConfig.param)
-      svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
+      models(lp) = trainSVM(svmProblem, SVMConfig.param)
+      svm.svm_save_model(s"${Constants.ModelPath}/svm.$lp.model", models(lp))
     }
   }
 
@@ -351,14 +357,16 @@ class SVMParser {
     counter
   }
 
-  def test(sentences: Vector[LabeledSentence]) = {
+  def test(sentences: Vector[LabeledSentence]):Vector[Vector[Node]] = {
     val testSentences = for {
       s <- sentences
       testS = Sentence(s.words, s.tags)
     } yield testS
 
+    var inferredTrees = Vector.empty[Vector[Node]]
+
     for (s <- testSentences) {
-      val trees = s.tree
+      var trees = s.tree
       // TODO: Issue #17, Remove iterators like this, make them functional
       var i = 0
       var noConstruction = false
@@ -371,60 +379,29 @@ class SVMParser {
           val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
           // estimate the action to be taken for i, i+ 1 target  nodes
           val y = estimateAction(trees, i, extractedFeatures)
-          //
-          //          // Update pos Action
-          //          val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
-          //          tagActions(posTag)(y) = actionCounter + 1
-          //
-          //          // Fill features, if there is no feature stored for a tag, create empty vector and append feature
-          //          trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
-          //          trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
-          //
-          //          val (newI, newTrees) = takeAction(trees, i, y)
-          //          i = newI
-          //          trees = newTrees
-          //
-          //          // Execute the action and modify the trees
-          //          if (y != Shift)
-          //            noConstruction = false
+          val (newI, newTrees) = takeAction(trees, i, y)
+          i = newI
+          trees = newTrees
+          // Execute the action and modify the trees
+          if (y != Shift)
+            noConstruction = false
         }
       }
+      inferredTrees ++= Vector(trees)
     }
+    inferredTrees
   }
 
-  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]): Int = {
+  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]): Action = {
     val treePosTag = trees(position).posTag
-    // Params
-    val svmParams = new svm_parameter
-    svmParams.svm_type = svm_parameter.C_SVC
-    svmParams.kernel_type = svm_parameter.POLY
-    svmParams.degree = 2
-    svmParams.gamma = 1
-    svmParams.coef0 = 1
-    svmParams.cache_size = 8000
-    svmParams.eps = 0.1
-    svmParams.C = 1
 
-    val svmProblem = new svm_problem
-    // feature fectors, will be in sparse form, size lxNFeatures (But sparse)
-    //    svmProblem.x = new SVMNodes(svmProblem.l)
-    //
-    //    // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
-    //    //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
-    //    //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
-    //    //        [ ] -> (1,0.4) (-1,?)
-    //    //        [ ] -> (2,0.1) (4,1.4) (5,0.5) (-1,?)
-    //    //        [ ] -> (1,-0.1) (2,-0.2) (3,0.1) (4,1.1) (5,0.1) (-1,?)
-    //    trainX(lp).zipWithIndex.foreach {
-    //      case (x, i) =>
-    //        val nodeCol = createNode(x)
-    //        svmProblem.x(i) = nodeCol
-    //    }
-    //    val error = svm.svm_check_parameter(svmProblem, svmParams)
-    //    val model = svm.svm_train(svmProblem, svmParams)
-    //
-    //    svm.svm_save_model(s"src/main/resources/models/svm.$lp.model", model)
-    ////    val temFeatures =
-    ???
+    val action = if (models contains treePosTag) {
+      val model = models(treePosTag)
+      predictSVM(model, extractedFeatures).toAction
+    }
+    else
+      Shift
+
+    action
   }
 }

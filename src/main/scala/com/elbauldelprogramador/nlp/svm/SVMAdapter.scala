@@ -43,11 +43,11 @@ object SVMAdapter {
     newNode
   }
 
-  private def toNodes(x: DblArray): Array[svm_node] =
+  private def toNodes(x: Vector[Int]): Array[svm_node] =
     x.view.zipWithIndex.foldLeft(new ArrayBuffer[svm_node])((xs, f) =>  {
       val node = new svm_node
-      node.index = f._2
-      node.value = f._1
+      node.index = f._1
+      node.value = 1.0
       xs.append(node)
       xs
     }).toArray
@@ -55,8 +55,8 @@ object SVMAdapter {
   def trainSVM(problem: SVMProblem, param: svm_parameter): svm_model =
     svm.svm_train(problem.problem, param)
 
-//  def predictSVM(model: SVMModel, x: DblArray): Double =
-//    svm.svm_predict(model.svmmodel, toNodes(x))
+  def predictSVM(model: svm_model, x: Vector[Int]): Double =
+    svm.svm_predict(model, toNodes(x))
 
   class SVMProblem(numObs: Int, labels: DblArray) {
     val problem = new svm_problem

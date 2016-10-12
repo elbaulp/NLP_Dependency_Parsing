@@ -39,6 +39,15 @@ object Action {
     }
   }
 
+  // TODO #21: See if it can be converted to implicit val instead of implicit class
+  implicit class DoubleToAction(double: Double) {
+    def toAction: Action = double match {
+      case 0.0 => Left
+      case 1.0 => Shift
+      case 2.0 => Right
+    }
+  }
+
   case object Left extends Action {final def value: Int = 0}
   case object Shift extends Action {final def value: Int = 1}
   case object Right extends Action {final def value: Int = 2}
