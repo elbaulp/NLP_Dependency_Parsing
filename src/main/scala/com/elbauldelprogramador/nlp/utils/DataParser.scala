@@ -46,11 +46,11 @@ object DataParser {
           case Array(a, b, d) => Tokens(a, b, "", d.toInt)
           case _ => Tokens() // Read end of sentence
         }.foldLeft((Tokens(), Vector.empty[LabeledSentence])) {
-        // When reading an end of sentence, create a new Labeled sentence with tokens
-        case ((z, l), t) if t.isEmpty => (Tokens(), l :+ LabeledSentence(z))
-        // Accumulate tokens of the sentence
-        case ((z, l), t) => (z append(z, t), l)
-      }._2
+          // When reading an end of sentence, create a new Labeled sentence with tokens
+          case ((z, l), t) if t.isEmpty => (Tokens(), l :+ LabeledSentence(z))
+          // Accumulate tokens of the sentence
+          case ((z, l), t) => (z append(z, t), l)
+        }._2
 
       Some(parsedTuples)
     }

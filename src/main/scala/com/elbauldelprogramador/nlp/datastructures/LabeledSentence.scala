@@ -25,10 +25,9 @@ trait TestSentence {
   /** POS tags for words */
   val tags: Vector[String]
 
-
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  val tree: Vector[Node] = {
+  lazy val tree: Vector[Node] = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex
 
@@ -56,14 +55,11 @@ trait TrainSentence {
   *
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
   */
-final case class LabeledSentence(words: Vector[String],
-                                 tags: Vector[String],
-                                 dep: Vector[Int])
-  extends TestSentence
-    with TrainSentence {
+final case class LabeledSentence(t: Tokens) extends TestSentence
+  with TrainSentence {
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  override val tree: Vector[Node] = {
+  override lazy val tree: Vector[Node] = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex
 
@@ -72,11 +68,13 @@ final case class LabeledSentence(words: Vector[String],
       (w, t, d) => new Node(w._1, w._2, t, d)
     }
   }
+  override val words: Vector[String] = t.lex
+  override val tags: Vector[String] = t.pos
+  override val dep: Vector[Int] = t.dep
 }
 
-object LabeledSentence {
-  def apply(t: Tokens): LabeledSentence = new LabeledSentence(t.lex, t.pos, t.dep)
-}
+final case class Sentence(words: Vector[String],
+                          tags: Vector[String]) extends TestSentence
 
 final case class Tokens(lex: Vector[String],
                         pos: Vector[String],
@@ -104,7 +102,3 @@ object Tokens {
 
   def apply(): Tokens = new Tokens(Vector.empty, Vector.empty, Vector.empty, Vector.empty)
 }
-
-
-final case class Sentence(words: Vector[String],
-                          tags: Vector[String]) extends TestSentence
