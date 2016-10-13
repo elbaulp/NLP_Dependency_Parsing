@@ -18,7 +18,7 @@
 
 package com.elbauldelprogramador.nlp.utils
 
-import com.elbauldelprogramador.nlp.datastructures.LabeledSentence
+import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Tokens}
 
 import scala.io.Source
 import scala.language.reflectiveCalls
@@ -31,51 +31,28 @@ import scala.util.control.NonFatal
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/20/16.
   */
 object DataParser {
-
-  type Or[A, B] = Either[A,B]
-
   // TODO: Better use some combinator? https://github.com/tpolecat/atto | http://www.lihaoyi.com/fastparse/
   // TODO: issue #5 Parse command line args like learning scala book, in section about Nothing Data Type
   def readDataSet(file: String): Option[Vector[LabeledSentence]] = {
-
-    def getSentenceType(s: Array[String]) = s.length match {
-      case 3 => Left((s(0), s(1), s(2).toInt))
-      case 4 => Right((s(0), s(1), s(2), s(3).toInt))
-      case _ => Right(("EOS", "EOS", "EOS", -1))
-    }
-
     val filePath = getClass.getResource(file).getPath
 
     Manage(Source.fromFile(filePath)) { source =>
 
-      val parsedTuples = source getLines() map (s => s.split("\t"))
+      val parsedTuples = source
+        .getLines()
+        .map(s => s.split("\t"))
+        .map {
+          case Array(a, b, c, d) => Tokens(a, b, c, d.toInt)
+          case Array(a, b, d) => Tokens(a, b, "", d.toInt)
+          case _ => Tokens() // Read end of sentence
+        }.foldLeft((Tokens(), Vector.empty[LabeledSentence])) {
+        // When reading an end of sentence, create a new Labeled sentence with tokens
+        case ((z, l), t) if t.isEmpty => (Tokens(), l :+ LabeledSentence(z))
+        // Accumulate tokens of the sentence
+        case ((z, l), t) => (z append(z, t), l)
+      }._2
 
-      val sentences = Vector.newBuilder[LabeledSentence]
-      val lex = Vector.newBuilder[String]
-      val po = Vector.newBuilder[String]
-      val gold = Vector.newBuilder[String]
-      val dep = Vector.newBuilder[Int]
-
-      for (s <- parsedTuples) {
-        getSentenceType(s) match {
-          case Right(("EOS", "EOS", "EOS", -1)) =>
-            sentences += new LabeledSentence(lex.result(), po.result(), dep.result())
-            lex.clear()
-            po.clear()
-            dep.clear()
-          //            if (isTrain) gold.clear()
-          case Left(x) =>
-            lex += x._1
-            po += x._2
-            dep += x._3
-          case Right(x) =>
-            lex += x._1
-            po += x._2
-            gold += x._3
-            dep += x._4
-        }
-      }
-      Some(sentences.result())
+      Some(parsedTuples)
     }
   }
 }

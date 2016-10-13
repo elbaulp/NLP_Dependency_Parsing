@@ -35,13 +35,16 @@ object Main extends App {
   val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
   val testSentences = DataParser.readDataSet(DataSourcePath + TestSentencesFile)
 
+//  trainSentences foreach println
+//  testSentences foreach println
+
   val parser = new SVMParser
   parser.train(trainSentences.get)
 
   // Inference
   val inferredTree = parser.test(testSentences.get)
   // Evaluation
-  val evaluation = parser.evaluate(inferredTree, testSentences)
+//  val evaluation = parser.evaluate(inferredTree, testSentences)
 }
 
 

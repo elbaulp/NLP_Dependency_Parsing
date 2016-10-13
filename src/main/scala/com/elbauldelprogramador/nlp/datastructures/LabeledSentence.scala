@@ -17,6 +17,8 @@
 
 package com.elbauldelprogramador.nlp.datastructures
 
+import com.elbauldelprogramador.nlp.core.functional.Monoid
+
 trait TestSentence {
   /** Actual tokens in this sentence */
   val words: Vector[String]
@@ -56,7 +58,9 @@ trait TrainSentence {
   */
 final case class LabeledSentence(words: Vector[String],
                                  tags: Vector[String],
-                                 dep: Vector[Int]) extends TestSentence with TrainSentence {
+                                 dep: Vector[Int])
+  extends TestSentence
+    with TrainSentence {
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
   override val tree: Vector[Node] = {
@@ -70,7 +74,36 @@ final case class LabeledSentence(words: Vector[String],
   }
 }
 
-//  def this(sentence: SentenceTokens) = this(sentence._1, sentence._2, sentence._3)
+object LabeledSentence {
+  def apply(t: Tokens): LabeledSentence = new LabeledSentence(t.lex, t.pos, t.dep)
+}
+
+final case class Tokens(lex: Vector[String],
+                        pos: Vector[String],
+                        gold: Vector[String],
+                        dep: Vector[Int]) extends Monoid[Tokens] {
+
+  override val identity: Tokens = this
+
+  def isEmpty: Boolean = lex.isEmpty &&
+    pos.isEmpty &&
+    gold.isEmpty &&
+    dep.isEmpty
+
+  override def append(a: Tokens, b: Tokens): Tokens = a + b
+
+  def +(b: Tokens): Tokens =
+    Tokens(lex ++ b.lex,
+      pos ++ b.pos,
+      gold ++ b.gold,
+      dep ++ b.dep)
+}
+
+object Tokens {
+  def apply(a: String, b: String, c: String, d: Int): Tokens = new Tokens(Vector(a), Vector(b), Vector(c), Vector(d))
+
+  def apply(): Tokens = new Tokens(Vector.empty, Vector.empty, Vector.empty, Vector.empty)
+}
 
 
 final case class Sentence(words: Vector[String],
