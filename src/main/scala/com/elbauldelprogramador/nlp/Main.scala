@@ -44,7 +44,7 @@ object Main extends App {
   // Inference
   val inferredTree = parser.test(testSentences.get)
   // Evaluation
-//  val evaluation = parser.evaluate(inferredTree, testSentences)
+  val evaluation = parser.evaluate(inferredTree, testSentences.get)
 }
 
 
