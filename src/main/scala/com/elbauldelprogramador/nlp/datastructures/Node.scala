@@ -17,6 +17,8 @@
 
 package com.elbauldelprogramador.nlp.datastructures
 
+import com.elbauldelprogramador.nlp.utils.Constants
+
 /**
   * Node of a tree
   * Can contain any number of children
@@ -24,13 +26,14 @@ package com.elbauldelprogramador.nlp.datastructures
   *
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
   */
-class Node(val lex: String,
-           val position: Int,
-           val posTag: String, // TODO  create some data structure for this)
+case class Node(lex: String,
+           position: Int,
+           posTag: String, // TODO  create some data structure for this)
            var dependency: Int,
            var left: Vector[Node],
            var right: Vector[Node]) {
 
+  // TODO: #24 Remove secondary constructors, override apply in companion object
   def this(lex: String, position: Int, posTag: String, dependency: Int) =
     this(lex, position, posTag, dependency, Vector.empty, Vector.empty)
 
@@ -47,16 +50,39 @@ class Node(val lex: String,
     left = left :+ child
   }
 
+  def matchNodes(goldSentence: LabeledSentence): Int = {
+
+    def condition(n:Node): Boolean =
+      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(n.posTag)
+
+    def match0(acc:Int, n:Seq[Node]):Int = {
+      n match {
+        case head :: tail => {
+          if (condition(head)){
+            match0(acc + 1, tail)
+          } else {
+            acc
+          }
+        }
+        case node :: Nil => if (condition(node)) acc + 1 else acc
+        case _ =>  acc
+      }
+    }
+
+    val counter = match0(0, left) + match0(0, right)
+
+    counter
+  }
+
+  /**
+    * Check if the tree is parsed correctly completely (Ignoring punctuation tags)
+    * against the Gold sentence tags
+    *
+    * @param goldSentence The sentences corretly annotated
+    * @return True if the tree is 100% correctly parsed
+    */
+  def matchAll(goldSentence: LabeledSentence): Boolean = matchNodes(goldSentence) == goldSentence.words.size
 
 
-//  /**
-//    * Check if the tree is parsed correctly completely (Ignoring punctiation tags) against the Gold sentence tags
-//    *
-//    * @param goldSentence The sentences corretly annotated
-//    * @return True if the tree is 100% correctly parsed
-//    */
-  //  def matchAll(goldSentence: String): Boolean = {
-  //
-  //  }
   override def toString: String = s"<LEX: $lex, TAG: $posTag, DEP: $dependency, POS: $position, LEFT: $left, RIGHT:  $right>"
 }

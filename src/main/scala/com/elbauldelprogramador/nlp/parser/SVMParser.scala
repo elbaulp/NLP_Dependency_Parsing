@@ -403,8 +403,43 @@ class SVMParser {
   }
 
   def evaluate(inferredTree: Vector[Vector[Node]], goldSentence: Vector[LabeledSentence]) = {
-    val punctuationTags = Set(",", ".", ":", "''", "``", "PUNCT", "SYM")
 
+    case class Evaluation(rootAcc:Map[String, Int] = Map.empty,
+                          completeD:Int = 0,
+                          completeN:Int = 0)
 
+//    val rootAcc = inferredTree.zipWithIndex.foldLeft(Map.empty[String, Int]) {
+//      case (root, (v, i)) => {
+//        val goldS = goldSentence(i)
+//        if (v.size == 1) {
+//          if (v(0).matchAll(goldS))
+//        } else {
+//          // Update root accuracy counter
+//          root ++
+//            v.filter(i => !Constants.punctuationTags.contains(i.posTag) && goldS.dep(i.position) == -1)
+//              // Update the map, increment by 1 the lex counter
+//              .foldLeft(root)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1)))
+//        }
+//      }
+//    }
+
+    val rootAcc = inferredTree.zipWithIndex.foldLeft(Evaluation()) {
+      case (e, (v, i)) => {
+        val goldS = goldSentence(i)
+        v.size match {
+          case 1 =>
+            if (v(0).matchAll(goldS)) Evaluation(e.rootAcc, e.completeD + 1, e.completeN + 1)
+            else Evaluation(e.rootAcc, e.completeD, e.completeN + 1)
+          case _ =>
+            // Update root accuracy counter
+            Evaluation(e.rootAcc ++
+              v.filter(i => !Constants.punctuationTags.contains(i.posTag) && goldS.dep(i.position) == -1)
+                // Update the map, increment by 1 the lex counter
+                .foldLeft(e.rootAcc)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1))),
+              e.completeD,
+              e.completeN)
+        }
+      }
+    }
   }
 }

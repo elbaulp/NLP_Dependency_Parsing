@@ -22,4 +22,5 @@ package com.elbauldelprogramador.nlp.utils
   */
 object Constants {
   val ModelPath = "src/main/resources/models/"
+  val punctuationTags = Set(",", ".", ":", "''", "``", "PUNCT", "SYM")
 }
