@@ -33,7 +33,7 @@ trait TestSentence {
 
     // Iterate thought all three collections and create Nodes
     (indexedWords, tags).zipped.map {
-      (w, t) => new Node(w._1, w._2, t)
+      (w, t) => Node(w._1, w._2, t)
     }
   }
 
@@ -65,7 +65,7 @@ final case class LabeledSentence(t: Tokens) extends TestSentence
 
     // Iterate thought all three collections and create Nodes
     (indexedWords, tags, dep).zipped.map {
-      (w, t, d) => new Node(w._1, w._2, t, d)
+      (w, t, d) => Node(w._1, w._2, t, d)
     }
   }
   override val words: Vector[String] = t.lex
