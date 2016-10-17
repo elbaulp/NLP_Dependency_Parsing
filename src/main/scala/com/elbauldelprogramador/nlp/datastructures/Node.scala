@@ -64,14 +64,11 @@ case class Node(lex: String,
             acc
           }
         }
-        case node :: Nil => if (condition(node)) acc + 1 else acc
-        case _ =>  acc
+        case _ => acc
+//        case node :: Nil =>  if (condition(s)) acc + 1 else acc
       }
     }
-
-    val counter = match0(0, left) + match0(0, right)
-
-    counter
+    match0(0, left) + match0(0, right)
   }
 
   /**
