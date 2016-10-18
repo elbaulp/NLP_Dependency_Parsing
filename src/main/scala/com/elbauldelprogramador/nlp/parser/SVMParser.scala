@@ -229,16 +229,11 @@ class SVMParser {
       case _ => vocab(Unknown) + offset
     }
   }
+  
+  def childFeatures(position: Int, children: Vector[Node], offset: Int,
+                    family: Counter, featureType: Int): Vector[Int] =
+    children./:(Vector.empty[Int])((v, n) => v :+ childFeature(position, n, offset, family, featureType))
 
-  // TODO: Issue #15 To recursive
-  def childFeatures(position: Int, children: Vector[Node], offset: Int, family: Counter, featureType: Int):
-  Vector[Int] = {
-    var indices = Vector.empty[Int]
-    for (child <- children) {
-      indices = indices :+ childFeature(position, child, offset, family, featureType)
-    }
-    indices
-  }
 
   def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int): Int = {
     val vocab = family
