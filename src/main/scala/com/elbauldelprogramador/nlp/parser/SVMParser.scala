@@ -229,7 +229,7 @@ class SVMParser {
       case _ => vocab(Unknown) + offset
     }
   }
-  
+
   def childFeatures(position: Int, children: Vector[Node], offset: Int,
                     family: Counter, featureType: Int): Vector[Int] =
     children./:(Vector.empty[Int])((v, n) => v :+ childFeature(position, n, offset, family, featureType))
@@ -419,7 +419,7 @@ class SVMParser {
 //      }
 //    }
 
-    val rootAcc = inferredTree.zipWithIndex.foldLeft(Evaluation()) {
+    val rootAcc = inferredTree.zipWithIndex./:(Evaluation()) {
       case (e, (v, i)) => {
         val goldS = goldSentence(i)
         (v.size: @switch) match {
@@ -431,7 +431,7 @@ class SVMParser {
             Evaluation(e.rootAcc ++
               v.filter(i => !Constants.punctuationTags.contains(i.posTag) && goldS.dep(i.position) == -1)
                 // Update the map, increment by 1 the lex counter
-                .foldLeft(e.rootAcc)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1))),
+                ./:(e.rootAcc)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1))),
               e.completeD,
               e.completeN)
         }

@@ -44,7 +44,7 @@ object SVMAdapter {
   }
 
   private def toNodes(x: Vector[Int]): Array[svm_node] =
-    x.view.zipWithIndex.foldLeft(new ArrayBuffer[svm_node])((xs, f) =>  {
+    x.view.zipWithIndex./:(new ArrayBuffer[svm_node])((xs, f) =>  {
       val node = new svm_node
       node.index = f._1
       node.value = 1.0
