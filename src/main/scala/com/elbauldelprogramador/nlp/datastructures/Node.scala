@@ -19,6 +19,8 @@ package com.elbauldelprogramador.nlp.datastructures
 
 import com.elbauldelprogramador.nlp.utils.Constants
 
+import scala.annotation.{switch, tailrec}
+
 /**
   * Node of a tree
   * Can contain any number of children
@@ -45,22 +47,22 @@ case class Node(lex: String,
 
   def matchNodes(goldSentence: LabeledSentence): Int = {
 
-    def condition(n:Node): Boolean =
+    def condition(n: Node): Boolean =
       (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(n.posTag)
 
-    def match0(acc:Int, n:Seq[Node]):Int = {
-      n match {
+    @tailrec
+    def match0(acc: Int, n: Seq[Node]): Int =
+      (n: @switch) match {
         case head :: tail => {
-          if (condition(head)){
+          if (condition(head)) {
             match0(acc + 1, tail)
           } else {
             acc
           }
         }
         case _ => acc
-//        case node :: Nil =>  if (condition(s)) acc + 1 else acc
+        //        case node :: Nil =>  if (condition(s)) acc + 1 else acc
       }
-    }
     match0(0, left) + match0(0, right)
   }
 

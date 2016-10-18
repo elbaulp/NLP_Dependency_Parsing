@@ -17,6 +17,8 @@
 
 package com.elbauldelprogramador.nlp.utils
 
+import scala.annotation.switch
+
 /**
   * Encoding possible actions to take
   *
@@ -32,7 +34,7 @@ object Action {
     * @param action
     */
   implicit class ActionToDouble(action: Action) {
-    def toDouble: Double = action match {
+    def toDouble: Double = (action: @switch) match {
       case Left => Left.value.toDouble
       case Right => Right.value.toDouble
       case Shift => Shift.value.toDouble
@@ -41,7 +43,7 @@ object Action {
 
   // TODO #21: See if it can be converted to implicit val instead of implicit class
   implicit class DoubleToAction(double: Double) {
-    def toAction: Action = double match {
+    def toAction: Action = (double: @switch) match {
       case 0.0 => Left
       case 1.0 => Shift
       case 2.0 => Right

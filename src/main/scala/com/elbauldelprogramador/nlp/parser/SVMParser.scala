@@ -28,6 +28,7 @@ import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm._
 
+import scala.annotation.switch
 import scala.collection.mutable
 
 /**
@@ -214,7 +215,7 @@ class SVMParser {
   def posTagFeature(position: Int, node: Node, offset: Int): Int = {
     val vocab = positionTag(position)
 
-    vocab contains node.posTag match {
+    (vocab contains node.posTag: @switch) match {
       case true => vocab(node.posTag) + offset
       case _ => vocab(Unknown) + offset
     }
@@ -223,7 +224,7 @@ class SVMParser {
   def lexFeature(position: Int, node: Node, offset: Int): Int = {
     val vocab = positionVocab(position)
 
-    vocab contains node.lex match {
+    (vocab contains node.lex: @switch) match {
       case true => vocab(node.lex) + offset
       case _ => vocab(Unknown) + offset
     }
@@ -258,7 +259,7 @@ class SVMParser {
     val b = trees(index + 1)
     var i = index
 
-    action match {
+    (action: @switch) match {
       case Right =>
         b.insertRight(a)
         // Update the tree and remove a
@@ -426,7 +427,7 @@ class SVMParser {
     val rootAcc = inferredTree.zipWithIndex.foldLeft(Evaluation()) {
       case (e, (v, i)) => {
         val goldS = goldSentence(i)
-        v.size match {
+        (v.size: @switch) match {
           case 1 =>
             if (v(0).matchAll(goldS)) Evaluation(e.rootAcc, e.completeD + 1, e.completeN + 1)
             else Evaluation(e.rootAcc, e.completeD, e.completeN + 1)
