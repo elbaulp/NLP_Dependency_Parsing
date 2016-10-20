@@ -149,7 +149,10 @@ class SVMParser {
       // Train only if there are at least two classes
       if (classes.size > 1) {
         (new File(s"${Constants.ModelPath}/svm.$lp.model").exists(): @switch) match {
-          case true => println(s"Loaded model file:  ${Constants.ModelPath}/svm.$lp.model")
+          case true =>
+            println(s"Loaded model file:  ${Constants.ModelPath}/svm.$lp.model")
+            // Load Models
+            models(lp) = svm.svm_load_model(s"${Constants.ModelPath}/svm.$lp.model")
           case false =>
             val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
 
@@ -397,42 +400,49 @@ class SVMParser {
   def evaluate(inferredTree: Vector[Vector[Node]], goldSentence: Vector[LabeledSentence]) = {
 
     case class Evaluation(rootAcc:Map[String, Int] = Map.empty,
+                          depNAcc:Map[String, Int] = Map.empty,
+                          depDAcc:Map[String, Int] = Map.empty,
                           completeD:Int = 0,
                           completeN:Int = 0)
 
-//    val rootAcc = inferredTree.zipWithIndex.foldLeft(Map.empty[String, Int]) {
-//      case (root, (v, i)) => {
-//        val goldS = goldSentence(i)
-//        if (v.size == 1) {
-//          if (v(0).matchAll(goldS))
-//        } else {
-//          // Update root accuracy counter
-//          root ++
-//            v.filter(i => !Constants.punctuationTags.contains(i.posTag) && goldS.dep(i.position) == -1)
-//              // Update the map, increment by 1 the lex counter
-//              .foldLeft(root)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1)))
-//        }
-//      }
-//    }
-
     val rootAcc = inferredTree.zipWithIndex./:(Evaluation()) {
-      case (e, (v, i)) => {
+      case (e, (v, i)) =>
         val goldS = goldSentence(i)
+        val current = v(0)
         (v.size: @switch) match {
           case 1 =>
-            if (v(0).matchAll(goldS)) Evaluation(e.rootAcc, e.completeD + 1, e.completeN + 1)
-            else Evaluation(e.rootAcc, e.completeD, e.completeN + 1)
+            if (current.matchAll(goldS))
+              Evaluation(e.rootAcc, e.depNAcc, e.depDAcc,
+                         e.completeD + 1, e.completeN + 1)
+            else Evaluation(e.rootAcc,e.depNAcc, e.depDAcc,
+                            e.completeD, e.completeN + 1)
+
+            val updatedN = if (current.matchAll(goldS)) e.completeN + 1 else e.completeN
+            val updatedRoot = if (!Constants.punctuationTags.contains(current.posTag)
+              && goldS.dep(current.position) == -1)
+                e.rootAcc + (current.lex -> (e.rootAcc.getOrElse(current.lex, 0) + 1))
+            else e.rootAcc
+
+            Evaluation(updatedRoot, e.depNAcc, e.depDAcc,
+                       e.completeD + 1, updatedN)
           case _ =>
+            // Count how many nodes have correct parents ignoring punctiation
+            val depAcc = v./:(Map.empty[String, Int], Map.empty[String, Int]){
+              case ((depN, depD), n) => n.matchDep(goldS, depN, depD)
+            }
             // Update root accuracy counter
             Evaluation(e.rootAcc ++
               v.filter(i => !Constants.punctuationTags.contains(i.posTag) && goldS.dep(i.position) == -1)
                 // Update the map, increment by 1 the lex counter
                 ./:(e.rootAcc)((r, i) => r + (i.lex -> (r.getOrElse(i.lex, 0) + 1))),
+              e.depNAcc ++ depAcc._1,
+              e.depDAcc ++ depAcc._2,
               e.completeD,
               e.completeN)
         }
-      }
+//      case _ => Evaluation()
     }
-    println(rootAcc)
+//    println(f"${rootAcc.rootAcc.values.sum} / ${goldSentence.size}")
+    println(f"Root Acc: ${rootAcc}")
   }
 }

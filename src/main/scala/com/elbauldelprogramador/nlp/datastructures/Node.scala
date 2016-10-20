@@ -61,9 +61,42 @@ case class Node(lex: String,
           }
         }
         case _ => acc
-        //        case node :: Nil =>  if (condition(s)) acc + 1 else acc
       }
     match0(0, left) + match0(0, right)
+  }
+
+  def matchDep(goldSentence: LabeledSentence, depAcc: Map[String, Int], depAccBase: Map[String, Int])
+  : (Map[String, Int], Map[String, Int]) = {
+    @inline val condition: Boolean =
+      dependency != -1 && !Constants.punctuationTags.contains(goldSentence.tags(position))
+    @inline val condition2: Boolean =
+      goldSentence.dep(position) == dependency
+
+    @tailrec
+    def matchDep0(acc: Map[String, Int] = Map.empty, acc2: Map[String, Int] = Map.empty, n: Seq[Node])
+    : (Map[String, Int], Map[String, Int]) = {
+      val t = goldSentence.tags(position)
+      val w = goldSentence.words(position)
+      (n: @switch) match {
+        case head :: tail =>
+          if (condition && condition2) {
+            // TODO: Optimize ifthenelse
+            matchDep0(acc + (w -> (acc.getOrElse(w, 0) + 1)),
+              acc2 + (t -> (acc2.getOrElse(t, 0) + 1)),
+              tail)
+          } else if (condition) {
+            matchDep0(acc, acc2 + (t -> (acc2.getOrElse(t, 0) + 1)), tail)
+          } else {
+            (acc, acc2)
+          }
+        case _ => (acc, acc2)
+      }
+    }
+
+    val leftAcc = matchDep0(n = left)
+    val rightAcc = matchDep0(n = right)
+
+    (leftAcc._1 ++ rightAcc._1, leftAcc._2 ++ rightAcc._2)
   }
 
   /**
