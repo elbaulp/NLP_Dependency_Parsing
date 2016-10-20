@@ -147,33 +147,38 @@ class SVMParser {
       val classes = trainY.values.toSet.flatten
 
       // Train only if there are at least two classes
-      if (classes.size > 1) {
+      val modelExists = if (classes.size > 1) {
         //        FileUtils.printToFile(new File(s"${Constants.ModelPath}$lp.p")) { p =>
         //          data.foreach(p.println)
         //        }
         // TODO: Check if the model already exists, if not, we need to train
-        if (new File(s"${Constants.ModelPath}$lp.p").exists()) {
-          println(s"Loaded ${Constants.ModelPath}$lp.p")
+        if (new File(s"${Constants.ModelPath}/svm.$lp.model").exists()) {
+          println(s"Loaded ${Constants.ModelPath}/svm.$lp.model")
+          true
         } else {
+          false
         }
       }
 
-      val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
+      if (modelExists == false) {
+        val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
 
-      // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
-      //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
-      //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
-      //        ......................................
-      trainX(lp).zipWithIndex.foreach {
-        case (x, i) =>
-          val nodeCol = createNode(x)
-        svmProblem.update(i, nodeCol)
+        // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
+        //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
+        //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
+        //        ......................................
+        trainX(lp).zipWithIndex.foreach {
+          case (x, i) =>
+            val nodeCol = createNode(x)
+            svmProblem.update(i, nodeCol)
+        }
+        // TODO #18: Check if there is error or not, and act in consequence
+        val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
+        println(error)
+        // TODO #19: Make SVMModel class to wrap this call
+        models(lp) = trainSVM(svmProblem, SVMConfig.param)
+        svm.svm_save_model(s"${Constants.ModelPath}/svm.$lp.model", models(lp))
       }
-      // TODO #18: Check if there is error or not, and act in consequence
-      val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
-      // TODO #19: Make SVMModel class to wrap this call
-      models(lp) = trainSVM(svmProblem, SVMConfig.param)
-      svm.svm_save_model(s"${Constants.ModelPath}/svm.$lp.model", models(lp))
     }
   }
 
@@ -437,5 +442,6 @@ class SVMParser {
         }
       }
     }
+    println(rootAcc)
   }
 }

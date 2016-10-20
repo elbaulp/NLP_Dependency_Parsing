@@ -28,15 +28,13 @@ object Main extends App {
 
   val DataSourcePath = "/data/spanish"
   val ModelsPath = "/models"
-  val TrainSentencesFile = "/es_ancora-converted-train-one.txt"
-  val TestSentencesFile = "/ancora-test-one-sentence"
+  val TrainSentencesFile = "/es_ancora-converted-train"
+//  val TrainSentencesFile = "/es_ancora-converted-train-one.txt"
+  val TestSentencesFile = "/es_ancora-converted-test"
 
   // Read and parse training data
   val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
   val testSentences = DataParser.readDataSet(DataSourcePath + TestSentencesFile)
-
-//  trainSentences foreach println
-//  testSentences foreach println
 
   val parser = new SVMParser
   parser.train(trainSentences.get)

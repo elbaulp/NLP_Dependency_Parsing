@@ -8,4 +8,6 @@ scalacOptions := Seq(
   "-encoding", "UTF-8", "-optimise",
   "-deprecation", "-unchecked", "-feature", "-Xlint", "-Ywarn-infer-any")
 
-javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
+libraryDependencies += "com.datumbox" % "libsvm" % "3.21"
+
+javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation", "-Xmx10g")

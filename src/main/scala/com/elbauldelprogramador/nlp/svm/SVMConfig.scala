@@ -33,7 +33,7 @@ object SVMConfig {
   param.degree = 2
   param.gamma = 1
   param.coef0 = 1
-  param.cache_size = 8000
+  param.cache_size = 5000
   param.eps = 0.1
   param.C = 1
 }
