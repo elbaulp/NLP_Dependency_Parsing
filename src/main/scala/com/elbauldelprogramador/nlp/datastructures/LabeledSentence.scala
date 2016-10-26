@@ -73,6 +73,10 @@ final case class LabeledSentence(t: Tokens) extends TestSentence
   override val dep: Vector[Int] = t.dep
 }
 
+object LabeledSentence {
+  def apply(l: LabeledSentence): LabeledSentence = new LabeledSentence(new Tokens(l.words, l.tags, Vector.empty, l.dep))
+}
+
 final case class Sentence(words: Vector[String],
                           tags: Vector[String]) extends TestSentence
 

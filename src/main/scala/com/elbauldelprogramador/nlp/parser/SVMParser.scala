@@ -56,14 +56,19 @@ class SVMParser {
   var NFeatures = 0
 
   def train(sentences: Vector[LabeledSentence]): Unit = {
+
+    val sentences2 = sentences.map(l => LabeledSentence(l))
+
     // TODO: Issue #12, Optimize this, may be tail rec?
     // FIXME: Need a deep refactor
     for (s <- sentences) {
       var trees = s.tree
       var i = 0
       var noConstruction = false
-      while (trees.nonEmpty && !noConstruction) {
+      var exit = false
+      while (trees.nonEmpty && !exit) {
         if (i == trees.size - 1) {
+          if (noConstruction) exit = true
           noConstruction = true
           i = 0
         } else {
@@ -71,7 +76,9 @@ class SVMParser {
           buildVocabulary(trees, i, LeftCtx, RightCtx)
 
           val y = estimateTrainAction(trees, i)
+
           val (newI, newTrees) = takeAction(trees, i, y)
+
           i = newI
           trees = newTrees
 
@@ -103,14 +110,16 @@ class SVMParser {
     val trainX = mutable.Map.empty[String, Vector[Vector[Int]]]
     val trainY = mutable.Map.empty[String, DblVector]
 
-    //    val features = mutable.Map.empty[String, CRSMatrix]
+      //    val features = mutable.Map.empty[String, CRSMatrix]
 
-    for (s <- sentences) {
+    for (s <- sentences2) {
       var trees = s.tree
       var i = 0
       var noConstruction = false
-      while (trees.nonEmpty && !noConstruction) {
+      var exit = false
+      while (trees.nonEmpty && !exit) {
         if (i == trees.size - 1) {
+          if (noConstruction) exit = true
           noConstruction = true
           i = 0
         } else {
@@ -335,7 +344,7 @@ class SVMParser {
     }
   }
 
-  def toFeatures(counter: mutable.Map[Int, Counter]): mutable.Map[Int, Counter] = {
+  def toFeatures(counter: mutable.Map[Int, Counter]):Unit = {
     // Assign to each string key a counter, starting from 0 to the map size
     // TODO: Issue #16, Instead of update, generate new immutable map
     counter.foreach(a => a._2.zipWithIndex.foreach(r => a._2.update(r._1._1, r._2)))
@@ -346,7 +355,7 @@ class SVMParser {
         counter(index) = mutable.Map(Unknown -> 0)
       }
     }
-    counter
+//    counter
   }
 
   def test(sentences: Vector[LabeledSentence]):Vector[Vector[Node]] = {
@@ -362,8 +371,10 @@ class SVMParser {
       // TODO: Issue #17, Remove iterators like this, make them functional
       var i = 0
       var noConstruction = false
-      while (trees.nonEmpty && !noConstruction) {
+      var exit = false
+      while (trees.nonEmpty && !exit) {
         if (i == trees.size - 1) {
+          if (noConstruction) exit = true
           noConstruction = true
           i = 0
         } else {
@@ -411,11 +422,11 @@ class SVMParser {
         val current = v(0)
         (v.size: @switch) match {
           case 1 =>
-            if (current.matchAll(goldS))
-              Evaluation(e.rootAcc, e.depNAcc, e.depDAcc,
-                         e.completeD + 1, e.completeN + 1)
-            else Evaluation(e.rootAcc,e.depNAcc, e.depDAcc,
-                            e.completeD, e.completeN + 1)
+//            if (current.matchAll(goldS))
+//              Evaluation(e.rootAcc, e.depNAcc, e.depDAcc,
+//                         e.completeD + 1, e.completeN + 1)
+//            else Evaluation(e.rootAcc,e.depNAcc, e.depDAcc,
+//                            e.completeD, e.completeN + 1)
 
             val updatedN = if (current.matchAll(goldS)) e.completeN + 1 else e.completeN
             val updatedRoot = if (!Constants.punctuationTags.contains(current.posTag)

@@ -31,9 +31,9 @@ object SVMConfig {
   param.svm_type = svm_parameter.C_SVC
   param.kernel_type = svm_parameter.POLY
   param.degree = 2
-  param.gamma = 1
-  param.coef0 = 1
+  param.gamma = 1.0
+  param.coef0 = 1.0
   param.cache_size = 5000
   param.eps = 0.1
-  param.C = 1
+  param.C = 1.0
 }

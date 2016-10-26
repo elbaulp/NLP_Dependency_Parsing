@@ -31,7 +31,7 @@ import scala.annotation.{switch, tailrec}
 case class Node(lex: String,
            position: Int,
            posTag: String, // TODO  create some data structure for this)
-           var dependency: Int,
+           var dependency: Int = -1,
            var left: Vector[Node],
            var right: Vector[Node]) {
 
@@ -118,5 +118,5 @@ object Node {
     new Node(lex, position, posTag, dependency, Vector.empty, Vector.empty)
 
   def apply(lex: String, position: Int, posTag: String):Node =
-    new Node(lex, position, posTag, 0, Vector.empty, Vector.empty)
+    new Node(lex, position, posTag, -1, Vector.empty, Vector.empty)
 }

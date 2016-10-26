@@ -28,9 +28,9 @@ object Main extends App {
 
   val DataSourcePath = "/data/spanish"
   val ModelsPath = "/models"
-  val TrainSentencesFile = "/es_ancora-converted-train"
+  val TrainSentencesFile = "/es_ancora-converted-train2"
 //  val TrainSentencesFile = "/es_ancora-converted-train-one.txt"
-  val TestSentencesFile = "/es_ancora-converted-test"
+  val TestSentencesFile = "/es_ancora-converted-test2"
 
   // Read and parse training data
   val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
