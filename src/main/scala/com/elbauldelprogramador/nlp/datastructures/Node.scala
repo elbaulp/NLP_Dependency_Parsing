@@ -29,11 +29,11 @@ import scala.annotation.{switch, tailrec}
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/19/16.
   */
 case class Node(lex: String,
-           position: Int,
-           posTag: String, // TODO  create some data structure for this)
-           var dependency: Int = -1,
-           var left: Vector[Node],
-           var right: Vector[Node]) {
+                position: Int,
+                posTag: String, // TODO  create some data structure for this)
+                var dependency: Int = -1,
+                var left: Vector[Node],
+                var right: Vector[Node]) {
 
   def insertRight(child: Node): Unit = {
     child.dependency = position
@@ -46,57 +46,86 @@ case class Node(lex: String,
   }
 
   def matchNodes(goldSentence: LabeledSentence): Int = {
-
-    def condition(n: Node): Boolean =
-      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(n.posTag)
-
-    @tailrec
-    def match0(acc: Int, n: Seq[Node]): Int =
-      (n: @switch) match {
-        case head :: tail => {
-          if (condition(head)) {
-            match0(acc + 1, tail)
-          } else {
-            acc
-          }
-        }
-        case _ => acc
-      }
-    match0(0, left) + match0(0, right)
-  }
-
-  def matchDep(goldSentence: LabeledSentence, depAcc: Map[String, Int], depAccBase: Map[String, Int])
-  : (Map[String, Int], Map[String, Int]) = {
-    @inline val condition: Boolean =
-      dependency != -1 && !Constants.punctuationTags.contains(goldSentence.tags(position))
-    @inline val condition2: Boolean =
-      goldSentence.dep(position) == dependency
+    @inline def condition(n: Node): Boolean =
+      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(goldSentence.tags(n.position))
 
     @tailrec
-    def matchDep0(acc: Map[String, Int] = Map.empty, acc2: Map[String, Int] = Map.empty, n: Seq[Node])
-    : (Map[String, Int], Map[String, Int]) = {
-      val t = goldSentence.tags(position)
-      val w = goldSentence.words(position)
-      (n: @switch) match {
-        case head :: tail =>
-          if (condition && condition2) {
-            // TODO: Optimize ifthenelse
-            matchDep0(acc + (w -> (acc.getOrElse(w, 0) + 1)),
-              acc2 + (t -> (acc2.getOrElse(t, 0) + 1)),
-              tail)
-          } else if (condition) {
-            matchDep0(acc, acc2 + (t -> (acc2.getOrElse(t, 0) + 1)), tail)
-          } else {
-            (acc, acc2)
-          }
-        case _ => (acc, acc2)
+    def match0(acc: Int, n: Node)(queue: Seq[Node]): Int = {
+      val count = if (condition(n)) acc + 1 else acc
+
+      (queue: @switch) match {
+        case head +: tail =>
+          match0(count, head)(head.left ++ head.right ++ tail)
+        case Nil =>
+          count
       }
     }
 
-    val leftAcc = matchDep0(n = left)
-    val rightAcc = matchDep0(n = right)
+    match0(0, this)(left ++ right)
+  }
 
-    (leftAcc._1 ++ rightAcc._1, leftAcc._2 ++ rightAcc._2)
+//// TODO: Fix this method
+//  def matchDep(goldSentence: LabeledSentence, depAcc: Map[String, Int], depAccBase: Map[String, Int])
+//  : (Map[String, Int], Map[String, Int]) = {
+//
+//    @tailrec
+//    def matchDep0(acc: Map[String, Int], acc2: Map[String, Int], n: Vector[Node])
+//    : (Map[String, Int], Map[String, Int]) = {
+//
+//      @inline def condition(node:Node): Boolean =
+//        node.dependency != -1 && !Constants.punctuationTags.contains(goldSentence.tags(node.position))
+//      @inline def condition2(node:Node): Boolean =
+//        goldSentence.dep(node.position) == node.dependency
+//
+//      (n: @switch) match {
+//        case head +: tail =>
+//          val w = goldSentence.words(head.position)
+//          if (condition(head) && condition2(head)) {
+//            // TODO: Optimize ifthenelse
+//            matchDep0(acc + (w -> (acc.getOrElse(w, 0) + 1)),
+//              acc2 + (w -> (acc2.getOrElse(w, 0) + 1)),
+//              tail)
+//          } else if (condition(head)) {
+//            matchDep0(acc, acc2 + (w -> (acc2.getOrElse(w, 0) + 1)), tail)
+//          } else {
+//            (acc, acc2)
+//          }
+//        case _ => (acc, acc2)
+//      }
+//    }
+//
+//    val leftAcc = matchDep0(depAcc, depAccBase, left)
+//    val rightAcc = matchDep0(depAcc, depAccBase, right)
+//
+//    (leftAcc._1 ++ rightAcc._1, leftAcc._2 ++ rightAcc._2)
+//  }
+
+//  // TODO: Repace this non-tail rec by the above
+  def matchDep(goldSentence: LabeledSentence, depAcc: scala.collection.mutable.Map[String, Int], depAccBase: scala.collection.mutable.Map[String, Int])
+  : Int = {
+    var correctRoots = 0
+    val position: Int = this.position
+    val dep: Int = dependency
+    val word = goldSentence.words(position)
+    val tag = goldSentence.tags(position)
+
+    if (dep != -1 && !Constants.punctuationTags.contains(tag)) {
+      depAccBase(word) = depAccBase.getOrElseUpdate(word, 0) + 1
+      if (goldSentence.dep(position) == dep) {
+        correctRoots += 1
+        depAcc(goldSentence.words(position)) = depAcc.getOrElseUpdate(goldSentence.words(position), 0) + 1
+      }
+    }
+
+    if (right.nonEmpty)
+      for (r <- right)
+        correctRoots += r.matchDep(goldSentence, depAcc, depAccBase)
+
+    if (left.nonEmpty)
+      for (l <- left)
+        correctRoots += l.matchDep(goldSentence, depAcc, depAccBase)
+
+    correctRoots
   }
 
   /**

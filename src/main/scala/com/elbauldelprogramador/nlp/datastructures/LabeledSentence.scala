@@ -27,7 +27,7 @@ trait TestSentence {
 
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  lazy val tree: Vector[Node] = {
+  var tree: Vector[Node]/* = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex
 
@@ -35,7 +35,7 @@ trait TestSentence {
     (indexedWords, tags).zipped.map {
       (w, t) => Node(w._1, w._2, t)
     }
-  }
+  }*/
 
   /**
     * Sentence's length
@@ -57,9 +57,14 @@ trait TrainSentence {
   */
 final case class LabeledSentence(t: Tokens) extends TestSentence
   with TrainSentence {
+
   /** Constituent tree of this sentence; includes head words */
+  override val words: Vector[String] = t.lex
+  override val tags: Vector[String] = t.pos
+  override val dep: Vector[Int] = t.dep
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  override lazy val tree: Vector[Node] = {
+  // TODO: Make immutable
+  override var tree: Vector[Node] = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex
 
@@ -68,9 +73,6 @@ final case class LabeledSentence(t: Tokens) extends TestSentence
       (w, t, d) => Node(w._1, w._2, t, d)
     }
   }
-  override val words: Vector[String] = t.lex
-  override val tags: Vector[String] = t.pos
-  override val dep: Vector[Int] = t.dep
 }
 
 object LabeledSentence {
@@ -78,7 +80,17 @@ object LabeledSentence {
 }
 
 final case class Sentence(words: Vector[String],
-                          tags: Vector[String]) extends TestSentence
+                          tags: Vector[String]) extends TestSentence {
+  override var tree: Vector[Node] = {
+    // In order to be able to access the index, zip with index
+    val indexedWords = words.zipWithIndex
+
+    // Iterate thought all three collections and create Nodes
+    (indexedWords, tags).zipped.map {
+      (w, t) => Node(w._1, w._2, t)
+    }
+  }
+}
 
 final case class Tokens(lex: Vector[String],
                         pos: Vector[String],

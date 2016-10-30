@@ -36,11 +36,9 @@ import scala.collection.mutable
   */
 //noinspection ScalaStyle
 class SVMParser {
-  //  private[this] val model: Vector[svm_model] = train
 
   val LeftCtx = 2
   val RightCtx = 4
-
   val Unknown = "UNKNOWN"
 
   // TODO: issue #10, try to make them vals
@@ -113,22 +111,21 @@ class SVMParser {
       //    val features = mutable.Map.empty[String, CRSMatrix]
 
     for (s <- sentences2) {
-      var trees = s.tree
       var i = 0
       var noConstruction = false
       var exit = false
-      while (trees.nonEmpty && !exit) {
-        if (i == trees.size - 1) {
+      while (s.tree.nonEmpty && !exit) {
+        if (i == s.tree.size - 1) {
           if (noConstruction) exit = true
           noConstruction = true
           i = 0
         } else {
-          val posTag = trees(i).posTag
+          val posTag = s.tree(i).posTag
 
           // extract features
-          val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
+          val extractedFeatures = extractTestFeatures(s.tree, i, LeftCtx, RightCtx)
 
-          val y = estimateTrainAction(trees, i)
+          val y = estimateTrainAction(s.tree, i)
 
           // Update pos Action
           val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
@@ -138,9 +135,9 @@ class SVMParser {
           trainX(posTag) = trainX.getOrElseUpdate(posTag, Vector.empty[Vector[Int]]) ++ Vector(extractedFeatures)
           trainY(posTag) = trainY.getOrElseUpdate(posTag, Vector.empty[Double]) :+ y.toDouble
 
-          val (newI, newTrees) = takeAction(trees, i, y)
+          val (newI, newTrees) = takeAction(s.tree, i, y)
           i = newI
-          trees = newTrees
+          s.tree = newTrees
 
           // Execute the action and modify the treese
           if (y != Shift)
@@ -367,30 +364,29 @@ class SVMParser {
     var inferredTrees = Vector.empty[Vector[Node]]
 
     for (s <- testSentences) {
-      var trees = s.tree
       // TODO: Issue #17, Remove iterators like this, make them functional
       var i = 0
       var noConstruction = false
       var exit = false
-      while (trees.nonEmpty && !exit) {
-        if (i == trees.size - 1) {
+      while (s.tree.nonEmpty && !exit) {
+        if (i == s.tree.size - 1) {
           if (noConstruction) exit = true
           noConstruction = true
           i = 0
         } else {
           // extract features
-          val extractedFeatures = extractTestFeatures(trees, i, LeftCtx, RightCtx)
+          val extractedFeatures = extractTestFeatures(s.tree, i, LeftCtx, RightCtx)
           // estimate the action to be taken for i, i+ 1 target  nodes
-          val y = estimateAction(trees, i, extractedFeatures)
-          val (newI, newTrees) = takeAction(trees, i, y)
+          val y = estimateAction(s.tree, i, extractedFeatures)
+          val (newI, newTrees) = takeAction(s.tree, i, y)
           i = newI
-          trees = newTrees
+          s.tree = newTrees
           // Execute the action and modify the trees
           if (y != Shift)
             noConstruction = false
         }
       }
-      inferredTrees ++= Vector(trees)
+      inferredTrees ++= Vector(s.tree)
     }
     inferredTrees
   }
@@ -416,18 +412,12 @@ class SVMParser {
                           completeD:Int = 0,
                           completeN:Int = 0)
 
-    val rootAcc = inferredTree.zipWithIndex./:(Evaluation()) {
+    val eval = inferredTree.zipWithIndex./:(Evaluation()) {
       case (e, (v, i)) =>
         val goldS = goldSentence(i)
         val current = v(0)
         (v.size: @switch) match {
           case 1 =>
-//            if (current.matchAll(goldS))
-//              Evaluation(e.rootAcc, e.depNAcc, e.depDAcc,
-//                         e.completeD + 1, e.completeN + 1)
-//            else Evaluation(e.rootAcc,e.depNAcc, e.depDAcc,
-//                            e.completeD, e.completeN + 1)
-
             val updatedN = if (current.matchAll(goldS)) e.completeN + 1 else e.completeN
             val updatedRoot = if (!Constants.punctuationTags.contains(current.posTag)
               && goldS.dep(current.position) == -1)
@@ -438,8 +428,10 @@ class SVMParser {
                        e.completeD + 1, updatedN)
           case _ =>
             // Count how many nodes have correct parents ignoring punctiation
-            val depAcc = v./:(Map.empty[String, Int], Map.empty[String, Int]){
-              case ((depN, depD), n) => n.matchDep(goldS, depN, depD)
+            val depAcc = v./:(mutable.Map.empty[String, Int], mutable.Map.empty[String, Int]){
+              case ((depN, depD), n) =>
+                n.matchDep(goldS, depN, depD)
+                (depN, depD)
             }
             // Update root accuracy counter
             Evaluation(e.rootAcc ++
@@ -454,6 +446,8 @@ class SVMParser {
 //      case _ => Evaluation()
     }
 //    println(f"${rootAcc.rootAcc.values.sum} / ${goldSentence.size}")
-    println(f"Root Acc: ${rootAcc}")
+    println(f"Root Acc: ${eval.rootAcc.values.sum / goldSentence.size.toDouble}")
+    println(f"Dep acc: ${eval.depNAcc.values.sum / eval.depDAcc.values.sum.toDouble}")
+    println(f"Complete acc: ${eval.completeN / eval.completeD.toDouble}")
   }
 }
