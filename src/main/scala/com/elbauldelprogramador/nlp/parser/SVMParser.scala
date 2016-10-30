@@ -428,10 +428,10 @@ class SVMParser {
                        e.completeD + 1, updatedN)
           case _ =>
             // Count how many nodes have correct parents ignoring punctiation
-            val depAcc = v./:(mutable.Map.empty[String, Int], mutable.Map.empty[String, Int]){
+            val depAcc = v./:(e.depNAcc, e.depDAcc){
               case ((depN, depD), n) =>
-                n.matchDep(goldS, depN, depD)
-                (depN, depD)
+                val result = n.matchDep(goldS, depN, depD)
+                (depN ++ result._1, depD ++ result._2)
             }
             // Update root accuracy counter
             Evaluation(e.rootAcc ++
@@ -443,9 +443,7 @@ class SVMParser {
               e.completeD,
               e.completeN)
         }
-//      case _ => Evaluation()
     }
-//    println(f"${rootAcc.rootAcc.values.sum} / ${goldSentence.size}")
     println(f"Root Acc: ${eval.rootAcc.values.sum / goldSentence.size.toDouble}")
     println(f"Dep acc: ${eval.depNAcc.values.sum / eval.depDAcc.values.sum.toDouble}")
     println(f"Complete acc: ${eval.completeN / eval.completeD.toDouble}")
