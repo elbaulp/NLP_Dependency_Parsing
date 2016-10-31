@@ -19,30 +19,27 @@
 package com.elbauldelprogramador.nlp
 
 import com.elbauldelprogramador.nlp.parser.SVMParser
-import com.elbauldelprogramador.nlp.utils.DataParser
+import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
 
-  val DataSourcePath = "/data/spanish"
-  val ModelsPath = "/models"
-  val TrainSentencesFile = "/es_ancora-converted-train"
-//  val TrainSentencesFile = "/es_ancora-converted-train-one.txt"
-  val TestSentencesFile = "/es_ancora-converted-test"
+    val argz = CommandArgs.parseArgs(args)
+    println(argz) // TODO: Use logger
 
-  // Read and parse training data
-  val trainSentences = DataParser.readDataSet(DataSourcePath + TrainSentencesFile)
-  val testSentences = DataParser.readDataSet(DataSourcePath + TestSentencesFile)
+    // Read and parse training data
+    val trainSentences = DataParser.readDataSet(argz.trainingPath)
+    val testSentences = DataParser.readDataSet(argz.testPath)
 
-  val parser = new SVMParser
-  parser.train(trainSentences.get)
+    val parser = new SVMParser
+    parser.train(trainSentences.get)
 
-  // Inference
-  val inferredTree = parser.test(testSentences.get)
-  // Evaluation
-  val evaluation = parser.evaluate(inferredTree, testSentences.get)
+    // Inference
+    val inferredTree = parser.test(testSentences.get)
+    // Evaluation
+    val evaluation = parser.evaluate(inferredTree, testSentences.get)
 }
 
 
