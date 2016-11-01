@@ -32,11 +32,9 @@ import scala.util.control.NonFatal
   */
 object DataParser {
   // TODO: Better use some combinator? https://github.com/tpolecat/atto | http://www.lihaoyi.com/fastparse/
-  // TODO: issue #5 Parse command line args like learning scala book, in section about Nothing Data Type
   def readDataSet(file: String): Option[Vector[LabeledSentence]] = {
-    val filePath = getClass.getResource(file).getPath
 
-    Manage(Source.fromFile(filePath)) { source =>
+    Manage(Source.fromFile(file)) { source =>
 
       val parsedTuples = source
         .getLines()
