@@ -27,6 +27,7 @@ import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, 
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes.Counter
 import libsvm._
+import org.log4s._
 
 import scala.annotation.switch
 import scala.collection.mutable
@@ -36,6 +37,8 @@ import scala.collection.mutable
   */
 //noinspection ScalaStyle
 class SVMParser {
+
+  private[this] val logger = getLogger
 
   val LeftCtx = 2
   val RightCtx = 4
@@ -147,16 +150,17 @@ class SVMParser {
     }
 
     for (lp <- trainX.keys) {
-      println(lp)
-      println(s"Size of $lp: ${lp.length}")
-      println(s"# features: $NFeatures")
+      logger.info(s"Pos tag: $lp")
+      logger.info(s"Size of $lp: ${lp.length}")
+      logger.info(s"# features: $NFeatures")
+
       val classes = trainY.values.toSet.flatten
 
       // Train only if there are at least two classes
       if (classes.size > 1) {
         (new File(s"${Constants.ModelPath}/svm.$lp.model").exists(): @switch) match {
           case true =>
-            println(s"Loaded model file:  ${Constants.ModelPath}/svm.$lp.model")
+            logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$lp.model")
             // Load Models
             models(lp) = svm.svm_load_model(s"${Constants.ModelPath}/svm.$lp.model")
           case false =>
@@ -444,8 +448,10 @@ class SVMParser {
               e.completeN)
         }
     }
-    println(f"Root Acc: ${eval.rootAcc.values.sum / goldSentence.size.toDouble}")
-    println(f"Dep acc: ${eval.depNAcc.values.sum / eval.depDAcc.values.sum.toDouble}")
-    println(f"Complete acc: ${eval.completeN / eval.completeD.toDouble}")
+
+    logger.info(s"\n\n\nRESULTS\n\n\n")
+    logger.info(f"Root Acc: ${eval.rootAcc.values.sum / goldSentence.size.toDouble}")
+    logger.info(f"Dep acc: ${eval.depNAcc.values.sum / eval.depDAcc.values.sum.toDouble}")
+    logger.info(f"Complete acc: ${eval.completeN / eval.completeD.toDouble}")
   }
 }

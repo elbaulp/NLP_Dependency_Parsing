@@ -62,6 +62,7 @@ object DataParser {
   */
 
 object Manage {
+  private val logger = org.log4s.getLogger
   //noinspection ScalaStyle
   def apply[R <: {def close() : Unit}, T](resource: => R)(f: R => Option[T]): Option[T] = {
     var res: Option[R] = None
@@ -70,12 +71,12 @@ object Manage {
       f(res.get)
     } catch {
       case NonFatal(ex) => {
-        System.err.println(s"Non fatal exception! $ex")
+        logger.error(s"Non fatal exception! $ex")
         None
       }
     } finally {
       if (res.isDefined) {
-        System.err.println(s"Closing resource...")
+        logger.info("Closing resource...")
         res.get.close()
       }
     }
@@ -86,6 +87,8 @@ object Manage {
   * Simple command-line parsing, thanks to Programming scala, 2nd edition: http://amzn.to/2eN8IRl
   */
 object CommandArgs {
+  private val logger = org.log4s.getLogger
+
   val help =
     """
       |usage: java ... objectsystem.CommandArgs arguments
@@ -113,7 +116,8 @@ object CommandArgs {
   }
 
   def quit(message: String, status: Int): Nothing = {
-    if (message.length > 0) println(message)
+    if (message.length > 0)
+      logger.error(message)
     println(help)
     sys.exit(status)
   }

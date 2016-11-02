@@ -25,9 +25,7 @@ import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
-
     val argz = CommandArgs.parseArgs(args)
-    println(argz) // TODO: Use logger
 
     // Read and parse training data
     val trainSentences = DataParser.readDataSet(argz.trainingPath)
