@@ -31,7 +31,6 @@ import org.log4s._
 
 import scala.annotation.switch
 import scala.collection.mutable
-import scala.util.Try
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
@@ -160,11 +159,11 @@ class SVMParser {
       // Train only if there are at least two classes
       if (classes.size > 1) {
         (new File(s"${Constants.ModelPath}/svm.$lp.model").exists(): @switch) match {
-          case false =>
+          case true =>
             logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$lp.model")
             // Load Models
             models(lp) = svm.svm_load_model(s"${Constants.ModelPath}/svm.$lp.model")
-          case true =>
+          case false =>
             val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
 
             // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
@@ -176,6 +175,7 @@ class SVMParser {
                 val nodeCol = createNode(x)
                 svmProblem.update(i, nodeCol)
             }
+
             val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
 
             require(error == null, f"${logger.error(s"Errors in SVM parameters:\n$error")}")
