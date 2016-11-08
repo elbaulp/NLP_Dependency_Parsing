@@ -33,7 +33,6 @@ object Main extends App {
 
 
     val parser = new DependencyParser(trainSentences.get, testSentences.get)
-    parser.generateVocabulary(trainSentences.get)
 
     // Inference
     val inferredTree = parser.test(testSentences.get)

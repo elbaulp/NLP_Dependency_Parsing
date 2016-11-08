@@ -17,9 +17,12 @@
 
 package com.elbauldelprogramador.nlp.parser
 
+import java.io.File
+
 import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Vocabulary}
 import com.elbauldelprogramador.nlp.svm.SVMAdapter._
-import com.elbauldelprogramador.nlp.svm.SVMTypes.DblVector
+import com.elbauldelprogramador.nlp.svm.SVMConfig
+import com.elbauldelprogramador.nlp.svm.SVMTypes._
 import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes._
@@ -53,15 +56,15 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   // 1.2 - Extract Features
   private[this] val features = extractFeatures(sentences2)
   // 1.3 - Train models
-//  private[this] val models = ???
+//  private[this] val models = train(features._1, features._2)
 
 //  val b = test(testSentencess)
 //  val c = evaluate(b, ???)
 
-  val tagActions = mutable.Map[String, mutable.Map[Action, Int]]()
-  val models = mutable.Map.empty[String, svm_model]
+//  val tagActions = mutable.Map[String, mutable.Map[Action, Int]]()
+//  val models = mutable.Map.empty[String, svm_model]
 
-  def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary = {
+  private[this] def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary = {
     // 1.1 - Build vocab
     @tailrec
     def train0(v: Vocabulary, s: Seq[LabeledSentence]): Vocabulary = (s: @switch) match {
@@ -107,68 +110,72 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     toFeatures(vocabulary)
   }
 
-    // TODO: Issue #13, Check if we have a previously trained model before try to train a new one
+  // 1.2 - Extract features
+  private[this] def extractFeatures(sentences: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = {
 
-    // 1.2 - Extract features
-    def extractFeatures(sentences: Seq[LabeledSentence]):(Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = {
+    @tailrec
+    def eF(X: Map[String, Vector[Vector[Int]]],
+           Y: Map[String, DblVector],
+           s: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String,
+      DblVector]) = (s: @switch) match {
+      case head +: tail =>
+        var trees = head.tree
+        var i = 0
+        var noConstruction = false
+        var exit = false
+        var updatedX = X
+        var updatedY = Y
 
-      @tailrec
-      def eF(X:Map[String, Vector[Vector[Int]]],
-             Y:Map[String, DblVector],
-             s: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String,
-        DblVector]) = (s: @switch) match {
-        case head +: tail =>
-          var trees = head.tree
-          var i = 0
-          var noConstruction = false
-          var exit = false
-          var updatedX = X
-          var updatedY = Y
+        while (trees.nonEmpty && !exit) {
+          if (i == trees.size - 1) {
+            if (noConstruction) exit = true
+            noConstruction = true
+            i = 0
+          } else {
+            val posTag = trees(i).posTag
 
-          while (trees.nonEmpty && !exit) {
-            if (i == trees.size - 1) {
-              if (noConstruction) exit = true
-              noConstruction = true
-              i = 0
-            } else {
-              val posTag = trees(i).posTag
+            // extract features
+            val extractedFeatures = extractTestFeatures(trees, i, Config.LeftCtx, Config.RightCtx)
+            val y = estimateTrainAction(trees, i)
 
-              // extract features
-              val extractedFeatures = extractTestFeatures(trees, i, Config.LeftCtx, Config.RightCtx)
-              val y = estimateTrainAction(trees, i)
+            // Update pos Action
+            //              val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
+            //              tagActions(posTag)(y) = actionCounter + 1
 
-              // Update pos Action
-//              val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
-//              tagActions(posTag)(y) = actionCounter + 1
+            // Fill features, if there is no feature stored for a tag, create empty vector and append feature
+            updatedX = updatedX + (posTag -> (updatedX(posTag) ++ Vector(extractedFeatures)))
+            updatedY = updatedY + (posTag -> (updatedY(posTag) :+ y.toDouble))
 
-              // Fill features, if there is no feature stored for a tag, create empty vector and append feature
-              updatedX = updatedX + (posTag -> (updatedX(posTag) ++ Vector(extractedFeatures)))
-              updatedY = updatedY + (posTag -> (updatedY(posTag) :+ y.toDouble))
+            val (newI, newTrees) = takeAction(trees, i, y)
+            i = newI
+            trees = newTrees
 
-              val (newI, newTrees) = takeAction(trees, i, y)
-              i = newI
-              trees = newTrees
-
-              // Execute the action and modify the treese
-              if (y != Shift)
-                noConstruction = false
-            }
+            // Execute the action and modify the treese
+            if (y != Shift)
+              noConstruction = false
           }
-          eF(X ++ updatedX, Y ++ updatedY, tail)
-        case Nil => (X, Y)
-      }
-      eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
-         Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
-         sentences)
+        }
+        eF(X ++ updatedX, Y ++ updatedY, tail)
+      case Nil => (X, Y)
     }
+    eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
+      Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
+      sentences)
+  }
 
-    // 3 - Train models
-//    for (lp <- trainX.keys) {
+//  // 1.3 - Train models
+//  // TODO: Issue #13, Check if we have a previously trained model before try to train a new one, pickle models to
+//  // disk an read it back
+//  def train(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector]): Map[String, svm_model] = {
+//
+//    val nFeatures = vocabulary.nFeatures
+//
+//    for (lp <- X.keys) {
 //      logger.info(s"Pos tag: $lp")
 //      logger.info(s"Size of $lp: ${lp.length}")
-//      logger.info(s"# features: ${features.nFeatures}")
+//      logger.info(s"# features: $nFeatures")
 //
-//      val classes = trainY.values.toSet.flatten
+//      val classes = Y.values.toSet.flatten
 //
 //      // Train only if there are at least two classes
 //      if (classes.size > 1) {
@@ -178,13 +185,13 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 //            // Load Models
 //            models(lp) = svm.svm_load_model(s"${Constants.ModelPath}/svm.$lp.model")
 //          case false =>
-//            val svmProblem = new SVMProblem(trainY(lp).size, trainY(lp).toArray)
+//            val svmProblem = new SVMProblem(Y(lp).size, Y(lp).toArray)
 //
 //            // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
 //            //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
 //            //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
 //            //        ......................................
-//            trainX(lp).zipWithIndex.foreach {
+//            X(lp).zipWithIndex.foreach {
 //              case (x, i) =>
 //                val nodeCol = createNode(x)
 //                svmProblem.update(i, nodeCol)
@@ -200,9 +207,9 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 //        }
 //      }
 //    }
+//  }
 
-
-  def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int): Vector[Int] = {
+  private[this] def extractTestFeatures(trees: Vector[Node], i: Int, leftCtx: Int, rightCtx: Int): Vector[Int] = {
     // Method to extract features for the given context window
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex.filter(r => r._1 >= 0 && r._1 < trees.size)
 
@@ -234,7 +241,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   }
 
   // TODO #20: posTagFeature and lexFeature  very similar, look up a solution to reduce code
-  def posTagFeature(position: Int, node: Node, offset: Int): Int = {
+  private[this] def posTagFeature(position: Int, node: Node, offset: Int): Int = {
     val vocab = vocabulary.positionTag(position)
 
     (vocab contains node.posTag: @switch) match {
@@ -243,7 +250,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     }
   }
 
-  def lexFeature(position: Int, node: Node, offset: Int): Int = {
+  private[this] def lexFeature(position: Int, node: Node, offset: Int): Int = {
     val vocab = vocabulary.positionVocab(position)
 
     (vocab contains node.lex: @switch) match {
@@ -252,12 +259,12 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     }
   }
 
-  def childFeatures(position: Int, children: Vector[Node], offset: Int,
+  private[this] def childFeatures(position: Int, children: Vector[Node], offset: Int,
                     family: Counter, featureType: Int): Vector[Int] =
     children./:(Vector.empty[Int])((v, n) => v :+ childFeature(position, n, offset, family, featureType))
 
 
-  def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int): Int = {
+  private[this] def childFeature(position: Int, node: Node, offset: Int, family: Counter, featureType: Int): Int = {
     val vocab = family
 
     if (featureType == 0) /* EXTRACT_LEX */ {
@@ -271,7 +278,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     vocab(Config.Unknown) + offset
   }
 
-  def takeAction(trees: Vector[Node], index: Int, action: Action): (Int, Vector[Node]) = {
+  private[this] def takeAction(trees: Vector[Node], index: Int, action: Action): (Int, Vector[Node]) = {
     val a = trees(index)
     val b = trees(index + 1)
     var i = index
@@ -295,7 +302,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     }
   }
 
-  def estimateTrainAction(trees: Vector[Node], index: Int): Action = {
+  private[this] def estimateTrainAction(trees: Vector[Node], index: Int): Action = {
     val a = trees(index)
     val b = trees(index + 1)
 
@@ -307,10 +314,11 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
       Shift
   }
 
-  def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
+  private[this] def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
     !trees.exists(_.dependency == child.position)
 
-  def buildVocabulary(trees: Vector[Node], vocab: Vocabulary, i: Int, leftCtx: Int, rightCtx: Int): Vocabulary = {
+  private[this] def buildVocabulary(trees: Vector[Node], vocab: Vocabulary, i: Int, leftCtx: Int, rightCtx: Int):
+    Vocabulary = {
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex.filter(r => r._1 >= 0 && r._1 < trees.size)
 
     def build0(rangeIterator: Seq[(Int, Int)], acc: Vocabulary):Vocabulary = (rangeIterator: @switch) match {
@@ -392,7 +400,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 //    inferredTrees
   }
 
-  def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]): Action = {
+  private[this] def estimateAction(trees: Vector[Node], position: Int, extractedFeatures: Vector[Int]): Action = {
     val treePosTag = trees(position).posTag
 
     val action = if (models contains treePosTag) {
