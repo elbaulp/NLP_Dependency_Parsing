@@ -18,7 +18,7 @@
 
 package com.elbauldelprogramador.nlp
 
-import com.elbauldelprogramador.nlp.parser.SVMParser
+import com.elbauldelprogramador.nlp.parser.DependencyParser
 import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
 
 /**
@@ -31,8 +31,9 @@ object Main extends App {
     val trainSentences = DataParser.readDataSet(argz.trainingPath)
     val testSentences = DataParser.readDataSet(argz.testPath)
 
-    val parser = new SVMParser
-    parser.train(trainSentences.get)
+
+    val parser = new DependencyParser(trainSentences.get, testSentences.get)
+    parser.generateVocabulary(trainSentences.get)
 
     // Inference
     val inferredTree = parser.test(testSentences.get)

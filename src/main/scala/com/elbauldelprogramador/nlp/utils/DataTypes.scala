@@ -22,5 +22,5 @@ package com.elbauldelprogramador.nlp.utils
   */
 object DataTypes {
   type SentenceTokens = (Vector[String], Vector[String], Vector[Int])
-  type Counter = scala.collection.mutable.Map[String, Int] // TODO: Try to make them inmutable
+  type Counter = Map[String, Int]
 }
