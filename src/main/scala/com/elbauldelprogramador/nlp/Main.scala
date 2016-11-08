@@ -25,19 +25,19 @@ import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
-    val argz = CommandArgs.parseArgs(args)
+  val argz = CommandArgs.parseArgs(args)
 
-    // Read and parse training data
-    val trainSentences = DataParser.readDataSet(argz.trainingPath)
-    val testSentences = DataParser.readDataSet(argz.testPath)
+  // Read and parse training data
+  val trainSentences = DataParser.readDataSet(argz.trainingPath)
+  val testSentences = DataParser.readDataSet(argz.testPath)
 
 
-    val parser = new DependencyParser(trainSentences.get, testSentences.get)
+  val parser = new DependencyParser(trainSentences.get, testSentences.get)
 
-    // Inference
-    val inferredTree = parser.test(testSentences.get)
-    // Evaluation
-    val evaluation = parser.evaluate(inferredTree, testSentences.get)
+  // Inference
+  val inferredTree = parser.test(testSentences.get)
+  // Evaluation
+  val evaluation = parser.evaluate(inferredTree, testSentences.get)
 }
 
 

@@ -28,9 +28,9 @@ final case class Vocabulary(positionVocab: Map[Int, Counter] = Map.empty.withDef
                             chLVocab: Map[Int, Counter] = Map.empty.withDefaultValue(Map.empty.withDefaultValue(0)),
                             chLTag: Map[Int, Counter] = Map.empty.withDefaultValue(Map.empty.withDefaultValue(0)),
                             chRVocab: Map[Int, Counter] = Map.empty.withDefaultValue(Map.empty.withDefaultValue(0)),
-                            chRTag: Map[Int, Counter] = Map.empty.withDefaultValue(Map.empty.withDefaultValue(0))){
+                            chRTag: Map[Int, Counter] = Map.empty.withDefaultValue(Map.empty.withDefaultValue(0))) {
 
-  def nFeatures:Int = positionVocab.values.map(_.size).sum +
+  def nFeatures: Int = positionVocab.values.map(_.size).sum +
     positionTag.values.map(_.size).sum +
     chLVocab.values.map(_.size).sum +
     chLTag.values.map(_.size).sum +

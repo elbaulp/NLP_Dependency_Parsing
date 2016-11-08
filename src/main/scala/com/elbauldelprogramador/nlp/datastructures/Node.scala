@@ -45,23 +45,6 @@ case class Node(lex: String,
     left = left :+ child
   }
 
-  def matchNodes(goldSentence: LabeledSentence): Int = {
-    @inline def condition(n: Node): Boolean =
-      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(goldSentence.tags(n.position))
-
-    @tailrec
-    def match0(acc: Int, n: Node)(queue: Seq[Node]): Int = {
-      val count = if (condition(n)) acc + 1 else acc
-
-      (queue: @switch) match {
-        case head +: tail => match0(count, head)(head.left ++ head.right ++ tail)
-        case Nil => count
-      }
-    }
-
-    match0(0, this)(left ++ right)
-  }
-
   def matchDep(goldSentence: LabeledSentence, depAcc: Map[String, Int], depAccBase: Map[String, Int])
   : (Map[String, Int], Map[String, Int]) = {
 
@@ -101,6 +84,22 @@ case class Node(lex: String,
     */
   def matchAll(goldSentence: LabeledSentence): Boolean = matchNodes(goldSentence) == goldSentence.words.size
 
+  def matchNodes(goldSentence: LabeledSentence): Int = {
+    @inline def condition(n: Node): Boolean =
+      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(goldSentence.tags(n.position))
+
+    @tailrec
+    def match0(acc: Int, n: Node)(queue: Seq[Node]): Int = {
+      val count = if (condition(n)) acc + 1 else acc
+
+      (queue: @switch) match {
+        case head +: tail => match0(count, head)(head.left ++ head.right ++ tail)
+        case Nil => count
+      }
+    }
+
+    match0(0, this)(left ++ right)
+  }
 
   override def toString: String = s"<LEX: $lex, TAG: $posTag, DEP: $dependency, POS: $position, LEFT: $left, RIGHT:  $right>"
 }
@@ -110,6 +109,6 @@ object Node {
   def apply(lex: String, position: Int, posTag: String, dependency: Int): Node =
     new Node(lex, position, posTag, dependency, Vector.empty, Vector.empty)
 
-  def apply(lex: String, position: Int, posTag: String):Node =
+  def apply(lex: String, position: Int, posTag: String): Node =
     new Node(lex, position, posTag, -1, Vector.empty, Vector.empty)
 }

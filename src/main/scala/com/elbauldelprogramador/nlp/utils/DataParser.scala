@@ -44,11 +44,11 @@ object DataParser {
           case Array(a, b, d) => Tokens(a, b, "", d.toInt)
           case _ => Tokens() // Read end of sentence
         }./:((Tokens(), Vector.empty[LabeledSentence])) {
-          // When reading an end of sentence, create a new Labeled sentence with tokens
-          case ((z, l), t) if t.isEmpty => (Tokens(), l :+ LabeledSentence(z))
-          // Accumulate tokens of the sentence
-          case ((z, l), t) => (z append(z, t), l)
-        }._2
+        // When reading an end of sentence, create a new Labeled sentence with tokens
+        case ((z, l), t) if t.isEmpty => (Tokens(), l :+ LabeledSentence(z))
+        // Accumulate tokens of the sentence
+        case ((z, l), t) => (z append(z, t), l)
+      }._2
 
       Some(parsedTuples)
     }
@@ -63,6 +63,7 @@ object DataParser {
 
 object Manage {
   private val logger = org.log4s.getLogger
+
   //noinspection ScalaStyle
   def apply[R <: {def close() : Unit}, T](resource: => R)(f: R => Option[T]): Option[T] = {
     var res: Option[R] = None
@@ -87,8 +88,6 @@ object Manage {
   * Simple command-line parsing, thanks to Programming scala, 2nd edition: http://amzn.to/2eN8IRl
   */
 object CommandArgs {
-  private val logger = org.log4s.getLogger
-
   val help =
     """
       |usage: java ... objectsystem.CommandArgs arguments
@@ -97,6 +96,7 @@ object CommandArgs {
       | -d | --train path    Path of training data
       | -t | --test path     Path of test data
       | """.stripMargin
+  private val logger = org.log4s.getLogger
 
   def parseArgs(args: Array[String]): Args = {
     def pa(args2: List[String], result: Args): Args = args2 match {
@@ -123,4 +123,5 @@ object CommandArgs {
   }
 
   case class Args(trainingPath: String, testPath: String)
+
 }

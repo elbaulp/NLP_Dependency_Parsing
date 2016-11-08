@@ -50,7 +50,16 @@ object Action {
     }
   }
 
-  case object Left extends Action {final def value: Int = 0}
-  case object Shift extends Action {final def value: Int = 1}
-  case object Right extends Action {final def value: Int = 2}
+  case object Left extends Action {
+    final def value: Int = 0
+  }
+
+  case object Shift extends Action {
+    final def value: Int = 1
+  }
+
+  case object Right extends Action {
+    final def value: Int = 2
+  }
+
 }
