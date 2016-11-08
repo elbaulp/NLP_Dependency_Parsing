@@ -53,25 +53,15 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   // 1.2 - Extract Features
   private[this] val features = extractFeatures(sentences2)
   // 1.3 - Train models
-  private[this] val models =
+//  private[this] val models = ???
 
 //  val b = test(testSentencess)
 //  val c = evaluate(b, ???)
-
-//  // TODO: issue #10, try to make them vals
-//  val positionVocab = mutable.Map.empty[Int, Counter]
-//  val positionTag = mutable.Map.empty[Int, Counter]
-//  val chLVocab = mutable.Map.empty[Int, Counter]
-//  val chLTag = mutable.Map.empty[Int, Counter]
-//  val chRVocab = mutable.Map.empty[Int, Counter]
-//  val chRTag = mutable.Map.empty[Int, Counter]
 
   val tagActions = mutable.Map[String, mutable.Map[Action, Int]]()
   val models = mutable.Map.empty[String, svm_model]
 
   def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary = {
-    // TODO: Issue #12, Optimize this, may be tail rec?
-    // FIXME: Need a deep refactor
     // 1.1 - Build vocab
     @tailrec
     def train0(v: Vocabulary, s: Seq[LabeledSentence]): Vocabulary = (s: @switch) match {
@@ -107,12 +97,10 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
       case Nil => v
     }
 
-    def toFeatures(v: Vocabulary): Vocabulary = {
-      // TODO: Issue #16, Instead of update, generate new immutable map
+    def toFeatures(v: Vocabulary): Vocabulary =
       // Assign to each string key a counter, starting from 0 to the map size
       v.modifyAll(_.positionVocab, _.positionTag, _.chLTag, _.chLVocab, _.chRTag, _.chRVocab)
         .using(_.map(x => x._1 -> (x._2.zipWithIndex.map(y => y._1._1 -> y._2) + (Config.Unknown -> x._2.size))))
-    }
 
     // 1- build vocab
     val vocabulary = train0(Vocabulary(), sentences)
@@ -322,10 +310,6 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   def isCompleteSubtree(trees: Vector[Node], child: Node): Boolean =
     !trees.exists(_.dependency == child.position)
 
-  /**
-    *
-    * TODO: Issue #3 Refactor this function
-    */
   def buildVocabulary(trees: Vector[Node], vocab: Vocabulary, i: Int, leftCtx: Int, rightCtx: Int): Vocabulary = {
     val range = (i - leftCtx to i + 1 + rightCtx).zipWithIndex.filter(r => r._1 >= 0 && r._1 < trees.size)
 
@@ -370,20 +354,6 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     }
     build0(range, vocab)
   }
-
-//  def toFeatures(counter: mutable.Map[Int, Counter]):Unit = {
-//    // Assign to each string key a counter, starting from 0 to the map size
-//    // TODO: Issue #16, Instead of update, generate new immutable map
-//    counter.foreach(a => a._2.zipWithIndex.foreach(r => a._2.update(r._1._1, r._2)))
-//    counter.foreach { case (i, c) => c(Config.Unknown) = c.size }
-//    // When a counter does not have all context lenght, fill with Unkowns
-//    if (counter.size < 2 + Config.LeftCtx + Config.RightCtx) {
-//      for (index <- counter.size to (1 + Config.LeftCtx + Config.RightCtx)) {
-//        counter(index) = mutable.Map(Config.Unknown -> 0)
-//      }
-//    }
-////    counter
-//  }
 
   def test(sentences: Vector[LabeledSentence]):Vector[Vector[Node]] = {
     ???
