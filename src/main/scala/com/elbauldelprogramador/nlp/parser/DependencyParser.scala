@@ -38,7 +38,7 @@ import scala.collection.immutable.Map
   */
 //noinspection ScalaStyle
 class DependencyParser(val trainSentences: Vector[LabeledSentence],
-                       val testSentencess: Vector[LabeledSentence]) {
+                       val testSentences: Vector[LabeledSentence]) {
 
   case class Accuracy(private[DependencyParser] val rootAcc: Map[String, Int] = Map.empty,
                       private[DependencyParser] val depNAcc: Map[String, Int] = Map.empty,
@@ -46,7 +46,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
                       private[DependencyParser] val completeD: Int = 0,
                       private[DependencyParser] val completeN: Int = 0){
 
-    def rootAccuracy = rootAcc.values.sum / testSentencess.size.toDouble
+    def rootAccuracy = rootAcc.values.sum / testSentences.size.toDouble
     def dependencyAccuracy = depNAcc.values.sum / depDAcc.values.sum.toDouble
     def completeAccuracy = completeN / completeD.toDouble
   }
@@ -55,7 +55,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   private[this] val sentences2 = trainSentences.map(l => LabeledSentence(l))
 
   /**
-    * Part 1 - Train
+    * Train
     */
   // 1.1 - Build Vocabulary
   private[this] val vocabulary = generateVocabulary(trainSentences)
@@ -67,7 +67,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   /**
     * Test with unseen data
     */
-  private[this] val inferredTree = test(testSentencess)
+  private[this] val inferredTree = test(testSentences)
 
   private[this] def test(sentences: Vector[LabeledSentence]): Vector[Vector[Node]] = {
     val testSentences = for {
@@ -108,7 +108,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   def getAccuracy: Accuracy = {
     inferredTree.zipWithIndex./:(Accuracy()) {
       case (e, (v, i)) =>
-        val goldS = testSentencess(i)
+        val goldS = testSentences(i)
         val current = v(0)
         (v.size: @switch) match {
           case 1 =>
