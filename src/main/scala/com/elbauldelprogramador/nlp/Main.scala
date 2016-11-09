@@ -25,6 +25,8 @@ import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
+  val logger = org.log4s.getLogger
+
   val argz = CommandArgs.parseArgs(args)
 
   // Read and parse training data
@@ -33,10 +35,13 @@ object Main extends App {
 
   val parser = new DependencyParser(trainSentences.get, testSentences.get)
 
-  // Inference
-  val inferredTree = parser.test(testSentences.get)
   // Evaluation
-  val evaluation = parser.evaluate(inferredTree, testSentences.get)
+  val accuracy = parser.getAccuracy
+  logger.info(s"\n\n\nRESULTS\n\n\n")
+  logger.info(f"Root Acc: ${accuracy.rootAccuracy}")
+  logger.info(f"Dep acc: ${accuracy.dependencyAccuracy}")
+  logger.info(f"Complete acc: ${accuracy.completeAccuracy}")
+
 }
 
 
