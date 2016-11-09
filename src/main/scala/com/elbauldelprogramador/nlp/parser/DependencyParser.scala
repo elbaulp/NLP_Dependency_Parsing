@@ -75,27 +75,26 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     @tailrec
     def train0(v: Vocabulary, s: Seq[LabeledSentence]): Vocabulary = (s: @switch) match {
       case head +: tail =>
-        var trees = head.tree
         var i = 0
         var noConstruction = false
         var exit = false
         var updatedVocab = v
 
-        while (trees.nonEmpty && !exit) {
-          if (i == trees.size - 1) {
+        while (head.tree.nonEmpty && !exit) {
+          if (i == head.tree.size - 1) {
             if (noConstruction) exit = true
             noConstruction = true
             i = 0
           } else {
             // Build vocabulary
-            updatedVocab = buildVocabulary(trees, updatedVocab, i, Config.LeftCtx, Config.RightCtx)
+            updatedVocab = buildVocabulary(head.tree, updatedVocab, i, Config.LeftCtx, Config.RightCtx)
 
-            val y = estimateTrainAction(trees, i)
+            val y = estimateTrainAction(head.tree, i)
 
-            val (newI, newTrees) = takeAction(trees, i, y)
+            val (newI, newTrees) = takeAction(head.tree, i, y)
 
             i = newI
-            trees = newTrees
+            head.tree = newTrees
 
             // Execute the action and modify the trees
             if (y != Shift)
@@ -124,32 +123,31 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     def eF(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector], s: Seq[LabeledSentence]):
     (Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = (s: @switch) match {
       case head +: tail =>
-        var trees = head.tree
         var i = 0
         var noConstruction = false
         var exit = false
         var updatedX = X
         var updatedY = Y
 
-        while (trees.nonEmpty && !exit) {
-          if (i == trees.size - 1) {
+        while (head.tree.nonEmpty && !exit) {
+          if (i == head.tree.size - 1) {
             if (noConstruction) exit = true
             noConstruction = true
             i = 0
           } else {
-            val posTag = trees(i).posTag
+            val posTag = head.tree(i).posTag
 
             // extract features
-            val extractedFeatures = extractTestFeatures(trees, i, Config.LeftCtx, Config.RightCtx)
-            val y = estimateTrainAction(trees, i)
+            val extractedFeatures = extractTestFeatures(head.tree, i, Config.LeftCtx, Config.RightCtx)
+            val y = estimateTrainAction(head.tree, i)
 
             // Fill features, if there is no feature stored for a tag, create empty vector and append feature
             updatedX = updatedX + (posTag -> (updatedX(posTag) ++ Vector(extractedFeatures)))
             updatedY = updatedY + (posTag -> (updatedY(posTag) :+ y.toDouble))
 
-            val (newI, newTrees) = takeAction(trees, i, y)
+            val (newI, newTrees) = takeAction(head.tree, i, y)
             i = newI
-            trees = newTrees
+            head.tree = newTrees
 
             // Execute the action and modify the treese
             if (y != Shift)
@@ -161,7 +159,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     }
     (new File("./src/main/resources/XY").exists(): @switch) match {
       case true => FileUtils.getObject[(Map[String, Vector[Vector[Int]]], Map[String, DblVector])]
-      case false => val result = eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
+      case false =>
+        val result = eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
                        Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
                        sentences)
         FileUtils.saveOject(result)

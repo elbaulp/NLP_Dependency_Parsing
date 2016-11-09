@@ -33,7 +33,7 @@ object FileUtils {
   }
 
   def saveOject(o: Any): Unit = {
-    val oos = new ObjectOutputStream(new FileOutputStream("./src/main/resources/XY"))
+    val oos = new ObjectOutputStream(new FileOutputStream("src/main/resources/XY"))
     try {
       oos.writeObject(o)
     } finally {
@@ -42,7 +42,7 @@ object FileUtils {
   }
 
   def getObject[T]:T = {
-    val ois = new ObjectInputStream(new FileInputStream("./src/main/resources/XY"))
+    val ois = new ObjectInputStream(new FileInputStream("src/main/resources/XY"))
     try {
       val r = ois.readObject.asInstanceOf[T]
       r
