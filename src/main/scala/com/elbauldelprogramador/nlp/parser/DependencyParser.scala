@@ -17,13 +17,17 @@
 
 package com.elbauldelprogramador.nlp.parser
 
+import java.io.File
+
 import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Vocabulary}
 import com.elbauldelprogramador.nlp.svm.SVMAdapter._
+import com.elbauldelprogramador.nlp.svm.SVMConfig
 import com.elbauldelprogramador.nlp.svm.SVMTypes._
 import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, Right, Shift}
 import com.elbauldelprogramador.nlp.utils.Constants
 import com.elbauldelprogramador.nlp.utils.DataTypes._
 import com.softwaremill.quicklens._
+import libsvm.{svm, svm_model}
 import org.log4s._
 
 import scala.annotation.{switch, tailrec}
@@ -43,6 +47,10 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   private[this] val vocabulary = generateVocabulary(trainSentences)
   // 1.2 - Extract Features
   private[this] val features = extractFeatures(sentences2)
+  // 1.3 - Train models
+  private[this] val models = train(features._1, features._2)
+
+  logger.debug(s"$models")
 
   def test(sentences: Vector[LabeledSentence]): Vector[Vector[Node]] = {
     ???
@@ -80,9 +88,6 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     //    }
     //    inferredTrees
   }
-
-  // 1.3 - Train models
-  //  private[this] val models = train(features._1, features._2)
 
   //  val b = test(testSentencess)
   //  val c = evaluate(b, ???)
@@ -183,51 +188,50 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     toFeatures(vocabulary)
   }
 
-  //  // 1.3 - Train models
-  //  // TODO: Issue #13, Check if we have a previously trained model before try to train a new one, pickle models to
-  //  // disk an read it back
-  //  def train(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector]): Map[String, svm_model] = {
-  //
-  //    val nFeatures = vocabulary.nFeatures
-  //
-  //    for (lp <- X.keys) {
-  //      logger.info(s"Pos tag: $lp")
-  //      logger.info(s"Size of $lp: ${lp.length}")
-  //      logger.info(s"# features: $nFeatures")
-  //
-  //      val classes = Y.values.toSet.flatten
-  //
-  //      // Train only if there are at least two classes
-  //      if (classes.size > 1) {
-  //        (new File(s"${Constants.ModelPath}/svm.$lp.model").exists(): @switch) match {
-  //          case true =>
-  //            logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$lp.model")
-  //            // Load Models
-  //            models(lp) = svm.svm_load_model(s"${Constants.ModelPath}/svm.$lp.model")
-  //          case false =>
-  //            val svmProblem = new SVMProblem(Y(lp).size, Y(lp).toArray)
-  //
-  //            // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
-  //            //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
-  //            //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
-  //            //        ......................................
-  //            X(lp).zipWithIndex.foreach {
-  //              case (x, i) =>
-  //                val nodeCol = createNode(x)
-  //                svmProblem.update(i, nodeCol)
-  //            }
-  //
-  //            val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
-  //
-  //            require(error == null, f"${logger.error(s"Errors in SVM parameters:\n$error")}")
-  //
-  //            // TODO #19: Make SVMModel class to wrap this call
-  //            models(lp) = trainSVM(svmProblem, SVMConfig.param)
-  //            svm.svm_save_model(s"${Constants.ModelPath}/svm.$lp.model", models(lp))
-  //        }
-  //      }
-  //    }
-  //  }
+    // 1.3 - Train models
+    def train(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector]): Map[String, svm_model] = {
+
+      val nFeatures = vocabulary.nFeatures
+
+      @tailrec
+      def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] = {
+
+        logger.info(s"PosTags left: $XKey")
+        logger.info(s"# features: $nFeatures")
+
+        (XKey.toSeq: @switch) match {
+          case head +: tail =>
+            (new File(s"${Constants.ModelPath}/svm.$head.model").exists(): @switch) match {
+              case true =>
+                logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$head.model")
+                // Load Models
+
+                train0(tail, modelsAcc + (head -> svm.svm_load_model(s"${Constants.ModelPath}/svm.$head.model")))
+              case false =>
+                val svmProblem = new SVMProblem(Y(head).size, Y(head).toArray)
+                // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
+                //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
+                //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
+                //        ......................................
+                X(head).zipWithIndex.foreach {
+                  case (x, i) =>
+                    val nodeCol = createNode(x)
+                    svmProblem.update(i, nodeCol)
+                }
+                val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
+                require(error == null, f"${logger.error(s"Errors in SVM parameters:\n$error")}")
+
+                // TODO #19: Make SVMModel class to wrap this call
+                val m = modelsAcc + (head -> trainSVM(svmProblem, SVMConfig.param))
+                svm.svm_save_model(s"${Constants.ModelPath}/svm.$head.model", m(head))
+
+                train0(tail, m)
+            }
+          case Nil => modelsAcc
+        }
+      }
+      train0(X.keys, Map.empty)
+    }
 
   private[this] def buildVocabulary(trees: Vector[Node], vocab: Vocabulary, i: Int, leftCtx: Int, rightCtx: Int):
   Vocabulary = {
@@ -323,6 +327,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
         eF(X ++ updatedX, Y ++ updatedY, tail)
       case Nil => (X, Y)
     }
+    // TODO: Issue #13, Check if we have a previously trained model before try to train a new one, pickle models to
+    // disk an read it back
     eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
       Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
       sentences)

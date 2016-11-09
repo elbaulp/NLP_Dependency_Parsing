@@ -31,7 +31,6 @@ object Main extends App {
   val trainSentences = DataParser.readDataSet(argz.trainingPath)
   val testSentences = DataParser.readDataSet(argz.testPath)
 
-
   val parser = new DependencyParser(trainSentences.get, testSentences.get)
 
   // Inference
