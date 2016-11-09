@@ -17,6 +17,8 @@
 
 package com.elbauldelprogramador.nlp.utils
 
+import java.io.{FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
+
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 9/28/16.
   */
@@ -27,6 +29,25 @@ object FileUtils {
       op(p)
     } finally {
       p.close()
+    }
+  }
+
+  def saveOject(o: Any): Unit = {
+    val oos = new ObjectOutputStream(new FileOutputStream("./src/main/resources/XY"))
+    try {
+      oos.writeObject(o)
+    } finally {
+      oos.close()
+    }
+  }
+
+  def getObject[T]:T = {
+    val ois = new ObjectInputStream(new FileInputStream("./src/main/resources/XY"))
+    try {
+      val r = ois.readObject.asInstanceOf[T]
+      r
+    } finally {
+      ois.close()
     }
   }
 }

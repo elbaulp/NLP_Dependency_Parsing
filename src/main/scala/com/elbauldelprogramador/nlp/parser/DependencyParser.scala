@@ -24,7 +24,7 @@ import com.elbauldelprogramador.nlp.svm.SVMAdapter._
 import com.elbauldelprogramador.nlp.svm.SVMConfig
 import com.elbauldelprogramador.nlp.svm.SVMTypes._
 import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, Right, Shift}
-import com.elbauldelprogramador.nlp.utils.Constants
+import com.elbauldelprogramador.nlp.utils.{Constants, FileUtils}
 import com.elbauldelprogramador.nlp.utils.DataTypes._
 import com.softwaremill.quicklens._
 import libsvm.{svm, svm_model}
@@ -70,7 +70,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 
   private[this] def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary = {
     // 1.1 - Build vocab
-    logger.info("Building vocabulary fro training...")
+    logger.info("Building vocabulary for training...")
 
     @tailrec
     def train0(v: Vocabulary, s: Seq[LabeledSentence]): Vocabulary = (s: @switch) match {
@@ -121,10 +121,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     logger.info("Extracting features...")
 
     @tailrec
-    def eF(X: Map[String, Vector[Vector[Int]]],
-           Y: Map[String, DblVector],
-           s: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String,
-      DblVector]) = (s: @switch) match {
+    def eF(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector], s: Seq[LabeledSentence]):
+    (Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = (s: @switch) match {
       case head +: tail =>
         var trees = head.tree
         var i = 0
@@ -161,11 +159,14 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
         eF(X ++ updatedX, Y ++ updatedY, tail)
       case Nil => (X, Y)
     }
-    // TODO: Issue #13, Check if we have a previously trained model before try to train a new one, pickle models to
-    // disk an read it back
-    eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
-      Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
-      sentences)
+    (new File("./src/main/resources/XY").exists(): @switch) match {
+      case true => FileUtils.getObject[(Map[String, Vector[Vector[Int]]], Map[String, DblVector])]
+      case false => val result = eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
+                       Map.empty[String, DblVector].withDefaultValue(Vector.empty[Double]),
+                       sentences)
+        FileUtils.saveOject(result)
+        result
+    }
   }
 
   // 1.3 - Train models
@@ -177,8 +178,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     @tailrec
     def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] = {
 
-      logger.info(s"\t\tPosTags left: $XKey")
-      logger.info(s"\t\t# features: $nFeatures")
+      logger.debug(s"\t\tPosTags left: $XKey")
+      logger.debug(s"\t\t# features: $nFeatures")
 
       (XKey.toSeq: @switch) match {
         case head +: tail =>

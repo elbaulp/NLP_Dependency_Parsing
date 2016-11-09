@@ -37,11 +37,11 @@ object Main extends App {
 
   // Evaluation
   val accuracy = parser.getAccuracy
+
   logger.info(s"\n\n\nRESULTS\n\n\n")
   logger.info(f"Root Acc: ${accuracy.rootAccuracy}")
   logger.info(f"Dep acc: ${accuracy.dependencyAccuracy}")
   logger.info(f"Complete acc: ${accuracy.completeAccuracy}")
-
 }
 
 
