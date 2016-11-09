@@ -36,7 +36,6 @@ import scala.collection.immutable.Map
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/29/16.
   */
-//noinspection ScalaStyle
 class DependencyParser(val trainSentences: Vector[LabeledSentence],
                        val testSentences: Vector[LabeledSentence]) {
 
@@ -46,9 +45,9 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
                       private[DependencyParser] val completeD: Int = 0,
                       private[DependencyParser] val completeN: Int = 0){
 
-    def rootAccuracy = rootAcc.values.sum / testSentences.size.toDouble
-    def dependencyAccuracy = depNAcc.values.sum / depDAcc.values.sum.toDouble
-    def completeAccuracy = completeN / completeD.toDouble
+    def rootAccuracy: Double = rootAcc.values.sum / testSentences.size.toDouble
+    def dependencyAccuracy: Double = depNAcc.values.sum / depDAcc.values.sum.toDouble
+    def completeAccuracy: Double = completeN / completeD.toDouble
   }
 
   private[this] val logger = getLogger
@@ -71,6 +70,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 
   private[this] def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary = {
     // 1.1 - Build vocab
+    logger.info("Building vocabulary fro training...")
+
     @tailrec
     def train0(v: Vocabulary, s: Seq[LabeledSentence]): Vocabulary = (s: @switch) match {
       case head +: tail =>
@@ -117,6 +118,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 
   // 1.2 - Extract features
   private[this] def extractFeatures(sentences: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = {
+    logger.info("Extracting features...")
 
     @tailrec
     def eF(X: Map[String, Vector[Vector[Int]]],
@@ -143,10 +145,6 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
             val extractedFeatures = extractTestFeatures(trees, i, Config.LeftCtx, Config.RightCtx)
             val y = estimateTrainAction(trees, i)
 
-            // Update pos Action
-            //              val actionCounter = tagActions getOrElseUpdate(posTag, mutable.Map(y -> 0)) getOrElseUpdate(y, 0)
-            //              tagActions(posTag)(y) = actionCounter + 1
-
             // Fill features, if there is no feature stored for a tag, create empty vector and append feature
             updatedX = updatedX + (posTag -> (updatedX(posTag) ++ Vector(extractedFeatures)))
             updatedY = updatedY + (posTag -> (updatedY(posTag) :+ y.toDouble))
@@ -172,14 +170,15 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 
   // 1.3 - Train models
   def train(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector]): Map[String, svm_model] = {
+    logger.info("Training models...")
 
     val nFeatures = vocabulary.nFeatures
 
     @tailrec
     def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] = {
 
-      logger.info(s"PosTags left: $XKey")
-      logger.info(s"# features: $nFeatures")
+      logger.info(s"\t\tPosTags left: $XKey")
+      logger.info(s"\t\t# features: $nFeatures")
 
       (XKey.toSeq: @switch) match {
         case head +: tail =>
@@ -216,6 +215,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   }
 
   private[this] def test(sentences: Vector[LabeledSentence]): Vector[Vector[Node]] = {
+    logger.info("Testing with unseen data...")
+
     val testSentences = for {
       s <- sentences
       testS = Sentence(s.words, s.tags)
