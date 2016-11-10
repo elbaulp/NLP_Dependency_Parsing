@@ -175,13 +175,14 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
     val nFeatures = vocabulary.nFeatures
 
     @tailrec
-    def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] = {
-
-      logger.debug(s"\t\tPosTags left: $XKey")
-      logger.debug(s"\t\t# features: $nFeatures")
-
+    def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] =
       (XKey.toSeq: @switch) match {
         case head +: tail =>
+
+          logger.debug(s"\t\tPosTags left: $XKey")
+          logger.debug(s"\t\tSize: ${X(head).size}")
+          logger.debug(s"\t\t# features: $nFeatures")
+
           (new File(s"${Constants.ModelPath}/svm.$head.model").exists(): @switch) match {
             case true =>
               logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$head.model")
@@ -210,7 +211,6 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
           }
         case Nil => modelsAcc
       }
-    }
     train0(X.keys, Map.empty)
   }
 
