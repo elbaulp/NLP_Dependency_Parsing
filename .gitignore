@@ -27,6 +27,7 @@ out
 
 
 ## Core latex/pdflatex auxiliary files:
+*.pdf
 *.md
 *.aux
 *.lof
