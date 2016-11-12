@@ -20,6 +20,7 @@ package com.elbauldelprogramador.nlp.core.functional
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 10/13/16.
   */
 trait Monoid[T] {
-  def append(a: T, b:T):T
   val identity: T
+
+  def append(a: T, b: T): T
 }

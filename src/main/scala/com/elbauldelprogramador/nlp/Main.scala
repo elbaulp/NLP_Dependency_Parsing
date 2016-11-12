@@ -18,26 +18,30 @@
 
 package com.elbauldelprogramador.nlp
 
-import com.elbauldelprogramador.nlp.parser.SVMParser
+import com.elbauldelprogramador.nlp.parser.DependencyParser
 import com.elbauldelprogramador.nlp.utils.{CommandArgs, DataParser}
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 8/18/16.
   */
 object Main extends App {
-    val argz = CommandArgs.parseArgs(args)
+  val logger = org.log4s.getLogger
 
-    // Read and parse training data
-    val trainSentences = DataParser.readDataSet(argz.trainingPath)
-    val testSentences = DataParser.readDataSet(argz.testPath)
+  val argz = CommandArgs.parseArgs(args)
 
-    val parser = new SVMParser
-    parser.train(trainSentences.get)
+  // Read and parse training data
+  val trainSentences = DataParser.readDataSet(argz.trainingPath)
+  val testSentences = DataParser.readDataSet(argz.testPath)
 
-    // Inference
-    val inferredTree = parser.test(testSentences.get)
-    // Evaluation
-    val evaluation = parser.evaluate(inferredTree, testSentences.get)
+  val parser = new DependencyParser(trainSentences.get, testSentences.get)
+
+  // Evaluation
+  val accuracy = parser.getAccuracy
+
+  logger.info(s"\n\n\nRESULTS\n\n\n")
+  logger.info(f"Root Acc: ${accuracy.rootAccuracy}")
+  logger.info(f"Dep acc: ${accuracy.dependencyAccuracy}")
+  logger.info(f"Complete acc: ${accuracy.completeAccuracy}")
 }
 
 

@@ -27,15 +27,16 @@ trait TestSentence {
 
   /** Constituent tree of this sentence; includes head words */
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  var tree: Vector[Node]/* = {
-    // In order to be able to access the index, zip with index
-    val indexedWords = words.zipWithIndex
+  var tree: Vector[Node]
+  /* = {
+      // In order to be able to access the index, zip with index
+      val indexedWords = words.zipWithIndex
 
-    // Iterate thought all three collections and create Nodes
-    (indexedWords, tags).zipped.map {
-      (w, t) => Node(w._1, w._2, t)
-    }
-  }*/
+      // Iterate thought all three collections and create Nodes
+      (indexedWords, tags).zipped.map {
+        (w, t) => Node(w._1, w._2, t)
+      }
+    }*/
 
   /**
     * Sentence's length
@@ -63,7 +64,7 @@ final case class LabeledSentence(t: Tokens) extends TestSentence
   override val tags: Vector[String] = t.pos
   override val dep: Vector[Int] = t.dep
   // TODO: Would it be better to have a Structure like (root (leaf (leaf)) (leaf)...)
-  // TODO: Make immutable
+  // TODO: Make immutable using QuickLenses
   override var tree: Vector[Node] = {
     // In order to be able to access the index, zip with index
     val indexedWords = words.zipWithIndex
