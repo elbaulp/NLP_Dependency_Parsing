@@ -15,25 +15,64 @@ lenguaje natural. Dentro del amplio campo del \ac{NLP} podemos distinguir las
 siguientes áreas principales:
 
 \begin{description}\label{sec:nlpfields}
-  \item[QAS:] \ac{QAS}\marginpar{\acf{SRA}}. En estos sistemas se pretende
-    remplazar a los usuales buscadores en los que introducimos un texto para
-    obtener algún tipo de respuesta a una pregunta. Por ejemplo, si quisieramos
-    saber a qué hora abre un centro comercial, bastaría con hablarle al sistema
-    en lenguaje natural -- nuestro lenguaje natural, ya sea Inglés, Alemán o
-    Castellano y el sistema nos daría respuesta a nuestra pregunta. Aunque ya
-    existen este tipo de sistemas (\eg \emph{Siri, Cortana\dots}) están aún en
-    una situación muy precaria, ya que ninguno entiende por completo el lenguaje
-    natural, solo un subconjunto de frases clave.
   \item[Resúmenes:] Este área incluye aplicaciones que puedan, basándose en una
     colección de documentos, dar como salida un resumen coherente del contenido
     de los mismos. Otra de las posibles aplicaciones sería generar
-    presentaciones a partir de dichos documentos.
-  \item[Traducción:] Esta fue la principal área de investigación en el campo del
-    \ac{NLP}. Como claro ejemplo tenemos el traductor de Google, mejorando día a
-    día. Sin embargo, un traductor realmente útil sería aquel que consiga
-    traducir en tiempo real una frase que le dictemos mientras decidimos qué
-    línea de autobús debemos coger para llegar a tiempo a una conferencia en
-    Zurich.
+    presentaciones a partir de dichos documentos. En los últimos años, la
+    información disponible en la red ha aumentado considerablemente. Un claro
+    ejemplo es la literatura científica, o incluso repositorios de información
+    más genérica como \emph{Wikipedia}. Toda esta información escrita en
+    lenguaje natural puede aprovecharse para entrenar modelos que sean capaces
+    de generar hipótesis por sí mismos, generar resúmenes o extraer hechos. Un
+    ejemplo claro puede ser la extracción de hechos básicos que relacionen dos
+    entidades (\emph{``Luís es padre de Cristina''}.
+  \item[Traducción automática:] Esta fue la principal área de investigación en
+    el campo del \ac{NLP}. Como claro ejemplo tenemos el traductor de Google,
+    mejorando día a día. Sin embargo, un traductor realmente útil sería aquel
+    que consiga traducir en tiempo real una frase que le dictemos mientras
+    decidimos qué línea de autobús debemos coger para llegar a tiempo a una
+    conferencia en Zurich. La traducción entre lenguajes es quizá una de las
+    formas más transcendentales en las que las máquinas podrían ayudar en
+    comunicaciones entre humanos. Además, la capacidad de las máquinas para
+    traducir entre idiomas humanos se considera aún como un gran test a la
+    \ac{IA}, ya que una traducción correcta no consiste en el mero hecho de
+    generar frases en un idioma humano, también requiere del conocimiento humano
+    y del contexto, pese a las ambigüedades de cada idioma. Por ejemplo, la
+    traducción literal \emph{``bordel''} en Francés significa Burdel; pero si
+    alguien dice \emph{``Mi cuarto es un burdel''}, el traductor debería tener
+    el conocimiento suficiente para inferir que la persona se está refiriendo a
+    que su habitación es un desorden.
+
+    La traducción automática fue una de las primeras aplicaciones no numéricas
+    de la computación y comenzó a estudiarse de forma intensiva en la década de
+    los 50. Sin embargo, no fue hasta la década de los 90 cuando se produjo una
+    tansformación en este área. IBM se hizo con una gran cantidad de frases en
+    Inglés y Francés que eran traducciones las unas de las otras,
+    \marginpar{Conocido como texto paralelo} lo cual permitió recopilar
+    estadísticas de traducciones de palabras y secuencias de palabras,
+    concediento así el desarrollo de modelos probabilísticos para la traducción
+    automática. Hasta ese momento, todo el análisis gramático se hacía
+    manualmente.
+
+    A la llegada del nuevo milenio, se produjo una explosión de texto disponible
+    en la red, así como grandes cantidades de \emph{texto paralelo}. Se dieron
+    invención a nuevos sistemas para la traducción automática basados en modelos
+    estadísticos basados en frases en lugar de palabras. En lugar de traducir
+    palabra por palabra, ahora se tenían en cuenta pequeños grupos de palabras
+    que a menudo poseen una traducción característica.
+
+    En los últimos años, y mediante el uso de \emph{deep learning} se están
+    desarrollando modelos de secuencias basados en este tipo de aprendizaje
+    bastante prometedores. La idea principal del \emph{deep learning} reside en
+    entrenar un modelo con varios niveles de representación para optimizar el
+    objetivo deseado, una traducción de calidad, en este caso. Mediante estos
+    niveles el modelo puede aprender representaciones intermedias útiles para la
+    tarea que le ocupa. Este método de aprendizaje se ha explotado sobre todo en
+    redes neuronales. Un ejemplo claro de \emph{deep learning} usando redes
+    neuronales es el reconocimiento de dígitos, cada capa interna de la red
+    neuronal intenta extraer características representativas de cada dígito a
+    distintas escalas. Podemos ver una demostración de este comportamiento en
+    \citet{computerPhile:nn}
   \item[Reconocimiento de voz:] Una de las tareas más difíciles en \ac{NLP}. Aún
     así, se han conseguido grandes avances en la construcción de modelos que
     pueden usarse en el teléfono móvil o en el ordenador. Estos modelos son
@@ -42,6 +81,33 @@ siguientes áreas principales:
     funcionan bajo dominios muy acotados y no permiten al interlocutor desviarse
     de la entrada que espera el sistema, \eg \emph{``Por favor, diga ahora la
       opción a elegir: 1 Para\dots, 2 para\dots''}
+  \item[SDS:] Los \acp{SDS}\marginpar{\ac{SDS}: Sistemas de Diálogo
+      Hablados}. El diálogo ha sido un tema popular para el \ac{NLP} desde los
+    80. En estos sistemas se pretende remplazar a los usuales buscadores en los
+    que introducimos un texto para obtener algún tipo de respuesta a una
+    pregunta. Por ejemplo, si quisieramos saber a qué hora abre un centro
+    comercial, bastaría con hablarle al sistema en lenguaje natural -- nuestro
+    lenguaje natural, ya sea Inglés, Alemán o Castellano y el sistema nos daría
+    respuesta a nuestra pregunta. Aunque ya existen este tipo de sistemas (\eg
+    \emph{Siri de Apple, Cortana de Microsoft, Google Now\dots}) están aún en
+    una situación muy precaria, ya que ninguno entiende por completo el lenguaje
+    natural, solo un subconjunto de frases clave.
+
+    La creación de \acp{SDS}, ya sea entre humanos o entre humanos y agentes
+    artificiales requiere de herramientas como:
+    \begin{itemize}
+    \item \ac{ASR}, para identificar qué dice el humano.
+    \item \ac{DM}\marginpar{\ac{DM}: Gestión del diálogo}, para determinar qué
+      quiere el humano.
+    \item Acciones para obtener la información o realizar la actividad
+      solicitada.
+    \item Síntesis \ac{TTS}\marginpar{Leer un texto por una máquina}, para
+      comunicar dicha información al humano de forma hablada.
+    \end{itemize}
+    En la actualidad, \citet{microsoft:sds} desarrollaron un \ac{SDS} haciendo
+    uso de \emph{deep learning} para mapear señales sonoras a secuencias de
+    palabras y sonidos del idioma humano, logrando avances importantes en la
+    precisión del reconocimiento del habla.
   \item[Clasificación de documentos:] Una de las áreas más exitosas del
     \ac{NLP}, cuyo objetivo es identificar a qué categoría debería pertenecer un
     documento. Ha demostrado tener un amplio abanico de aplicaciones, \eg
@@ -49,6 +115,7 @@ siguientes áreas principales:
     valoraciones de películas\dots Parte de su éxito e impacto se debe a la
     facilidad relativa que conlleva entrenar los modelos de aprendizaje para
     hacer dichas clasificaciones.
+  \item[Análisis de Sentimientos:]
 \end{description}
 
 El \ac{NLP} emplea técnicas computacionales con el propósito de aprender,
@@ -61,7 +128,7 @@ hablados y motores de traducción \emph{Speech-to-Speech}, es decir, dados dos
 interlocutores, interpretar y traducir sus frases. Otro de los focos en los que
 se centran las investigaciones actuales son la minería en redes sociales en
 busca de información sobre salud, finanzas e identificar los sentimietos y
-emociones sobre determinados productos. 
+emociones sobre determinados productos.
 
 \section{Historia del Procesamiento del Lenguaje Natural}
 \label{sec:currentnlp}
@@ -82,7 +149,8 @@ fueron uno de los primeros éxitos notables del uso del \emph{big data}, mucho
 antes de que el \ac{AA} acuñara este término.
 
 Esta aproximación estadística al \ac{NLP} descubrió que el uso de métodos
-simples usando palabras, secuencias del \emph{\ac{POS}}\marginpar{\ac{POS}: Categorías
+simples usando palabras, secuencias del \emph{\ac{POS}}\marginpar{\ac{POS}:
+Categorías
   morfosintácticas en castellano} (si una palabra es un nombre, verbo o
 preposición), o plantillas simples pueden obtener buenos resultados cuando son
 entrenados sobre un gran conjunto de datos. A día de hoy, muchos sistemas de
@@ -129,9 +197,13 @@ el procesamiento del \ac{NLP} incluyendo:
 
 \begin{figure}[bth]
   \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{gfx/corenlp}}
-  \caption[Ejemplo de parseo de dependencias]{Many language technology tools start by doing linguistic structure analysis. Here we show output from Stanford CoreNLP. As shown from top to
-bottom, this tool determines the parts of speech of each word, tags various words or phrases as semantic named entities of various sorts, determines which entity
-mentions co-refer to the same person or organization, and then works out the syntactic structure of each sentence, using a dependency grammar analysis.}
+  \caption[Ejemplo de parseo de dependencias]{Many language technology tools
+start by doing linguistic structure analysis. Here we show output from Stanford
+CoreNLP. As shown from top to bottom, this tool determines the parts of speech
+of each word, tags various words or phrases as semantic named entities of
+various sorts, determines which entity mentions co-refer to the same person or
+organization, and then works out the syntactic structure of each sentence, using
+a dependency grammar analysis.}
   \label{fig:corenlp}
 \end{figure}
 
@@ -142,10 +214,11 @@ Aunque se han producido avances, una de las principales limitaciones del
 \ac{NLP} hoy día es el hecho de que la mayoría de recursos y sistemas solo están
 disponibles para los denominados \acp{HRL}\marginpar{\ac{HRL}: Idiomas de altos
 recursos}, estos lenguajes son el Inglés, Francés, Español, Alemán y Chino. Por
-contra, hay una gran cantidad de \acp{LRL} --\marginpar{\ac{LRL}: Idiomas de bajos
-recursos} como Bengalí, Indonesio, Punjabí, Cebuano y Swahili -- hablados y
-escritos por millones de personas que no disponen de este tipo de sistemas. Uno
-de los mayores retos para la comunidad del lenguaje es desarrollar recursos y
-herramientas para cientos o miles de lenguajes, no solo para unos pocos.
+contra, hay una gran cantidad de \acp{LRL} --\marginpar{\ac{LRL}: Idiomas de
+bajos recursos} como Bengalí, Indonesio, Punjabí, Cebuano y Swahili -- hablados
+y escritos por millones de personas que no disponen de este tipo de
+sistemas. Uno de los mayores retos para la comunidad del lenguaje es desarrollar
+recursos y herramientas para cientos o miles de lenguajes, no solo para unos
+pocos.
 
 
