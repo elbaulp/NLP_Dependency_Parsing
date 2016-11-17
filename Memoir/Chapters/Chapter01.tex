@@ -23,13 +23,13 @@
 \label{sec:whatisnlp}
 
 El lenguaje natural se refiere a cualquier lenguaje hablado por un humano, (\eg
-Inglés, Castellano o Chino). El \ac{NLP}\graffito{\acf{PNL}} es un campo de la
-ciencia de la computación e ingeniería desarrollado a partir del estudio del
-lenguaje y la computación lingüistica dentro del campo de la \ac{IA}. Los
-objetivos del \ac{NLP} son diseñar y construir aplicaciones que faciliten la
-interacción humana con la máquinas y otros dispositivos mediante el uso del
-lenguaje natural. Dentro del amplio campo del \ac{NLP} podemos distinguir las
-siguientes áreas principales:
+Inglés, Castellano o Chino). El \acfi{NLP}\acused{NLP}\graffito{\acf{PNL}} es un
+campo de la ciencia de la computación e ingeniería desarrollado a partir del
+estudio del lenguaje y la computación lingüistica dentro del campo de la
+\ac{IA}. Los objetivos del \ac{NLP} son diseñar y construir aplicaciones que
+faciliten la interacción humana con la máquinas y otros dispositivos mediante el
+uso del lenguaje natural. Dentro del amplio campo del \ac{NLP} podemos
+distinguir las siguientes áreas principales:
 
 El lenguaje natural se refiere a cualquier lenguaje hablado por un humano, (\eg
 Inglés, Castellano o Chino). El \ac{NLP}\graffito{\acf{PNL}} es un campo de la
@@ -103,33 +103,33 @@ de este comportamiento en \citet{computerPhile:nn}
 \ac{NLP}. Aún así, se han conseguido grandes avances en la construcción de
 modelos que pueden usarse en el teléfono móvil o en el ordenador. Estos modelos
 son capaces de reconocer expresiones del lenguaje hablado como preguntas y
-comandos. Desafortunadamente, los sistemas \ac{ASR}\graffito{\acf{RVA}}
-funcionan bajo dominios muy acotados y no permiten al interlocutor desviarse de
-la entrada que espera el sistema, \eg \emph{``Por favor, diga ahora la opción a
-elegir: 1 Para\dots, 2 para\dots''}
+comandos. Desafortunadamente, los sistemas
+\acfi{ASR}\acused{ASR}\graffito{\acf{RVA}} funcionan bajo dominios muy acotados
+y no permiten al interlocutor desviarse de la entrada que espera el sistema, \eg
+\emph{``Por favor, diga ahora la opción a elegir: 1 Para\dots, 2 para\dots''}
 
-\paragraph{SDS:} Los \acp{SDS}\graffito{\ac{SDS}: Sistemas de Diálogo
-Hablados}. El diálogo ha sido un tema popular para el \ac{NLP} desde los 80. En
-estos sistemas se pretende remplazar a los usuales buscadores en los que
+\paragraph{SDS:} Los \emph{\acp{SDS}}\graffito{\ac{SDS}: Sistemas de Diálogo
+  Hablados}. El diálogo ha sido un tema popular para el \ac{NLP} desde los
+80. En estos sistemas se pretende remplazar a los usuales buscadores en los que
 introducimos un texto para obtener algún tipo de respuesta a una pregunta. Por
 ejemplo, si quisieramos saber a qué hora abre un centro comercial, bastaría con
 hablarle al sistema en lenguaje natural -- nuestro lenguaje natural, ya sea
 Inglés, Alemán o Castellano y el sistema nos daría respuesta a nuestra
 pregunta. Aunque ya existen este tipo de sistemas (\eg \emph{Siri de Apple,
-Cortana de Microsoft, Google Now\dots}) están aún en una situación muy precaria,
-ya que ninguno entiende por completo el lenguaje natural, solo un subconjunto de
-frases clave.
+  Cortana de Microsoft, Google Now\dots}) están aún en una situación muy
+precaria, ya que ninguno entiende por completo el lenguaje natural, solo un
+subconjunto de frases clave.
 
 La creación de \acp{SDS}, ya sea entre humanos o entre humanos y agentes
 artificiales requiere de herramientas como:
 \begin{itemize}
-    \item \ac{ASR}, para identificar qué dice el humano.
-    \item \ac{DM}\graffito{\ac{DM}: Gestión del diálogo}, para determinar qué
-quiere el humano.
-    \item Acciones para obtener la información o realizar la actividad
-solicitada.
-    \item Síntesis \ac{TTS}\graffito{Leer un texto por una máquina}, para
-comunicar dicha información al humano de forma hablada.
+\item \ac{ASR}, para identificar qué dice el humano.
+\item \acfi{DM}\acused{DM}\graffito{\ac{DM}: Gestión del diálogo}, para
+  determinar qué quiere el humano.
+\item Acciones para obtener la información o realizar la actividad
+  solicitada.
+\item Síntesis \acfi{TTS}\acused{TTS}\graffito{Leer un texto por una
+    máquina}, para comunicar dicha información al humano de forma hablada.
 \end{itemize} En la actualidad, \citet{microsoft:sds} desarrollaron un \ac{SDS}
 haciendo uso de \emph{deep learning} para mapear señales sonoras a secuencias de
 palabras y sonidos del idioma humano, logrando avances importantes en la
@@ -210,42 +210,45 @@ fueron uno de los primeros éxitos notables del uso del \emph{big data}, mucho
 antes de que el \ac{AA} acuñara este término.
 
 Esta aproximación estadística al \ac{NLP} descubrió que el uso de métodos
-simples usando palabras, secuencias del \emph{\ac{POS}}\graffito{\ac{POS}:
-Categorías morfosintácticas en castellano} (si una palabra es un nombre, verbo o
-preposición), o plantillas simples pueden obtener buenos resultados cuando son
-entrenados sobre un gran conjunto de datos. A día de hoy, muchos sistemas de
-clasificación de texto y sentimientos se basan únicamente en los distintos
-conjuntos de palabras o \emph{``bag of words''} que contienen los documentos,
-sin prestar atención a su estructura o significado. El estado del arte de hoy
-día usa aproximaciones con \ac{AA} y un rico conocimiento de la estructura
-lingüística. Un ejemplo de estos sistemas es \emph{Stanford CoreNLP}
-\citep{Manning2014}. \emph{CoreNLP} proporciona un \emph{pipeline} estándar para
-el procesamiento del \ac{NLP} incluyendo:
+simples usando palabras, secuencias del
+\acfi{POS}\acused{POS}\graffito{\ac{POS}: Categorías morfosintácticas en
+  castellano} (si una palabra es un nombre, verbo o preposición), o plantillas
+simples pueden obtener buenos resultados cuando son entrenados sobre un gran
+conjunto de datos. A día de hoy, muchos sistemas de clasificación de texto y
+sentimientos se basan únicamente en los distintos conjuntos de palabras o
+\emph{``bag of words''} que contienen los documentos, sin prestar atención a su
+estructura o significado. El estado del arte de hoy día usa aproximaciones con
+\ac{AA} y un rico conocimiento de la estructura lingüística. Un ejemplo de estos
+sistemas es \emph{Stanford CoreNLP} \citep{Manning2014}. \emph{CoreNLP}
+proporciona un \emph{pipeline} estándar para el procesamiento del \ac{NLP}
+incluyendo:
 
 \begin{description}
-  \item[POS Tagging:] o etiquetado morfosintáctico. Módulo encargado de leer
-texto en algún lenguaje y asignar la categoría morfosintáctica a cada palabra,
-\eg nombre, verbo, adjetivo\dots aunque por lo general se suelen usar etiquetas
-más detalladas como ``\emph{nombre-plural}''.
-  \item[NER:] \ac{NER}, etiqueta palabras en un texto correspondientes a
-\emph{nombres de cosas}, como personas, nombres de compañías, nombres de
-proteínas o genes etc. En concreto, \emph{CoreNLP} distingue de forma muy
-precisa tres tipos de clases, personas, organizaciones y localizaciones.
-  \item[Parseo Gramatical:] Resuelve la estructura gramatical de frases, \eg qué
-grupos de palabras van juntos formando frases y qué palabras son sujeto u objeto
-de un verbo. Como se ha comentado, en aproximaciones anteriores se usaban
-parseadores probabilísticos usando conocimiento del lenguaje a partir de
-sentencias analizadas sintácticamente a mano. Para así producir el análisis más
-probable de sentencias nuevas. Actualmente se se usan parseadores estadísticos,
-los cuales aún comenten fallos, pero funcionan bien a rasgos generales.
-  \item[DP:] \ac{DP} o parseo de dependencias. Analiza la estructura gramatical
-de una frase, estableciendo relaciones entre palabras principales y palabras que
-modifican dichas palabras principales. La \autoref{fig:nndep} muestra un
-ejemplo. La flecha dirigida de la palabra \emph{moving} a la palabra
-\emph{faster} indica que \emph{faster} modifica a \emph{moving}. La flecha está
-etiquetada con una palabra, en este caso \emph{advmod}, indicando la naturaleza
-de esta dependencia. La \autoref{fig:corenlp} muestra ejemplos de los distintos
-módulos del \emph{pipeline} de \emph{CoreNLP}
+\item[POS Tagging:] o etiquetado morfosintáctico. Módulo encargado de leer texto
+  en algún lenguaje y asignar la categoría morfosintáctica a cada palabra, \eg
+  nombre, verbo, adjetivo\dots aunque por lo general se suelen usar etiquetas
+  más detalladas como ``\emph{nombre-plural}''.
+\item[NER:] \acfi{NER}\acused{NER}, etiqueta palabras en un texto
+  correspondientes a \emph{nombres de cosas}, como personas, nombres de
+  compañías, nombres de proteínas o genes etc. En concreto, \emph{CoreNLP}
+  distingue de forma muy precisa tres tipos de clases, personas, organizaciones
+  y localizaciones.
+\item[Parseo Gramatical:] Resuelve la estructura gramatical de frases, \eg qué
+  grupos de palabras van juntos formando frases y qué palabras son sujeto u
+  objeto de un verbo. Como se ha comentado, en aproximaciones anteriores se
+  usaban parseadores probabilísticos usando conocimiento del lenguaje a partir
+  de sentencias analizadas sintácticamente a mano. Para así producir el análisis
+  más probable de sentencias nuevas. Actualmente se se usan parseadores
+  estadísticos, los cuales aún comenten fallos, pero funcionan bien a rasgos
+  generales.
+\item[DP:] \acfi{DP}\acused{DP} o parseo de dependencias. Analiza la estructura
+  gramatical de una frase, estableciendo relaciones entre palabras principales y
+  palabras que modifican dichas palabras principales. La \autoref{fig:nndep}
+  muestra un ejemplo. La flecha dirigida de la palabra \emph{moving} a la
+  palabra \emph{faster} indica que \emph{faster} modifica a \emph{moving}. La
+  flecha está etiquetada con una palabra, en este caso \emph{advmod}, indicando
+  la naturaleza de esta dependencia. La \autoref{fig:corenlp} muestra ejemplos
+  de los distintos módulos del \emph{pipeline} de \emph{CoreNLP}
 \end{description}
 
 \begin{figure}[bth]
@@ -271,13 +274,13 @@ a dependency grammar analysis.}
 
 Aunque se han producido avances, una de las principales limitaciones del
 \ac{NLP} hoy día es el hecho de que la mayoría de recursos y sistemas solo están
-disponibles para los denominados \acp{HRL}\graffito{\ac{HRL}: Idiomas de altos
-recursos}, estos lenguajes son el Inglés, Francés, Español, Alemán y Chino. Por
-contra, hay una gran cantidad de \acp{LRL} --\graffito{\ac{LRL}: Idiomas de
-bajos recursos} como Bengalí, Indonesio, Punjabí, Cebuano y Swahili -- hablados
-y escritos por millones de personas que no disponen de este tipo de
-sistemas. Uno de los mayores retos para la comunidad del lenguaje es desarrollar
-recursos y herramientas para cientos o miles de lenguajes, no solo para unos
-pocos.
+disponibles para los denominados \emph{\acp{HRL}}\graffito{\ac{HRL}: Idiomas de
+  altos recursos}, estos lenguajes son el Inglés, Francés, Español, Alemán y
+Chino. Por contra, hay una gran cantidad de \emph{\acp{LRL}}
+--\graffito{\ac{LRL}: Idiomas de bajos recursos} como Bengalí, Indonesio,
+Punjabí, Cebuano y Swahili -- hablados y escritos por millones de personas que
+no disponen de este tipo de sistemas. Uno de los mayores retos para la comunidad
+del lenguaje es desarrollar recursos y herramientas para cientos o miles de
+lenguajes, no solo para unos pocos.
 
 
