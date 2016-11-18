@@ -19,6 +19,8 @@
 \todo[inline]{Motivación: Falta de software español, justificar decisión de
   afrontar problema.}
 
+\info{Añadir sección ``\emph{El resto del paper está organizado\dots}''}
+
 \section{¿Qué es el Procesamiento del Lenguaje Natural?}
 \label{sec:whatisnlp}
 
@@ -219,37 +221,37 @@ sentimientos se basan únicamente en los distintos conjuntos de palabras o
 \emph{``bag of words''} que contienen los documentos, sin prestar atención a su
 estructura o significado. El estado del arte de hoy día usa aproximaciones con
 \ac{AA} y un rico conocimiento de la estructura lingüística. Un ejemplo de estos
-sistemas es \emph{Stanford CoreNLP} \citep{Manning2014}. \emph{CoreNLP}
+sistemas es \emph{Stanford \textsc{CoreNLP}} \citep{Manning2014}. \emph{\textsc{CoreNLP}}
 proporciona un \emph{pipeline} estándar para el procesamiento del \ac{NLP}
 incluyendo:
 
-\begin{description}
-\item[POS Tagging:] o etiquetado morfosintáctico. Módulo encargado de leer texto
-  en algún lenguaje y asignar la categoría morfosintáctica a cada palabra, \eg
-  nombre, verbo, adjetivo\dots aunque por lo general se suelen usar etiquetas
-  más detalladas como ``\emph{nombre-plural}''.
-\item[NER:] \acfi{NER}\acused{NER}, etiqueta palabras en un texto
-  correspondientes a \emph{nombres de cosas}, como personas, nombres de
-  compañías, nombres de proteínas o genes etc. En concreto, \emph{CoreNLP}
-  distingue de forma muy precisa tres tipos de clases, personas, organizaciones
-  y localizaciones.
-\item[Parseo Gramatical:] Resuelve la estructura gramatical de frases, \eg qué
-  grupos de palabras van juntos formando frases y qué palabras son sujeto u
-  objeto de un verbo. Como se ha comentado, en aproximaciones anteriores se
-  usaban parseadores probabilísticos usando conocimiento del lenguaje a partir
-  de sentencias analizadas sintácticamente a mano. Para así producir el análisis
-  más probable de sentencias nuevas. Actualmente se se usan parseadores
-  estadísticos, los cuales aún comenten fallos, pero funcionan bien a rasgos
-  generales.
-\item[DP:] \acfi{DP}\acused{DP} o parseo de dependencias. Analiza la estructura
-  gramatical de una frase, estableciendo relaciones entre palabras principales y
-  palabras que modifican dichas palabras principales. La \autoref{fig:nndep}
-  muestra un ejemplo. La flecha dirigida de la palabra \emph{moving} a la
-  palabra \emph{faster} indica que \emph{faster} modifica a \emph{moving}. La
-  flecha está etiquetada con una palabra, en este caso \emph{advmod}, indicando
-  la naturaleza de esta dependencia. La \autoref{fig:corenlp} muestra ejemplos
-  de los distintos módulos del \emph{pipeline} de \emph{CoreNLP}
-\end{description}
+\paragraph{POS Tagging:}Etiquetado morfosintáctico. Módulo encargado de leer
+texto en algún lenguaje y asignar la categoría morfosintáctica a cada palabra,
+\eg nombre, verbo, adjetivo\dots aunque por lo general se suelen usar etiquetas
+más detalladas como ``\emph{nombre-plural}''.
+
+\paragraph{NER:}\acfi{NER}\acused{NER}, etiqueta palabras en un texto
+correspondientes a \emph{nombres de cosas}, como personas, nombres de compañías,
+nombres de proteínas o genes etc. En concreto, \emph{\textsc{CoreNLP}} distingue de forma
+muy precisa tres tipos de clases, personas, organizaciones y localizaciones.
+
+\paragraph{Parseo Gramatical:}Resuelve la estructura gramatical de frases, \eg
+qué grupos de palabras van juntos formando frases y qué palabras son sujeto u
+objeto de un verbo. Como se ha comentado, en aproximaciones anteriores se usaban
+parseadores probabilísticos usando conocimiento del lenguaje a partir de
+sentencias analizadas sintácticamente a mano. Para así producir el análisis más
+probable de sentencias nuevas. Actualmente se se usan parseadores estadísticos,
+los cuales aún comenten fallos, pero funcionan bien a rasgos generales.
+
+\paragraph{DP:}\acfi{DP}\acused{DP} o parseo de dependencias. Analiza la
+estructura gramatical de una frase, estableciendo relaciones entre palabras
+principales y palabras que modifican dichas palabras principales. La
+\autoref{fig:nndep} muestra un ejemplo. La flecha dirigida de la palabra
+\emph{moving} a la palabra \emph{faster} indica que \emph{faster} modifica a
+\emph{moving}. La flecha está etiquetada con una palabra, en este caso
+\emph{advmod}, indicando la naturaleza de esta dependencia. La
+\autoref{fig:corenlp} muestra ejemplos de los distintos módulos del
+\emph{pipeline} de \emph{\textsc{CoreNLP}}
 
 \begin{figure}[bth]
   \includegraphics[width=1\linewidth]{gfx/nndep-example}
@@ -282,5 +284,54 @@ Punjabí, Cebuano y Swahili -- hablados y escritos por millones de personas que
 no disponen de este tipo de sistemas. Uno de los mayores retos para la comunidad
 del lenguaje es desarrollar recursos y herramientas para cientos o miles de
 lenguajes, no solo para unos pocos.
+
+Aún existiendo bastante \emph{software} trabajando con \ac{NLP}, y para idiomas
+\ac{HRL}, suelen obtenerse mejores resultados para un idioma en concreto, el
+Inglés. \change{Me dijiste ``\emph{justificar el por qué hemos decidido afrontar
+    este problema}'', pero no se me ocurre qué poner} Es por ello que este
+trabajo se ha centrado en desarrollar una fase del \emph{pipeline} que se
+encuentra en todos los sistemas que realizan análisis de sentimientos, y en
+general \ac{NLP} para el idioma Español. Como ejemplo podemos citar el famoso
+\textsc{CoreNLP} \cite{manning-EtAl:2014:P14-5}.
+
+En la \autoref{table:corenlpfeatures} se lista todo el \emph{pipeline} de
+\textsc{CoreNLP} junto con el soporte para cada lenguaje. Como se aprecia, el
+\emph{pipeline} esta completo únicamente para el Inglés. El objetivo de este
+trabajo ha consistido en implementar un parseo de dependencias para el Español.
+
+\newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
+  (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand*{\ccheck}{\checktikz[rounded corners=.5pt, draw=black,
+  thin]} %\checktikz[rounded corners=.5pt, draw=red, ultra thin]
+
+\begin{table}[]
+  \centering
+  \caption{\emph{Pipeline} de \textsc{CoreNLP} y disponibilidad por lenguaje}
+  \label{table:corenlpfeatures}
+  \begin{tabular}{lllllll}
+    \rowcolor[HTML]{443627} 
+    \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{ANNOTATOR}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{AR}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{ZH}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{EN}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{FR}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{DE}}} & \multicolumn{1}{c}{\cellcolor[HTML]{443627}{\color[HTML]{FFFFFF} \textbf{ES}}} \\
+    Tokenize / Segment & \ccheck & \ccheck & \ccheck & \ccheck &  & \ccheck \\
+    Sentence Split & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+    Part of Speech & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+    Lemma &  &  & \ccheck &  &  &  \\
+    Named Entities &  & \ccheck & \ccheck &  & \ccheck & \ccheck \\
+    Constituency Parsing & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+    Dependency Parsing &  & \ccheck & \ccheck & \ccheck & \ccheck &  \\
+    Sentiment Analysis &  &  & \ccheck &  &  &  \\
+    Mention Detection &  & \ccheck & \ccheck &  &  &  \\
+    Coreference &  & \ccheck & \ccheck &  &  &  \\
+    Open IE &  &  & \ccheck &  &  & 
+  \end{tabular}
+\end{table}
+
+Con la introducción del \emph{pipeline} de \textsc{CoreNLP}, se pasa ahora a
+describir el proceso que todo sistema para \ac{NLP} debe seguir. Comenzaremos
+mencionando un proceso genérico, para después profundizar en el \emph{pipeline}
+de un \emph{software} especícifo, \textsc{CoreNLP} en nuestro caso.
+
+\section{El pipeline genérico}
+\label{sec:genericpipeline}
 
 
