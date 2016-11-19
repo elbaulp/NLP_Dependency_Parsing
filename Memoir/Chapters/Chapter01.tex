@@ -342,10 +342,19 @@ se enfrenta todo sistema que realice \question[fancyline]{Me sigo refiriendo a
   NLP, o menciono \emph{análisis de sentimientos/opinion Mining}?} análisis de
 sentimientos.
 
-
-
-
-
+\citet{liu:2010} define una opinión como una quíntupla conteniendo el objetivo
+de la opinión (o \emph{entidad}), el atributo del objetivo al que se dirige la
+opinión, el sentimiento (o polaridad) de la opinión, pudiendo ser este positivo,
+negativo o neutral, el poseedor de dicha opinión y la fecha en la que se
+produjo. Formalmente se podría definir como la tupla:
+\[
+  (e_i, a_{ij}, s_{ijkl}, h_k, t_l)
+\]
+donde $e_i$ corresponde con el objetivo de la opinión i-ésima, $a_{ij}$ es el
+j-ésimo atributo de $e_i$, $h_k$ el k-ésimo poseedor de la opinión, $t_l$
+codifica el tiempo en el que se emitió la opinión y por último, $s_{ijkl}$ es la
+polaridad de la opinión hacia el atributo $a_{ij}$ para la entidad $e_i$ por el
+poseedor de la opinión $h_k$ en el momento $t_l$.
 
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
