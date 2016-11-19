@@ -234,3 +234,4 @@ TSWLatexianTemp*
 # auto folder when using emacs and auctex 
 /auto/*
 src/main/resources/XY
+Memoir/Papers
