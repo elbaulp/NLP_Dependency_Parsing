@@ -373,6 +373,45 @@ primeros.
 \subsubsection{Adquisición de Datos}
 \label{sec:dataacq}
 
+En este paso se debe obtener el \emph{corpus} para el cual se desea realizar el
+análisis de sentimientos. Actualmente existen dos aproximaciones para realizar
+esta tarea. Una de ellas consiste en hacer uso de la \acfi{API}\acused{API} de
+alguna página web de la que se desee extraer el \emph{corpus}. Una de las
+\acp{API} más populares para este propósito es la de Twitter. La segunda
+aproximación hace uso de \emph{Web Crawlers}\graffito{Rastreadores de Webs} para
+extraer datos de las webs deseadas.
+
+Ambas aproximaciones presentan sus ventajas y desventajas, y por tanto existen
+\enhancement{Conozco bien el concepto de esta palabra, pero no encuentro la
+  adecuada traducción. ¿Sacrificios?. Podría poner, \emph{En función de qué
+    aproximación se decida usar, sacrificaremos unas ventajas frente a
+    otras}}\emph{trade-off} en función de cual se decida usar. Veamos algnos de
+ellos.
+
+Mediante el uso de una \ac{API} la implementación es sencilla, los datos
+obtenidos están ordenados y poseen una estructura poco sujeta al cambio, sin
+embargo, en función del proveedor de la \ac{API} se presentan ciertas
+limitaciones. Siguiendo con Twitter, su \ac{API} limita a 180 consultas cada 15
+minutos el número de peticiones que se pueden realizar. Además, su \ac{API} para
+\emph{streaming} presenta otras limitaciones. En lugar de imponer límites a la
+cantidad de peticiones, restringe el número de clientes que se pueden conectar
+desde la misma dirección \textsc{ip} al mismo tiempo, así como la velocidad a la
+que cada uno puede leer los datos. Pese a las limitaciones anteriores, la más
+importante quizás sea que esta aproximación depende de la existencia de una
+\ac{API} por parte del sitio web.
+
+Por otro lado, la aproximación basada en rastreadores webs son bastante más
+complejas de implementar, la razón principal se debe a que los datos obtenidos,
+por norma general tendrán ruido y no estarán estructurados. Como beneficio, esta
+aproximación tiene la capacidad no imponernos prácticamente ninguna
+restricción. Si bien es cierto, se deben respetar ciertas normas y protocolos
+como las indicaciones del fichero
+\textsc{robots.txt}\footnote{\url{http://www.robotstxt.org/robotstxt.html}} de
+cada sitio web, no realizar múltiples peticiones al mismo servidor y espaciar
+las mismas para no someter al servidor a demasiada carga.
+
+\subsubsection{Preprocesamiento del texto}
+\label{sec:textpreprocesing}
 
 
 \section{El pipeline de \textsc{CoreNLP}}
