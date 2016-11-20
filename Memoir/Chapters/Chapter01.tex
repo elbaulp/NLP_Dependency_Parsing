@@ -299,11 +299,12 @@ En la \autoref{table:corenlpfeatures} se lista todo el \emph{pipeline} de
 \emph{pipeline} esta completo únicamente para el Inglés. El objetivo de este
 trabajo ha consistido en implementar un parseo de dependencias para el Español.
 
+\definecolor{tick}{HTML}{5dc452}
 \newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
   (1,.7) -- (.25,.15) -- cycle;}
-
-\newcommand*{\ccheck}{\checktikz[rounded corners=.5pt, draw=black,
+\newcommand*{\ccheck}{\checktikz[tick,rounded corners=.5pt, draw=tick,
   thin]} %\checktikz[rounded corners=.5pt, draw=red, ultra thin]
+
 
 \begin{table}[]
   \centering
@@ -412,6 +413,22 @@ las mismas para no someter al servidor a demasiada carga.
 
 \subsubsection{Preprocesamiento del texto}
 \label{sec:textpreprocesing}
+
+El segundo paso en el \emph{pipeline} del análisis de sentimientos es el
+preprocesamiento del texto adquirido. En este paso se realizan varias tareas
+habituales para el \ac{NLP} correspondientes al análisis léxico. Algunas de
+estas tareas son:
+
+\paragraph{Tokenización:}Encargada de separar las cadenas de texto del documento
+completo en una lista de palabras. Es muy sencilla de realizar para idiomas
+delimitados por espacios como el Inglés, Español o Francés, pero se torna
+considerablemente más complejo para idiomas donde las palabras no son
+delimitadas por espacios, como el Japonés, Chino y Thai.
+
+\paragraph{Stemming o lematización}:  
+
+
+
 
 
 \section{El pipeline de \textsc{CoreNLP}}
