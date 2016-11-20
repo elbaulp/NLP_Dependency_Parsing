@@ -422,14 +422,37 @@ estas tareas son:
 \paragraph{Tokenización:}Encargada de separar las cadenas de texto del documento
 completo en una lista de palabras. Es muy sencilla de realizar para idiomas
 delimitados por espacios como el Inglés, Español o Francés, pero se torna
-considerablemente más complejo para idiomas donde las palabras no son
+considerablemente más compleja para idiomas donde las palabras no son
 delimitadas por espacios, como el Japonés, Chino y Thai.
 
-\paragraph{Stemming o lematización}:  
+\paragraph{Stemming:}Proceso heurístico encargado de eliminar los afijos de la
+palabra para dejarlos en su forma canónica (invariante, o raíz). Por ejemplo,
+\emph{persona,  personificar y personificación} pasan a ser \emph{persona}
+una vez acabado este proceso.
 
+\paragraph{Lematización:}Proceso algorítmico para convertir una
+palabra a su forma de diccionario \question{traducción literal de
+  \emph{non-inflected dictionary form}}no-inflexible. Esta fase es análoga a la
+anterior (\emph{stemming}) pero se realiza a través de una serie de pasos más
+rigurosos que incorporan un análisis morfológico de cada palabra.
 
+\paragraph{Eliminar stopwords:} Actividad encargada de borrar las palabras
+usadas para estructurar el lenguaje pero que no contribuyen de modo alguno a su
+contenido. Algunos ejemplos de estas palabras pueden ser \emph{de, la, que, el,
+  en, y, a, los, del, se, las, por, un, par, con}.\footnote{Para ver una lista
+  completa de palabras visitar:
+  \url{http://snowball.tartarus.org/algorithms/spanish/stop.txt}}
 
+\paragraph{Segmentación de frases:}Procedimiento que separa párrafos en
+sentencias. Presenta sus propios retos, ya que los signos de puntuación, como el
+punto (.) se usan con frecuencia para marcar tanto el fin de una frase como para
+denotar abreviaciones y números decimales.
 
+\paragraph{POS tagging} o etiquetado morfosintáctico. Paso que etiqueta cada
+palabra de una sentencia con su categoría morfosintática, como \emph{adjetivo,
+  nombre, verbo, adverbio} y \emph{preposición}. Estas etiquetas pueden usarse
+como entrada para procesamientos futuros, como el parseo de dependencias
+(Objetivo de este trabajo) o como característica para el proceso de \ac{AA}.
 
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
