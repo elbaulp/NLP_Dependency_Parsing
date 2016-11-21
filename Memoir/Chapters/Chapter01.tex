@@ -419,6 +419,7 @@ preprocesamiento del texto adquirido. En este paso se realizan varias tareas
 habituales para el \ac{NLP} correspondientes al análisis léxico. Algunas de
 estas tareas son:
 
+\label{par:token}
 \paragraph{Tokenización:}Encargada de separar las cadenas de texto del documento
 completo en una lista de palabras. Es muy sencilla de realizar para idiomas
 delimitados por espacios como el Inglés, Español o Francés, pero se torna
@@ -485,6 +486,64 @@ actuan las aproximaciones más comunes.
 \subsubsection{Niveles de análisis}
 \label{sec:anallevels}
 
+Desde que el análisis de sentimientos comenzó a ganar popularidad, se han ido
+proponiendo distintos niveles para el análisis en las distintas etapas. La
+primera se realizaba a nivel del documento, donde el objetivo residía en
+identificar la polaridad general del mismo. Más tarde, el interés se desplazó
+hacia un nivel más específico, las setentencias. Por último, se bajó un paso más
+en cuanto a la granularidad para interesarse a nivel de entidad. Cabe destacar
+que los niveles más granulares pueden agruparse o conglomerarse para formar
+niveles más altos -- menos granulares, a mayor escala -- Por ejemplo, una
+análisis de sentimientos podría calcular la media de polaridades en una frase y
+producir un resultado a nivel de sentencias. Veamos a continuación los distintos
+niveles.
+
+\paragraph{Nivel de documento:}A este nivel, el análisis trata de clasificar el
+documento al completo con una polaridad positiva o negativa. La utilidad de este
+nivel a menudo está limitada y por normal general se usa en el contexto del
+análisis de reseñas \cite{Liu2012}. Formalmente, el objetivo para este tipo de
+tareas puede definirse como una versión modificada de la representación
+introducida en la \autoref{sec:genericpipeline} y corresponde a la búsqueda de
+tuplas
+\[
+  (-, GENERAL, S_{GENERAL}, -, -)
+\]
+donde la entidad $e$, el poseedor de la opinión $h$, y el tiempo $t$ en el que
+se manifestó la opinión se asumen conocidos o se ignoran. El atributo $a_j$ de
+la entidad $e$ se corresponde con GENERAL. Todo esto implica que el análisis
+devolverá sólamente la polaridad general del documento.\question{¿Pongo
+  ejemplos? \emph{To give a few examples, in [47], Pang and Lee attempted to
+    predict the polarity of movie reviews using three different machine learning
+    techniques: Naïve Bayes, Maximum Entropy classification and Support Vector
+    Machine (SVM). Similarly, in [50] the same authors tried to predict the
+    rating of a movie given in a review, instead of just classifying the review
+    into a positive or negative class.}}
+
+\paragraph{Nivel de sentencia:} Análogo al anterior, ya que se podría considerar
+una sentencia como un documento corto. Sin embargo, este nivel presenta algunos
+pasos de preprocesamiento consistentes en separar el documento en oraciones,
+paso que a su vez posee retos similares a la tokenización de idiomas no
+delimitados por periodos --- visto en la \enhancement[fancyline]{Lo dejo?} \autoref{par:token} ---
+
+\paragraph{Nivel de entidad y aspecto:} El más granular de todos a los que el
+análisis de sentimientos puede trabajar. A este nivel la tarea no consiste
+únicamente en encontrar la polaridad de una opinión, también su objetivo --- a
+quién va dirigida --- Por esto mismo, la definición de la quíntupla en la
+\autoref{sec:genericpipeline} aplica al completo. El análisis a nivel de
+documento y sentencias funcionan bien cuando el texto analizado contiene una
+sola entidad y aspecto, pero empeoran para varios \cite{Feldman2013}. Para
+resolver este tipo de problemas, algunos sistemas de análisis de sentimientos
+basados en aspectos intentan detectar cada aspecto mencionado en el texto para
+asociarlo con una opinión.
+
+El primer trabajo que se ocupó de resolver este problema fue obra de
+\citet{Hu2004}. \citeauthor{Hu2004} detectaban características de productos --
+aspectos -- comentados con frecuencia por clientes, luego identificaban dichas
+sentencias con opiniones, las evaluaban en base a su polaridad y finalmente
+resumían los resultados.
+
+\subsubsection{Otras aproximaciones}
+\label{sec:approaches}
 
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
