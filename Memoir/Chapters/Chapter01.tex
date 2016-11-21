@@ -133,8 +133,8 @@ artificiales requiere de herramientas como:
 \item Síntesis \acfi{TTS}\acused{TTS}\graffito{Leer un texto por una
     máquina}, para comunicar dicha información al humano de forma hablada.
 \end{itemize} En la actualidad, \citet{microsoft:sds} desarrollaron un \ac{SDS}
-haciendo uso de \emph{deep learning} para mapear señales sonoras a secuencias de
-palabras y sonidos del idioma humano, logrando avances importantes en la
+haciendo uso de \emph{deep learning} para asociar señales sonoras a secuencias
+de palabras y sonidos del idioma humano, logrando avances importantes en la
 precisión del reconocimiento del habla.
 
 \paragraph{Clasificación de documentos:} Una de las áreas más exitosas del
@@ -544,6 +544,63 @@ resumían los resultados.
 
 \subsubsection{Otras aproximaciones}
 \label{sec:approaches}
+
+Existen dos aproximaciones para llevar a cabo el proceso de análisis de
+sentimientos. Una basada en léxico, no supervisada. Esta aproximación depende
+de reglas y heurísticas obtenidas del conocimiento lingüístico
+\cite{VILARES2013}. La otra aproximación es supervisada, usa \ac{AA}, aquí se
+utilizan algoritmos que aprenden la información subyacente de datos previamente
+anotados, permitiendoles así clasificar instancias nuevas --- sin etiquetar
+\cite{Pang2002} ---. Aunque estas dos aproximaciones son las más usadas, existen
+estudios que han demostrado buenos resultados al combinar ambas. Pasamos ahora a
+describirlas en detalle.
+
+\paragraph{Aproximación no supervisada basada en el léxico:} También llamada
+basada en la semántica. Intenta determinar la polaridad del texto usando un
+conjunto de reglas y heurísticas obtenidas del conocimiento del idioma. Los
+pasos habituales consisten en marcar primero cada palabra y frase con su
+correspondiente polaridad con ayuda de un diccionario. El siguiente paso
+incorpora el análisis de modificadores de sentimientos -- como la negación -- y
+su ámbito -- intensificadores y negación --. Por último se tratan las
+conjunciones adversativas -- \emph{pero, aunque, mas} -- comprendiendo cómo
+afectan a la polaridad y reflejándolo en la puntuación final del sentimiento
+\cite{Liu2012}.
+
+\question[inline]{Pongo ejemplos?}
+
+\paragraph{Aproximación supervisada basada en aprendizaje:}Igualmente conocida
+como aproximación basada en \ac{AA} o métodos estadísticos para la clasificación
+de sentimientos. Consiste en algoritmos que aprenden los patrones subyacentes de
+los datos de entrenamiento --- datos cuya clase o etiqueta se conoce para cada
+instancia --- para después intentar clasificar nuevos datos suministrados al
+algoritmo, esta vez sin estar etiquetados. Los pasos a seguir en una
+aproximación de este tipo consisten en realizar algo de ingeniería de
+características que respresenten el objeto cuya clase se quiere predecir. Tras
+esto, se usan dichas representaciones como como entrada del algoritmo. Algunas
+de las características más usadas en al análisis de sentimientos son: frecuencia
+del término, categorías morfosintáctica -- \ac{POS} \emph{tags} -- palabras y
+frases con sentimientos, reglas de opinión,  modificadores del sentimiento y
+dependencias sintácticas, por mencionar algunas \cite{Liu2012}.
+
+\question[inline]{De nuevo, pongo ejemplos?}
+
+\paragraph{Aproximación basada en conceptos:}Relativamente moderna. Consiste en
+usar \emph{ontologías}\graffito{Una ontología se define como un modelo que
+  conceptualiza el conocimiento de un dominio dado, de tal forma que pueda ser
+  comprendido tanto por humanos como máquinas.} para apoyar la tarea del
+análisis de sentimientos. Las ontologías suelen presentarse como gráfos donde
+los conceptos se asocian a nodos enlazados por relaciones. El estudio realizado
+por \citet{Zhou2007} analiza en profundidad las ontologías, así como sus
+aplicaciones y desarrollo.
+
+Una de las ventajas de usar métodos no supervisados reside en la no dependencia
+de grandes cantidades de datos para entrenar a los algoritmos. Aún así, sigue
+siendo necesaria la construcción u obtención de un léxico para los
+sentimientos. Los métodos no supervisados son menos dependientes del dominio que
+los métodos supervisados. De hecho, los clasificadores entrenados en un dominio
+específico muestran de forma consistente peor comportamiento cuando son
+ejecutados en otros dominios \cite{anthony2005}.
+
 
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
