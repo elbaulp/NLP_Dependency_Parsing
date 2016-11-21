@@ -454,6 +454,38 @@ palabra de una sentencia con su categoría morfosintática, como \emph{adjetivo,
 como entrada para procesamientos futuros, como el parseo de dependencias
 (Objetivo de este trabajo) o como característica para el proceso de \ac{AA}.
 
+Cabe destacar que no es obligatorio aplicar todos y cada uno de los pasos
+anteriores. En función del tipo de aplicación se ejecutarán unos pasos u
+otros. Por ejemplo, un sistema basado en \ac{AA} probablemente aplicará cada uno
+de estos pasos con el fin de reducir la dimensionalidad y ruido del
+problema. Por contra, una aproximación no-supervisada quizá necesite la
+categoría sintáctica de algunas de las \emph{stopwords} para construir reglas de
+dependencia con el fin de usarlas posteriormente en el proceso principal del
+análisis. Es claro pues, que la aproximación no-supervisada en este caso deberá
+omitir la fase eliminación de \emph{stopwords}.\myTodo{We present a more
+  detailed analysis of supervised versus unsupervised OM approaches in Section
+  2.3.2.}
+
+Por otra parte, existen otro tipo de pasos dependientes en su totalidad del
+origen de los datos y el método de adquisición. En particular, los datos que se
+obtengan a través de un rastreador web deberán ser procesados con fin de
+eliminar las etiquetas \acfi{HTML}\acused{HTML} e información no textual -- como
+imágenes y anuncios -- El texto extraido de Twitter necesitará de especial
+atención en cuanto a \emph{hashtags}, menciones, \emph{retweets}, texto
+póbremente escrito, emoticonos, carcajadas escritas y palabras con caráctares
+repetidos --- \emph{siiiiiiiiiiii} ---
+
+\subsection{Proceso principal del análisis de sentimientos}
+\label{sec:omcore}
+
+La tercera fase en el \emph{pipeline} es el proceso principal del análisis. A
+continuación se mencionarán los distintos niveles de granularidad en los que
+actuan las aproximaciones más comunes.
+
+\subsubsection{Niveles de análisis}
+\label{sec:anallevels}
+
+
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
 
