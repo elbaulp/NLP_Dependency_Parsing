@@ -634,6 +634,58 @@ segmentación de palabras y \emph{clitic}. Como proceso final, el
 \emph{tokenizador} almacena los desplazamientos de caracteres de cada símbolo en
 el texto de entrada.
 
+\paragraph{CleanXML:} Elimina las etiquetas \acfi{XML} del documento.
+
+\paragraph{Ssplit:} Separa una secuencia de símbolos en frases.
+
+\paragraph{Truecase:} Determina la probabilidad de un símbolo de estar en
+mayúscula en el texto --- es decir, la probabilidad de que, en un texto bien
+escrito, dicho símbolo debiera estar en mayúscula. --- cuando esta información
+no está disponible, \eg un texto con todas las letras en mayúsculas. Este
+proceso se implementa con un modelo discriminativo usando un etiquetador de
+secuencias \ac{CRF} \cite{Finkel2005}.
+
+\paragraph{Pos:} Etiqueta símbolos con su correspondiente categoría
+morfosintática -- \ac{POS} \emph{tag} -- haciendo uso de un etiquetador de
+máxima entropía \cite{Toutanova2003}.
+
+\paragraph{Lemma:} Genera la raíz -- o \emph{lemma} -- para todos los símbolos
+en la anotación.
+
+\paragraph{Gender:} Añade información sobre el género más probable a los
+nombres.
+
+\paragraph{Ner:} Reconoce nombres --- \textsc{Persona, Lugar, Organización,
+  Miscelánea} --- y entidades numéricas --- \textsc{Dinero, Número, Fecha, Hora,
+  Duración}. --- En los etiquetados por defecto, las entidades para nombres se
+reconocen mediante una combinación de secuencias de \acp{CRF} entrenados en
+varios \emph{corpus} \cite{Finkel2005}. Las entidades numéricas son reconocidas
+usando dos sistemas basados en reglas, uno para el dinero y números, y otro
+sistema \emph{estado del arte} para procesar expresiones temporales
+\cite{Chang2012}.
+
+\paragraph{Regexner:} Implementa un \textsc{Ner} simple basado en reglas usando
+secuencias de símbolos mediante expresiones regulares. El objetivo de este paso
+del \emph{pipeline} es proporcionar un \emph{framework} que permita al usuario
+incorporar etiquetas \textsc{NE} que no están anotadas en \emph{corpus}
+\textsc{NL} tradicionales. Por ejemplo, una lista por defecto de expresiones
+regulares distribuida en los modelos de \textsc{CoreNLP} reconoce ideologías,
+nacionalidades, religiones y títulos.
+
+\paragraph{Parse:} Proporciona un análisis sintáctico completo, incluyendo
+representaciones tanto de dependencias como constituyentes. Está basado en un
+parseador probabilístico \cite{Klein2002, deMarneffe2008}.
+
+\paragraph{Sentiment:} Análisis de sentimientos con un modelo compositivo sobre
+árboles usando \emph{deep learning} \cite{socher2013}. La puntuación asignada a
+un sentimiento se calcula mediante los nodos de un árbol binario para cada
+sentencia, incluyendo, en particular, el nodo raíz de cada frase.
+
+\paragraph{Dcoref:} Detecta menciones y resolución de coreferencias tanto pronominales como
+nominales \cite{Lee2013}. Se devuelve el grafo de coreferencia del texto al
+completo, con las palabras principales de las menciones como nodos.
+
+
 \section{Software Existente}
 \label{sec:nlpsoftware}
 
