@@ -290,7 +290,7 @@ Inglés. \enhancement{Me dijiste ``\emph{justificar el por qué hemos decidido
 este trabajo se ha centrado en desarrollar una fase del \emph{pipeline} que se
 encuentra en todos los sistemas que realizan análisis de sentimientos, y en
 general \ac{NLP} para el idioma Español. Como ejemplo podemos citar el famoso
-\textsc{CoreNLP} \cite{manning-EtAl:2014:P14-5}.
+\textsc{CoreNLP} \cite{Manning2014}. 
 
 En la \autoref{table:corenlpfeatures} se lista todo el \emph{pipeline} de
 \textsc{CoreNLP} junto con el soporte para cada lenguaje. Como se aprecia, el
@@ -542,7 +542,7 @@ devolverá sólamente la polaridad general del documento.\question{¿Pongo
 una sentencia como un documento corto. Sin embargo, este nivel presenta algunos
 pasos de preprocesamiento consistentes en separar el documento en oraciones,
 paso que a su vez posee retos similares a la tokenización de idiomas no
-delimitados por periodos --- visto en la \enhancement[fancyline]{Lo dejo?} \autoref{par:token} ---
+delimitados por periodos --- visto en \nameref{par:token} ---
 
 \paragraph{Nivel de entidad y aspecto:} El más granular de todos a los que el
 análisis de sentimientos puede trabajar. A este nivel la tarea no consiste
@@ -625,12 +625,24 @@ ejecutados en otros dominios \cite{anthony2005}.
 \label{sec:corenlppipeline}
 
 En la \autoref{sec:genericpipeline} se ha visto el proceso genérico a seguir
-para problemas de \ac{NLP}, en esta sección se presenta una descripción genérica
-de un \emph{pipeline} para un software concreto ---
-\textsc{CoreNLP} \cite{Manning2014} ---
+para problemas de \ac{NLP}, se presenta ahora una breve descripción de
+los pasos que se mostraron en la \autoref{table:corenlpfeatures},
+correspondientes al \emph{pipeline} para un software concreto ---
+\textsc{CoreNLP} \cite{Manning2014} --- Como se aprecia, dicho \emph{pipeline}
+solo está totalmente completo para el Inglés.
+
+\textsc{CoreNLP} viene empaquetado con los modelos para Inglés. Es posible
+descargar modelos para distintos idiomas, pero por separado. El soporte para
+estos idiomas no completo. Los pasos del \emph{pipeline} mencionados a
+continuación se centran en la versión para el Inglés. En
+\nameref{sec:approaches} se citaron los distintos modos de realizar tareas para
+\ac{NLP}, los modelos de \textsc{CoreNLP} entrenan modelos usando tanto métodos
+de \ac{AA} supervisados como basándose en reglas.
 
 \section{Software Existente}
 \label{sec:nlpsoftware}
+
+\myTodo[inline]{Menciono software existente?}
 
 \section{Estado del arte}\myTodo[fancyline]{Leer state-of-the-art de
   1-s2.0-S1566253515000536-main y 1-s2.0-S1566253516301117}
