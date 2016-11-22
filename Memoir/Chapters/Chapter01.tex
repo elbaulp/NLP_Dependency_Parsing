@@ -2,8 +2,6 @@
 \chapter{Motivación e Introducción}\label{ch:introduction}
 %************************************************
 
-\listoftodos[TODO list]
-
 \todo[inline]{Pipeline Genérico, detallar cada parte, con ejemplos y
   justificación}
 
@@ -420,24 +418,39 @@ habituales para el \ac{NLP} correspondientes al análisis léxico. Algunas de
 estas tareas son:
 
 \label{par:token}
-\paragraph{Tokenización:}Encargada de separar las cadenas de texto del documento
-completo en una lista de palabras. Es muy sencilla de realizar para idiomas
-delimitados por espacios como el Inglés, Español o Francés, pero se torna
-considerablemente más compleja para idiomas donde las palabras no son
-delimitadas por espacios, como el Japonés, Chino y Thai.
+\paragraph{Tokenización:}Es una técnica fundamental para la mayoría de tareas en
+\ac{NLP}. Encargada de separar las cadenas de texto del documento completo en
+una lista de palabras. Es muy sencilla de realizar para idiomas delimitados por
+espacios como el Inglés, Español o Francés, pero se torna considerablemente más
+compleja para idiomas donde las palabras no son delimitadas por espacios, como
+el Japonés, Chino y Thai.
+
+Los idiomas anteriores requieren de un proceso llamado segmentación de palabras,
+el cual es un problema de etiquetado secuencial. Para resolverlo se usan
+\acfi{CRF}\acused{CRF}, método que ha demostrado ser superior a los modelos de
+Markov ocultos y modelos de Markov de máxima entropía \cite{Kudo04, tseng2005,
+  Peng2004}. Debido a que es una técnica fundamental, existen multitud de
+herramientas disponibles, para idiomas delimitados por espacios, el tokenizador
+de Stanford\footnote{\url{http://nlp.stanford.edu/software/tokenizer.shtml}} o
+el de
+\textsc{OpenNLP}\footnote{\url{https://opennlp.apache.org/documentation/manual/opennlp.html\#tools.
+    tokenizer}}. Para la segmentación de palabras en Chino, existen herramientas
+como \textsc{ICTCLAS}\footnote{\url{http://ictclas.nlpir.org}},
+\textsc{THULAC}\footnote{\url{http://thulac.thunlp.org}} y el segmentador de
+Stanford\footnote{\url{http://nlp.stanford.edu/software/segmenter.shtml}}.
 
 \paragraph{Stemming:}Proceso heurístico encargado de eliminar los afijos de la
 palabra para dejarlos en su forma canónica (invariante, o raíz). Por ejemplo,
-\emph{persona,  personificar y personificación} pasan a ser \emph{persona}
-una vez acabado este proceso.
+\emph{persona, personificar y personificación} pasan a ser \emph{persona} una
+vez acabado este proceso.
 
-\paragraph{Lematización:}Proceso algorítmico para convertir una
-palabra a su forma de diccionario \question{traducción literal de
-  \emph{non-inflected dictionary form}}no-inflexible. Esta fase es análoga a la
-anterior (\emph{stemming}) pero se realiza a través de una serie de pasos más
-rigurosos que incorporan un análisis morfológico de cada palabra.
+\paragraph{Lematización:}Proceso algorítmico para convertir una palabra a su
+forma de diccionario \question{traducción literal de \emph{non-inflected
+    dictionary form}}no-inflexible. Esta fase es análoga a la anterior
+(\emph{stemming}) pero se realiza a través de una serie de pasos más rigurosos
+que incorporan un análisis morfológico de cada palabra.
 
-\paragraph{Eliminar stopwords:} Actividad encargada de borrar las palabras
+\paragraph{Eliminación de stopwords:} Actividad encargada de borrar las palabras
 usadas para estructurar el lenguaje pero que no contribuyen de modo alguno a su
 contenido. Algunos ejemplos de estas palabras pueden ser \emph{de, la, que, el,
   en, y, a, los, del, se, las, por, un, par, con}.\footnote{Para ver una lista
@@ -449,11 +462,17 @@ sentencias. Presenta sus propios retos, ya que los signos de puntuación, como e
 punto (.) se usan con frecuencia para marcar tanto el fin de una frase como para
 denotar abreviaciones y números decimales.
 
-\paragraph{POS tagging} o etiquetado morfosintáctico. Paso que etiqueta cada
-palabra de una sentencia con su categoría morfosintática, como \emph{adjetivo,
-  nombre, verbo, adverbio} y \emph{preposición}. Estas etiquetas pueden usarse
-como entrada para procesamientos futuros, como el parseo de dependencias
-(Objetivo de este trabajo) o como característica para el proceso de \ac{AA}.
+\paragraph{POS tagging y parseo} o etiquetado morfosintáctico. Paso que etiqueta
+cada palabra de una sentencia con su categoría morfosintática, como
+\emph{adjetivo, nombre, verbo, adverbio} y \emph{preposición}. Estas etiquetas
+pueden usarse como entrada para procesamientos futuros, como el parseo de
+dependencias (Objetivo de este trabajo) o como característica para el proceso de
+\ac{AA}. De igual manera que la segmentación, es un problema de etiquetado
+secuencial. El etiquetado morfosintático proporciona información léxica, el
+parseo obtiene información sintáctica. El parseo genera un árbol que representa
+la estructura gramatical de una sentencia dada con la correspondiente relación
+entre los distintos constituyentes. Este trabajo se ha centrado en construir un
+parseo de dependencias para el Español.
 
 Cabe destacar que no es obligatorio aplicar todos y cada uno de los pasos
 anteriores. En función del tipo de aplicación se ejecutarán unos pasos u
@@ -605,9 +624,15 @@ ejecutados en otros dominios \cite{anthony2005}.
 \section{El pipeline de \textsc{CoreNLP}}
 \label{sec:corenlppipeline}
 
+En la \autoref{sec:genericpipeline} se ha visto el proceso genérico a seguir
+para problemas de \ac{NLP}, en esta sección se presenta una descripción genérica
+de un \emph{pipeline} para un software concreto ---
+\textsc{CoreNLP} \cite{Manning2014} ---
+
+\section{Software Existente}
+\label{sec:nlpsoftware}
+
 \section{Estado del arte}\myTodo[fancyline]{Leer state-of-the-art de
   1-s2.0-S1566253515000536-main y 1-s2.0-S1566253516301117}
 \label{sec:stateoftheart}
-
-
 
