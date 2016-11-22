@@ -620,7 +620,7 @@ solo está totalmente completo para el Inglés.
 
 \textsc{CoreNLP} viene empaquetado con los modelos para Inglés. Es posible
 descargar modelos para distintos idiomas, pero por separado. El soporte para
-estos idiomas no completo. Los pasos del \emph{pipeline} mencionados a
+estos idiomas no es completo. Los pasos del \emph{pipeline} mencionados a
 continuación se centran en la versión para el Inglés. En
 \nameref{sec:approaches} se citaron los distintos modos de realizar tareas para
 \ac{NLP}, los modelos de \textsc{CoreNLP} entrenan modelos usando tanto métodos
@@ -641,7 +641,7 @@ el texto de entrada.
 \paragraph{Truecase:} Determina la probabilidad de un símbolo de estar en
 mayúscula en el texto --- es decir, la probabilidad de que, en un texto bien
 escrito, dicho símbolo debiera estar en mayúscula. --- cuando esta información
-no está disponible, \eg un texto con todas las letras en mayúsculas. Este
+no está disponible, \eg~ un texto con todas las letras en mayúsculas. Este
 proceso se implementa con un modelo discriminativo usando un etiquetador de
 secuencias \ac{CRF} \cite{Finkel2005}.
 
@@ -668,7 +668,7 @@ sistema \emph{estado del arte} para procesar expresiones temporales
 secuencias de símbolos mediante expresiones regulares. El objetivo de este paso
 del \emph{pipeline} es proporcionar un \emph{framework} que permita al usuario
 incorporar etiquetas \textsc{NE} que no están anotadas en \emph{corpus}
-\textsc{NL} tradicionales. Por ejemplo, una lista por defecto de expresiones
+\textsc{NL} tradicionales. Por ejemplo, la lista por defecto de expresiones
 regulares distribuida en los modelos de \textsc{CoreNLP} reconoce ideologías,
 nacionalidades, religiones y títulos.
 
@@ -684,7 +684,6 @@ sentencia, incluyendo, en particular, el nodo raíz de cada frase.
 \paragraph{Dcoref:} Detecta menciones y resolución de coreferencias tanto pronominales como
 nominales \cite{Lee2013}. Se devuelve el grafo de coreferencia del texto al
 completo, con las palabras principales de las menciones como nodos.
-
 
 \section{Software Existente}
 \label{sec:nlpsoftware}
