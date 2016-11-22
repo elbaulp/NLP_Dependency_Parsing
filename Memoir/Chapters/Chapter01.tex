@@ -14,10 +14,7 @@
 \todo[inline]{Sección con algoritmo implementado, reiterando sección anterior
   pero con lujo de detalles (Teóricos y código)}
 
-\todo[inline]{Motivación: Falta de software español, justificar decisión de
-  afrontar problema.}
-
-\question{Añadir sección ``\emph{El resto del paper está organizado\dots}''}
+\todo[inline]{Añadir sección ``\emph{El resto del paper está organizado\dots}''}
 
 \section{¿Qué es el Procesamiento del Lenguaje Natural?}
 \label{sec:whatisnlp}
@@ -628,6 +625,14 @@ continuación se centran en la versión para el Inglés. En
 \nameref{sec:approaches} se citaron los distintos modos de realizar tareas para
 \ac{NLP}, los modelos de \textsc{CoreNLP} entrenan modelos usando tanto métodos
 de \ac{AA} supervisados como basándose en reglas.
+
+\paragraph{Tokenizador:} \emph{Tokeniza} el texto en secuencias de símbolos. El
+componente para el Inglés proporciona un \emph{tokenizador} al estilo
+\acfi{PTB}\acused{PTB} que ha sido ampliado para tratar con texto de la web y
+con ruido. Los componentes correspondientes para el Chino y Árabe proporcionan
+segmentación de palabras y \emph{clitic}. Como proceso final, el
+\emph{tokenizador} almacena los desplazamientos de caracteres de cada símbolo en
+el texto de entrada.
 
 \section{Software Existente}
 \label{sec:nlpsoftware}
