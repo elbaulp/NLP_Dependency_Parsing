@@ -63,12 +63,10 @@ humanos. Además, la capacidad de las máquinas para traducir entre idiomas
 humanos se considera aún como un gran test a la \ac{IA}, ya que una traducción
 correcta no consiste en el mero hecho de generar frases en un idioma humano,
 también requiere del conocimiento humano y del contexto, pese a las ambigüedades
-de cada idioma. Por ejemplo, la traducción literal
-\enhancement[fancyline]{Debería buscar algún ejemplo más claro?}%
-\emph{``bordel''} en Francés significa Burdel; pero si alguien dice \emph{``Mi
-  cuarto es un burdel''}, el traductor debería tener el conocimiento suficiente
-para inferir que la persona se está refiriendo a que su habitación es un
-desorden.
+de cada idioma. Por ejemplo, la traducción literal \emph{``bordel''} en Francés
+significa Burdel; pero si alguien dice \emph{``Mi cuarto es un burdel''}, el
+traductor debería tener el conocimiento suficiente para inferir que la persona
+se está refiriendo a que su habitación es un desorden.
 
 La traducción automática fue una de las primeras aplicaciones no numéricas de la
 computación y comenzó a estudiarse de forma intensiva en la década de los
@@ -161,9 +159,8 @@ positivo sobre alguna persona, objeto, actividad o concepto.
 
 La comunidad del reconocimiento de voz está igualmente implicada en el estudio
 de actitudes positivas y negativas, centrándose en la identifiación de emociones
-haciendo uso de información acústica y \graffito{Un acento
-  prosódico}\question[fancyline]{¿Definir palabra?}%
-prosódica. Otras investigaciones se han centrado en identificar emociones
+haciendo uso de información acústica y prosódica, es decir un relieve en la
+pronunciación. Otras investigaciones se han centrado en identificar emociones
 particulares, específicamente las séis emociones básicas según Ekman -- ira,
 aversión, temor, dicha, tristeza y asombro -- las cuales pueden ser reacciones a
 eventos, proposiciones u objetos. Por contra, la generación de emociones ha
@@ -285,12 +282,10 @@ lenguajes, no solo para unos pocos.
 
 Aún existiendo bastante \emph{software} trabajando con \ac{NLP}, y para idiomas
 \ac{HRL}, suelen obtenerse mejores resultados para un idioma en concreto, el
-Inglés. \enhancement{Me dijiste ``\emph{justificar el por qué hemos decidido
-    afrontar este problema}'', pero no se me ocurre qué poner} Es por ello que
-este trabajo se ha centrado en desarrollar una fase del \emph{pipeline} que se
-encuentra en todos los sistemas que realizan análisis de sentimientos, y en
-general \ac{NLP} para el idioma Español. Como ejemplo podemos citar el famoso
-\textsc{CoreNLP} \cite{Manning2014}. 
+Inglés. Es por ello que este trabajo se ha centrado en desarrollar una fase del
+\emph{pipeline} que se encuentra en todos los sistemas que realizan análisis de
+sentimientos, y en general \ac{NLP} para el idioma Español. Como ejemplo podemos
+citar el famoso \textsc{CoreNLP} \cite{Manning2014}.
 
 En la \autoref{table:corenlpfeatures} se lista todo el \emph{pipeline} de
 \textsc{CoreNLP} junto con el soporte para cada lenguaje. Como se aprecia, el
@@ -337,9 +332,7 @@ En esta sección se comentará el proceso habitual que suele seguirse como
 \emph{pipeline} en los problemas de \ac{NLP}. Para ello se describirán los
 distintos niveles de análisis en los que opera dicho \emph{pipeline}, así como
 las diferentes aproximaciones que se usan y los problemas más comunes a los que
-se enfrenta todo sistema que realice \question[fancyline]{Me sigo refiriendo a
-  NLP, o menciono \emph{análisis de sentimientos/opinion Mining}?} análisis de
-sentimientos.
+se enfrenta todo sistema que realice \ac{NLP}.
 
 \citet{liu:2010} define una opinión como una quíntupla conteniendo el objetivo
 de la opinión (o \emph{entidad}), el atributo del objetivo al que se dirige la
@@ -380,11 +373,8 @@ alguna página web de la que se desee extraer el \emph{corpus}. Una de las
 aproximación hace uso de \emph{Web Crawlers}\graffito{Rastreadores de Webs} para
 extraer datos de las webs deseadas.
 
-Ambas aproximaciones presentan sus ventajas y desventajas, y por tanto existen
-\enhancement{Conozco bien el concepto de esta palabra, pero no encuentro la
-  adecuada traducción. ¿Sacrificios?. Podría poner, \emph{En función de qué
-    aproximación se decida usar, sacrificaremos unas ventajas frente a
-    otras}}\emph{trade-off} en función de cual se decida usar. Veamos algunos de
+Ambas aproximaciones presentan sus ventajas y desventajas, y por tanto se debe
+encontrar un equilibrio en función de cual se decida usar. Veamos algunos de
 ellos.
 
 Mediante el uso de una \ac{API} la implementación es sencilla, los datos
@@ -445,10 +435,10 @@ palabra para dejarlos en su forma canónica (invariante, o raíz). Por ejemplo,
 vez acabado este proceso.
 
 \paragraph{Lematización:}Proceso algorítmico para convertir una palabra a su
-forma de diccionario \question{traducción literal de \emph{non-inflected
-    dictionary form}}no-inflexible. Esta fase es análoga a la anterior
-(\emph{stemming}) pero se realiza a través de una serie de pasos más rigurosos
-que incorporan un análisis morfológico de cada palabra.
+forma de diccionario no-inflexible -- \emph{non-inflected} en inglés --. Esta
+fase es análoga a la anterior (\emph{stemming}) pero se realiza a través de una
+serie de pasos más rigurosos que incorporan un análisis morfológico de cada
+palabra.
 
 \paragraph{Eliminación de stopwords:} Actividad encargada de borrar las palabras
 usadas para estructurar el lenguaje pero que no contribuyen de modo alguno a su
@@ -482,9 +472,9 @@ problema. Por contra, una aproximación no-supervisada quizá necesite la
 categoría sintáctica de algunas de las \emph{stopwords} para construir reglas de
 dependencia con el fin de usarlas posteriormente en el proceso principal del
 análisis. Es claro pues, que la aproximación no-supervisada en este caso deberá
-omitir la fase eliminación de \emph{stopwords}.\myTodo{We present a more
-  detailed analysis of supervised versus unsupervised OM approaches in Section
-  2.3.2.}
+omitir la fase eliminación de \emph{stopwords}. En \nameref{sec:approaches} se
+describe con más detalle las diferencias entre aproximaciones supervisadas
+frente a no supervisadas.
 
 Por otra parte, existen otro tipo de pasos dependientes en su totalidad del
 origen de los datos y el método de adquisición. En particular, los datos que se
@@ -570,7 +560,7 @@ de reglas y heurísticas obtenidas del conocimiento lingüístico
 \cite{VILARES2013}. La otra aproximación es supervisada, usa \ac{AA}, aquí se
 utilizan algoritmos que aprenden la información subyacente de datos previamente
 anotados, permitiendoles así clasificar instancias nuevas --- sin etiquetar
-\cite{Pang2002} ---. Aunque estas dos aproximaciones son las más usadas, existen
+\cite{Pang:2002:TUS:1118693.1118704} ---. Aunque estas dos aproximaciones son las más usadas, existen
 estudios que han demostrado buenos resultados al combinar ambas. Pasamos ahora a
 describirlas en detalle.
 
