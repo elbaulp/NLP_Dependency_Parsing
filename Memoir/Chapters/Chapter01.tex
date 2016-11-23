@@ -2,12 +2,6 @@
 \chapter{Motivación e Introducción}\label{ch:introduction}
 %************************************************
 
-\todo[inline]{Desribir de forma más detallada el Dep Parsing, mencionar state of
-  the art (3/4 papers), entre ellos el implementado}
-
-\todo[inline]{Sección con algoritmo implementado, reiterando sección anterior
-  pero con lujo de detalles (Teóricos y código)}
-
 \todo[inline]{Añadir sección ``\emph{El resto del paper está organizado\dots}''}
 
 \section{¿Qué es el Procesamiento del Lenguaje Natural?}
@@ -24,13 +18,13 @@ natural. Dentro del amplio campo del \ac{NLP} podemos distinguir las siguientes
 áreas principales:
 
 El lenguaje natural se refiere a cualquier lenguaje hablado por un humano, (\eg
-Inglés, Castellano o Chino). El \ac{NLP}\graffito{\acf{PNL}} es un campo de la
-ciencia de la computación e ingeniería desarrollado a partir del estudio del
-lenguaje y la computación lingüistica dentro del campo de la \ac{IA}. Los
-objetivos del \ac{NLP} son diseñar y construir aplicaciones que faciliten la
-interacción humana con la máquinas y otros dispositivos mediante el uso del
-lenguaje natural. Dentro del amplio campo del \ac{NLP} podemos distinguir las
-siguientes áreas principales \cite{Hirschberg2015, James2012}:
+Inglés, Castellano o Chino). El \ac{NLP} es un campo de la ciencia de la
+computación e ingeniería desarrollado a partir del estudio del lenguaje y la
+computación lingüistica dentro del campo de la \ac{IA}. Los objetivos del
+\ac{NLP} son diseñar y construir aplicaciones que faciliten la interacción
+humana con la máquinas y otros dispositivos mediante el uso del lenguaje
+natural. Dentro del amplio campo del \ac{NLP} podemos distinguir las siguientes
+áreas principales \cite{Hirschberg2015, James2012}:
 
 \paragraph{Resúmenes} este área incluye aplicaciones que puedan, basándose en
 una colección de documentos, dar como salida un resumen coherente del contenido
@@ -413,9 +407,9 @@ Markov ocultos y modelos de Markov de máxima entropía \cite{Kudo04, tseng2005,
 herramientas disponibles, para idiomas delimitados por espacios, el tokenizador
 de Stanford\footnote{\url{http://nlp.stanford.edu/software/tokenizer.shtml}} o
 el de
-\textsc{OpenNLP}\footnote{\url{https://opennlp.apache.org/documentation/manual/opennlp.html\#tools.
-    tokenizer}}. Para la segmentación de palabras en Chino, existen herramientas
-como \textsc{ICTCLAS}\footnote{\url{http://ictclas.nlpir.org}},
+\textsc{OpenNLP}\footnote{\url{https://opennlp.apache.org/documentation/manual/opennlp.html\#tools.tokenizer}}.
+Para la segmentación de palabras en Chino, existen herramientas como
+\textsc{ICTCLAS}\footnote{\url{http://ictclas.nlpir.org}},
 \textsc{THULAC}\footnote{\url{http://thulac.thunlp.org}} y el segmentador de
 Stanford\footnote{\url{http://nlp.stanford.edu/software/segmenter.shtml}}.
 
@@ -510,13 +504,7 @@ tuplas
 donde la entidad $e$, el poseedor de la opinión $h$, y el tiempo $t$ en el que
 se manifestó la opinión se asumen conocidos o se ignoran. El atributo $a_j$ de
 la entidad $e$ se corresponde con GENERAL. Todo esto implica que el análisis
-devolverá sólamente la polaridad general del documento.\question{¿Pongo
-  ejemplos? \emph{To give a few examples, in [47], Pang and Lee attempted to
-    predict the polarity of movie reviews using three different machine learning
-    techniques: Naïve Bayes, Maximum Entropy classification and Support Vector
-    Machine (SVM). Similarly, in [50] the same authors tried to predict the
-    rating of a movie given in a review, instead of just classifying the review
-    into a positive or negative class.}}
+devolverá sólamente la polaridad general del documento.
 
 \paragraph{Nivel de sentencia:} Análogo al anterior, ya que se podría considerar
 una sentencia como un documento corto. Sin embargo, este nivel presenta algunos
@@ -565,8 +553,6 @@ conjunciones adversativas -- \emph{pero, aunque, mas} -- comprendiendo cómo
 afectan a la polaridad y reflejándolo en la puntuación final del sentimiento
 \cite{Liu2012}.
 
-\question[inline]{Pongo ejemplos?}
-
 \paragraph{Aproximación supervisada basada en aprendizaje:}Igualmente conocida
 como aproximación basada en \ac{AA} o métodos estadísticos para la clasificación
 de sentimientos. Consiste en algoritmos que aprenden los patrones subyacentes de
@@ -580,8 +566,6 @@ de las características más usadas en al análisis de sentimientos son: frecuen
 del término, categorías morfosintáctica -- \ac{POS} \emph{tags} -- palabras y
 frases con sentimientos, reglas de opinión,  modificadores del sentimiento y
 dependencias sintácticas, por mencionar algunas \cite{Liu2012}.
-
-\question[inline]{De nuevo, pongo ejemplos?}
 
 \paragraph{Aproximación basada en conceptos:}Relativamente moderna. Consiste en
 usar \emph{ontologías}\graffito{Una ontología se define como un modelo que
@@ -690,11 +674,6 @@ En la \autoref{fig:corenlppipe} se muestra el \emph{pipeline} completo de \texts
     texto plano.}
   \label{fig:corenlppipe}
 \end{figure}
-
-\section{Software Existente}
-\label{sec:nlpsoftware}
-
-\myTodo[inline]{Menciono software existente?}
 
 \section{Estado del arte}
 \label{sec:stateoftheart}
