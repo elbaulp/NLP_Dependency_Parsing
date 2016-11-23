@@ -167,7 +167,7 @@ La clasificación de sentimientos es algo ampliamente usado para identificar
 opiniones -- puntos de vista positivos o negativos hacia personas, instituciones
 o ideas -- en muchos idiomas y géneros. Una de las aplicaciones más prácticas, y
 de las que más abundan consiste en identificar críticas sobre películas o
-productos \cite{Pang:2002:TUS:1118693.1118704,Wang2014}.
+productos \cite{Pang2002,Wang2014}.
 
 La minería de datos en redes sociales con el fin de realizar análisis de
 sentimientos se ha convertido en un tema popular con el objetivo de evaluar el
@@ -555,7 +555,7 @@ de reglas y heurísticas obtenidas del conocimiento lingüístico
 \cite{VILARES2013}. La otra aproximación es supervisada, usa \ac{AA}, aquí se
 utilizan algoritmos que aprenden la información subyacente de datos previamente
 anotados, permitiendoles así clasificar instancias nuevas --- sin etiquetar
-\cite{Pang:2002:TUS:1118693.1118704} ---. Aunque estas dos aproximaciones son las más usadas, existen
+\cite{Pang2002} ---. Aunque estas dos aproximaciones son las más usadas, existen
 estudios que han demostrado buenos resultados al combinar ambas. Pasamos ahora a
 describirlas en detalle.
 
@@ -701,7 +701,75 @@ En la \autoref{fig:corenlppipe} se muestra el \emph{pipeline} completo de \texts
 
 \myTodo[inline]{Menciono software existente?}
 
-\section{Estado del arte}\myTodo[fancyline]{Leer state-of-the-art de
-  1-s2.0-S1566253515000536-main y 1-s2.0-S1566253516301117}
+\section{Estado del arte}
 \label{sec:stateoftheart}
+
+En esta sección se describirán las aproximaciones actuales en el análisis de
+sentimientos, en función de los distintos niveles mencionados en
+\nameref{sec:anallevels}.
+
+\subsection{A nivel del documento}
+\label{subsec:soadocument}
+
+\citeauthor{Turney2002} \cite{Turney2002} presentó un método no supervisado para
+clasificar reseñas como recomendadas o no recomendadas. Su investigación
+determina las polaridades mediante una media de la
+\acfi{SO}\acused{SO}\graffito{\acfi{SO}: Orientación Semántica} de las frases
+que aparecen en las reseñas. La \ac{SO} de un par de frases se calcula mediante
+\acfi{PMI-IR} \cite{Turney2001}, usando la \autoref{eq:so}
+\begin{equation}
+  \label{eq:so}
+  SO(frase) = \log\frac{hits(frase,
+    \text{``excelente''})hits(\text{``mediocre''})}{hits(frase, \text{``mediocre''})hits(\text{``excelente''})}
+\end{equation}
+
+\citeauthor{Pang2002} \cite{Pang2002} emplearon métodos de \ac{AA} para
+clasificar reseñas como positivas o negativas. Para ello entrenaron los
+siguientes clasificadores: naïve Bayes, máxima entropía y \acfi{SVM}\acused{SVM}
+usando las siguientes características: unigrama, bigrama, \ac{POS} \emph{tag} y
+la posición de la palabra. Los autores indicaron que las ocurrencias de
+opiniones contradictorias hacen del análisis de sentimientos para documentos una
+tarea más difícil que la categorización de texto basada en temas --
+\emph{topic-based}. --
+
+\subsection{A nivel de sentencia}
+\label{subsec:soasentence}
+
+\citeauthor{Yu2003} \cite{Yu2003} presentaron tres aproximaciones para
+clasificar la subjetividad, basada en la similitud de sentencias, naïve Bayes y
+varios clasificadores naïve Bayes, respectivamente. La primera aproximación,
+basada en similitud, calcula una puntuación de similaridad de las frases y las
+compara con un umbral predeterminado. La aproximación usando naïve Bayes entrena
+un clasificador con las sentencias de documentos de opinión y fácticos. Las
+características son unigramas, bigramas, trigramas \ac{POS} \emph{tags} y un
+recuento de palabras expresando opinión. Los múltiples clasificadores naïve
+Bayes entrena a los distintos clasificadores en diferentes sub conjuntos del
+espacio de características. Posteriormente las sentencias que tienen etiquetas
+diferentes con los correspondientes documentos se eliminan del conjunto de
+test. El proceso de entrenamiento y testeo es iterativo hasta que no haya más
+frases en el conjunto de test a borrar. Finalmente, los clasificadores
+entrenados en el conjunto de entrenamiento reducido son los usados para
+determinar si las sentencias son subjetivas u objetivas.
+
+\subsection{A nivel de entidad}
+\label{subsec:soaentity}
+
+\citeauthor{Thet2010} \cite{Thet2010} propusieron una aproximación lingüística
+aprovechando la estructura de dependencia gramatical de las cláusulas. La
+estructura de la dependencia gramatical se obtiene a través de un árbol
+sintáctico, para luego extraer sub-árboles que representan cláusulas --- \eg~
+dividiendo una frase en oraciones separadas que expresan opiniones hacia el
+aspecto correspondiente. --- La generación del sub-árbol puede considerarse como
+una descomposición de una sentencia compleja en varias simples, transformando el
+problema original a una tarea a nivel de sentencias. La extracción del aspecto
+en este trabajo se simplifica a un proceso de etiquetado semántico. En este
+proceso se asigna una etiqueta a cada oración mediante un conjunto de aspectos
+predefinidos indicando palabras.
+
+\citeauthor{Wang2015} \cite{Wang2015} usaron un modelo no supervisado, basado en
+máquinas de Boltzmann restringidas. El modelo propuesto extrae conjuntamente
+sentimiento y aspecto. Además el modelo incorpora como variables latentes las
+variables aspecto, sentimiento y demás variables de fondo. Sin embargo, estas
+variables latentes no poseen una relación condicional, es decir, no hay aristas
+conectándolas en el modelo gráfico.
 
