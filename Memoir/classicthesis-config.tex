@@ -23,7 +23,7 @@
 % 1. Configure classicthesis for your needs here, e.g., remove "drafting" below 
 % in order to deactivate the time-stamp on the pages
 % ****************************************************************************************************
-\PassOptionsToPackage{eulerchapternumbers,listings,drafting,%
+\PassOptionsToPackage{eulerchapternumbers,drafting,%listings
                       pdfspacing,%floatperchapter,%linedheaders,%
 		      subfig,beramono,eulermath,parts,}
                      {classicthesis}                                        
@@ -157,26 +157,39 @@
 % ****************************************************************************************************
 % 5. Setup code listings
 % ****************************************************************************************************
-\usepackage{listings} 
-%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
-\lstset{language=[LaTeX]Tex,%C++,
-    morekeywords={PassOptionsToPackage,selectlanguage},
-    keywordstyle=\color{RoyalBlue},%\bfseries,
-    basicstyle=\small\ttfamily,
-    %identifierstyle=\color{NavyBlue},
-    commentstyle=\color{Green}\ttfamily,
-    stringstyle=\rmfamily,
-    numbers=none,%left,%
-    numberstyle=\scriptsize,%\tiny
-    stepnumber=5,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    %frameround=ftff,
-    %frame=single,
-    belowcaptionskip=.75\baselineskip
-    %frame=L
-} 
+\usepackage{minted}
+\renewcommand{\listingscaption}{Código fuente}
+\renewcommand{\listoflistingscaption}{Índice de código fuente}
+\newminted{scala}{
+%   fontsize=\scriptsize,
+   gobble=0,
+   frame=lines,
+   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+% \usepackage{listings} 
+% %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
+% \lstset{language=[LaTeX]Tex,%C++,
+%     morekeywords={PassOptionsToPackage,selectlanguage},
+%     keywordstyle=\color{RoyalBlue},%\bfseries,
+%     basicstyle=\small\ttfamily,
+%     %identifierstyle=\color{NavyBlue},
+%     commentstyle=\color{Green}\ttfamily,
+%     stringstyle=\rmfamily,
+%     numbers=none,%left,%
+%     numberstyle=\scriptsize,%\tiny
+%     stepnumber=5,
+%     numbersep=8pt,
+%     showstringspaces=false,
+%     breaklines=true,
+%     %frameround=ftff,
+%     %frame=single,
+%     belowcaptionskip=.75\baselineskip
+%     %frame=L
+% } 
 % ****************************************************************************************************             
 
 
@@ -279,10 +292,10 @@
 %\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
 \let\marginpar\oldmarginpar
 %\setlength{\marginparwidth}{2cm}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%% End Added by myself %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % ****************************************************************************************************
 % 8. Further adjustments (experimental)
 % ****************************************************************************************************
