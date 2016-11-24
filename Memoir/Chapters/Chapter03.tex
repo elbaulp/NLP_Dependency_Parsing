@@ -4,7 +4,7 @@
 %************************************************
 
 El nombre \textsc{Scala} es una concatenación de dos palabras, \emph{Scalable
-  Language}. A continuación se enumeran algunas de las razonas por las que se ha
+  Language}. A continuación se enumeran algunas de las razones por las que se ha
 elegido este lenguaje, la lista completa puede encontrarse en
 \citeauthor{Dean2015} \cite{Dean2015}.
 
@@ -38,23 +38,155 @@ para este trabajo son las siguientes:
   clases y 4) tipos explícitos \textsc{self}.
 \end{description}
 
-\begin{listing}[H]
-\begin{scalacode}
-  object
-\end{scalacode}
+\subsection{Patrones de diseño como miembros de primera clase}
+\label{subsec:patterns}
 
-\caption{Example of a listing.}
-\label{lst:example}
+Otra de las ventajas de \textsc{Scala} es que incorpora ciertos patrones de
+diseño en el mismo lenguaje. Por ejemplo, en \nameref{lst:object} se muestra una
+implementación del patrón.
+
+\begin{listing}[H]
+  \begin{scalacode}
+    object Upper {
+      def upper(strings: String*) = strings.map(_.toUpperCase())
+    }
+    println(Upper.upper("Hello", "World!"))
+  \end{scalacode}
+  \caption{Patrón Singleton en Scala.}
+  \label{lst:object}
 \end{listing}
 
-\begin{scalacode}
-  object dfsa {
-  }
-\end{scalacode}
+En la primera línea, \scalainline/object Upper/ crea el objeto
+\emph{singleton}. El patrón \emph{singleton} tiene sentido cuando no es
+necesario guardar ningún estado del objeto ni el objeto interactua con el mundo
+exterior.
 
-\begin{minted}{python}
-  print 'olá'
-\end{minted}
+Es posible refactorizar el código anterior, como se muestra en
+\nameref{lst:object2}
+
+\begin{listing}[H]
+  \begin{scalacode}
+    object Upper2 {
+      def main(args: Array[String]) = {
+        val output = args.map(_.toUpperCase()).mkString(" ")
+        println(output)
+      }
+    }
+  \end{scalacode}
+  \caption{Refactorizando Upper}
+  \label{lst:object2}
+\end{listing}
+
+\section{Reglas de Visibilidad}
+\label{sec:visibility}
+
+\textsc{Scala} ofrece un amplio abanico de posibilidades en cuanto a la
+visibilidad a la que se exponen las clases, objetos y métodos. Este abanico es
+mucho más amplio que el ofrecido por \textsc{Java} y se puede consultar en la
+\autoref{table:visibility}
+
+\begin{table}[H]
+\centering
+\caption{Reglas de visibilidad en \textsc{Scala}}
+\label{table:visibility}
+\begin{tabular}{llp{4cm}}
+\rowcolor[HTML]{443627} 
+{\color[HTML]{FFFFFF} Nombre} & {\color[HTML]{FFFFFF} Palabra reservada} & {\color[HTML]{FFFFFF} Descripción} \\
+public & ninguna, por defecto &  Visibles en cualquier lugar. \\
+protected & \scalainline/protected/ &  Visibles al tipo que los define, tipos
+                                      derivados y tipos anidados. Solo son
+                                      visibles dentro del mismo paquete y sub paquetes.\\
+private & \scalainline/private/ &  Solo en los tipos que los definen y tipos
+                                  anidados. A nivel de paquete son visibles
+                                  únicamente en el mismo que los define.\\
+scoped protected & \scalainline/protected[scope]/ &  Visibilidad delimitada por
+                                                    el ámbito definido por
+                                                    \textsc{scope}. \textsc{Scope}
+  puede ser un paquete, tipo o \scalainline/this/ --- misma instancia ---\\
+scoped private & \scalainline/private[scope]/ & Similar al anterior, pero los
+                                                objetos derivados no pueden
+                                                acceder.
+\end{tabular}
+\end{table}
+
+\section{Big Data}
+\label{sec:bigdata}
+
+La principal razón del éxito de \textsc{Scala} en la comunidad del \ac{AA} y
+\emph{Big Data} reside en la facilidad que ofrece para escribir programas
+concurrentes usando el paradigma \ac{FP}. La diferencia entre aplicaciones de
+\emph{Big Data} escritas en \textsc{Java} frente a las escritas en
+\textsc{Scala} mediante \ac{FP} es abismal. En \nameref{lst:object2} se vio un
+ejemplo de \scalainline/map/, funciones como esta y sus compañeras ---
+\scalainline/flatMap, filter, fold/\dots --- han sido siempre herramientas para
+trabajar con datos. Independientemente del tamaño de los datos, se aplica la
+misma abstracción.
+
+Como ejemplo mostraremos dos versiones del clásico \textsc{Hola Mundo} de
+\textsc{Map Reduce}, una en \textsc{Java} -- \autoref{lst:javaWC} -- y otra en
+\textsc{Scala} -- \autoref{lst:scalaWC} -- --- Los ejemplos son del libro de
+\citeauthor{Dean2015} \cite{Dean2015}. Basta observar el código para notar la
+verbosidad de \textsc{Java} frente a \textsc{Scala}.
+
+\begin{listing}[H]
+  \begin{javacode}
+    class WordCountMapper extends MapReduceBase
+    implements Mapper<IntWritable, Text, Text, IntWritable> {
+
+      static final IntWritable one  = new IntWritable(1);
+      // Value will be set in a non-thread-safe way!
+      static final Text word = new Text;
+
+      @Override
+      public void map(IntWritable key, Text valueDocContents,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        String[] tokens = valueDocContents.toString.split("\\s+");       
+        for (String wordString: tokens) {
+          if (wordString.length > 0) {
+            word.set(wordString.toLowerCase);
+            output.collect(word, one);
+          }
+        }
+      }
+    }
+
+    class WordCountReduce extends MapReduceBase
+    implements Reducer<Text, IntWritable, Text, IntWritable> {
+
+      public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        int totalCount = 0;
+        while (counts.hasNext) {                                         
+          while (counts.hasNext) {
+            totalCount += counts.next.get;
+          }
+          output.collect(keyWord, new IntWritable(totalCount));
+        }
+      }
+  \end{javacode}
+  \caption{\textsc{WordCount} en \textsc{Java}}
+  \label{lst:javaWC}
+\end{listing}
+
+\begin{listing}[H]
+  \begin{scalacode}
+    class ScaldingWordCount(args : Args) extends Job(args) {
+      TextLine(args("input"))
+      .read
+      .flatMap('line -> 'word) {
+        line: String => line.trim.toLowerCase.split("""\s+""")
+      }
+      .groupBy('word){ group => group.size('count) }
+      .write(Tsv(args("output")))                   
+    }
+  \end{scalacode}
+  \caption{\textsc{WordCount} en \textsc{Scala}}
+  \label{lst:scalaWC}
+\end{listing}
+
+Podríamos decir que estos son los motivos principales -- aunque no los únicos --
+de la elección de este lenguaje de programación en el desarrollo de un parseador
+de dependencias para Español.
 
 %*****************************************
 %*****************************************

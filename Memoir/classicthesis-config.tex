@@ -158,10 +158,11 @@
 % 5. Setup code listings
 % ****************************************************************************************************
 \usepackage{minted}
-\renewcommand{\listingscaption}{Código fuente}
+\usemintedstyle{tango}
+%\renewcommand{\listingscaption}{Código fuente}
 \renewcommand{\listoflistingscaption}{Índice de código fuente}
 \newminted{scala}{
-%   fontsize=\scriptsize,
+   fontsize=\footnotesize,
    gobble=0,
    frame=lines,
    framesep=2mm,
@@ -170,6 +171,18 @@
    breakautoindent,
    mathescape
 }
+\newminted{java}{
+   fontsize=\footnotesize,
+   gobble=0,
+   frame=lines,
+   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+
+\newmintinline{scala}{}
 % \usepackage{listings} 
 % %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
 % \lstset{language=[LaTeX]Tex,%C++,
