@@ -725,6 +725,24 @@ frases en el conjunto de test a borrar. Finalmente, los clasificadores
 entrenados en el conjunto de entrenamiento reducido son los usados para
 determinar si las sentencias son subjetivas u objetivas.
 
+\label{ballesteros}
+Aunque existen varias propuestas sobre el parseo de dependencias para
+Español, quizá una de las más interesantes y con mejores resultados
+sea la de \citeauthor{ballesteros2016} \cite{ballesteros2016}. Se
+basan en el estado del arte para el parseo sintáctico de dependencias,
+que produce como resultado un \acfi{SSyntSs}\acused{SSyntSs}, y en el
+parseo semántico de dependencias -- \nameref{sec:textpreprocesing} --,
+el cual proporciona estructuras semánticas. El inconveniente de la
+primera estructura es que se define sobre el vocabulario al completo
+de un idioma. Además posee funciones gramaticales específicas del
+idioma. La segunda estructura, es problemática al perder información
+sobre la estructura lingüística. Por esta razón,
+\citeauthor{ballesteros2016} definen \acfi{DSyntSs}\acused{DSyntSs},
+más apropiada para tareas de \ac{NLP}, ya que se sitúa en mitad de las
+dos estructuras anteriores. La finalidad de su trabajo consiste en
+generar un \ac{DSyntSs} a partir de un \ac{SSyntSs} usando un
+parseador sintáctico, traduciendo de una estructura a otra.
+
 \subsection{A nivel de entidad}
 \label{subsec:soaentity}
 
