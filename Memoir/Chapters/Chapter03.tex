@@ -2,7 +2,42 @@
 \chapter{Una Introducción a Scala}
 \label{ch:scalaintro}
 %************************************************
-\cite{Dean2015}
+
+El nombre \textsc{Scala} es una concatenación de dos palabras, \emph{Scalable
+  Language}. A continuación se enumeran algunas de las razonas por las que se ha
+elegido este lenguaje, la lista completa puede encontrarse en
+\citeauthor{Dean2015} \cite{Dean2015}.
+
+\section{¿Por qué \textsc{Scala}?}
+\label{sec:whyscala}
+
+Las principales características de \textsc{Scala} que lo hacen un buen candidato
+para este trabajo son las siguientes:
+
+\begin{description}
+\item[Paradigma mixto --- Programación Orientada a Objetos:] \textsc{Scala}
+  soporta al completo el paradigma de la orientación a objetos. Además, mejora
+  el modelo de objetos proporcionado por \textsc{Java} con la introducción de
+  \textsc{Traits}, un modo muy claro de implementar tipos mediante composiciones
+  mixtas. Todo es un objeto en \textsc{Scala}, incluso los tipos numéricos.
+\item [Paradigma mixto --- Programación Funcional:] De igual modo, \textsc{Scala}
+  soporta al completo \acfi{FP}\acused{FP}\graffito{\ac{FP}: Programación
+    Funcional}. En los últimos años, la \ac{FP} ha resurgido como una de las
+  mejores herramientas para pensar en problemas de concurrencia, \emph{Big Data}
+  y en general para escribir código \enhancement{correctness}correcto. Este
+  código correcto, conciso y potente se logra mediante el uso de valores
+  inmutables, funciones de primera clase, funciones sin efectos colaterales,
+  funciones de ``orden superior'' y colecciones de funciones.
+\item [Sintaxsis breve, elegante y flexible:] Expresiones que pueden llegar a
+  ser demasiado extensas en \textsc{Java} se hacen concisas en \textsc{Scala}.
+\item [Arquitectura Scalable:] \textsc{Scala} permite escribir desde
+  \emph{scripts} pequeños, que son interpretados, hasta aplicaciones
+  distribuidas de gran envergadura. Hay cuatro mecanismos inherentes al lenguaje
+  permitiendo esta escalabilidad: 1) composiciones mixtas mediante
+  \textsc{Traits}, 2) miembros de tipo abstracto y genéricos; 3) anidamiento de
+  clases y 4) tipos explícitos \textsc{self}.
+  
+\end{description}
 
 %*****************************************
 %*****************************************
