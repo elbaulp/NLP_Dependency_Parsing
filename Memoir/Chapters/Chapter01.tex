@@ -234,9 +234,24 @@ principales y palabras que modifican dichas palabras principales. La
 \autoref{fig:corenlp} muestra ejemplos de los distintos módulos del
 \emph{pipeline} de \emph{\textsc{CoreNLP}}
 
-\begin{figure}[bth]
-  \includegraphics[width=1\linewidth]{gfx/nndep-example}
-  \caption[Ejemplo de parseo de dependencias]{Ejemplo de parseo de dependencias}
+\begin{figure}[h]
+  \begin{dependency}[edge slant=4pt,label theme = simple]
+    \begin{deptext}[column sep=1em]
+      This \& time \& around \& , \& they \& 're \& moving \& even \& faster \&
+      . \\
+    \end{deptext}
+    \deproot{7}{ROOT}
+    \depedge{2}{1}{DET}
+    \depedge[edge height=1.9cm]{7}{2}{TMOD}
+    \depedge{2}{3}{ADVMOD}
+    \depedge{7}{6}{AUX}
+    \depedge{7}{5}{NSUBJ}
+    \depedge{7}{4}{PUNCT}
+    \depedge{7}{10}{PUNCT}
+    \depedge{7}{9}{ADVMOD}
+    \depedge{9}{8}{ADVMOD}
+  \end{dependency}
+  \caption{Ejemplo de parseo de dependencias}
   \label{fig:nndep}
 \end{figure}
 
