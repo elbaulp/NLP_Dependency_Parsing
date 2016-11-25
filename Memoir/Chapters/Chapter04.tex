@@ -11,6 +11,26 @@ dependencias palabra-a-palabra. Aún siendo esta precisión inferior al
 \nameref{sec:stateoftheart}, hay que tener en cuenta que este método no utiliza
 información sobre la estructura de las frases.
 
+\begin{tikzpicture}[every node/.style={align=center},level distance=2cm]
+\tikzset{edge from parent/.append style={<-}}
+\Tree [.{said\\VBD} 
+          [.{Inc.\\NNP}
+             [.{Rolls-Royce\\NNP} ] [.{Motor\\NNP} ] [.{Cars\\NNPS} ] 
+          ]
+          [.{expects\\VBZ}
+             [.{it\\PRP} ]
+             [.{remain\\VB}
+                [.{sales\\NNS}
+                   [.{its\\PRP\$} ]
+                   [.{U.S\\NNP} ]
+                ]
+                [.{to\\TO} ]
+                [.{steady\\JJ} ]
+                [.{at\\IN} [.{cars\\NNS} [.{about\\IN} [.{1200\\CD} ] ] ] ]
+             ]
+          ]
+        ]
+\end{tikzpicture}
 
 %*****************************************
 %*****************************************
