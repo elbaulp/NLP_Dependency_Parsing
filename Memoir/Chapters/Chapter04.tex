@@ -13,18 +13,22 @@ información sobre la estructura de las frases.
 
 El tipo de anotaciones usadas en este método pueden verse en la
 \autoref{fig:deptree}. Esta forma de ilustrar las dependencias palabra-a-palabra
-es más sencilla de entender para los anotadores que tengan un amplio
-conocimiento del dominio a trabajar, pero carezcan del conocimiento lingüísitco.
+es más sencilla de entender para los anotadores que el usual estilo \ac{PTB} ---
+\autoref{fig:strtree} --- Además, la representación del árbol de dependencias de
+la \autoref{fig:deptree} hace que la construcción de los datos de entrenamiento
+sea menos ruidosa, al ser el proceso de anotación más simple.
 
 \begin{figure}[h]
-\resizebox{1.3\textwidth}{!}{%
+%\resizebox{1.3\textwidth}{!}{%
+\tiny
 \begin{tikzpicture}[every node/.style={align=center}]
   \tikzset{
     edge from parent/.style={
       draw,edge from parent
       path={(\tikzparentnode.south)-- +(0,-8pt)-| (\tikzchildnode)}
     },
-    frontier/.style={distance from root=350pt} % Align leaf nodes
+    frontier/.style={distance from root=208pt}, % Align leaf nodes
+    level 1+/.style={level distance=18pt} % Distance between levels
   }
 
    \Tree [.S
@@ -54,15 +58,16 @@ conocimiento del dominio a trabajar, pero carezcan del conocimiento lingüísitc
              ]
          ]
 \end{tikzpicture}
-}
+%}
 \caption{Estructura en árbol de la frase ``Rolls-Royce Motor Cars Inc. said it
   expects its U.S. sales to remain steady at about 1,200 cars.''}
 \label{fig:strtree}
 \end{figure}
 
-\begin{figure}[h]
-   \begin{tikzpicture}[every node/.style={align=center},level distance=2cm]
-   \tikzset{edge from parent/.append style={<-, >=latex,thick}}
+\begin{figure}[th]
+  \scriptsize
+  \begin{tikzpicture}[every node/.style={align=center},level distance=30pt]
+    \tikzset{edge from parent/.append style={<-, >=latex,thick}}
    \Tree [.said\\VBD 
              [.Inc.\\NNP Rolls-Royce\\NNP Motor\\NNP Cars\\NNPS ]
              [.expects\\VBZ it\\PRP
