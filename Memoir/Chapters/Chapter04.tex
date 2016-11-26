@@ -34,7 +34,7 @@ sea menos ruidosa, al ser el proceso de anotación más simple.
    \Tree [.S
              [.NP Rolls-Royce\\NNP Motor\\NNP Cars\\NNPS Inc\\NNP ]
              [.VP said\\VBD
-                [.SBAR -NONE-
+                [.SBAR [.none ]
                    [.S
                       [.NP it\\PRP ]
                       [. VP expects\\VBZ
@@ -83,6 +83,15 @@ sea menos ruidosa, al ser el proceso de anotación más simple.
    \caption{Árbol de parseo de dependencias}
    \label{fig:deptree}
 \end{figure}
+
+
+\begin{tikzpicture}[node distance=2cm]
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\node (start) [startstop] {Start};
+
+\end{tikzpicture}
+
+ 
 %*****************************************
 %*****************************************
 %*****************************************
