@@ -95,7 +95,7 @@ con espacios de características a gran escala. En los siguientes párrafos se
 hará una breve intoducción a este algoritmo.
 
 \section{Una introducción a las SVMs}
-\label{subsec:svmintro}
+\label{sec:svmintro}
 
 \nocite{yaser2012} Los modelos lineales son muy poderosos, mediante
 transformaciones lineales es posible incrementar en gran medida su capacidad
@@ -140,6 +140,62 @@ de $d$ características sin incrementar demasiado el tiempo de cálculo. En el
 problema que nos ocupa, esto se traduce en la capacidad de entrenar reglas de
 dependencias usando varias características, como \ac{POS} \emph{tags}, las
 palabras en sí y sus combinaciones.
+
+\section{Análisis de dependencias determinístico}
+\label{sec:depanalysis}
+
+\subsection{Acciones para el parseo}
+\label{subsec:parseractions}
+
+El trabajo de \citeauthor{yamada2003} propone tres acciones para construir el
+árbol de dependencias. Es aquí cuando entra en juego la \ac{SVM}, ya que
+aprenderá las acciones de los datos de entrenamiento y predecirá qué acciones
+realizar para datos nuevos. El árbol de dependencias se construye de izquierda a
+derecha, siguiendo la dirección de lectura habitual. Las tres acciones
+posibles son \emph{Shift, Right} y \emph{Left} --- \textsc{Desplazar, derecha} e
+\textsc{izquierda}. --- Estas acciones se aplican a dos palabras vecinas, nombradas a
+partir de ahora nodos objetivo. Se pasa ahora a describir cada una de las
+acciones.
+
+\textsc{Desplazar} indica que no se ha realizado ninguna construcción en el
+árbol de dependencias entre los nodos objetivo. La acción para esta situación
+simplemente desplaza una posición a la derecha la ventana que apunta a los nodos
+objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto.
+
+\begin{figure}[h]
+  \missingfigure{Shift Action}
+  \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el estado antes
+    de aplicar la acción. (b) el resultado tras aplicarla}
+  \label{fig:shiftaction}
+\end{figure}
+
+\textsc{Derecha} construye una relación de dependencia entre los nodos
+objetivo. De los dos nodos nodos objetivo, el de la izquierda pasa a ser hijo
+del nodo de la derecha. En la \autoref{fig:rightaction} puede observarse el
+efecto de esta acción.
+
+\begin{figure}[h]
+  \missingfigure{Right action}
+  \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
+    acción. (b) Estado tras aplicar la acción}
+  \label{fig:rightaction}
+\end{figure}
+
+\textsc{Izquierda} construye una relación de dependencia entre los nodos
+objetivo. De los dos nodos objetivo, el de la derecha pasa a ser hijo del nodo
+de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
+
+\begin{figure}[h]
+  \missingfigure{Left action}
+  \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
+    acción. (b) Estado tras aplicar la acción}
+  \label{fig:leftaction}
+\end{figure}
+
+\subsection{Descripción del algoritmo}
+\label{subsec:algdesc}
+
+
 
 %*****************************************
 %*****************************************
