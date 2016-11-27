@@ -45,7 +45,7 @@
     
     %*******************************************************
     % List of Tables
-    %*******************************************************
+    % *******************************************************
     %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\listtablename}
@@ -63,10 +63,24 @@
     %\addcontentsline{toc}{chapter}{\listoflistingscaption}
     \pdfbookmark[1]{\listingscaption}{lol}
     \listoflistings 
+    \addtocontents{lol}{\def\string\figurename{Código}}
+    
+    \vspace{8ex}
+
+    % *******************************************************
+    % List of Algorithms
+    % *******************************************************
+    \renewcommand{\listalgorithmname}{Lista de Algoritmos}
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \pdfbookmark[1]{\listalgorithmname}{loa}
+    \listofalgorithms
+    \addtocontents{loa}{\def\string\figurename{Algoritmo}}
 
     \vspace{8ex}
-       
-    %*******************************************************
+
+    % *******************************************************
     % Acronyms
     %*******************************************************
     %\phantomsection 
