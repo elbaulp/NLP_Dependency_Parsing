@@ -22,7 +22,7 @@ que trata el problema. Como ventaja adicional, la representación del árbol de
 dependencias de la \autoref{fig:deptree} hace que la construcción de los datos
 de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 %\resizebox{1.3\textwidth}{!}{%
 \tiny
 \begin{tikzpicture}[every node/.style={align=center}]
@@ -120,7 +120,7 @@ distancia entre dos hiperplanos $\mathbf{w}\cdot \mathbf{x} + b \geq 1$ y
 $\mathbf{w}\cdot \mathbf{x} + b \leq -1$, como se aprecia en la
 \autoref{fg:svmexample}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \missingfigure{SVM example}
   \caption{Ejemplo \ac{SVM}}
@@ -162,7 +162,7 @@ acciones.
 simplemente desplaza una posición a la derecha la ventana que apunta a los nodos
 objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \missingfigure{Shift Action}
   \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el estado antes
     de aplicar la acción. (b) el resultado tras aplicarla}
@@ -174,7 +174,7 @@ objetivo. De los dos nodos nodos objetivo, el de la izquierda pasa a ser hijo
 del nodo de la derecha. En la \autoref{fig:rightaction} puede observarse el
 efecto de esta acción.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \missingfigure{Right action}
   \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
     acción. (b) Estado tras aplicar la acción}
@@ -185,7 +185,7 @@ efecto de esta acción.
 objetivo. De los dos nodos objetivo, el de la derecha pasa a ser hijo del nodo
 de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \missingfigure{Left action}
   \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
     acción. (b) Estado tras aplicar la acción}
@@ -195,7 +195,40 @@ de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
 \subsection{Descripción del algoritmo}
 \label{subsec:algdesc}
 
+\begin{algorithm}
+  \caption{Algoritmo de parseo}
+  \label{alg:parsing}
 
+  \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
+  \algdef{snE}{Start}{EndStart}
+  
+  \begin{algorithmic}[1] % The number tells where the line numbering should start
+    \State \textbf{Input Sentence:} $(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)$
+    \Init
+       \State $i\gets 1$
+       \State ${\cal T}\gets \{(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)\}$
+       \State $\text{no\_construction}\gets \text{true}$
+    \EndInit
+    \Start
+       \While{$|{\cal T}| \geq 1$}
+          \If{$i == |{\cal T}|$}
+             \If{no\_construction == true}
+                \textbf{break}
+             \EndIf
+             \State $\text{no\_construction}\gets \text{true}$
+             \State $i\gets 1$
+          \Else
+             \State $\mathbf{x}\gets \text{getContextualFeatures(${\cal T}, i$)} $
+             \State $y\gets \text{estimateAction(model, $\mathbf{x}$)}$
+             \State construction(${\cal T}, i, y$)
+             \If{$y == \text{\emph{Left} or \emph{Right}}$}
+                $\text{no\_construction}\gets \text{false}$
+             \EndIf
+          \EndIf
+       \EndWhile
+    \EndStart
+    \end{algorithmic}
+\end{algorithm}
 
 %*****************************************
 %*****************************************
