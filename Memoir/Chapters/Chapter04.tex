@@ -195,9 +195,14 @@ de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
 \subsection{Descripción del algoritmo}
 \label{subsec:algdesc}
 
-\begin{algorithm}
+El Algoritmo~\autoref{algorithm:parsing} consiste de dos partes. Primero se
+estima la acción apropiada usando la información contextual rodeando los nodos
+objetivo. Segundo, se construye el árbol de dependencias ejecutando las acciones
+estimadas en el primer paso.
+
+\begin{algorithm}[ht]
   \caption{Algoritmo de parseo}
-  \label{alg:parsing}
+  \label{algorithm:parsing}
 
   \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
   \algdef{snE}{Start}{EndStart}
@@ -229,6 +234,35 @@ de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
     \EndStart
     \end{algorithmic}
 \end{algorithm}
+
+Cuando el algoritmo se ejecuta, la variable $i$ representa el índice del nodo de
+la izquierda del par de nodos objetivos, $i + 1$ el de la derecha, dichos nodos
+están en ${\cal T}$. ${\cal T}$ contiene la secuencia de nodos a los que se debe
+estimar una acción, estos nodos se corresponden con los nodos raíz de los
+árboles que se van construyendo a lo largo del proceso de parseado. Como es
+lógico, inicialmente todos los nodos $t_i\in {\cal T}$ están compuestos
+únicamente por la raíz, si tener hijos. La información que guarda cada nodo es
+el par $(w_i, p_i)$, donde $w_i$ es una palabra y $p_i$ su \ac{POS} \emph{tag}.
+
+La estimación sobre qué acción aplicar se lleva a cabo mediante las funciones
+\emph{getContextualFeatures} y \emph{estimateAction}. La primera extrae
+características de $\mathbf{x}$ en función del contexto que la rodea por $i$, en
+la sección \nameref{subsec:featureextraction} se profundiza sobre este tema. La
+segunda función estima la acción más apropiada.
+
+La variable \emph{no\_construction} se encarga de comprobar cuando se han
+producido acciones que hayan resultado en la contrucción de dependencias al
+terminar de leer la frase. Cuando esta variable tiene valor verdadero significa
+que se ha producido la acción \textsc{Desplazar} para todos los nodos objetivo,
+y por tanto no se han creado nuevas dependencias. En ese caso se detiene el
+proceso y se devuelven los árboles en ${\cal T}$, ya que no es posible aplicar
+más acciones. Cuando la variable es falsa, los nodos objetivo se colocan al
+principio de la frase y se vuelve a repetir el proceso hasta que $|{\cal T}| = 1$.
+
+\subsection{Extracción de características}
+\label{subsec:featureextraction}
+
+
 
 %*****************************************
 %*****************************************
