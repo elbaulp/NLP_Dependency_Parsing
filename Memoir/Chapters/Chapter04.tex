@@ -89,10 +89,10 @@ de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
 \end{figure}
 
 En la estructura propuesta por \citeauthor{yamada2003} se realiza un análisis
-estadístico de las dependencias de un idioma. Para lograr este análisis, el
-algoritmo de aprendizaje escogido son \acp{SVM}, ya que son capaces de tratar
-con espacios de características a gran escala. En los siguientes párrafos se
-hará una breve intoducción a este algoritmo.
+estadístico de las dependencias de un idioma. Para lograr este análisis, se usa
+la técnica de aprendizaje conocida como \ac{SVM}, ya que es capaz de tratar con
+espacios de características a gran escala. En los siguientes párrafos se hará
+una breve intoducción a esta técnica.
 
 \section{Una introducción a las SVMs}
 \label{sec:svmintro}
@@ -109,7 +109,7 @@ el cojín de seguridad y el \emph{kernel} -- hacen de la \ac{SVM} un modelo no
 lineal muy robusto y potente con regularización automática. Las \ac{SVM} son muy
 populares por su facilidad de uso y su buen rendimiento.
 
-\ac{SVM} usa la estrategia del máximo márgen ideada por
+\ac{SVM} usa la estrategia del máximo margen ideada por
 \emph{Vapnik}. Supongamos $l$ datos de entrenamiento
 $(\mathbf{x}_i,y_i), (1 \leq i \leq l)$, donde $\mathbf{x}_i$ es un vector de
 características en un espacio de dimensionalidad $n$, $y_i$ es la etiqueta de la
@@ -200,7 +200,7 @@ estima la acción apropiada usando la información contextual rodeando los nodos
 objetivo. Segundo, se construye el árbol de dependencias ejecutando las acciones
 estimadas en el primer paso.
 
-\begin{algorithm}[ht]
+\begin{algorithm}[H]
   \caption{Algoritmo de parseo}
   \label{algorithm:parsing}
 
@@ -241,7 +241,7 @@ están en ${\cal T}$. ${\cal T}$ contiene la secuencia de nodos a los que se deb
 estimar una acción, estos nodos se corresponden con los nodos raíz de los
 árboles que se van construyendo a lo largo del proceso de parseado. Como es
 lógico, inicialmente todos los nodos $t_i\in {\cal T}$ están compuestos
-únicamente por la raíz, si tener hijos. La información que guarda cada nodo es
+únicamente por la raíz, sin tener hijos. La información que guarda cada nodo es
 el par $(w_i, p_i)$, donde $w_i$ es una palabra y $p_i$ su \ac{POS} \emph{tag}.
 
 La estimación sobre qué acción aplicar se lleva a cabo mediante las funciones
@@ -262,7 +262,63 @@ principio de la frase y se vuelve a repetir el proceso hasta que $|{\cal T}| = 1
 \subsection{Extracción de características}
 \label{subsec:featureextraction}
 
+En el proceso de entrenamiento de las \ac{SVM}, cada estimación de una acción
+$y$ en el contexto $\mathbf{x}$ se corresponde con una observación
+$(\mathbf{x}, y)$ de la \ac{SVM}. Al tener tres tipos de acciones, el problema
+que nos ocupa es de clasificación multi clase. Para resolverlo se crean tres
+clasificadores binarios correspondientes a cada acción, lo cual se conoce como
+método por parejas. Los tres clasificadores binarios son \textsc{Izquierda}
+\emph{vs.} \textsc{Derecha}, \textsc{Izquierda} \emph{vs.} \textsc{Desplazar} y
+\textsc{Derecha} \emph{vs.}  \textsc{Desplazar}.
 
+Como se mencionó en la \autoref{subsec:algdesc}, el \ac{POS} \emph{tag} y la
+propia palabra se usan como características de los nodos para los contextos de
+la izquierda y derecha. Se pasa ahora a describir en qué consisten dichos
+contextos.
+
+Como ya se sabe, $i$ e $i + 1$ son los índices que apuntan  los nodos objetivo
+en ${\cal T}$. El contexto a la izquierda se puede definir como los nodos
+posicionados a la izquierda de los nodos objetivo, es decir $t_l, (l < i)$. El
+contexto a la derecha, de forma análoga, son los nodos a la derecha de los nodos
+objetivo $t_r,(i+1 <r)$
+
+La representación de una caracteristica viene dada por la tupla $(p,k,v)$. $p$
+es la posición partiendo de los nodos objetivo, $k$ codifica el tipo de
+característica y $v$ almacena el valor para dicha característica. Cuando $p<0$
+se está representando el nodo del contexto izquierdo, $p=\{0-,0+\}$ representa
+el nodo izquierdo ($0-$) o derecho ($0+$) de los nodos objetivo --- recordemos
+que los nodos objetivo estaban formados por dos nodos. --- Análogamente, $p>0$
+indica los nodos en el contexto derecho. La \autoref{table:features} muestra los
+valores del tipo de característica $k$ y sus valores $v$. Las características
+ch-\{L,R\}-\{pos,lex\} se denominan características hijas y se calculan de forma
+dinámica durante el análisis. Estas características ayudan a determinar qué
+acción tomar.
+
+\begin{table}[ht]
+  \centering
+  \caption{Descripción del tipo de características y sus valores}
+  \label{table:features}
+
+  \begin{tabular}{ll}
+    \rowcolor[HTML]{443627} 
+    {\color[HTML]{FFFFFF} Tipo} & {\color[HTML]{FFFFFF} Valor}                                                  \\
+    pos                         & \ac{POS} \emph{tag}                                                       \\
+    lex                         & La palabra                                                                    \\
+    ch-L-pos                    & \ac{POS} \emph{tag} del nodo hijo modificando al padre desde la izquierda \\
+    ch-L-lex                    & Palabra del correspondiente ch-L-pos                                          \\
+    ch-R-pos                    & \ac{POS} \emph{tag} del nodo hijo que modifica al padre desde la derecha  \\
+    ch-R-lex                    & Palabra del correspondiente ch-R-pos                                         
+  \end{tabular}
+\end{table}
+
+\subsection{Agrupando \acp{SVM} para reducir costes}
+\label{subsec:svmgrouping}
+
+Debido a la gran cantidad de datos de entrenamiento disponibles,
+\citeauthor{yamada2003} proponen dividirlos en varios grupos. La división se
+realiza en base al \ac{POS} \emph{tag} del nodo de la izquierda de los nodos
+objetivo. Por ejemplo, si el \ac{POS} \emph{tag} del nodo izquierdo es “VB”, se
+estima la acción usando \acp{SVM}$^{\text{VB}}$
 
 %*****************************************
 %*****************************************
