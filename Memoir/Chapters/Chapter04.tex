@@ -1,5 +1,6 @@
 %************************************************
-\chapter{Elección del Algoritmo}
+\chapter{Algoritmo seleccionado: Statistical Dependency Analysis With Support
+  Vector Machines}
 \label{ch:algorithm}
 %************************************************
 
@@ -21,7 +22,6 @@ idioma, así como de la estructura de las frases, además del dominio específic
 que trata el problema. Como ventaja adicional, la representación del árbol de
 dependencias de la \autoref{fig:deptree} hace que la construcción de los datos
 de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
-
 \begin{figure}[ht]
 %\resizebox{1.3\textwidth}{!}{%
 \tiny
@@ -67,7 +67,6 @@ de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
   expects its U.S. sales to remain steady at about 1,200 cars.''}
 \label{fig:strtree}
 \end{figure}
-
 \begin{figure}[th]
   \scriptsize
   \begin{tikzpicture}[every node/.style={align=center},level distance=30pt]
@@ -87,7 +86,6 @@ de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
    \caption{Árbol de parseo de dependencias}
    \label{fig:deptree}
 \end{figure}
-
 En la estructura propuesta por \citeauthor{yamada2003} se realiza un análisis
 estadístico de las dependencias de un idioma. Para lograr este análisis, se usa
 la técnica de aprendizaje conocida como \ac{SVM}, ya que es capaz de tratar con
@@ -119,14 +117,12 @@ entrenamiento de forma que tengan margen máximo, es decir, con la máxima
 distancia entre dos hiperplanos $\mathbf{w}\cdot \mathbf{x} + b \geq 1$ y
 $\mathbf{w}\cdot \mathbf{x} + b \leq -1$, como se aprecia en la
 \autoref{fg:svmexample}
-
 \begin{figure}[ht]
   \centering
   \missingfigure{SVM example}
   \caption{Ejemplo \ac{SVM}}
   \label{fg:svmexample}
 \end{figure}
-
 El uso de \ac{SVM} para el análisis estadístico de dependencias presenta
 principalmente dos ventajas. La primera de ellas es un gran poder de
 generalización en espacios de características de grandes dimensiones. Segunda,
@@ -161,30 +157,25 @@ acciones.
 árbol de dependencias entre los nodos objetivo. La acción para esta situación
 simplemente desplaza una posición a la derecha la ventana que apunta a los nodos
 objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto.
-
 \begin{figure}[ht]
   \missingfigure{Shift Action}
   \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el estado antes
     de aplicar la acción. (b) el resultado tras aplicarla}
   \label{fig:shiftaction}
 \end{figure}
-
 \textsc{Derecha} construye una relación de dependencia entre los nodos
 objetivo. De los dos nodos nodos objetivo, el de la izquierda pasa a ser hijo
 del nodo de la derecha. En la \autoref{fig:rightaction} puede observarse el
 efecto de esta acción.
-
 \begin{figure}[ht]
   \missingfigure{Right action}
   \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
     acción. (b) Estado tras aplicar la acción}
   \label{fig:rightaction}
 \end{figure}
-
 \textsc{Izquierda} construye una relación de dependencia entre los nodos
 objetivo. De los dos nodos objetivo, el de la derecha pasa a ser hijo del nodo
 de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
-
 \begin{figure}[ht]
   \missingfigure{Left action}
   \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
@@ -199,7 +190,6 @@ El Algoritmo~\autoref{algorithm:parsing} consiste de dos partes. Primero se
 estima la acción apropiada usando la información contextual rodeando los nodos
 objetivo. Segundo, se construye el árbol de dependencias ejecutando las acciones
 estimadas en el primer paso.
-
 \begin{algorithm}[H]
   \caption{Algoritmo de parseo}
   \label{algorithm:parsing}
@@ -234,7 +224,6 @@ estimadas en el primer paso.
     \EndStart
     \end{algorithmic}
 \end{algorithm}
-
 Cuando el algoritmo se ejecuta, la variable $i$ representa el índice del nodo de
 la izquierda del par de nodos objetivos, $i + 1$ el de la derecha, dichos nodos
 están en ${\cal T}$. ${\cal T}$ contiene la secuencia de nodos a los que se debe
@@ -293,7 +282,6 @@ valores del tipo de característica $k$ y sus valores $v$. Las características
 ch-\{L,R\}-\{pos,lex\} se denominan características hijas y se calculan de forma
 dinámica durante el análisis. Estas características ayudan a determinar qué
 acción tomar.
-
 \begin{table}[ht]
   \centering
   \caption{Descripción del tipo de características y sus valores}

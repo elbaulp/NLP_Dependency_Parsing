@@ -3,6 +3,53 @@
 \label{ch:impl}
 %************************************************
 
+En este capítulo se detallan los aspectos de la implementación en \textsc{Scala}
+del algoritmo introducido en el \autoref{ch:algorithm}. Así mismo, las ventajas
+del desarrollo en \textsc{scala} pueden consultarse en el \autoref{ch:scalaintro}
+
+\section{Planificación}
+\label{sec:planning}
+
+\question[inline]{Hay que poner algo?}
+
+\section{Análisis y Diseño}
+\label{sec:design}
+
+
+\subsection{Diagrama de Clases}
+\label{subsec:classdiagram}
+
+Para el desarrollo del parseador de dependencias, se ha ideado el diseño de la
+\autoref{fig:classdiag}
+\begin{figure}[ht]
+  \centering
+  \tikzumlset{fill package=gray!20, fill class=gray!20}
+  \begin{tikzpicture}
+    \umlsimpleclass[x=0,y=1.5]{Trait TrainSentence}
+    \umlsimpleclass[x=4,y=1.5]{Trait TestSentence}
+
+    \umlsimpleclass[x=5.5,y=0]{Sentence}
+    \umlsimpleclass[x=0,y=0]{LabeledSentence}
+
+    \umlVHVinherit{Sentence}{Trait TestSentence}
+    \umlVHVinherit{LabeledSentence}{Trait TestSentence}
+    
+    % \umlinherit[x=1,y=0,geometry=-|]{Sentence}{Trait TestSentence}
+    % \umlinherit[x=4,y=0,geometry=-|]{LabeledSentence}{Trait TestSentence}
+    \umlinherit[x=4,y=0]{LabeledSentence}{Trait TrainSentence}
+  \end{tikzpicture}
+  \missingfigure{TODO}
+  \caption{Diagrama de clases \label{fig:classdiag}}
+\end{figure}
+
+
+
+
+\section{Implementación y Pruebas}
+\label{sec:impl}
+
+
+
 %*****************************************
 %*****************************************
 %*****************************************
