@@ -80,73 +80,57 @@
 % use \cleardoublepage here to avoid problems with pdfbookmark
 \cleardoublepage
 
-\ctparttext{En este primer apartado expondremos el conocimiento previo necesario
-  para que el lector se situe en el contexto del problema tratado.}
+\ctparttext{La memoria se organiza en cuatro partes.
+
+  La primera, en el \autoref{ch:introduction}, es una introducción al
+  Procesamiento del Lenguaje Natural, en ella se definen los tipos de
+  aplicaciones que permite, así como una descripción del \emph{pipeline} usual
+  que suele seguirse en este tipo de sistemas y el estado del arte.
+
+  En la segunda parte, \autoref{ch:goals} se listan los objetivos del proyecto.
+
+  La tercera parte se compone de los Capítulos~(\ref{ch:scalaintro}
+  \ref{ch:algorithm} \ref{ch:impl} y \ref{ch:tests}). En ellos se introduce al
+  lenguaje \textsc{Scala}, se explican los detalles técnicos del algoritmo de
+  parseo de dependencias, se discute la implementación y se muestran los casos
+  de prueba realizados, respectivamente.
+
+  Por último, la cuarta parte consta del \autoref{ch:eval}, en donde se exponen
+  los resultados obtenidos, se comparan los resultados con el algoritmo original
+  y se proponen trabajos futuros.}
 
 \part{Puesta en escena}
 \include{Chapters/Chapter01}
 \cleardoublepage
-
-% \ctparttext{
-%   En este apartado expondremos la necesidad de desarrollar un software de parseo
-%   de dependencias para el idoma Español. Se revisará el estado del arte para
-%   este proceso del \emph{pipeline} y por último, se introducirá la propuesta
-%   para resolver el problema.
-  
-%   ---
-  
-%   En este apartado deberán aparecer con claridad los objetivos,
-%   inicialmente previstos en la propuesta de TFG, indicando el alcance para cada
-%   uno de ellos. Es conveniente indicar de manera precisa las interdependencias
-%   entre los distintos objetivos y también enlazarlos con los diferentes
-%   apartados de la memoria.
-
-%   Los aspectos formativos previos más utilizados pueden ser destacados aquí.  }
 \part{Objetivos}
 \include{Chapters/Chapter02}
 %\addtocontents{toc}{\protect\clearpage} % <--- just debug stuff, ignore
-\ctparttext{Se explicarán los métodos y procesos empleados para desarrollar el
-  trabajo y alcanzar los objetivos. Es conveniente destacar tanto los métodos
-  inicialmente previstos como aquellos que hayan tenido que ser agregados en el
-  desarrollo del trabajo.
+\ctparttext{Esta parte del trabajo se centra en los pasos seguidos para el
+  desarrollo del proyecto. Se organiza como sigue:
+  
+  En el \autoref{ch:scalaintro} se discuten las características del lenguaje
+  \textsc{Scala}, y por qué ha sido escogido para el desarrollo.
 
-  Éste es el lugar de presentar todos los datos técnicos y científicos
-  realizados en el TFG. Debe ser detallado, claro y preciso.
+  El \autoref{ch:algorithm} detalla los aspéctos técnicos del algoritmo de
+  parseo de dependencias seleccionado.
 
-  En caso de ser un TFG en el que se desarrolle software, se recomienda que la
-  sección 5 quede estructurada de la siguiente forma:
+  En el \autoref{ch:impl} se narra las distintas etapas seguidas para el
+  desarrollo, desde el análisis hasta la implementación.
 
-  5.1 Planificación y presupuesto. Planificación temporal, con su
-  correspondiente división en fases y tareas, y la posterior comparación con los
-  datos reales obtenidos tras realizar el proyecto. También se incluir un
-  presupuesto del trabajo a realizar.
-
-  5.2 Análisis y diseño. Se incluirá la especificación de requerimientos y la
-  metodología de desarrollo por la que se ha optado, así como los “planos“ del
-  proyecto, que contendrán las historias de usuario o casos de uso, diagrama
-  conceptual, diagramas de iteración, diagramas de diseño, esquema
-  arquitectónico y bocetos de las interfaces de usuario. Además, se describirán
-  las estructuras de datos fundamentales y los desarrollos algorítmicos no
-  triviales.
-
-  5.3. Implementación y pruebas. En esta sección se incluirán todos los aspectos
-  relacionados con la programación de la aplicación y las tecnologías
-  seleccionadas, justificándolas e incluyendo el diseño de pruebas e informes de
-  ejecución de las mismas.  }
+  Por último, el \autoref{ch:tests} explica los distintos casos de prueba
+  llevados a cabo.
+}
 \part{Resolución del Trabajo}
 \include{Chapters/Chapter03}
 \include{Chapters/Chapter04}
 \include{Chapters/Chapter05}
 \include{Chapters/Chapter06}
-\ctparttext{Las conclusiones deben incluir todas aquellas de tipo
-  profesional y académico. Además, se debe indicar si los objetivos
-  han sido alcanzados totalmente, parcialmente o no alcanzados.
-
-  Si hubiese claramente posibles vías de desarrollo posterior es
-  interesante destacarlas, poniéndolas en valor en el contexto inicial
-  del trabajo.  }
+\ctparttext{Esta última parte de la memoria se dedica a presentar los resultados
+  obtenidos con el parseador introducido en \autoref{ch:algorithm}, así como
+  comparar los resultados con la implementación original. Por último, se
+  comentarán algunas ideas para trabajos futuros.  }
 \part{Conclusiones y vías futuras}
-
+\include{Chapters/Chapter07}
 %\include{multiToC} % <--- just debug stuff, ignore for your documents
 % ********************************************************************
 % Backmatter
