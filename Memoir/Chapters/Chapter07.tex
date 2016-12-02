@@ -45,20 +45,24 @@ contexto a la izquierda de dos nodos, y un contexto a la derecha de cuatro
 nodos. La \autoref{tab:results} muestra una comparación de los resultados
 obtenidos con el parseador implementado frente a los resultados de
 \citeauthor{rohit2016}.
-
 \begin{table}[ht]
   \myfloatalign
   \begin{tabular}{l|cc}
-                      & \tableheadline{Este Trabajo} & \tableheadline{\citeauthor{rohit2016}} \\
+    \tableheadline{Kernel: $(x'\cdot x'' + 1)^2$, Contexto: $(2,4)$ }
+       & \tableheadline{TFG}
+       & \tableheadline{\citeauthor{rohit2016}} \\
     \toprule
-    \emph{Dep. Acc.}  & 76\%                         & 75\% \\
-    \emph{Root Acc.}  & 67\%                         & 70\% \\
-    \emph{Comp. Rate} & 15\%                         & 11\% \\
+    \emph{Dep. Acc.}  & 76\%   & 75\% \\
+    \emph{Root Acc.}  & 67\%   & 70\% \\
+    \emph{Comp. Rate} & 15\%   & 11\% \\
     \bottomrule
   \end{tabular}
   \caption{Comparación de resultados}
   \label{tab:results}
 \end{table}
+
+Como se puede apreciar, los resultados son bastante similares, llegando a
+mejorar el \emph{Comp. Rate}.
 
 \section{Trabajo Futuro}
 \label{sec:future}
