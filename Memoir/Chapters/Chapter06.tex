@@ -1,9 +1,9 @@
 %************************************************
 \chapter{Test-Driven Machine Learning}
 \label{ch:tdml}
-
+\cite{EL LIBRO DE TDD}
 En este capítulo se verán los casos de prueba implementados para el proyecto. Se
-ha seguido un estilo de tests orientado a problemas de \ac{AA}. En las próximas
+ha seguido un estilo de \emph{tests} orientado a problemas de \ac{AA}. En las próximas
 secciones se introduce este tipo de práctica.
 
 %************************************************
@@ -12,8 +12,8 @@ secciones se introduce este tipo de práctica.
 
 El \acfi{TDD} se basa en dos principios muy claros:
 \begin{itemize}
-\item No escribir ninguna línea de código nueva a no ser que se tenga un test
-  fallido,
+\item No escribir ninguna línea de código nueva a no ser que se tenga un
+  \emph{test} fallido,
 \item Eliminar duplicidades.
 \end{itemize}
 
@@ -36,20 +36,44 @@ llamado ``\emph{Por si acaso}''. Con el uso de \ac{TDD}, primero se piensa en un
 caso de prueba, se ve que el \emph{software} aún no lo soporta y entonces se
 corrige. Si no se es capáz de pensar en un caso de prueba, no se añade código.
 
-\ac{TDD} 
+\ac{TDD} opera a varios niveles. Los \emph{tests} pueden escribirse para
+funciones, métodos, clases, programas, servícios webs, redes neuronales y
+\emph{pipeline} de \ac{AA} al completo. En todo momento, independientemente del
+nivel, los \emph{tests} se escriben desde la perspectiva del cliente. En este
+proyecto se ha centrado el tipo de \emph{tests} hacia el \ac{AA}. En este
+contexto, los \emph{tests} se escriben para funciones, métodos, clases,
+implementaciones matemáticas y todos los algoritmos de aprendizaje.
 
 \subsection{El ciclo de \ac{TDD}}
 \label{subsec:tddcycle}
 
+El ciclo para \ac{TDD} consiste en escribir trozos pequeños de funciones que
+intenten hacer algo que aún no está implementado. Normalmente se suele
+estructura el \emph{test} en tres partes principales. En la primera se preparan
+los objetos y datos necesarios. En la segunda se llama al código para el cual se
+está escribiendo el \emph{test}. Por último, se valida si el resultado del
+código es el que se esperaba. En la primera fase del \emph{test} se escribe el
+código necesario para hacer pasar el \emph{test} --- en este momento no es
+relevante que el código sea correcto o esté bien diseñado, el único objetivo es
+hacer pasar el \emph{test}. --- Una vez se tiene el \emph{test} correcto, se
+procede a refactorizar el código. Cabe destacar que en este contexto
+\emph{refactorizar} significa cambiar la forma en la que se escribió el código,
+pero bajo ningún concepto cambiar cómo se comporta.
 
+Por tanto, el ciclo del \ac{TDD} se puede dividir en tres pasos: \textsc{Rojo},
+\textsc{Verde} y \textsc{Refactorizar}.
 
-\subsubsection{Red}
+\subsubsection{Rojo}
 \label{sec:tddred}
 
-\subsubsection{Green}
+Primero se crea un \emph{test} que no funciona. Al más alto nivel en cuanto a
+\ac{AA} se refiere, podría ser un punto de partida como conseguir un resultado
+mejor que una predicción aleatoria.
+
+\subsubsection{Verde}
 \label{sec:tddgreen}
 
-\subsubsection{Refactor}
+\subsubsection{Refactorizar}
 \label{sec:tddrefactor}
 
 
