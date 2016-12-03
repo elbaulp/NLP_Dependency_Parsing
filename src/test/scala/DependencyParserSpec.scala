@@ -36,13 +36,13 @@ class DependencyParserCheckBaselineSpec extends Specification
     Given Train data set: es_ancora-converted-train1
     Given Test data set: es_ancora-converted-test1
     When Genenaring Vocabulary
-    Then Dep. Acc should be at least: 70
-    and Root Acc should be at least: 50
-    and Comp. Acc should be at least: 11                ${featuresBaseline.end}
+    Then Dep. Acc should be at least: 70%
+    and Root Acc should be at least: 50%
+    and Comp. Acc should be at least: 3%                ${featuresBaseline.end}
 """
 
   val aDataSet = readAs(".*: (.*)$").and((s: String) => s)
-  val myD = readAs(".*: (\\d+)$").and((s: String) => s.toDouble)
+  val myD = readAs(".*: (\\d+).*$").and((s: String) => s.toDouble)
 
   val featuresBaseline =
     Scenario("nFeatures").
@@ -60,26 +60,29 @@ class DependencyParserCheckBaselineSpec extends Specification
 
 }
 
-//class DependencyParserCheckNFeaturesSpec extends Specification
-//  with GWT
-//  with StandardRegexStepParsers {def is = s2"""
-//  When training the model, set the following baselines  ${nfeaturesCheck.start}
-//    Given Train data set: es_ancora-converted-train1
-//    Given Test data set: es_ancora-converted-test1
-//    When Genenaring Vocabulary
-//    Then the number of features must be: 46468          ${nfeaturesCheck.end}
-//"""
-//  val aDataSet = readAs(".*: (.*)$").and((s: String) => s)
-//
-//  val nfeaturesCheck =
-//    Scenario("nFeatures").
-//      given(aDataSet).
-//      given(aDataSet).
-//      when(aString){case _ :: t :: tt :: _ =>
-//        val testSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$t").getPath)
-//        val trainSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$tt").getPath)
-//        val parser = new DependencyParser(trainSentences.get, testSentences.get)
-//        parser.nFeatures
-//      }.
-//      andThen(anInt){case baseline :: r :: _ => baseline must_== r}
-//}
+class DependencyParserCheckNFeaturesSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers {
+  def is =
+    s2"""
+  When training the model, set the following baselines  ${nfeaturesCheck.start}
+    Given Train data set: es_ancora-converted-train1
+    Given Test data set: es_ancora-converted-test1
+    When Genenaring Vocabulary
+    Then the number of features must be: 46468          ${nfeaturesCheck.end}
+"""
+
+  val aDataSet = readAs(".*: (.*)$").and((s: String) => s)
+
+  val nfeaturesCheck =
+    Scenario("nFeatures").
+      given(aDataSet).
+      given(aDataSet).
+      when(aString) { case _ :: test :: train :: _ =>
+        val testSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$test").getPath)
+        val trainSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$train").getPath)
+        val parser = new DependencyParser(trainSentences.get, testSentences.get)
+        parser.nFeatures
+      }.
+      andThen(anInt) { case baseline :: r :: _ => baseline must_== r }
+}
