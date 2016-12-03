@@ -157,7 +157,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
         eF(X ++ updatedX, Y ++ updatedY, tail)
       case Nil => (X, Y)
     }
-    (new File("./src/main/resources/XY").exists(): @switch) match {
+    (new File("src/main/resources/XY").exists(): @switch) match {
       case true => FileUtils.getObject[(Map[String, Vector[Vector[Int]]], Map[String, DblVector])]
       case false =>
         val result = eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),

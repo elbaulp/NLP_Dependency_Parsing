@@ -64,7 +64,6 @@ class DataParserSpec extends Specification
       given(dataSetName).
       given(dataSetName).
       when(aString) {case _ :: t :: tt :: _ =>
-        System.out.println("SSSS" + t + "   " + tt)
         val r1 = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$t").getPath)
         val r2 =  DataParser.readDataSet(getClass.getResource(s"/data/spanish/$tt").getPath)
 
