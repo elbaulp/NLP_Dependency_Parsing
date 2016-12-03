@@ -17,15 +17,13 @@
 
 package com.elbauldelprogramador.nlp.parser
 
-import java.io.File
-
 import com.elbauldelprogramador.nlp.datastructures.{LabeledSentence, Node, Sentence, Vocabulary}
 import com.elbauldelprogramador.nlp.svm.SVMAdapter._
 import com.elbauldelprogramador.nlp.svm.SVMConfig
 import com.elbauldelprogramador.nlp.svm.SVMTypes._
 import com.elbauldelprogramador.nlp.utils.Action.{Action, DoubleToAction, Left, Right, Shift}
-import com.elbauldelprogramador.nlp.utils.{Constants, FileUtils}
 import com.elbauldelprogramador.nlp.utils.DataTypes._
+import com.elbauldelprogramador.nlp.utils.{Constants, FileUtils}
 import com.softwaremill.quicklens._
 import libsvm.{svm, svm_model}
 import org.log4s._
@@ -62,6 +60,8 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   private[this] val features = extractFeatures(sentences2)
   // 1.3 - Train models
   private[this] val models = train(features._1, features._2)
+
+  val nFeatures = vocabulary.nFeatures
 
   /**
     * Test with unseen data
@@ -157,7 +157,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
         eF(X ++ updatedX, Y ++ updatedY, tail)
       case Nil => (X, Y)
     }
-    (new File("src/main/resources/XY").exists(): @switch) match {
+    (getClass.getResource("/XY") != null: @switch) match {
       case true => FileUtils.getObject[(Map[String, Vector[Vector[Int]]], Map[String, DblVector])]
       case false =>
         val result = eF(Map.empty[String, Vector[Vector[Int]]].withDefaultValue(Vector.empty[Vector[Int]]),
@@ -182,13 +182,13 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
           logger.debug(s"\t\tPosTags left: $XKey")
           logger.debug(s"\t\tSize: ${X(head).size}")
           logger.debug(s"\t\t# features: $nFeatures")
-
-          (new File(s"${Constants.ModelPath}/svm.$head.model").exists(): @switch) match {
+          (getClass.getResource(s"${Constants.ModelPath}/svm.$head.model") != null: @switch) match {
             case true =>
-              logger.info(s"Loaded model: ${Constants.ModelPath}/svm.$head.model")
+              val modelPath = getClass.getResource(s"${Constants.ModelPath}/svm.$head.model").getPath
+              logger.info(s"Loaded model: ${modelPath.substring(modelPath.indexOf("svm"))}")
+              logger.debug(s"Loaded model: $modelPath")
               // Load Models
-
-              train0(tail, modelsAcc + (head -> svm.svm_load_model(s"${Constants.ModelPath}/svm.$head.model")))
+              train0(tail, modelsAcc + (head -> svm.svm_load_model(modelPath)))
             case false =>
               val svmProblem = new SVMProblem(Y(head).size, Y(head).toArray)
               // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
@@ -205,7 +205,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
 
               // TODO #19: Make SVMModel class to wrap this call
               val m = modelsAcc + (head -> trainSVM(svmProblem, SVMConfig.param))
-              svm.svm_save_model(s"${Constants.ModelPath}/svm.$head.model", m(head))
+              svm.svm_save_model(s"src/main/resources/models/svm.$head.model", m(head))
 
               train0(tail, m)
           }

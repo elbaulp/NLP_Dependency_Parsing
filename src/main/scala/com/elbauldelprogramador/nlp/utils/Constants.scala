@@ -21,6 +21,6 @@ package com.elbauldelprogramador.nlp.utils
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 9/28/16.
   */
 object Constants {
-  val ModelPath = "src/main/resources/models/"
+  val ModelPath = "/models/"
   val punctuationTags = Set(",", ".", ":", "''", "``", "PUNCT", "SYM")
 }
