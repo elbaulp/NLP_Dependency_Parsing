@@ -1,8 +1,58 @@
 %************************************************
-\chapter{Casos de Prueba}
-\label{ch:tests}
+\chapter{Test-Driven Machine Learning}
+\label{ch:tdml}
+
+En este capítulo se verán los casos de prueba implementados para el proyecto. Se
+ha seguido un estilo de tests orientado a problemas de \ac{AA}. En las próximas
+secciones se introduce este tipo de práctica.
+
 %************************************************
-\myTodo[inline]{Hay que escribir los Tests aún}
+\section{Test-Driven Development}
+\label{sec:tdd}
+
+El \acfi{TDD} se basa en dos principios muy claros:
+\begin{itemize}
+\item No escribir ninguna línea de código nueva a no ser que se tenga un test
+  fallido,
+\item Eliminar duplicidades.
+\end{itemize}
+
+En esencia, \ac{TDD} es un proceso en el desarrollo de \emph{software} que
+permite al desarrollador escribir código que especifica el comportamiento que
+poseerá el programa antes de que este sea implementado. La ventaja de este
+estilo de desarrollo reside en que a cada paso que se avanza, se obtiene un
+\emph{software} completamente funcional, así como el conjunto de
+especificaciones que lo definen. En el \ac{TDD} está inherente en cada momento
+el desarrollo mediante prueba y error, al igual que en el \ac{AA}.
+
+El proceso al que nos sometemos al adoptar la filosofía \ac{TDD} cambia la forma
+en la que se piensa al desarrollar código. Además, el \emph{software} diseñado
+como resultado será mucho más modular, permitiendo tener disintos componentes
+que se pueden intercambiar en todo el \emph{pipeline}.
+
+Cuando se escribe de antemano la intención del código, antes de implementarlo de
+verdad, se aplica una presión al diseño del mismo que evita escribir código del
+llamado ``\emph{Por si acaso}''. Con el uso de \ac{TDD}, primero se piensa en un
+caso de prueba, se ve que el \emph{software} aún no lo soporta y entonces se
+corrige. Si no se es capáz de pensar en un caso de prueba, no se añade código.
+
+\ac{TDD} 
+
+\subsection{El ciclo de \ac{TDD}}
+\label{subsec:tddcycle}
+
+
+
+\subsubsection{Red}
+\label{sec:tddred}
+
+\subsubsection{Green}
+\label{sec:tddgreen}
+
+\subsubsection{Refactor}
+\label{sec:tddrefactor}
+
+
 %*****************************************
 %*****************************************
 %*****************************************
