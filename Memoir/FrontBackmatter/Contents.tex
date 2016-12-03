@@ -33,14 +33,25 @@
     \vspace{8ex}
 
     %*******************************************************
-    % List of Tables
+    % List of TODOs
+    % *******************************************************
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listfigurename}
+    \pdfbookmark[1]{Índice de TODOs}{lot}
+    \listoftodos[TODO list]
+
+    \vspace{8ex}
+    
     %*******************************************************
+    % List of Tables
+    % *******************************************************
     %\phantomsection 
     \refstepcounter{dummy}
     %\addcontentsline{toc}{chapter}{\listtablename}
     \pdfbookmark[1]{\listtablename}{lot}
     \listoftables
-        
+    
     \vspace{8ex}
 %   \newpage
     
@@ -49,21 +60,35 @@
     %*******************************************************      
       %\phantomsection 
     \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    \pdfbookmark[1]{\lstlistlistingname}{lol}
-    \lstlistoflistings 
+    %\addcontentsline{toc}{chapter}{\listoflistingscaption}
+    \pdfbookmark[1]{\listingscaption}{lol}
+    \listoflistings 
+    \addtocontents{lol}{\def\string\figurename{Código}}
+    
+    \vspace{8ex}
+
+    % *******************************************************
+    % List of Algorithms
+    % *******************************************************
+    \renewcommand{\listalgorithmname}{Lista de Algoritmos}
+    %\phantomsection 
+    \refstepcounter{dummy}
+    %\addcontentsline{toc}{chapter}{\listtablename}
+    \pdfbookmark[1]{\listalgorithmname}{loa}
+    \listofalgorithms
+    \addtocontents{loa}{\def\string\figurename{Algoritmo}}
 
     \vspace{8ex}
-       
-    %*******************************************************
+
+    % *******************************************************
     % Acronyms
     %*******************************************************
     %\phantomsection 
     \refstepcounter{dummy}
-    \pdfbookmark[1]{Acronyms}{acronyms}
+    \pdfbookmark[1]{Acrónimos}{acronyms}
     \markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
-    \chapter*{Acronyms}
-    \begin{acronym}[XXXX]
+    \chapter*{Acrónimos}
+    \begin{acronym}[SSyntSs]
         \acro{NLP}{Natural Language Processing}
         \acro{PNL}{Procesamiento del Lenguaje Natural}
         \acro{IA}{Inteligencia Artificial}
@@ -78,5 +103,21 @@
         \acro{DP}{Dependency Parsing}
         \acro{HRL}{High-Resource Language}
         \acro{LRL}{Low-Resource Language}
+        \acro{SDS}{Spoken Dialogue System}
+        \acro{DM}{Dialogue Management}
+        \acro{TTS}{Text-To-Speech}
+        \acro{API}{Application Programming Interface}
+        \acro{HTML}{Hyper Text Markup Language}
+        \acro{CRF}{Conditional Random fields}
+        \acro{PTB}{Penn Tree Bank}
+        \acro{XML}{Extensible Markup Language}
+        \acro{SO}{Semantic Orientation}
+        \acro{PMI-IR}{Pointwise Mutual Information and Information Retrieval}
+        \acro{SVM}{Support Vector Machine}
+        \acro{SSyntSs}{Surface-Syntactic structures}
+        \acro{DSyntSs}{Deep-Syntactic Structures}
+        \acro{TDD}{Test-driven Development}
+        \acro{BDD}{Behavior-Driven Development}
+        \acro{FP}{Functional Programming}
     \end{acronym}                     
 \endgroup

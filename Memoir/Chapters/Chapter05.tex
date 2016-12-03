@@ -1,0 +1,215 @@
+%************************************************
+\chapter{Implementación}
+\label{ch:impl}
+%************************************************
+
+En este capítulo se detallan los aspectos de la implementación en \textsc{Scala}
+del algoritmo introducido en el \autoref{ch:algorithm}. Así mismo, las ventajas
+del desarrollo en \textsc{scala} pueden consultarse en el \autoref{ch:scalaintro}
+
+\section{Análisis y Diseño}
+\label{sec:design}
+
+Para el desarrollo del programa se ha intentado aprovechar al máximo las
+características que ofrece \textsc{Scala}. Por ejemplo, uno de los errores más
+comunes cuando se usa Programación Orientada a Objetos es abusar de la
+herencia. Este error suele cometerse cuando se crean relaciones de herencia para
+añadir estados a las clases derivadas. Para ilustrarlo con un ejemplo --
+\citet{Dean2015} -- podemos pensar en dos clases, \textsc{Persona} y
+\textsc{Trabajador}. Podría pensarse en establecer una relación de herencia
+entre \textsc{Persona} y \textsc{Trabajador}, pero entonces estaríamos aplicando
+herencia para añadir un \textsc{estado} a un objeto, este no es el objetivo de
+la herencia. Una mejor alternativa sería crear subclases del comportamiento de
+un objeto con el mismo estado. De esta forma, se favorece la composición sobre
+la herencia, es decir, componer unidades de funcionalidades en lugar de crear
+jerarquías de clases. Esto se logra mediante el uso de \textsc{Traits} --
+\autoref{sec:whyscala} -- El código quedaría como en \nameref{lst:traits}. El
+diagrama de clases para el Código~\ref{lst:traits} sería el de la
+\autoref{fig:traits}.
+\begin{listing}[H]
+  \begin{scalacode}
+    trait PersonState {
+      val name: String
+      val age: Option[Int]
+      val address: Option[Address]
+    }
+
+    case class Person(
+      name: String,
+      age: Option[Int] = None,
+      address: Option[Address] = None) extends PersonState
+
+    trait EmployeeState {
+      val title: String
+      val manager: Option[Employee]
+    }
+
+    case class Employee(
+      name: String,
+      age: Option[Int] = None,        
+      address: Option[Address] = None,
+      title: String = "[unknown]",
+      manager: Option[Employee] = None)
+    extends PersonState with EmployeeState
+  \end{scalacode}
+  \caption{Composición en lugar de herencia}
+  \label{lst:traits}
+\end{listing}
+\begin{figure}[ht]
+  \centering
+  \tikzumlset{fill package=gray!20, fill class=gray!20}
+  \begin{tikzpicture}
+    \umlsimpleclass[x=0,y=1.5]{Trait PersonState}
+    \umlsimpleclass[x=4,y=1.5]{Trait EmployeeState}
+
+    \umlsimpleclass[x=4,y=0]{Employee}
+    \umlsimpleclass[x=0,y=0]{Person}
+
+    \umlVHVinherit{Employee}{Trait PersonState}
+    \umlVHVinherit{Employee}{Trait EmployeeState}
+    
+    \umlinherit[x=0,y=0,anchors=-120 and -120]{Person}{Trait PersonState}
+  \end{tikzpicture}
+  \caption{Diagrama de clases \textsc{Persona} y \textsc{Trabajador}}
+  \label{fig:traits}
+\end{figure}
+Este diseño ha sido el seguido para el proyecto, en concreto, para las
+estructuras de datos que representan las frases del conjunto de test y train,
+cuyo diagrama se puede consultar en la \autoref{fig:classdiag}.
+
+\tikzumlset{fill package=gray!20, fill class=gray!20}
+\begin{figure}[ht]
+  \centering
+  
+  \begin{tikzpicture}
+    \umlsimpleclass[x=0,y=1.5]{Trait TrainSentence}
+    \umlsimpleclass[x=4,y=1.5]{Trait TestSentence}
+
+    \umlsimpleclass[x=4,y=0]{Sentence}
+    \umlsimpleclass[x=0,y=0]{LabeledSentence}
+
+    \umlVHVinherit{Sentence}{Trait TestSentence}
+    \umlVHVinherit{LabeledSentence}{Trait TestSentence}
+    \umlinherit[x=0,y=0,anchors=-120 and -120]{LabeledSentence}{Trait TrainSentence}
+  \end{tikzpicture}
+  \caption{Diagrama de clases para las sentencias}
+  \label{fig:classdiag}
+\end{figure}
+
+Los paquetes creados se organizan según la \autoref{fig:packages}.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}
+    \begin{umlpackage}{Core}
+      \umlemptypackage{Functional}
+    \end{umlpackage}
+    \umlemptypackage[right=1cm of Core,anchor=north]{DataStructures}
+    \umlemptypackage[right=0.22cm of DataStructures]{Parser}
+    \umlemptypackage[right=0.22cm of Parser]{SVM}
+    \umlemptypackage[right=0.22cm of SVM]{Utils}
+  \end{tikzpicture}
+  \caption{Paquetes del proyecto}
+  \label{fig:packages}
+\end{figure}
+
+En el paquete \textsc{core.functional} se definen algunas estructuras de teoría
+de categorías, actualmente solo hay implementada una mónada -- \emph{monads} --.
+
+En \textsc{DataStructures} se definen las estructuras de datos necesarias para
+el desarrollo del proyecto, entre otras, aquí se definen las representaciones de
+las frases para \emph{training} y \emph{test} vistas en la
+\autoref{fig:classdiag}. En el Código~\ref{lst:ds} se listan algunas de las
+estructuras más relevantes.
+\begin{listing}[ht]
+  \begin{scalacode}
+    // Información sobre un nodo
+    case class Node(lex: String,
+                    position: Int,
+                    posTag: String,
+                    var dependency: Int = -1,
+                    var left: Vector[Node],
+                    var right: Vector[Node])
+
+    // Encargada de almacenar las características para la SVM
+    final case class Vocabulary(positionVocab: Map[Int, Counter],
+                                positionTag: Map[Int, Counter],
+                                chLVocab: Map[Int, Counter],
+                                chLTag: Map[Int, Counter],
+                                chRVocab: Map[Int, Counter],
+                                chRTag: Map[Int, Counter])
+  \end{scalacode}
+  \caption{\footnotesize Estructuras de datos más relevantes del paquete
+    \textsc{DataStructures}}
+  \label{lst:ds}
+\end{listing}
+
+\textsc{Parser} es el paquete principal, contiene la implementación del
+algoritmo de parseo de dependencias estadístico de \citeauthor{yamada2003}.
+
+\textsc{SVM} encapsula todo lo relacionado con las \acp{SVM}, desde el adaptador
+para los datos hasta la configuración y ajuste de parámetros. Lo más relevante
+quizá sean los parámetros usados para la \ac{SVM}, se muestran en el
+Código~\ref{lst:svmparams}.
+\begin{listing}[ht]
+  \begin{scalacode}
+    object SVMConfig {
+      val param = new svm_parameter
+
+      param.svm_type = svm_parameter.C_SVC
+      param.kernel_type = svm_parameter.POLY
+      param.degree = 2
+      param.gamma = 1.0
+      param.coef0 = 1.0
+      param.cache_size = 4000
+      param.eps = 0.001
+      param.C = 1.0
+      param.shrinking = 1
+    }
+  \end{scalacode}
+  \caption{Parámetros para la \ac{SVM}}
+  \label{lst:svmparams}
+\end{listing}
+Se aprovecha el Código~\ref{lst:svmparams} para comentar los parámetros usados:
+\begin{itemize}
+\item \scalainline/param.svm_type = svm_parameter.C_SVC/: especifica que el tipo
+  de clasificación va a ser multiclase.
+\item \scalainline/param.kernel_type = svm_parameter.POLY/: Como se comentó en
+  la \autoref{sec:svmintro} el \emph{kernel} será de tipo polinómico, de grado
+  2. El \emph{kernel} se define como $(\gamma\cdot u'\cdot v + coef0)^{degree}$,
+  cuyos valores pueden consultarse en el código.
+\end{itemize}
+
+\textsc{Utils} define algunas constantes, tipos de datos, métodos de lectura
+para los datos de \emph{test} y \emph{training} y encapsula los tres tipos de
+acciones que puede realizar el parseador. Las acciones se han codificado según
+el Código~\ref{lst:actions}.
+\begin{listing}[ht]
+  \begin{scalacode}
+    object Action {
+
+      sealed trait Action
+
+      case object Left extends Action {
+        final def value: Int = 0
+      }
+
+      case object Shift extends Action {
+        final def value: Int = 1
+      }
+
+      case object Right extends Action {
+        final def value: Int = 2
+      }
+    }
+  \end{scalacode}
+  \caption{\footnotesize Codificación de las acciones \textsc{Desplazar,Izquierda,Derecha}}
+  \label{lst:actions}
+\end{listing}
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

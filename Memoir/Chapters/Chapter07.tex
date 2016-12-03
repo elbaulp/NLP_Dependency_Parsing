@@ -1,0 +1,83 @@
+%************************************************
+\chapter{Evaluación, Comparación y Discusión de Resultados}
+\label{ch:eval}
+%************************************************
+
+El conjunto de datos usado ha sido \emph{Spanish Universal Dependency}, para
+poder ejecutar el algoritmo con estos datos, ha sido necesario hacer una
+conversión de los mismos, ya que el \emph{\ac{POS} tagger} de Stanford no
+etiqueta los datos de acuerdo al
+estandar\footnote{\url{http://universaldependencies.github.io/docs/u/pos
+    /index.html}}. El \emph{tagger} de Stanford utiliza las etiquetas de
+\emph{AnCora 3.0}\footnote{\url{http://clic.ub.edu/corpus/en}}. Para dicha
+conversión se usó un \emph{script} en \textsc{python} proporcionado por
+\citeauthor{rohit2016} \cite{rohit2016}.
+
+\section{Método de Evaluación}
+\label{sec:eval}
+
+En orden de evaluar los resultados del algoritmo, \citeauthor{yamada2003}
+proponen tres tipos de medidas. Precisión de Dependencias, Precisión en la Raíz
+y clasificación Completa --- \emph{Dependency Accuracy (Dep. Acc.), Root
+  Accuracy (Root Acc.)} y \emph{Complete Rate (Comp. Rate)},
+respectivamente. --- Dichas mediciones se definen como
+\begin{equation*}
+  \begin{aligned}
+    & \text{\emph{Dep. Acc}} &=& \quad\frac{\text{Número correcto de padres}}{\text{Número
+        total de padres}} \\
+    & \text{\emph{Root Acc}} &=& \quad\frac{\text{Número de nodos raíz correctos}}{\text{Número
+        total de frases}} \\
+    & \text{\emph{Comp. Rate}} &=& \quad\frac{\text{Número de frases
+        parseadas por completo}}{\text{Número total de frases}} 
+  \end{aligned}
+\end{equation*}
+Para las pruebas realizadas, el tamaño del conjunto de datos de entrenamiento es
+de 14305 frases, los datos de \emph{test} contienen 1721 sentencias.
+
+\section{Comparación de Resultados}
+\label{sec:results}
+
+Tras realizar varias pruebas para ajustar parámetros, finalmente se fijó el
+grado del polinómio a 2, como muestra el Código~\ref{lst:svmparams}. En cuanto a
+la longitud del contexto, introducido en \autoref{subsec:featureextraction} el
+mejor resultado se obtiene cuando se fija en $(2,4)$, esto es, se usa un
+contexto a la izquierda de dos nodos, y un contexto a la derecha de cuatro
+nodos. La \autoref{tab:results} muestra una comparación de los resultados
+obtenidos con el parseador implementado frente a los resultados de
+\citeauthor{rohit2016}.
+\begin{table}[ht]
+  \myfloatalign
+  \begin{tabular}{l|cc}
+    \tableheadline{Kernel: $(x'\cdot x'' + 1)^2$, Contexto: $(2,4)$ }
+       & \tableheadline{TFG}
+       & \tableheadline{\citeauthor{rohit2016}} \\
+    \toprule
+    \emph{Dep. Acc.}  & 76\%   & 75\% \\
+    \emph{Root Acc.}  & 67\%   & 70\% \\
+    \emph{Comp. Rate} & 15\%   & 11\% \\
+    \bottomrule
+  \end{tabular}
+  \caption{Comparación de resultados}
+  \label{tab:results}
+\end{table}
+
+Como se puede apreciar, los resultados son bastante similares, llegando a
+mejorar el \emph{Comp. Rate}.
+
+\section{Trabajo Futuro}
+\label{sec:future}
+
+Como trabajo futuro se podrían implementar distintos tipos de algoritmos y
+establecer una comparación entre ellos.
+
+Otra posible mejora puede ser aprovechar aún más las características de
+\textsc{Scala}, ya que al momento de escribir el programa, el desarrollador se
+estaba familiarizando con el lenguaje. Hay mucho margen para realizar mejoras en
+el código. Por ejemplo, se podría hacer todo el código funcional e
+inmutable.
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
