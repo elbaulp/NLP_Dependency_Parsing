@@ -72,3 +72,24 @@ class DataParserSpec extends Specification
       andThen() {case _ :: r :: _ => (r._1 must beSome) && (r._2 must beSome)}
 
 }
+
+class GWTSpec extends Specification with GWT with StandardRegexStepParsers { def is = s2"""
+ A given-when-then example for a calculator                       ${calculator1.start}
+   Given the following number: 1.0
+   And a second number: 2.0
+   And a third number: 6.0
+   When I use this operator: +
+   Then I should get: 9.0
+   And it should be >: 0.0                                          ${calculator1.end}
+"""
+  val anOperator = readAs(".*: (.)$").and((s: String) => s)
+
+  val calculator1 =
+    Scenario("calculator1")
+      .given(aDouble)
+      .given(aDouble)
+      .given(aDouble)
+      .when(anOperator) { case op :: i :: j :: k :: _ => if (op == "+") i+j+k else i*j*k }
+      .andThen(aDouble)   { case expected :: sum :: _ => sum === expected }
+      .andThen(aDouble)   { case expected :: sum :: _ => sum must be_>(expected) }
+}
