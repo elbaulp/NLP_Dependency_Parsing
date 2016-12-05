@@ -3,79 +3,102 @@
 \label{ch:impl}
 %************************************************
 
-En este capítulo se detallan los aspectos de la implementación en \textsc{Scala}
-del algoritmo introducido en el \autoref{ch:algorithm}. Así mismo, las ventajas
-del desarrollo en \textsc{scala} pueden consultarse en el \autoref{ch:scalaintro}
+En este capítulo se detalla todo el proceso llevado a cabo para el desarrollo
+del proyecto, desde la planificación hasta la finalización del mismo. La
+implementación del algoritmo se ha realizado en \textsc{Scala}, los detalles del
+mismo pueden encontrarse en \autoref{ch:algorithm}. Así mismo, las ventajas del
+desarrollo en \textsc{scala} pueden consultarse en el \autoref{ch:scalaintro}.
+
+\section{Planificación}
+\label{sec:planning}
+
+En la \autoref{fig:planning} se muestra un diagrama de \emph{Gantt} con la
+planificación ideada para el proyecto
+
+\begin{figure}[ht]
+  \definecolor{barblue}{RGB}{153,204,254}
+  \definecolor{groupblue}{RGB}{51,102,254}
+  \definecolor{linkred}{RGB}{165,0,33}
+  \renewcommand\sfdefault{phv}
+  \renewcommand\mddefault{mc}
+  \renewcommand\bfdefault{bc}
+  \setganttlinklabel{s-s}{START-TO-START}
+  \setganttlinklabel{f-s}{FINISH-TO-START}
+  \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+\begin{ganttchart}[
+  canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+  hgrid style/.style={draw=black!5, line width=.75pt},
+  vgrid={*1{draw=black!5, line width=.75pt}},
+  today=14,
+  today rule/.style={
+    draw=black!64,
+    dash pattern=on 3.5pt off 4.5pt,
+    line width=1.5pt
+  },
+  today label font=\small\scshape,
+  title/.style={draw=none, fill=none},
+  title label font=\scshape\footnotesize,
+  title label node/.append style={below=7pt},
+  include title in canvas=false,
+  bar label font=\mdseries\small\color{black!70},
+  bar label node/.append style={left=2cm},
+  bar/.append style={draw=none, fill=black!63},
+  bar incomplete/.append style={fill=barblue},
+  bar progress label font=\mdseries\footnotesize\color{black!70},
+  group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\scshape\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\scshape,
+    link label node/.append style={below left=-2pt and 0pt},
+  ]{1}{14}
+  \gantttitle{Parseo de Dependencias en Español}{14} \\[grid]
+  \gantttitle{\tiny Septiembre}{4}
+  \gantttitle{\tiny Octubre}{4} 
+  \gantttitle{\tiny Noviembre}{4}
+  \gantttitle{\tiny Diciembre}{2}\\
+  \gantttitle[
+    title label node/.append style={below left=7pt and -3pt}
+  ]{Semana:\quad1}{1}
+  \gantttitlelist{2,...,14}{1} \\
+  \ganttgroup[progress=100]{Progreso}{1}{14} \\
+  \ganttbar[
+    progress=100,
+    name=research
+  ]{Investigación}{1}{4} \\
+  \ganttbar[
+    progress=100,
+    name=design
+  ]{Análisis y Diseño}{5}{5} \\
+  \ganttbar[
+    progress=100,
+    name=impl
+  ]{Implementación}{6}{11} \\
+  \ganttbar[
+    progress=100,
+    name=memoir
+  ]{Memoria}{12}{14} \\    
+  
+  \ganttmilestone{M1: Conocer el campo del NLP}{4}{4}  \\
+  \ganttmilestone{M2: Finalizar Código}{11}{11} \\
+  \ganttmilestone{M3: Finalización TFG}{14}{14}
+  
+  \ganttlink[link type=f-s]{research}{design}
+  \ganttlink[link type=f-s]{design}{impl}
+  \ganttlink[link type=f-s]{impl}{memoir}
+\end{ganttchart}
+\caption{Planificación del proyecto}
+\label{fig:planning}
+\end{figure}
 
 \section{Análisis y Diseño}
 \label{sec:design}
 
-Para el desarrollo del programa se ha intentado aprovechar al máximo las
-características que ofrece \textsc{Scala}. Por ejemplo, uno de los errores más
-comunes cuando se usa Programación Orientada a Objetos es abusar de la
-herencia. Este error suele cometerse cuando se crean relaciones de herencia para
-añadir estados a las clases derivadas. Para ilustrarlo con un ejemplo --
-\citet{Dean2015} -- podemos pensar en dos clases, \textsc{Persona} y
-\textsc{Trabajador}. Podría pensarse en establecer una relación de herencia
-entre \textsc{Persona} y \textsc{Trabajador}, pero entonces estaríamos aplicando
-herencia para añadir un \textsc{estado} a un objeto, este no es el objetivo de
-la herencia. Una mejor alternativa sería crear subclases del comportamiento de
-un objeto con el mismo estado. De esta forma, se favorece la composición sobre
-la herencia, es decir, componer unidades de funcionalidades en lugar de crear
-jerarquías de clases. Esto se logra mediante el uso de \textsc{Traits} --
-\autoref{sec:whyscala} -- El código quedaría como en \nameref{lst:traits}. El
-diagrama de clases para el Código~\ref{lst:traits} sería el de la
-\autoref{fig:traits}.
-\begin{listing}[H]
-  \begin{scalacode}
-    trait PersonState {
-      val name: String
-      val age: Option[Int]
-      val address: Option[Address]
-    }
 
-    case class Person(
-      name: String,
-      age: Option[Int] = None,
-      address: Option[Address] = None) extends PersonState
-
-    trait EmployeeState {
-      val title: String
-      val manager: Option[Employee]
-    }
-
-    case class Employee(
-      name: String,
-      age: Option[Int] = None,        
-      address: Option[Address] = None,
-      title: String = "[unknown]",
-      manager: Option[Employee] = None)
-    extends PersonState with EmployeeState
-  \end{scalacode}
-  \caption{Composición en lugar de herencia}
-  \label{lst:traits}
-\end{listing}
-\begin{figure}[ht]
-  \centering
-  \tikzumlset{fill package=gray!20, fill class=gray!20}
-  \begin{tikzpicture}
-    \umlsimpleclass[x=0,y=1.5]{Trait PersonState}
-    \umlsimpleclass[x=4,y=1.5]{Trait EmployeeState}
-
-    \umlsimpleclass[x=4,y=0]{Employee}
-    \umlsimpleclass[x=0,y=0]{Person}
-
-    \umlVHVinherit{Employee}{Trait PersonState}
-    \umlVHVinherit{Employee}{Trait EmployeeState}
-    
-    \umlinherit[x=0,y=0,anchors=-120 and -120]{Person}{Trait PersonState}
-  \end{tikzpicture}
-  \caption{Diagrama de clases \textsc{Persona} y \textsc{Trabajador}}
-  \label{fig:traits}
-\end{figure}
-Este diseño ha sido el seguido para el proyecto, en concreto, para las
-estructuras de datos que representan las frases del conjunto de test y train,
-cuyo diagrama se puede consultar en la \autoref{fig:classdiag}.
 
 \tikzumlset{fill package=gray!20, fill class=gray!20}
 \begin{figure}[ht]
