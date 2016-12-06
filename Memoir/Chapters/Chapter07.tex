@@ -3,15 +3,80 @@
 \label{ch:eval}
 %************************************************
 
-El conjunto de datos usado ha sido \emph{Spanish Universal Dependency}, para
-poder ejecutar el algoritmo con estos datos, ha sido necesario hacer una
-conversión de los mismos, ya que el \emph{\ac{POS} tagger} de Stanford no
-etiqueta los datos de acuerdo al
-estandar\footnote{\url{http://universaldependencies.github.io/docs/u/pos
-    /index.html}}. El \emph{tagger} de Stanford utiliza las etiquetas de
-\emph{AnCora 3.0}\footnote{\url{http://clic.ub.edu/corpus/en}}. Para dicha
-conversión se usó un \emph{script} en \textsc{python} proporcionado por
-\citeauthor{rohit2016} \cite{rohit2016}.
+\section{Conjuntos de Datos}
+\label{sec:datasets}
+
+El conjunto de datos usado ha sido \emph{Spanish Universal
+  Dependency} \cite{udv14}, para poder ejecutar el algoritmo con estos datos, ha
+sido necesario hacer una conversión de los mismos, ya que el \emph{\ac{POS}
+  tagger} de Stanford no etiqueta los datos de acuerdo al
+estandar\footnote{\url{http://universaldependencies.org/docs/u/pos/index.html}}. El
+\emph{tagger} de Stanford utiliza las etiquetas de \emph{AnCora
+  3.0}\footnote{\url{http://clic.ub.edu/corpus/en}}. Para dicha conversión se
+usó un \emph{script} en \textsc{python} proporcionado por \citeauthor{rohit2016}
+\cite{rohit2016}.
+
+En concreto, el conjunto de datos usado se llama \textsc{UD\_Spanish-AnCora},
+puede descargarse a través de
+\url{https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-1827}. Como se
+ha mencionado en el párrafo anterior, este \emph{dataset} usa el formato
+\textsc{CoNLL-U}\footnote{\url{http://universaldependencies.org/format.html}},
+formato que ha sido adaptado usando el \textsc{script} mencionado anteriormente.
+
+Como ejemplo, se proporciona el formato original de una frase en la
+\autoref{lst:conllu} frente a la conversión realizada en la
+\autoref{lst:converted}.
+\begin{figure}[ht]
+  \begin{bashcode}
+1       Tambores        tambor  NOUN    NOUN    Gender=Masc|Number=Plur 0       root    _       _
+2       cercanos        cercano ADJ     ADJ     Gender=Masc|Number=Plur 1       amod    _       _
+3       ,       ,       PUNCT   PUNCT   PunctType=Comm  4       punct   _       _
+4       en      en      ADP     ADP     AdpType=Prep    1       advmod  _       MWE=en_todo_caso|MWEPOS=ADV
+5       todo    todo    PRON    PRON    Gender=Masc|Number=Sing|PronType=Tot    4       mwe     _       _
+6       caso    caso    NOUN    NOUN    _       4       mwe     _       _
+7       :       :       PUNCT   PUNCT   PunctType=Colo  10      punct   _       _
+8       todo    todo    DET     DET     Gender=Masc|Number=Sing|PronType=Ind    10      det     _       _
+9       un      uno     DET     DET     Gender=Masc|Number=Sing|PronType=Ind    8       det     _       _
+10      muestrario      muestrario      NOUN    NOUN    Gender=Masc|Number=Sing 1       appos   _       _
+11      de      de      ADP     ADP     AdpType=Prep    13      case    _       _
+12      esa     ese     DET     DET     Gender=Fem|Number=Sing|PronType=Dem     13      det     _       _
+13      percusión       percusión       NOUN    NOUN    Gender=Fem|Number=Sing  10      nmod    _       _
+14      urbana  urbano  ADJ     ADJ     Gender=Fem|Number=Sing  13      amod    _       _
+15      de      de      ADP     ADP     AdpType=Prep    17      case    _       _
+16      nuestro nuestro DET     DET     Gender=Masc|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs        17      det     _       _
+17      tiempo  tiempo  NOUN    NOUN    Gender=Masc|Number=Sing 13      nmod    _       _
+18      .       .       PUNCT   PUNCT   PunctType=Peri  1       punct   _       _
+  \end{bashcode}
+  \caption{Frase en formato \textsc{CoNLL-U}.}
+  \label{lst:conllu}
+\end{figure}
+\begin{figure}[hb]
+  \begin{bashcode}
+Tambores        NOUN    NOUN    -1
+cercanos        ADJ     ADJ     0
+,       PUNCT   PUNCT   3
+en      ADP     ADP     0
+todo    DET     PRON    3
+caso    NOUN    NOUN    3
+:       PUNCT   PUNCT   9
+todo    DET     DET     9
+un      DET     DET     7
+muestrario      NOUN    NOUN    0
+de      ADP     ADP     12
+esa     DET     DET     12
+percusión       NOUN    NOUN    9
+urbana  ADJ     ADJ     12
+de      ADP     ADP     16
+nuestro DET     DET     16
+tiempo  NOUN    NOUN    12
+.       PUNCT   PUNCT   0
+  \end{bashcode}
+  \caption{Frase en formato convertido.}
+  \label{lst:converted}
+\end{figure}
+
+Para las pruebas realizadas, el tamaño del conjunto de datos de entrenamiento es
+de 14305 frases, los datos de \emph{test} contienen 1721 sentencias.
 
 \section{Medidas de Evaluación}
 \label{sec:eval}
@@ -31,8 +96,6 @@ respectivamente. --- Dichas mediciones se definen como
         parseadas por completo}}{\text{Número total de frases}} 
   \end{aligned}
 \end{equation*}
-Para las pruebas realizadas, el tamaño del conjunto de datos de entrenamiento es
-de 14305 frases, los datos de \emph{test} contienen 1721 sentencias.
 
 \section{Comparación de Resultados}
 \label{sec:results}
