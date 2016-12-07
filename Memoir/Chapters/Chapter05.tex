@@ -101,7 +101,8 @@ planificación ideada para el proyecto
 \tikzumlset{fill package=gray!20, fill class=gray!20}
 Los paquetes creados se organizan según la \autoref{fig:packages}.
 \begin{figure}[ht]
-  \centering
+
+  \makebox[\textwidth][c]{
   \begin{tikzpicture}
     \begin{umlpackage}{Core}
       \umlemptypackage{Functional}
@@ -111,6 +112,7 @@ Los paquetes creados se organizan según la \autoref{fig:packages}.
     \umlemptypackage[right=0.22cm of Parser]{SVM}
     \umlemptypackage[right=0.22cm of SVM]{Utils}
   \end{tikzpicture}
+  }
   \caption{Paquetes del proyecto}
   \label{fig:packages}
 \end{figure}
@@ -209,50 +211,98 @@ el Código~\ref{lst:actions}.
   \label{lst:actions}
 \end{listing}
 
-A continuación se muestra el diagrama de clases completo.
+El diagrama de clases del proyecto pueden consultarse en la
+\autoref{fig:classdiag}
 
 \begin{figure}[ht]
-  \centering
+  \makebox[\textwidth][c]{
   \begin{tikzpicture}
-    \umlclass{Accuracy}{}{}
-    \umlclass[right=5mm of Accuracy]{DepParsing}{}{}
+    \umlclass{Accuracy}{
+      -- rootAcc:Map[Str,Int]\\
+      -- depNAcc:Map[Str,Int]\\
+      -- depDAcc:Map[Str,Int]\\
+      -- completeD:Int\\
+      -- completeN:Int
+    }{
+      + rootAcc:Double\\
+      + depAcc:Double\\
+      + compAcc:Double
+    }
+    
+    \umlclass[right=3cm of Accuracy]{DepParsing}{
+      + trainSnt:Vector[LabeledSentence]\\
+      + testSnt:Vector[LabeledSentence]
+    }{
+      + getAcc:Accuracy
+    }
+    
     \umlnest{DepParsing}{Accuracy}
-    \umlclass[right=5mm of DepParsing]{LabeledSentence}{}{}
+    
+    \umlclass[above=1cm of DepParsing]{LabeledSentence}{
+      + t:Tokens
+    }{}
+    
     \umlassoc{DepParsing}{LabeledSentence}
-    \umlclass[right=5mm of LabeledSentence]{Tokens}{}{}
-    \umlclass[above right=10mm and 2mm of LabeledSentence.north]{TrainSentence}{}{}
-    \umlclass[above=5mm of LabeledSentence,left=5mm of TrainSentence]{TestSentence}{}{}
+    
+    \umlclass[left=5mm of LabeledSentence]{Tokens}{
+      + lex:Vector[Str]\\
+      + pos:Vector[Str]\\
+      + gold:Vector[Str]\\
+      + dep:Vector[Int]
+    }{}
+    
+    \umlclass[above right=3cm and 2mm of LabeledSentence.north,
+              type=trait]{TrainSentence}{
+      + dep:Vector[Int]
+    }{}
+    
+    \umlclass[above=5mm of LabeledSentence,left=5mm of TrainSentence,
+              type=trait]{TestSentence}{
+      + words:Vector[Str]\\
+      + tags:Vector[Str]\\
+      + tree:Vector[Str]
+    }{
+      + size:Int
+    }
+    
     \umlVHVinherit{LabeledSentence}{TestSentence}
     \umlVHVinherit{LabeledSentence}{TrainSentence}
-    \umlclass[left=5mm of TestSentence]{Node}{}{}
+    
+    \umlclass[x=0,y=0,left=5mm of TestSentence]{Node}{
+      +lex:Str\\
+      +pos:Int\\
+      +posTag:Str\\
+      +dep:Int\\
+      +left:Vector[Node]\\
+      +right:Vector[Node]
+    }{}
+    
+    \umlassoc[mult=0..*,pos=0.5,recursive=-190|190|1.5cm]{Node}{Node}
     \umlassoc[mult2=1,mult1=*]{Node}{TestSentence}
     \umlassoc{LabeledSentence}{Tokens}
-    \umlclass[below=5mm of DepParsing]{SVMAdapter}{}{}
-    \umlassoc{SVMAdapter}{DepParsing}
-    \umlclass[left=5mm of SVMAdapter]{SVMProblem}{}{}
-    \umlnest{SVMAdapter}{SVMProblem}
     
+    \umlclass[below=1.5cm of DepParsing]{SVMAdapter}{}{
+      + createNode(f:Vector[Int]):Array[svm\_node]\\
+      + trainSVM(p:SVMProblem,pa:svm\_parameter):svm\_model\\
+      + predictSVM(m:svm\_model,x:Vector[Int]):Double\\
+      -- toNodes(x:Vector[Int]):Array[svm\_node]
+    }
+    
+    \umlassoc{SVMAdapter}{DepParsing}
+    
+    \umlclass[left=5mm of SVMAdapter]{SVMProblem}{
+      + numObs:Int\\
+      + labels:Array[Double]
+    }{
+      + update(n:Int,node:Array[svm\_node])
+    }
+    
+    \umlnest{SVMAdapter}{SVMProblem}
   \end{tikzpicture}
+}
+\caption{Diagrama de clases completo}
+\label{fig:classdiag}
 \end{figure}
-
-\begin{figure}[ht]
-  \centering
-  
-  \begin{tikzpicture}
-    \umlsimpleclass[x=0,y=1.5]{Trait TrainSentence}
-    \umlsimpleclass[x=4,y=1.5]{Trait TestSentence}
-
-    \umlsimpleclass[x=4,y=0]{Sentence}
-    \umlsimpleclass[x=0,y=0]{LabeledSentence}
-
-    \umlVHVinherit{Sentence}{Trait TestSentence}
-    \umlVHVinherit{LabeledSentence}{Trait TestSentence}
-    \umlinherit[x=0,y=0,anchors=-120 and -120]{LabeledSentence}{Trait TrainSentence}
-  \end{tikzpicture}
-  \caption{Diagrama de clases para las sentencias}
-  \label{fig:classdiag}
-\end{figure}
-
 
 %*****************************************
 %*****************************************
