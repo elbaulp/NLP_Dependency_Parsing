@@ -6,8 +6,9 @@
 En este capítulo se detalla todo el proceso llevado a cabo para el desarrollo
 del proyecto, desde la planificación hasta la finalización del mismo. La
 implementación del algoritmo se ha realizado en \textsc{Scala}, los detalles del
-mismo pueden encontrarse en \autoref{ch:algorithm}. Así mismo, las ventajas del
-desarrollo en \textsc{scala} pueden consultarse en el \autoref{ch:scalaintro}.
+mismo pueden encontrarse en el \autoref{ch:algorithm}. Así mismo, las ventajas
+del desarrollo en \textsc{scala} pueden consultarse en el
+\autoref{ch:scalaintro}.
 
 \section{Planificación}
 \label{sec:planning}
@@ -231,7 +232,7 @@ El diagrama de clases del proyecto pueden consultarse en la
     
     \umlclass[right=3cm of Accuracy]{DepParsing}{
       + trainSnt:Vector[LabeledSentence]\\
-      + testSnt:Vector[LabeledSentence]
+      + testSnt:Vector[LabeledSentence]\\
     }{
       + getAcc:Accuracy
     }
@@ -303,6 +304,266 @@ El diagrama de clases del proyecto pueden consultarse en la
 \caption{Diagrama de clases completo}
 \label{fig:classdiag}
 \end{figure}
+
+\section{Implementación}
+\label{sec:ch5impl}
+
+En esta sección se mostrará en detalle el código implementado del diseño visto
+en la \autoref{sec:design}. Se comenzará con el código de la clase principal,
+que implementa el algoritmo de aprendizaje, llamado \textsc{DependencyParser}.
+
+\subsection{\textsc{DependencyParser}}
+\label{subsec:depparser}
+
+Para facilitar la lectura de la implementación, se dividirá el código en varias
+partes y se comentarán por separado.
+\begin{scala2}
+class DependencyParser(val trainSentences: Vector[LabeledSentence],
+                       val testSentences: Vector[LabeledSentence]) {
+
+  case class Accuracy(private[DependencyParser] val rootAcc: Map[String, Int] = Map.empty,
+                      private[DependencyParser] val depNAcc: Map[String, Int] = Map.empty,
+                      private[DependencyParser] val depDAcc: Map[String, Int] = Map.empty,
+                      private[DependencyParser] val completeD: Int = 0,
+                      private[DependencyParser] val completeN: Int = 0){
+
+    def rootAccuracy: Double = rootAcc.values.sum / testSentences.size.toDouble
+    def dependencyAccuracy: Double = depNAcc.values.sum / depDAcc.values.sum.toDouble
+    def completeAccuracy: Double = completeN / completeD.toDouble
+  }
+// ...
+\end{scala2}
+En la declaración de la clase principal --- \textsc{DependencyParser} --- indica
+que debe recibir en su constructor dos conjuntos de datos, el de \emph{train} y
+el de \emph{test}. Así mismo, se declara como clase interna \textsc{Accuracy},
+cuya función es calcular las medidas de evaluación -- \autoref{sec:eval}. --
+
+El resto de datos miembro de la clase \textsc{DependencyParser} son
+\begin{scala2}
+  //...
+  /**
+    * Train
+    */
+  // 1.1 - Build Vocabulary
+  private[this] val vocabulary = generateVocabulary(trainSentences)
+  // 1.2 - Extract Features
+  private[this] val features = extractFeatures(sentences2)
+  // 1.3 - Train models
+  private[this] val models = train(features._1, features._2)
+
+  val nFeatures = vocabulary.nFeatures
+
+  /**
+    * Test with unseen data
+    */
+  private[this] val inferredTree = test(testSentences)
+  //...
+\end{scala2}
+El primer paso del algoritmo es calcular el vocabulario a usar en el proceso de
+entrenamiento, mediante el método \textsc{generateVocabulary}. El siguiente paso
+consiste en extraer las características -- \autoref{table:features} -- usando el
+método \textsc{extractFeatures} -- \autoref{subsec:featureextraction} --. Por
+último, solo resta entrenar los modelos mediante el método \textsc{Train} usando
+las características extraidas.
+
+Se procede ahora a mostar la implementación de \textsc{generateVocabulary}
+\begin{scala2}
+  // 1.1 - Build Vocab
+  private[this] def generateVocabulary(sentences: Vector[LabeledSentence]): Vocabulary
+\end{scala2}
+El modo de calcular el vocabulario usa el Algoritmo~\autoref{algorithm:parsing}
+propuesto por \citet{yamada2003}. La estimación de la acción a tomar --
+\autoref{subsec:parseractions} -- se realiza de forma algorítitmica, sin
+involucrar al modelo \ac{SVM}. Es en este método donde se construye el árbol de
+dependencias.
+
+Tras construir el vocabulario, se extraen las características con
+\begin{scala2}
+  // 1.2 - Extract features
+  private[this] def extractFeatures(sentences: Seq[LabeledSentence]): (Map[String, Vector[Vector[Int]]], Map[String, DblVector]) = {
+\end{scala2}
+El método se encarga de generar las características que le serán proporcionadas
+a la \ac{SVM} para entrenarse.
+
+Por último, resta la fase de entrenamiento, de la cual se encarga el método
+\textsc{Train}. Debido a la importancia de este método, se muestra su código al
+completo.
+\begin{scala2}
+  // 1.3 - Train models
+  def train(X: Map[String, Vector[Vector[Int]]], Y: Map[String, DblVector]): Map[String, svm_model] = {
+    logger.info("Training models...")
+
+    val nFeatures = vocabulary.nFeatures
+
+    @tailrec
+    def train0(XKey: Iterable[String], modelsAcc: Map[String, svm_model]): Map[String, svm_model] =
+      (XKey.toSeq: @switch) match {
+        case head +: tail =>
+
+          logger.debug(s"\t\tPosTags left: $XKey")
+          logger.debug(s"\t\tSize: ${X(head).size}")
+          logger.debug(s"\t\t# features: $nFeatures")
+          (getClass.getResource(s"${Constants.ModelPath}/svm.$head.model") != null: @switch) match {
+            case true =>
+              val modelPath = getClass.getResource(s"${Constants.ModelPath}/svm.$head.model").getPath
+              logger.info(s"Loaded model: ${modelPath.substring(modelPath.indexOf("svm"))}")
+              logger.debug(s"Loaded model: $modelPath")
+              // Load Models
+              train0(tail, modelsAcc + (head -> svm.svm_load_model(modelPath)))
+            case false =>
+              val svmProblem = new SVMProblem(Y(head).size, Y(head).toArray)
+              // Create each row with its feature values Ex: (Only store the actual values, ignore zeros)
+              //   x -> [ ] -> (2,0.1) (3,0.2) (-1,?)
+              //        [ ] -> (2,0.1) (3,0.3) (4,-1.2) (-1,?)
+              //        ......................................
+              X(head).zipWithIndex.foreach {
+                case (x, i) =>
+                  val nodeCol = createNode(x)
+                  svmProblem.update(i, nodeCol)
+              }
+              val error = svm.svm_check_parameter(svmProblem.problem, SVMConfig.param)
+              require(error == null, f"${logger.error(s"Errors in SVM parameters:\n$error")}")
+
+              val m = modelsAcc + (head -> trainSVM(svmProblem, SVMConfig.param))
+              svm.svm_save_model(s"src/main/resources/models/svm.$head.model", m(head))
+
+              train0(tail, m)
+          }
+        case Nil => modelsAcc
+      }
+    train0(X.keys, Map.empty)
+  }
+\end{scala2}
+El método recibe como parámetro las características calculadas en el paso
+anterior. En su interior reside una función recursiva que recorre todas las
+caracteristicas y va generando tantas \acp{SVM} como sea necesario, como se
+explicó en la \autoref{subsec:svmgrouping}. En el caso de que ya existan los
+modelos de una anterior ejecución, estos son cargados en lugar de calcularse de
+nuevo, lo cual ahorra tiempo, ya que entrenar los modelos puede llevar hasta dos
+días.
+
+Una vez se tienen los modelos entrenados, es el momento de comprobar la calidad
+de las predicciones, esto se logra con el método \textsc{test}.
+\begin{scala2}
+private[this] def test(sentences: Vector[LabeledSentence]): Vector[Vector[Node]]
+\end{scala2}
+El método \textsc{test} genera un vector de árboles inferidos por los modelos
+entrenados. Una vez terminado, para calcular las medidas de evaluación se debe
+llamar al método \textsc{getAccuracy}
+\begin{scala2}
+def getAccuracy: Accuracy
+\end{scala2}
+Que devuelve un objeto de tipo \textsc{Accuracy}, encargado de calcular los tres
+tipos de medidas de evaluación: \textsc{Dep Acc, Root Acc} y
+\textsc{Comp. Rate}.
+
+\subsection{\textsc{Node}}
+\label{subsec:node}
+
+La clase \textsc{Node} representa el árbol de dependencias, debido a su
+importancia se muestra el código al completo.
+\begin{scala2}
+/**
+  * Node of a tree
+  * Can contain any number of children
+  * Left and Right represents the children created due to left and right
+  * dependencies, respectively.
+  *
+  * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com>.
+  */
+case class Node(lex: String,
+                position: Int,
+                posTag: String,
+                var dependency: Int = -1,
+                var left: Vector[Node],
+                var right: Vector[Node]) {
+
+  def insertRight(child: Node): Unit = {
+    child.dependency = position
+    right = right :+ child
+  }
+
+  def insertLeft(child: Node): Unit = {
+    child.dependency = position
+    left = left :+ child
+  }
+
+  def matchDep(goldSentence: LabeledSentence, depAcc: Map[String, Int], depAccBase: Map[String, Int])
+  : (Map[String, Int], Map[String, Int]) = {
+
+    @tailrec
+    def matchDep0(acc: Map[String, Int], acc2: Map[String, Int], n: Node)(queue: Seq[Node])
+    : (Map[String, Int], Map[String, Int]) = {
+
+      @inline def condition(node: Node): Boolean =
+        node.dependency != -1 && !Constants.punctuationTags.contains(goldSentence.tags(node.position))
+      @inline def condition2(node: Node): Boolean =
+        goldSentence.dep(node.position) == node.dependency
+
+      val w = goldSentence.words(n.position)
+      val newAccs = if (condition(n) && condition2(n)) {
+        (acc + (w -> (acc.getOrElse(w, 0) + 1)), acc2 + (w -> (acc2.getOrElse(w, 0) + 1)))
+      } else if (condition(n)) {
+        (acc, acc2 + (w -> (acc2.getOrElse(w, 0) + 1)))
+      } else {
+        (acc, acc2)
+      }
+
+      (queue: @switch) match {
+        case head +: tail => matchDep0(newAccs._1, newAccs._2, head)(head.left ++ head.right ++ tail)
+        case Nil => (newAccs._1, newAccs._2)
+      }
+    }
+
+    matchDep0(depAcc, depAccBase, this)(left ++ right)
+  }
+
+  /**
+    * Check if the tree is parsed correctly completely (Ignoring punctuation tags)
+    * against the Gold sentence tags
+    *
+    * @param goldSentence The sentences corretly annotated
+    * @return True if the tree is 100% correctly parsed
+    */
+  def matchAll(goldSentence: LabeledSentence): Boolean = matchNodes(goldSentence) == goldSentence.words.size
+
+  def matchNodes(goldSentence: LabeledSentence): Int = {
+    @inline def condition(n: Node): Boolean =
+      (goldSentence.dep(n.position) == n.dependency) || Constants.punctuationTags.contains(goldSentence.tags(n.position))
+
+    @tailrec
+    def match0(acc: Int, n: Node)(queue: Seq[Node]): Int = {
+      val count = if (condition(n)) acc + 1 else acc
+
+      (queue: @switch) match {
+        case head +: tail => match0(count, head)(head.left ++ head.right ++ tail)
+        case Nil => count
+      }
+    }
+
+    match0(0, this)(left ++ right)
+  }
+
+  override def toString: String = s"<LEX: $lex, TAG: $posTag, DEP: $dependency, POS: $position, LEFT: $left, RIGHT:  $right>"
+}
+\end{scala2}
+Esta clase recibe como parámetros:
+\begin{itemize}
+   \item [Lex:] La palabra que almacena.
+   \item [posTag:] La categoría morfosintática de la palabra.
+   \item [dependency:] Número representando la dependencia de la palabra.
+   \item [left:] Hijos del árbol a la izquierda de este nodo.
+   \item [right:] Hijos a la derecha de este nodo.
+\end{itemize}
+En cuanto a sus métodos:
+\begin{itemize}
+   \item [inserRight/insertLeft:] Insertan un nuevo nodo a su izquierda o
+     derecha.
+   \item [matchDep:] Comprueba que las dependencias son correctas para las
+     estimaciones dadas por el modelo.
+   \item [matchAll:] Comprueba si el árbol ha sido calculado correctamente al
+     completo, es decir, ha tenido un acierto del 100\% para esa frase.
+\end{itemize}
 
 %*****************************************
 %*****************************************
