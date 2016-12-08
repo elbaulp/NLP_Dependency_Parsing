@@ -141,13 +141,12 @@ Como se puede apreciar, los resultados son bastante similares, llegando a
 mejorar el \emph{Comp. Rate}.
 
 Es de esperar que los resultados sean similares, ya que el algoritmo es el
-mismo. Las variaciones pueden deberse al método \myTodo{Enlazar con código del
-  capitulo de implementación} \textsc{extractTestFeatures}, ya que generan
-salidas distintas. Es posible que esto se deba al comportamiento de los
-diccionarios, ya que como bien es conocido, no tienen un orden definido. Por
-tanto, al acceder a los elementos del mismo, que contienen las características
-se producen pequeñas variaciones que pueden estar influyendo en el cálculo de
-las características extraidas.
+mismo. Las variaciones pueden deberse al método \textsc{extractTestFeatures} ---
+\autoref{subsec:depparser} ---, ya que generan salidas distintas. Es posible que
+esto se deba al comportamiento de los diccionarios, ya que como bien es
+conocido, no tienen un orden definido. Por tanto, al acceder a los elementos del
+mismo, que contienen las características se producen pequeñas variaciones que
+pueden estar influyendo en el cálculo de las características extraidas.
 
 Otro motivo por el que pueden estar obteniéndose resultados ligeramente
 distintos es el tipo de implementación para la \ac{SVM}. \citeauthor{rohit2016}

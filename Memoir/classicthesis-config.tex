@@ -23,7 +23,7 @@
 % 1. Configure classicthesis for your needs here, e.g., remove "drafting" below 
 % in order to deactivate the time-stamp on the pages
 % ****************************************************************************************************
-\PassOptionsToPackage{eulerchapternumbers,drafting,%listings
+\PassOptionsToPackage{eulerchapternumbers,%drafting,%listings
                       pdfspacing,%floatperchapter,%linedheaders,%
 		      beramono,eulermath,parts,}
                      {classicthesis}                                        
@@ -133,7 +133,8 @@
 
 \usepackage{tikz-dependency}
 \usepackage{tikz-qtree,tikz-qtree-compat}
-\usetikzlibrary{shapes.geometric,arrows,decorations.markings,babel,positioning}
+\usetikzlibrary{shapes.geometric,arrows,decorations.markings,babel,positioning,calc}
+\usepackage{relsize}
 \usepackage{tikz-uml}
 \usepackage{algorithm}% http://ctan.org/pkg/algorithms
 \usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
