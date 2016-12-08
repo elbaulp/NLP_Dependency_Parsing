@@ -25,7 +25,7 @@
 % ****************************************************************************************************
 \PassOptionsToPackage{eulerchapternumbers,drafting,%listings
                       pdfspacing,%floatperchapter,%linedheaders,%
-		      subfig,beramono,eulermath,parts,}
+		      beramono,eulermath,parts,}
                      {classicthesis}                                        
 % ********************************************************************
 % Available options for classicthesis.sty 
@@ -161,7 +161,7 @@
 %\DeclareCaptionLabelFormat{smallcaps}{\bothIfFirst{#1}{~}\MakeTextLowercase{\textsc{#2}}}
 %\captionsetup{font=small,labelformat=smallcaps} % format=hang,
 \captionsetup{font=small} % format=hang,
-\usepackage{subfig}  
+%\usepackage{subfig}  
 % ****************************************************************************************************
 
 
@@ -336,6 +336,7 @@
 \let\marginpar\oldmarginpar
 %\setlength{\marginparwidth}{2cm}
 %\usepackage{showlabels}
+\usepackage{subcaption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%% End Added by myself %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
