@@ -119,17 +119,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 \usepackage[pdftex,dvipsnames,table,xcdraw]{xcolor}  % Coloured text etc.
-\definecolor{bugColor}{HTML}{fc221b}
-\definecolor{enhancementColor}{HTML}{84979b}
-\definecolor{questionColor}{HTML}{cc2952}
-\definecolor{todoColor}{HTML}{fba803}
+% \definecolor{bugColor}{HTML}{fc221b}
+% \definecolor{enhancementColor}{HTML}{84979b}
+% \definecolor{questionColor}{HTML}{cc2952}
+% \definecolor{todoColor}{HTML}{fba803}
 
-\usepackage[colorinlistoftodos,prependcaption,textsize=scriptsize,english]{todonotes}
-\newcommandx{\bug}[2][1=]{\todo[linecolor=bugColor,backgroundcolor=bugColor!25,bordercolor=bugColor,#1]{#2}}
-\newcommandx{\enhancement}[2][1=]{\todo[linecolor=enhancementColor,backgroundcolor=enhancementColor!25,bordercolor=enhancementColor,#1]{#2}}
-\newcommandx{\question}[2][1=]{\todo[linecolor=questionColor,backgroundcolor=questionColor!25,bordercolor=questionColor,#1]{#2}}
-\newcommandx{\myTodo}[2][1=]{\todo[linecolor=todoColor,backgroundcolor=todoColor!25,bordercolor=todoColor,#1]{#2}}
-\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+% \usepackage[colorinlistoftodos,prependcaption,textsize=scriptsize,english]{todonotes}
+% \newcommandx{\bug}[2][1=]{\todo[linecolor=bugColor,backgroundcolor=bugColor!25,bordercolor=bugColor,#1]{#2}}
+% \newcommandx{\enhancement}[2][1=]{\todo[linecolor=enhancementColor,backgroundcolor=enhancementColor!25,bordercolor=enhancementColor,#1]{#2}}
+% \newcommandx{\question}[2][1=]{\todo[linecolor=questionColor,backgroundcolor=questionColor!25,bordercolor=questionColor,#1]{#2}}
+% \newcommandx{\myTodo}[2][1=]{\todo[linecolor=todoColor,backgroundcolor=todoColor!25,bordercolor=todoColor,#1]{#2}}
+% \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
 \usepackage{tikz-dependency}
 \usepackage{tikz-qtree,tikz-qtree-compat}
@@ -334,7 +334,7 @@
 %% Work around for todonotes to work, when todonotes no longer needed, remove the two lines below
 %% and replace graffito by marginpar again
 %\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
-\let\marginpar\oldmarginpar
+%\let\marginpar\oldmarginpar
 %\setlength{\marginparwidth}{2cm}
 %\usepackage{showlabels}
 \usepackage{subcaption}

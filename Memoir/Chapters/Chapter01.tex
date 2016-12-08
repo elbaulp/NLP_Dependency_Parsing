@@ -7,7 +7,7 @@
 
 El lenguaje natural se refiere a cualquier lenguaje hablado por un
 humano \cite{James2012}, (\eg Inglés, Castellano o
-Chino). El \acfi{NLP}\acused{NLP}\graffito{\acf{PNL}} es un campo de la ciencia
+Chino). El \acfi{NLP}\acused{NLP}\marginpar{\acf{PNL}} es un campo de la ciencia
 de la computación e ingeniería desarrollado a partir del estudio del lenguaje y
 la computación lingüistica dentro del campo de la \ac{IA}. Los objetivos del
 \ac{NLP} son diseñar y construir aplicaciones que faciliten la interacción
@@ -56,7 +56,7 @@ La traducción automática fue una de las primeras aplicaciones no numéricas de
 computación y comenzó a estudiarse de forma intensiva en la década de los
 50. Sin embargo, no fue hasta la década de los 90 cuando se produjo una
 tansformación en este área. IBM se hizo con una gran cantidad de frases en
-Inglés y Francés que eran traducciones las unas de las otras, \graffito{Conocido
+Inglés y Francés que eran traducciones las unas de las otras, \marginpar{Conocido
 como texto paralelo} lo cual permitió recopilar estadísticas de traducciones de
 palabras y secuencias de palabras, concediento así el desarrollo de modelos
 probabilísticos para la traducción automática. Hasta ese momento, todo el
@@ -86,11 +86,11 @@ de este comportamiento en \citet{computerPhile:nn}
 modelos que pueden usarse en el teléfono móvil o en el ordenador. Estos modelos
 son capaces de reconocer expresiones del lenguaje hablado como preguntas y
 comandos. Desafortunadamente, los sistemas
-\acfi{ASR}\acused{ASR}\graffito{\acf{RVA}} funcionan bajo dominios muy acotados
+\acfi{ASR}\acused{ASR}\marginpar{\acf{RVA}} funcionan bajo dominios muy acotados
 y no permiten al interlocutor desviarse de la entrada que espera el sistema, \eg
 \emph{``Por favor, diga ahora la opción a elegir: 1 Para\dots, 2 para\dots''}
 
-\paragraph{SDS:} Los \emph{\acp{SDS}}\graffito{\ac{SDS}: Sistemas de Diálogo
+\paragraph{SDS:} Los \emph{\acp{SDS}}\marginpar{\ac{SDS}: Sistemas de Diálogo
   Hablados}. El diálogo ha sido un tema popular para el \ac{NLP} desde los
 80. En estos sistemas se pretende remplazar a los usuales buscadores en los que
 introducimos un texto para obtener algún tipo de respuesta a una pregunta. Por
@@ -106,11 +106,11 @@ La creación de \acp{SDS}, ya sea entre humanos o entre humanos y agentes
 artificiales requiere de herramientas como:
 \begin{itemize}
 \item \ac{ASR}, para identificar qué dice el humano.
-\item \acfi{DM}\acused{DM}\graffito{\ac{DM}: Gestión del diálogo}, para
+\item \acfi{DM}\acused{DM}\marginpar{\ac{DM}: Gestión del diálogo}, para
   determinar qué quiere el humano.
 \item Acciones para obtener la información o realizar la actividad
   solicitada.
-\item Síntesis \acfi{TTS}\acused{TTS}\graffito{Leer un texto por una
+\item Síntesis \acfi{TTS}\acused{TTS}\marginpar{Leer un texto por una
     máquina}, para comunicar dicha información al humano de forma hablada.
 \end{itemize} En la actualidad, \citet{microsoft:sds} desarrollaron un \ac{SDS}
 haciendo uso de \emph{deep learning} para asociar señales sonoras a secuencias
@@ -192,7 +192,7 @@ antes de que el \ac{AA} acuñara este término.
 
 Esta aproximación estadística al \ac{NLP} descubrió que el uso de métodos
 simples usando palabras, secuencias del
-\acfi{POS}\acused{POS}\graffito{\ac{POS}: Categorías morfosintácticas en
+\acfi{POS}\acused{POS}\marginpar{\ac{POS}: Categorías morfosintácticas en
   castellano} (si una palabra es un nombre, verbo o preposición), o plantillas
 simples pueden obtener buenos resultados cuando son entrenados sobre un gran
 conjunto de datos. A día de hoy, muchos sistemas de clasificación de texto y
@@ -268,10 +268,10 @@ principales y palabras que modifican dichas palabras principales. La
 
 Aunque se han producido avances, una de las principales limitaciones del
 \ac{NLP} hoy día es el hecho de que la mayoría de recursos y sistemas solo están
-disponibles para los denominados \emph{\acp{HRL}}\graffito{\ac{HRL}: Idiomas de
+disponibles para los denominados \emph{\acp{HRL}}\marginpar{\ac{HRL}: Idiomas de
   altos recursos}, estos lenguajes son el Inglés, Francés, Español, Alemán y
 Chino. Por contra, hay una gran cantidad de \emph{\acp{LRL}}
---\graffito{\ac{LRL}: Idiomas de bajos recursos} como Bengalí, Indonesio,
+--\marginpar{\ac{LRL}: Idiomas de bajos recursos} como Bengalí, Indonesio,
 Punjabí, Cebuano y Swahili -- hablados y escritos por millones de personas que
 no disponen de este tipo de sistemas. Uno de los mayores retos para la comunidad
 del lenguaje es desarrollar recursos y herramientas para cientos o miles de
@@ -367,7 +367,7 @@ análisis de sentimientos. Actualmente existen dos aproximaciones para realizar
 esta tarea. Una de ellas consiste en hacer uso de la \acfi{API}\acused{API} de
 alguna página web de la que se desee extraer el \emph{corpus}. Una de las
 \acp{API} más populares para este propósito es la de Twitter. La segunda
-aproximación hace uso de \emph{Web Crawlers}\graffito{Rastreadores de Webs} para
+aproximación hace uso de \emph{Web Crawlers}\marginpar{Rastreadores de Webs} para
 extraer datos de las webs deseadas.
 
 Ambas aproximaciones presentan sus ventajas y desventajas, y por tanto se debe
@@ -581,7 +581,7 @@ frases con sentimientos, reglas de opinión,  modificadores del sentimiento y
 dependencias sintácticas, por mencionar algunas \cite{Liu2012}.
 
 \paragraph{Aproximación basada en conceptos:}Relativamente moderna. Consiste en
-usar \emph{ontologías}\graffito{Una ontología se define como un modelo que
+usar \emph{ontologías}\marginpar{Una ontología se define como un modelo que
   conceptualiza el conocimiento de un dominio dado, de tal forma que pueda ser
   comprendido tanto por humanos como máquinas.} para apoyar la tarea del
 análisis de sentimientos. Las ontologías suelen presentarse como gráfos donde
@@ -676,15 +676,47 @@ nominales \cite{Lee2013}. Se devuelve el grafo de coreferencia del texto al
 completo, con las palabras principales de las menciones como nodos.
 
 En la \autoref{fig:corenlppipe} se muestra el \emph{pipeline} completo de \textsc{CoreNLP}.
-
 \begin{figure}[bth]
-  \includegraphics[width=1\linewidth]{gfx/corenlppipe.png}
-  \caption[Visualización del \emph{pipeline} de \textsc{CoreNLP}]{Visión general
-    de la arquitectura. El texto a procesar se añade a un objeto
-    \textsc{Annotation}. Posteriormente una secuencia de etiquetadores añaden
-    información sobre qué fases del \emph{pipeline} deben ejecutarse. El
-    resultado contiene el texto procesado, puede obtener en formato \ac{XML} o
-    texto plano.}
+  \tikzset
+  {common/.style =
+    {rectangle, rounded corners, minimum width=5cm, minimum height=1mm,
+     text centered, text opacity=1, align=center
+   }
+  ,anotator/.style={common,minimum width=2cm,draw,very thin}
+  ,target/.style={common, draw=black, very thin}
+  }
+\begin{tikzpicture}[node distance=5mm]
+      \node (token) [target] {Tokenization};
+      \node (split) [target,below=of token] {Sentence Splitting};
+      \node (pos) [target,below=of split] {POS Tagging};
+      \node (lemma) [target,below=of pos] {Morphological Analysis};
+      \node (ner) [target,below=of lemma] {Named Entity Recognition};
+      \node (parse) [target,below=of ner] {Syntactic Parsing};
+      \node (dcoref) [target,below=of parse] {Coreference Resolution};
+      \node (other) [target,below=of dcoref] {Other Annotators};
+      \draw[very thick,->] ($(token.west)-(1,0)$) -- ($(other.west)-(1,0)$)
+         node[midway,above,sloped,rotate=180] {Execution Flow};
+      \node (object) [anotator,right=4cm of token.north,minimum height=8.4cm,
+                      outer sep=0,anchor=north] {Anotation\\Object};
+      \draw[very thick,<->] (token.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (split.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (pos.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (lemma.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (ner.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (parse.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (dcoref.east) -- ++(.5cm,0);
+      \draw[very thick,<->] (other.east) -- ++(.5cm,0);
+      \node (raw) [anotator,right=1.5cm of object |- pos] {Raw\\text};
+      \node (anno) [anotator,right=1.5cm of object |- ner] {Annotated\\text};
+      \draw[very thick,->] (raw.west) -- ++(-.5cm,0);
+      \draw[very thick,<-] (anno.west) -- ++(-.5cm,0);
+    \end{tikzpicture}
+    \caption[Visualización del \emph{pipeline} de \textsc{CoreNLP}]{Visión
+      general de la arquitectura. El texto a procesar se añade a un objeto
+      \textsc{Annotation}. Posteriormente una secuencia de etiquetadores añaden
+      información sobre qué fases del \emph{pipeline} deben ejecutarse. El
+      resultado contiene el texto procesado, puede obtener en formato \ac{XML} o
+      texto plano.}
   \label{fig:corenlppipe}
 \end{figure}
 
@@ -701,7 +733,7 @@ sentimientos, en función de los distintos niveles mencionados en
 \citeauthor{Turney2002} \cite{Turney2002} presentó un método no supervisado para
 clasificar reseñas como recomendadas o no recomendadas. Su investigación
 determina las polaridades mediante una media de la
-\acfi{SO}\acused{SO}\graffito{\acfi{SO}: Orientación Semántica} de las frases
+\acfi{SO}\acused{SO}\marginpar{\acfi{SO}: Orientación Semántica} de las frases
 que aparecen en las reseñas. La \ac{SO} de un par de frases se calcula mediante
 \acfi{PMI-IR} \cite{Turney2001}, usando la \autoref{eq:so}
 \begin{equation}
