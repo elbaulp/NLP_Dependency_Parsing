@@ -156,16 +156,18 @@ acciones.
 \textsc{Desplazar} indica que no se ha realizado ninguna construcción en el
 árbol de dependencias entre los nodos objetivo. La acción para esta situación
 simplemente desplaza una posición a la derecha la ventana que apunta a los nodos
-objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto.
+objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto ---
+Los ejemplos han sido extraidos de \citet{yamada2003} ---
 
-\tikzset{
-  notarget/.style={rectangle, rounded corners, minimum
-    width=1cm, minimum height=1cm,text centered, draw=none,
-    opacity=0,text opacity=.4,align=center},
-  target/.style={rectangle, rounded corners, minimum width=1cm, minimum
-    height=1cm,text centered, draw=black, very thick,text
-    opacity=1,align=center}}
-  
+\tikzset
+  {common/.style =
+    {rectangle, rounded corners, minimum width=1cm, minimum height=1cm,
+     text centered, text opacity=1, align=center
+    }
+  ,notarget/.style = {common, draw=none, opacity=0, text opacity=0.5}
+  ,target/.style   = {common, draw=black, very thick}
+  }
+
 \begin{figure}[ht]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
@@ -198,31 +200,28 @@ del nodo de la derecha. En la \autoref{fig:rightaction} puede observarse el
 efecto de esta acción.
 \begin{figure}[ht]
   \centering
-  \begin{subfigure}[b]{0.4\textwidth}
-    \begin{tikzpicture}[node distance=2mm]
+  \begin{tabular}{p{0.4\textwidth}cp{0.4\textwidth}}
+    \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
       \node (n1) [notarget] {I\\PRP};
       \node (n2) [notarget, right=of n1] {saw\\VBD};
       \node (n3) [target, right=of n2] {a\\DT};
       \node (n4) [target, right=of n3] {girl\\NN};
-      \node (n4') [target, right=of n4,draw=none,anchor=west] {};
-      \node (n5') [target, below=5mm of n4',anchor=north,draw=none] {};
-      \draw [thick,->] (n5'.center) -- ++(5mm,0);
     \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
-  \qquad\qquad
-  \centering
-  \begin{subfigure}[b]{0.4\textwidth}
-    \begin{tikzpicture}[node distance=2mm]
+  &
+    \tikz\draw [thick,->] (0,0) -- ++(.5cm,0);
+  &
+    \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
       \node (n1) [notarget] {I\\PRP};
       \node (n2) [notarget, right=of n1] {saw\\VBD};
-      \node (nn) [notarget,draw=none,right=of n2] {};
-      \node (n3) [target, right=of nn] {girl\\NN};
-      \node (n4) [target, below=5mm of n3] {a\\DT};
+      \node (n3) [target, right=of n2] {a\\DT};
+      \node (n4) [target, below=5mm of n3,anchor=north] {girl\\NN};
       \draw [thick,->] (n4) -- (n3);
     \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
+  \\
+    \subcaption{}
+  &&
+    \subcaption{}
+  \end{tabular}
   \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
     acción. (b) Estado tras aplicar la acción}
   \label{fig:rightaction}
@@ -231,33 +230,31 @@ efecto de esta acción.
 objetivo. De los dos nodos objetivo, el de la derecha pasa a ser hijo del nodo
 de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
 \begin{figure}[ht]
-    \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=2mm]
+  \centering
+  \begin{tabular}{p{0.4\textwidth}p{.1\textwidth}p{0.4\textwidth}}
+    \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
       \node (n1) [notarget] {I\\PRP};
       \node (n2) [target, right=of n1] {saw\\VBD};
       \node (n3) [target, right=of n2] {girl\\NN};
-      \node (n4) [notarget, below=5mm of n3,anchor=north] {a\\DT};
-      \node (n4') [target,below=5mm of n4,draw=none] {};
-      \node (n5') [target,right=of n4',draw=none] {};
+      \node (n4) [notarget, below=5mm of n3] {a\\DT};
       \draw [thick,->] (n4) -- (n3);
-      \draw [thick,->] (n5'.center) -- ++(5mm,0);
     \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
-  \qquad\qquad
-  \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=2mm]
+ &
+   \tikz\draw [thick,->] (0,0) -- ++(.5cm,0);
+ &
+    \begin{tikzpicture}[node distance=2mm,baseline=(n1)]
       \node (n1) [notarget] {I\\PRP};
       \node (n2) [target, right=of n1] {saw\\VBD};
-      \node (n4) [target, below=5mm of n2,anchor=north] {girl\\NN};
-      \node (n3) [notarget, below=5mm of n4,anchor=north] {a\\DT};
+      \node (n4) [target, below=5mm of n2] {girl\\NN};
+      \node (n3) [notarget, below=5mm of n4] {a\\DT};
       \draw [thick,->] (n4) -- (n2);
       \draw [thick,->] (n3) -- (n4);
     \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
+    \\
+    \subcaption{}
+ &&
+    \subcaption{}
+  \end{tabular}
   \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
     acción. (b) Estado tras aplicar la acción}
   \label{fig:leftaction}
