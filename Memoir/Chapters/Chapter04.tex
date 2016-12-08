@@ -158,12 +158,14 @@ acciones.
 simplemente desplaza una posición a la derecha la ventana que apunta a los nodos
 objetivo. En la figura \autoref{fig:shiftaction} muestra un ejemplo concreto.
 
-\tikzstyle{notarget} = [rectangle, rounded corners, minimum
-  width=1cm, minimum height=1cm,text centered, draw=none,
-  opacity=0,text opacity=0.5,align=center]
-\tikzstyle{target} = [rectangle, rounded corners, minimum width=1cm, minimum
-  height=1cm,text centered, draw=black, very thick,text
-  opacity=1,align=center]
+\tikzset{
+  notarget/.style={rectangle, rounded corners, minimum
+    width=1cm, minimum height=1cm,text centered, draw=none,
+    opacity=0,text opacity=.4,align=center},
+  target/.style={rectangle, rounded corners, minimum width=1cm, minimum
+    height=1cm,text centered, draw=black, very thick,text
+    opacity=1,align=center}}
+  
 \begin{figure}[ht]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
@@ -196,27 +198,28 @@ del nodo de la derecha. En la \autoref{fig:rightaction} puede observarse el
 efecto de esta acción.
 \begin{figure}[ht]
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=1.2cm]
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}[node distance=2mm]
       \node (n1) [notarget] {I\\PRP};
-      \node (n2) [notarget, right of=n1] {saw\\VBD};
-      \node (n3) [target, right of=n2] {a\\DT};
-      \node (n4) [target, right of=n3] {girl\\NN};
-%      \draw [thick,->] (n4) -- ++(1cm,0);
+      \node (n2) [notarget, right=of n1] {saw\\VBD};
+      \node (n3) [target, right=of n2] {a\\DT};
+      \node (n4) [target, right=of n3] {girl\\NN};
+      \node (n4') [target, right=of n4,draw=none,anchor=west] {};
+      \node (n5') [target, below=5mm of n4',anchor=north,draw=none] {};
+      \draw [thick,->] (n5'.center) -- ++(5mm,0);
     \end{tikzpicture}
     \caption{}
   \end{subfigure}
   \qquad\qquad
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=1.2cm,]
+  \begin{subfigure}[b]{0.4\textwidth}
+    \begin{tikzpicture}[node distance=2mm]
       \node (n1) [notarget] {I\\PRP};
-      \node (n2) [notarget, right of=n1] {saw\\VBD};
-      \node (nn) [draw=none,right of=n2] {};
-      \node (n3) [target, right of=nn] {girl\\NN};
-      \node (n4) [target, below of=n3,anchor=north] {a\\DT};
+      \node (n2) [notarget, right=of n1] {saw\\VBD};
+      \node (nn) [notarget,draw=none,right=of n2] {};
+      \node (n3) [target, right=of nn] {girl\\NN};
+      \node (n4) [target, below=5mm of n3] {a\\DT};
       \draw [thick,->] (n4) -- (n3);
-      
     \end{tikzpicture}
     \caption{}
   \end{subfigure}
@@ -230,23 +233,26 @@ de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
 \begin{figure}[ht]
     \centering
   \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=1.2cm]
+    \begin{tikzpicture}[node distance=2mm]
       \node (n1) [notarget] {I\\PRP};
-      \node (n2) [target, right of=n1] {saw\\VBD};
-      \node (n3) [target, right of=n2] {girl\\NN};
-      \node (n4) [notarget, below of=n3,anchor=north] {a\\DT};
+      \node (n2) [target, right=of n1] {saw\\VBD};
+      \node (n3) [target, right=of n2] {girl\\NN};
+      \node (n4) [notarget, below=5mm of n3,anchor=north] {a\\DT};
+      \node (n4') [target,below=5mm of n4,draw=none] {};
+      \node (n5') [target,right=of n4',draw=none] {};
       \draw [thick,->] (n4) -- (n3);
+      \draw [thick,->] (n5'.center) -- ++(5mm,0);
     \end{tikzpicture}
     \caption{}
   \end{subfigure}
   \qquad\qquad
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=1.2cm]
+    \begin{tikzpicture}[node distance=2mm]
       \node (n1) [notarget] {I\\PRP};
-      \node (n2) [target, right of=n1] {saw\\VBD};
-      \node (n4) [target, below of=n2,anchor=north] {girl\\NN};
-      \node (n3) [notarget, below of=n4,anchor=north] {a\\DT};
+      \node (n2) [target, right=of n1] {saw\\VBD};
+      \node (n4) [target, below=5mm of n2,anchor=north] {girl\\NN};
+      \node (n3) [notarget, below=5mm of n4,anchor=north] {a\\DT};
       \draw [thick,->] (n4) -- (n2);
       \draw [thick,->] (n3) -- (n4);
     \end{tikzpicture}
