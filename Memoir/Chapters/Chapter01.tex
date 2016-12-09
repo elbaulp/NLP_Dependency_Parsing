@@ -24,7 +24,7 @@ científica, o incluso repositorios de información más genérica como
 \emph{Wikipedia}. Toda esta información escrita en lenguaje natural puede
 aprovecharse para entrenar modelos que sean capaces de generar hipótesis por sí
 mismos, generar resúmenes o extraer hechos. Un ejemplo claro puede ser la
-extracción de hechos básicos que relacionen dos entidades (\emph{``Luís es padre
+extracción de hechos básicos que relacionen dos entidades (\emph{``Luis es padre
 de Cristina''}.
 
 \paragraph{Traducción automática:} Esta fue la principal área de investigación
@@ -127,13 +127,13 @@ requiere de información léxica y a nivel de la propia sentencia. Por lo genera
 el sentimiento puede detectarse a través del uso de palabras expresando
 orientaciones positivas o negativas, \eg \emph{triste, preocupado, difícil} son
 todas palabras con una connotación negativa, mientras que \emph{cómodo,
-  importante, interesante} denotan un sentimiento positivo. Las aproxmiaciones
-más sofisticadas para el anlálisis de sentimientos intentan buscar tanto la
+  importante, interesante} denotan un sentimiento positivo. Las aproximaciones
+más sofisticadas para el análisis de sentimientos intentan buscar tanto la
 fuente como el objeto del sentimiento, \eg quién está expresando un sentimiento
 positivo sobre alguna persona, objeto, actividad o concepto.
 
 La comunidad del reconocimiento de voz está igualmente implicada en el estudio
-de actitudes positivas y negativas, centrándose en la identifiación de emociones
+de actitudes positivas y negativas, centrándose en la identificación de emociones
 haciendo uso de información acústica y prosódica, es decir un relieve en la
 pronunciación. Otras investigaciones se han centrado en identificar emociones
 particulares, específicamente las séis emociones básicas según Ekman -- ira,
@@ -347,8 +347,9 @@ El procesamiento más usual para realizar tareas de análisis de sentimientos se
 puede dividir en una serie de pasos definidos. Dichos pasos corresponden a la
 adquisición del \emph{corpus} o datos, preprocesamiento del texto, el proceso
 principal del análisis de sentimientos, agregación y resumen de los resultados y
-por último, visualización. En los próximos apartados se mencionarán los tres
-primeros.
+por último, visualización. En los próximos apartados se detallarán los tres
+primeros, porque el fin del presente trabajo está directamente relacionado con
+estos tres pasos.
 
 \subsubsection{Adquisición de Datos}
 \label{sec:dataacq}
@@ -490,7 +491,7 @@ identificar la polaridad general del mismo. Más tarde, el interés se desplazó
 hacia un nivel más específico, las setentencias. Por último, se bajó un paso más
 en cuanto a la granularidad para interesarse a nivel de entidad. Cabe destacar
 que los niveles más granulares pueden agruparse o conglomerarse para formar
-niveles más altos -- menos granulares, a mayor escala -- Por ejemplo, una
+niveles más altos -- menos granulares, a mayor escala -- Por ejemplo, un
 análisis de sentimientos podría calcular la media de polaridades en una frase y
 producir un resultado a nivel de sentencias. Veamos a continuación los distintos
 niveles.
@@ -541,7 +542,7 @@ sentimientos. Una basada en léxico, no supervisada. Esta aproximación depende
 de reglas y heurísticas obtenidas del conocimiento lingüístico
 \cite{VILARES2013}. La otra aproximación es supervisada, usa \ac{AA}, aquí se
 utilizan algoritmos que aprenden la información subyacente de datos previamente
-anotados, permitiendoles así clasificar instancias nuevas --- sin etiquetar
+anotados, permitiéndoles así clasificar instancias nuevas --- sin etiquetar
 \cite{Pang2002} ---. Aunque estas dos aproximaciones son las más usadas, existen
 estudios que han demostrado buenos resultados al combinar ambas. Pasamos ahora a
 describirlas en detalle.
@@ -564,7 +565,7 @@ los datos de entrenamiento --- datos cuya clase o etiqueta se conoce para cada
 instancia --- para después intentar clasificar nuevos datos suministrados al
 algoritmo, esta vez sin estar etiquetados. Los pasos a seguir en una
 aproximación de este tipo consisten en realizar algo de ingeniería de
-características que respresenten el objeto cuya clase se quiere predecir. Tras
+características que representen el objeto cuya clase se quiere predecir. Tras
 esto, se usan dichas representaciones como entrada del algoritmo. Algunas de las
 características más usadas en al análisis de sentimientos son: frecuencia del
 término, categorías morfosintáctica -- \ac{POS} \emph{tags} -- palabras y frases
@@ -575,7 +576,7 @@ dependencias sintácticas, por mencionar algunas \cite{Liu2012}.
 usar \emph{ontologías}\marginpar{Una ontología se define como un modelo que
   conceptualiza el conocimiento de un dominio dado, de tal forma que pueda ser
   comprendido tanto por humanos como máquinas.} para apoyar la tarea del
-análisis de sentimientos. Las ontologías suelen presentarse como gráfos donde
+análisis de sentimientos. Las ontologías suelen presentarse como grafos donde
 los conceptos se asocian a nodos enlazados por relaciones. El estudio realizado
 por \citet{Zhou2007} analiza en profundidad las ontologías, así como sus
 aplicaciones y desarrollo.
@@ -662,8 +663,8 @@ parseador probabilístico \cite{Klein2002, deMarneffe2008}.
 un sentimiento se calcula mediante los nodos de un árbol binario para cada
 sentencia, incluyendo, en particular, el nodo raíz de cada frase.
 
-\paragraph{Dcoref:} Detecta menciones y resolución de coreferencias tanto pronominales como
-nominales \cite{Lee2013}. Se devuelve el grafo de coreferencia del texto al
+\paragraph{Dcoref:} Detecta menciones y resolución de correferencias tanto pronominales como
+nominales \cite{Lee2013}. Se devuelve el grafo de correferencia del texto al
 completo, con las palabras principales de las menciones como nodos.
 
 En la \autoref{fig:corenlppipe} se muestra el \emph{pipeline} completo de \textsc{CoreNLP}.

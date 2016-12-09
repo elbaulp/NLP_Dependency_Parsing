@@ -42,7 +42,7 @@ para este trabajo son las siguientes:
 \label{sec:patterns}
 
 Otra de las ventajas de \textsc{Scala} es que incorpora ciertos patrones de
-diseño en el mismo lenguaje. Por ejemplo, en \nameref{lst:object} se muestra una
+diseño en el mismo lenguaje. Por ejemplo, en el Código~\autoref{lst:object} se muestra una
 implementación del patrón.
 
 \begin{listing}[H]
@@ -62,7 +62,7 @@ necesario guardar ningún estado del objeto ni el objeto interactua con el mundo
 exterior.
 
 Es posible refactorizar el código anterior, como se muestra en
-\nameref{lst:object2}
+el Código~\autoref{lst:object2}
 
 \begin{listing}[H]
   \begin{scalacode}
@@ -91,7 +91,7 @@ la herencia. Una mejor alternativa sería crear subclases del comportamiento de
 un objeto con el mismo estado. De esta forma, se favorece la composición sobre
 la herencia, es decir, componer unidades de funcionalidades en lugar de crear
 jerarquías de clases. Esto se logra mediante el uso de \textsc{Traits} --
-\autoref{sec:whyscala} -- El código quedaría como en \nameref{lst:traits}. El
+\autoref{sec:whyscala} -- El código quedaría como en el Código~\autoref{lst:traits}. El
 diagrama de clases para el Código~\ref{lst:traits} sería el de la
 \autoref{fig:traits}.
 \begin{listing}[H]
@@ -185,8 +185,8 @@ La principal razón del éxito de \textsc{Scala} en la comunidad del \ac{AA} y
 \emph{Big Data} reside en la facilidad que ofrece para escribir programas
 concurrentes usando el paradigma \ac{FP}. La diferencia entre aplicaciones de
 \emph{Big Data} escritas en \textsc{Java} frente a las escritas en
-\textsc{Scala} mediante \ac{FP} es abismal. En \nameref{lst:object2} se vio un
-ejemplo de \scalainline/map/, funciones como esta y sus compañeras ---
+\textsc{Scala} mediante \ac{FP} es abismal. En el Código~\autoref{lst:object2} se vió
+un ejemplo de \scalainline/map/, funciones como esta y sus compañeras ---
 \scalainline/flatMap, filter, fold/\dots --- han sido siempre herramientas para
 trabajar con datos. Independientemente del tamaño de los datos, se aplica la
 misma abstracción.

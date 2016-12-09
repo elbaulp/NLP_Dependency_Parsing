@@ -34,10 +34,10 @@ Cuando se escribe de antemano la intención del código, antes de implementarlo 
 verdad, se aplica una presión al diseño del mismo que evita escribir código del
 llamado ``\emph{Por si acaso}''. Con el uso de \ac{TDD}, primero se piensa en un
 caso de prueba, se ve que el \emph{software} aún no lo soporta y entonces se
-corrige. Si no se es capáz de pensar en un caso de prueba, no se añade código.
+corrige. Si no se es capaz de pensar en un caso de prueba, no se añade código.
 
 \ac{TDD} opera a varios niveles. Los \emph{tests} pueden escribirse para
-funciones, métodos, clases, programas, servícios webs, redes neuronales y
+funciones, métodos, clases, programas, servicios webs, redes neuronales y
 \emph{pipelines} de \ac{AA} al completo. En todo momento, independientemente del
 nivel, los \emph{tests} se escriben desde la perspectiva del cliente. En este
 proyecto se ha centrado el tipo de \emph{tests} hacia el \ac{AA}. En este
@@ -112,8 +112,8 @@ se quiere probar y por último, la cláusula \textsc{Then} comprueba que el
 resultado del código que se está probando coincide con lo que se esperaba.
 
 El objetivo de este tipo de \emph{test} es que sean lo suficientemente
-descriptivos para que cualquier persona familiar con el domínio del problema sea
-capáz de entenderlo y opinar.
+descriptivos para que cualquier persona familiar con el dominio del problema sea
+capaz de entenderlo y opinar.
 
 \section{TDD aplicado al Aprendizaje Automático}
 \label{sec:tddml}
@@ -213,7 +213,7 @@ class DataParserSpec extends Specification
 \label{sec:dpbaseline}
 
 Este \emph{test} se encarga de establecer un punto de partida para los
-resultados del modelo. Como se vio en la \autoref{sec:tddred}, este punto de
+resultados del modelo. Como se vió en la \autoref{sec:tddred}, este punto de
 partida sirve para comprobar que no se están empeorando las predicciones del
 modelo conforme vamos desarrollando el sistema. El punto de partida se establece
 para dos tipos de medidas, la primera, cuyo \emph{test} se puede ojear en el
@@ -221,8 +221,8 @@ Código~\autoref{lst:baseline} comprueba la precisión del modelo fijando unas
 cotas mínimas que deben cumplirse para las medidas de evaluación --- pueden
 consultarse en la \autoref{sec:eval} --- La segunda comprueba que el número de
 características -- \autoref{subsec:featureextraction} -- es siempre el mismo
-cuando se usa el conjunto de datos para dearrollo, el código de este \emph{test}
-se muestra en \autoref{lst:nfeatures}.
+cuando se usa el conjunto de datos para desarrollo, el código de este \emph{test}
+se muestra en el Código~\autoref{lst:nfeatures}.
 \begin{listing}[ht]
   \begin{scalacode}
 class DependencyParserCheckBaselineSpec extends Specification
