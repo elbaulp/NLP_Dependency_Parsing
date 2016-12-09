@@ -206,16 +206,17 @@ Los ejemplos han sido extraidos de \citet{yamada2003} ---
     }
   ,notarget/.style = {common, draw=none, opacity=0, text opacity=0.5}
   ,target/.style   = {common, draw=black, very thick}
+  ,blank/.style    = {common, draw=none}
   }
 
 \begin{figure}[ht]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[node distance=1.2cm]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [target, right of=n1] {saw\\VBD};
-      \node (n3) [target, right of=n2] {a\\DT};
-      \node (n4) [notarget, right of=n3] {girl\\NN};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right of=n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+      \node (n4) [notarget, right of=n3] {girl\\\textsc{nn}};
       \draw [thick,->] (n4) -- ++(1cm,0);
     \end{tikzpicture}
     \caption{}
@@ -223,15 +224,16 @@ Los ejemplos han sido extraidos de \citet{yamada2003} ---
   \qquad\qquad
   \begin{subfigure}[b]{0.3\textwidth}
     \begin{tikzpicture}[node distance=1.2cm]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [notarget, right of=n1] {saw\\VBD};
-      \node (n3) [target, right of=n2] {a\\DT};
-      \node (n4) [target, right of=n3] {girl\\NN};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right of=n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+      \node (n4) [target, right of=n3] {girl\\\textsc{nn}};
     \end{tikzpicture}
     \caption{}
   \end{subfigure}
   \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el
-    estado antes de aplicar la acción. (b) el resultado trasaplicarla}
+    estado antes de aplicar la acción. (b) el resultado tras
+    aplicarla}
   \label{fig:shiftaction}
 \end{figure}
 \textsc{Derecha} construye una relación de dependencia entre los nodos
@@ -242,19 +244,20 @@ efecto de esta acción.
   \centering
   \begin{tabular}{p{0.4\textwidth}cp{0.4\textwidth}}
     \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [notarget, right=of n1] {saw\\VBD};
-      \node (n3) [target, right=of n2] {a\\DT};
-      \node (n4) [target, right=of n3] {girl\\NN};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right=of n2] {a\\\textsc{dt}};
+      \node (n4) [target, right=of n3] {girl\\\textsc{nn}};
     \end{tikzpicture}
   &
     \tikz\draw [thick,->] (0,0) -- ++(.5cm,0);
   &
     \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [notarget, right=of n1] {saw\\VBD};
-      \node (n3) [target, right=of n2] {a\\DT};
-      \node (n4) [target, below=5mm of n3,anchor=north] {girl\\NN};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+      \node (non)[blank,right=of n2]{};
+      \node (n3) [target, right=of non] {girl\\\textsc{nn}};
+      \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
       \draw [thick,->] (n4) -- (n3);
     \end{tikzpicture}
   \\
@@ -273,20 +276,20 @@ de la izquierda. En la \autoref{fig:leftaction} se ilustra esta situación.
   \centering
   \begin{tabular}{p{0.4\textwidth}p{.1\textwidth}p{0.4\textwidth}}
     \begin{tikzpicture}[node distance=2mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [target, right=of n1] {saw\\VBD};
-      \node (n3) [target, right=of n2] {girl\\NN};
-      \node (n4) [notarget, below=5mm of n3] {a\\DT};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right=of n2] {girl\\\textsc{nn}};
+      \node (n4) [notarget, below=5mm of n3] {a\\\textsc{dt}};
       \draw [thick,->] (n4) -- (n3);
     \end{tikzpicture}
  &
    \tikz\draw [thick,->] (0,0) -- ++(.5cm,0);
  &
     \begin{tikzpicture}[node distance=2mm,baseline=(n1)]
-      \node (n1) [notarget] {I\\PRP};
-      \node (n2) [target, right=of n1] {saw\\VBD};
-      \node (n4) [target, below=5mm of n2] {girl\\NN};
-      \node (n3) [notarget, below=5mm of n4] {a\\DT};
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+      \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
+      \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
       \draw [thick,->] (n4) -- (n2);
       \draw [thick,->] (n3) -- (n4);
     \end{tikzpicture}
@@ -378,11 +381,11 @@ método por parejas. Los tres clasificadores binarios son \textsc{Izquierda}
 \textsc{Derecha} \emph{vs.}  \textsc{Desplazar}.
 
 Como se mencionó en la \autoref{subsec:algdesc}, el \ac{POS} \emph{tag} y la
-propia palabra se usan como características de los nodos para los contextos de
-la izquierda y derecha. Se pasa ahora a describir en qué consisten dichos
+propia palabra se usa como característica de los nodos para los contextos de la
+izquierda y derecha. Se pasa ahora a describir en qué consisten dichos
 contextos.
 
-Como ya se sabe, $i$ e $i + 1$ son los índices que apuntan  los nodos objetivo
+Como ya se sabe, $i$ e $i + 1$ son los índices que apuntan a los nodos objetivo
 en ${\cal T}$. El contexto a la izquierda se puede definir como los nodos
 posicionados a la izquierda de los nodos objetivo, es decir $t_l, (l < i)$. El
 contexto a la derecha, de forma análoga, son los nodos a la derecha de los nodos

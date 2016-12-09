@@ -333,7 +333,7 @@ class DependencyParser(val trainSentences: Vector[LabeledSentence],
   }
 // ...
 \end{scala2}
-En la declaración de la clase principal --- \textsc{DependencyParser} --- indica
+La declaración de la clase principal --- \textsc{DependencyParser} --- indica
 que debe recibir en su constructor dos conjuntos de datos, el de \emph{train} y
 el de \emph{test}. Así mismo, se declara como clase interna \textsc{Accuracy},
 cuya función es calcular las medidas de evaluación -- \autoref{sec:eval}. --
@@ -557,11 +557,11 @@ Esta clase recibe como parámetros:
 \end{itemize}
 En cuanto a sus métodos:
 \begin{itemize}
-   \item [inserRight/insertLeft:] Insertan un nuevo nodo a su izquierda o
+   \item [\textsc{insertLeft/Right}:] Insertan un nuevo nodo a su izquierda o
      derecha.
-   \item [matchDep:] Comprueba que las dependencias son correctas para las
+   \item [\textsc{matchDep}:] Comprueba que las dependencias son correctas para las
      estimaciones dadas por el modelo.
-   \item [matchAll:] Comprueba si el árbol ha sido calculado correctamente al
+   \item [\textsc{matchAll}:] Comprueba si el árbol ha sido calculado correctamente al
      completo, es decir, ha tenido un acierto del 100\% para esa frase.
 \end{itemize}
 
