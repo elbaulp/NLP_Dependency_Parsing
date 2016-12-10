@@ -205,7 +205,7 @@ Los ejemplos han sido extraídos de \citet{yamada2003} ---
      text centered, text opacity=1, align=center
     }
   ,notarget/.style = {common, draw=none, opacity=0, text opacity=0.5}
-  ,target/.style   = {common, draw=black, very thick}
+  ,target/.style   = {common, draw=black, thick}
   ,blank/.style    = {common, draw=none}
   }
 
@@ -428,12 +428,157 @@ realiza en base al \ac{POS} \emph{tag} del nodo de la izquierda de los nodos
 objetivo. Por ejemplo, si el \ac{POS} \emph{tag} del nodo izquierdo es “VB”, se
 estima la acción usando \acp{SVM}$^{\text{VB}}$
 
-% \section{Ejemplo práctico}
-% \label{sec:example}
+\section{Ejemplo práctico}
+\label{sec:example}
 
-% \myTodo[inline]{Con las figuras de arriba quizá no haya que poner esta sección.}
+La \autoref{fig:spanishExample} muestra un ejemplo de ejecución para la frase en
+Castellano ``\emph{Sobre la oferta de IBM}''. Los nodos objetivo inicialmente
+son \emph{Sobre} y \emph{la}. La acción estimada para este contexto es
+\textsc{Shift}, por lo que se desplaza la ventana de los nodos objetivo, pasando
+a ser \emph{la} y \emph{oferta}. A estos dos nodos objetivo se les aplica la
+acción \textsc{Right}, con lo cual \emph{la} pasa a ser un hijo de
+\emph{oferta}, los nodos objetivo ahora son \emph{sobre} y
+\emph{oferta}. Posteriormente se vuelve a aplicar la acción \emph{Right}. El
+algoritmo seguirá aplicando acciones hasta que solo quede un nodo raíz, o no se
+puedan realizar más construcciones, como explicó en la \autoref{subsec:algdesc}.
 
+\begin{figure}[ht]
+  \footnotesize
+  \setlength{\extrarowheight}{16pt}
+  \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Shift}};
+    \end{tikzpicture}
+ &
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+     \node (la) [target, right=of sobre] {la\\\textsc{det}};
+     \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+   \end{tikzpicture}
+    \\
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+ &
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [target] {Sobre\\\textsc{adp}};
+     \node (b1) [blank,right=of sobre] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
 
+     \draw [thick,->] (la) -- (oferta);
+   \end{tikzpicture}
+    \\
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (b1) [blank,right=of sobre] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+ &
+   \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+     \node (b2) [blank] {};
+     \node (b1) [blank,right=of b2] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+     \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+
+     \draw [thick,->] (la) -- (oferta);
+     \draw [thick,->] (sobre) -- (la);
+   \end{tikzpicture}
+    \\
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Shift}};
+    \end{tikzpicture}
+ &
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+    \end{tikzpicture}
+    \\
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+ &
+       \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [notarget, below=.3cm of inter] {de\\\textsc{adp}};
+      \node (b3) [blank,right=of oferta] {};
+      \node (inter) [target, right=of b3] {IBM\\\textsc{noun}};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+      \draw [thick,->] (de) -- (inter);
+    \end{tikzpicture}
+  \end{tabular}
+  \caption{Ejemplo de ejecución del algoritmo para la frase ``\emph{Sobre la
+      oferta de IBM}''}
+  \label{fig:spanishExample}
+\end{figure}
 
 %*****************************************
 %*****************************************
