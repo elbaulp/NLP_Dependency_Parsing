@@ -23,9 +23,9 @@
 % 1. Configure classicthesis for your needs here, e.g., remove "drafting" below 
 % in order to deactivate the time-stamp on the pages
 % ****************************************************************************************************
-\PassOptionsToPackage{eulerchapternumbers,listings,drafting,%
+\PassOptionsToPackage{eulerchapternumbers,%drafting,%listings
                       pdfspacing,%floatperchapter,%linedheaders,%
-		      subfig,beramono,eulermath,parts,}
+		      beramono,eulermath,parts,}
                      {classicthesis}                                        
 % ********************************************************************
 % Available options for classicthesis.sty 
@@ -45,7 +45,7 @@
 \newcommand{\mySubtitle}{Mediante Máquinas de Soporte Vectoriales\xspace}
 \newcommand{\myDegree}{Grado en Ingeniería Informática\xspace}
 \newcommand{\myName}{Alejandro Alcalde Barros\xspace}
-\newcommand{\myProf}{Salvador García\xspace}
+\newcommand{\myProf}{Salvador García López\xspace}
 \newcommand{\myOtherProf}{Put name here\xspace}
 \newcommand{\mySupervisor}{Put name here\xspace}
 \newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación\xspace}
@@ -63,7 +63,7 @@
 \providecommand{\mLyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
 \newcommand{\ie}{i.\,e.}
 \newcommand{\Ie}{I.\,e.}
-\newcommand{\eg}{por ejemplo,}
+\newcommand{\eg}{por ejemplo,~}
 \newcommand{\Eg}{E.\,g.} 
 % ****************************************************************************************************
 
@@ -77,7 +77,7 @@
 \PassOptionsToPackage{spanish,american}{babel}   % change this to your language(s)
 % Spanish languages need extra options in order to work with this template
 \PassOptionsToPackage{spanish,es-lcroman}{babel}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-tabla]{babel}
 
 \usepackage{csquotes}
 \PassOptionsToPackage{%
@@ -113,6 +113,38 @@
     %\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms --> no longer working
     %\renewcommand*{\acsfont}[1]{\textsc{#1}} 
     \renewcommand*{\aclabelfont}[1]{\acsfont{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Added by myself %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames,table,xcdraw]{xcolor}  % Coloured text etc.
+% \definecolor{bugColor}{HTML}{fc221b}
+% \definecolor{enhancementColor}{HTML}{84979b}
+% \definecolor{questionColor}{HTML}{cc2952}
+% \definecolor{todoColor}{HTML}{fba803}
+
+% \usepackage[colorinlistoftodos,prependcaption,textsize=scriptsize,english]{todonotes}
+% \newcommandx{\bug}[2][1=]{\todo[linecolor=bugColor,backgroundcolor=bugColor!25,bordercolor=bugColor,#1]{#2}}
+% \newcommandx{\enhancement}[2][1=]{\todo[linecolor=enhancementColor,backgroundcolor=enhancementColor!25,bordercolor=enhancementColor,#1]{#2}}
+% \newcommandx{\question}[2][1=]{\todo[linecolor=questionColor,backgroundcolor=questionColor!25,bordercolor=questionColor,#1]{#2}}
+% \newcommandx{\myTodo}[2][1=]{\todo[linecolor=todoColor,backgroundcolor=todoColor!25,bordercolor=todoColor,#1]{#2}}
+% \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+\usepackage{tikz-dependency}
+\usepackage{tikz-qtree,tikz-qtree-compat}
+\usetikzlibrary{shapes.geometric,arrows,decorations.markings,babel,positioning,calc}
+\usepackage{relsize}
+\usepackage{tikz-uml}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\makeatletter
+\renewcommand*{\ALG@name}{Algoritmo}
+\makeatother
+\usepackage{pgfgantt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% End Added by myself %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ****************************************************************************************************
 
 
@@ -130,33 +162,78 @@
 %\DeclareCaptionLabelFormat{smallcaps}{\bothIfFirst{#1}{~}\MakeTextLowercase{\textsc{#2}}}
 %\captionsetup{font=small,labelformat=smallcaps} % format=hang,
 \captionsetup{font=small} % format=hang,
-\usepackage{subfig}  
+%\usepackage{subfig}  
 % ****************************************************************************************************
 
 
 % ****************************************************************************************************
 % 5. Setup code listings
 % ****************************************************************************************************
-\usepackage{listings} 
-%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
-\lstset{language=[LaTeX]Tex,%C++,
-    morekeywords={PassOptionsToPackage,selectlanguage},
-    keywordstyle=\color{RoyalBlue},%\bfseries,
-    basicstyle=\small\ttfamily,
-    %identifierstyle=\color{NavyBlue},
-    commentstyle=\color{Green}\ttfamily,
-    stringstyle=\rmfamily,
-    numbers=none,%left,%
-    numberstyle=\scriptsize,%\tiny
-    stepnumber=5,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    %frameround=ftff,
-    %frame=single,
-    belowcaptionskip=.75\baselineskip
-    %frame=L
-} 
+\usepackage{minted}
+\usemintedstyle{tango}
+\renewcommand{\listingscaption}{Código}
+\renewcommand{\listoflistingscaption}{Índice de código fuente}
+\newminted{scala}{
+   fontsize=\footnotesize,
+   autogobble=true,
+%   frame=lines,
+%   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+\newminted[scala2]{scala}{
+   fontsize=\scriptsize,
+   autogobble=true,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape,
+   numbers=left
+}
+\newminted{bash}{
+   fontsize=\tiny,
+   autogobble=true,
+%   frame=lines,
+%   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+\newminted{java}{
+   fontsize=\footnotesize,
+   autogobble=true,
+%   frame=lines,
+%   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+
+\newmintinline{scala}{}
+% \usepackage{listings} 
+% %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
+% \lstset{language=[LaTeX]Tex,%C++,
+%     morekeywords={PassOptionsToPackage,selectlanguage},
+%     keywordstyle=\color{RoyalBlue},%\bfseries,
+%     basicstyle=\small\ttfamily,
+%     %identifierstyle=\color{NavyBlue},
+%     commentstyle=\color{Green}\ttfamily,
+%     stringstyle=\rmfamily,
+%     numbers=none,%left,%
+%     numberstyle=\scriptsize,%\tiny
+%     stepnumber=5,
+%     numbersep=8pt,
+%     showstringspaces=false,
+%     breaklines=true,
+%     %frameround=ftff,
+%     %frame=single,
+%     belowcaptionskip=.75\baselineskip
+%     %frame=L
+% } 
 % ****************************************************************************************************             
 
 
@@ -166,7 +243,7 @@
 % ********************************************************************
 % Using PDFLaTeX
 % ********************************************************************
-\PassOptionsToPackage{pdftex,hyperfootnotes=false,pdfpagelabels}{hyperref}
+\PassOptionsToPackage{pdftex,hyperfootnotes=true,pdfpagelabels}{hyperref}
     \usepackage{hyperref}  % backref linktocpage pagebackref
 \pdfcompresslevel=9
 \pdfadjustspacing=1 
@@ -248,10 +325,22 @@
 % ********************************************************************
 % Last, but not least...
 % ********************************************************************
-\usepackage{classicthesis} 
+\usepackage{classicthesis}
 % ****************************************************************************************************
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Added by myself %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Work around for todonotes to work, when todonotes no longer needed, remove the two lines below
+%% and replace graffito by marginpar again
+%\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
+%\let\marginpar\oldmarginpar
+%\setlength{\marginparwidth}{2cm}
+%\usepackage{showlabels}
+\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% End Added by myself %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ****************************************************************************************************
 % 8. Further adjustments (experimental)
 % ****************************************************************************************************

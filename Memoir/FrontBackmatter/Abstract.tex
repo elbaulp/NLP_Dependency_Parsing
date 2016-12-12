@@ -9,14 +9,23 @@
 \let\cleardoublepage\relax
 
 \chapter*{Resumen}
-En este trabajo se implementa un método para analizar dependencias
-palabra a palabra con una estrategia de abajo a arriba
-(\textit{Bottom-Up}) usando Máquinas de Soporte Vectoriales
-(\textit{SVMs}). En concreto, este trabajo se ha centrado en analizar
-las dependencias entre palabras en Castellano. Aunque la precisión de
-los resultados no está cerca del estado del arte, es necesario tener
-en cuenta que este parseador no usa información sobre la estructura de
-las frases.
+En este trabajo se implementa un método para analizar dependencias palabra a
+palabra con una estrategia de abajo a arriba (\textit{Bottom-Up}) usando
+\acfi{SVM}. En concreto, este trabajo se ha centrado en analizar las
+dependencias entre palabras en Castellano. El algoritmo no usa información sobre
+la estructura de las frases, realiza un análisis determinístico de las
+dependencias del idioma. El funcionamiento consiste en ir generando un árbol de
+dependencias para la frase mediante la ejecución de tres acciones ---
+\textsc{Desplazar, Izquierda, Derecha} --- Inicialmente se comienza con tantos
+nodos como palabras tiene la frase, a medida que se ejecuta el algoritmo, se
+aplican las acciones mencionadas para ir construyendo el árbol. Por ejemplo, al
+aplicar la acción \textsc{Derecha} a dos nodos contiguos, el nodo posicionado a
+la derecha pasa a ser padre del nodo izquierdo. En cuanto a los resultados
+obtenidos, han sido coherentes a la descripción proporcionada por los autores,
+obteniéndose resultados muy similares, incluso ligeramente mejores. La
+implementación original -- \citet{yamada2003} -- no se basa en conjuntos de
+datos en castellano, de modo que las comparaciones se han realizado frente al
+trabajo de \citet{rohit2016}.
 
 \paragraph{Etiquetas:} PNL, SVM, Parseo de dependencias.
 
@@ -26,11 +35,22 @@ las frases.
   \pdfbookmark[1]{Abstract}{Abstract}
   \chapter*{Abstract}
   In this project, a method for analyzing word to word dependencies is
-  implemented using a bottom-up strategy with the help of Support Vector
-  machines. In particular, this work has focused in analyzing
-  dependencies between words for spanish language. Even though accuracy
-  is far from the state of the art, it is worth noting this parser is
-  not using information about the sentences structure.
+  implemented using a bottom-up strategy with the help of \acf{SVM}. In
+  particular, this work has focused in analyzing dependencies between words for
+  spanish language. The algorithm does not use any information about sentence's
+  structure, it performs a deterministic analysis of the language's
+  dependencies. Dependencies are build by generating a dependency tree for the
+  sentence being analized. This tree is build with the help of three parsing
+  actions --- \textsc{Shift, Left, Right} --- At the beginning the algorithm has
+  as many nodes as words has the sentence, in each iteration an action is
+  applied to the nodes in order to build the dependency tree. For instance, when
+  \textsc{Right} action is applied to a pair of nodes, the node on the right
+  becomes the parent of the left node. The accuracy obtained by this project its
+  coherent with the one obtained for other authors. Our accuracy its very
+  similar, even a little bit better. The original implementation by
+  \citet{yamada2003} did not use any Spanish datasets for its experiments, so
+  comparison has been made against the work of \citet{rohit2016}.
+  
   \paragraph{Tags:} NLP, SVM, Dependency parsing.
 \end{otherlanguage}
 

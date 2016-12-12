@@ -17,7 +17,7 @@
 
 package com.elbauldelprogramador.nlp.utils
 
-import java.io.{FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
+import java.io.{FileOutputStream, ObjectInputStream, ObjectOutputStream}
 
 /**
   * Created by Alejandro Alcalde <contacto@elbauldelprogramador.com> on 9/28/16.
@@ -42,7 +42,7 @@ object FileUtils {
   }
 
   def getObject[T]:T = {
-    val ois = new ObjectInputStream(new FileInputStream("src/main/resources/XY"))
+    val ois = new ObjectInputStream(getClass.getResource("/XY").openStream())
     try {
       val r = ois.readObject.asInstanceOf[T]
       r

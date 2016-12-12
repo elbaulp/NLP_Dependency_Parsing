@@ -1,0 +1,300 @@
+%************************************************
+\chapter{Casos de prueba orientados a Aprendizaje Automático}
+\label{ch:tdml}
+
+En este capítulo se verán los casos de prueba implementados para el proyecto. Se
+ha seguido un estilo de \emph{tests} orientado a problemas de \ac{AA}. En las próximas
+secciones se introduce este tipo de práctica.
+
+%************************************************
+\section{Test-Driven Development}
+\label{sec:tdd}
+
+El \acfi{TDD} se basa en dos principios muy claros \cite{Justin2015}:
+\begin{itemize}
+\item No escribir ninguna línea de código nueva a no ser que se tenga un
+  \emph{test} fallido.
+\item Eliminar duplicidades.
+\end{itemize}
+
+En esencia, \ac{TDD} es un proceso en el desarrollo de \emph{software} que
+permite al desarrollador escribir código que especifica el comportamiento que
+poseerá el programa antes de que este sea implementado. La ventaja de este
+estilo de desarrollo reside en que a cada paso que se avanza, se obtiene un
+\emph{software} completamente funcional, así como el conjunto de
+especificaciones que lo definen. En el \ac{TDD} está inherente en cada momento
+el desarrollo mediante prueba y error, al igual que en el \ac{AA}.
+
+El proceso al que nos sometemos al adoptar la filosofía \ac{TDD} cambia la forma
+en la que se piensa al desarrollar código. Además, el \emph{software} diseñado
+como resultado será mucho más modular, permitiendo tener distintos componentes
+que se pueden intercambiar en todo el \emph{pipeline}.
+
+Cuando se escribe de antemano la intención del código, antes de implementarlo de
+verdad, se aplica una presión al diseño del mismo que evita escribir código del
+llamado ``\emph{Por si acaso}''. Con el uso de \ac{TDD}, primero se piensa en un
+caso de prueba, se ve que el \emph{software} aún no lo soporta y entonces se
+corrige. Si no se es capaz de pensar en un caso de prueba, no se añade código.
+
+\ac{TDD} opera a varios niveles. Los \emph{tests} pueden escribirse para
+funciones, métodos, clases, programas, servicios webs, redes neuronales y
+\emph{pipelines} de \ac{AA} al completo. En todo momento, independientemente del
+nivel, los \emph{tests} se escriben desde la perspectiva del cliente. En este
+proyecto se ha centrado el tipo de \emph{tests} hacia el \ac{AA}. En este
+contexto, los \emph{tests} se escriben para funciones, métodos, clases,
+implementaciones matemáticas y todos los algoritmos de aprendizaje.
+
+\subsection{El ciclo de \ac{TDD}}
+\label{subsec:tddcycle}
+
+El ciclo para \ac{TDD} consiste en escribir trozos pequeños de funciones que
+intenten hacer algo que aún no está implementado. Normalmente se suele
+estructurar el \emph{test} en tres partes principales. En la primera se preparan
+los objetos y datos necesarios. En la segunda se llama al código para el cual se
+está escribiendo el \emph{test}. Por último, se valida si el resultado del
+código es el que se esperaba. En la primera fase se escribe el código
+necesario para hacer pasar el \emph{test} --- en este momento no es relevante
+que el código sea correcto o esté bien diseñado, el único objetivo es hacer
+pasar el \emph{test}. --- Una vez se tiene el \emph{test} correcto, se procede a
+refactorizar el código. Cabe destacar que en este contexto \emph{refactorizar}
+significa cambiar la forma en la que se escribió el código, pero bajo ningún
+concepto cambiar cómo se comporta.
+
+Por tanto, el ciclo del \ac{TDD} se puede dividir en tres pasos: \textsc{Rojo},
+\textsc{Verde} y \textsc{Refactorizar}.
+
+\subsubsection{Rojo}
+\label{sec:tddred}
+
+Primero se crea un \emph{test} que no funciona. Al más alto nivel en cuanto a
+\ac{AA} se refiere, podría ser un punto de partida como conseguir un resultado
+mejor que una predicción aleatoria. El punto de partida puede ser el que se
+quiera, el anterior es solo un ejemplo, otros podrían ser: \emph{Predecir
+  siempre lo mismo}.
+
+\subsubsection{Verde}
+\label{sec:tddgreen}
+
+Una vez se tiene un \emph{test} que está fallando, se procede a arreglarlo, de
+ahí el nombre de este paso -- \textsc{Verde}. -- Si se ha empezado con un
+\emph{test} a un nivel de abstracción demasiado elevado, se puede dividir el
+mismo en varios a más bajo nivel y comenzar a arreglarlos. El objetivo aquí es
+hacer que el \emph{test} pase lo antes posible, es por ello que se permite
+programar cualquier cosa con tal de obtener un \emph{test} ``verde'', es en la
+siguiente fase donde se procede a refactorizar.
+
+\subsubsection{Refactorizar}
+\label{sec:tddrefactor}
+
+Una vez se tiene el \emph{test} en verde, se procede a refactorizar. Como se
+mencionó más arriba, hay que tener especial cuidado en esta fase, ya que
+refactorizar significa cambiar el \emph{software} sin alterar su
+comportamiento. Si se añade al código una cláusula \textsc{if}, o cualquier otro
+tipo de sentencia de control de flujo, ya no se está refactorizando, se está
+alterando el comportamiento. Un indicativo de que no se está refactorizando
+correctamente es que \emph{tests} escritos en fases anteriores comiencen a
+fallar --- Volverse rojos. --- Si esto ocurriese, se debe deshacer lo hecho
+hasta que los \emph{tests} fallidos vuelvan a estar en verde.
+
+\section{Desarrollo orientado a comportamiento}
+\label{sec:bdd}
+
+El desarrollo orientado a comportamiento -- \acfi{BDD} en inglés -- consiste en
+escribir los \emph{test} de forma que expresen el tipo de comportamiento al que
+afectan. Siguen una estructura muy clara, llamada ``\textsc{Given, When,
+  Then}''. Por ejemplo, un \emph{test} siguiendo esta estructura podría ser
+``\emph{\textsc{Dado} un conjunto de datos vacío, \textsc{cuando} se entrena el
+  clasificador, \textsc{entonces} se debería producir una excepción de operación
+  inválida''}. Como se aprecia, en la primera parte -- \textsc{Given} -- se
+establece un contexto para el \emph{test}, es decir, se preparan los datos de
+entrada.  En la cláusula \textsc{When}, se llama al código cuyo comportamiento
+se quiere probar y por último, la cláusula \textsc{Then} comprueba que el
+resultado del código que se está probando coincide con lo que se esperaba.
+
+El objetivo de este tipo de \emph{test} es que sean lo suficientemente
+descriptivos para que cualquier persona familiar con el dominio del problema sea
+capaz de entenderlo y opinar.
+
+\section{TDD aplicado al Aprendizaje Automático}
+\label{sec:tddml}
+
+Una vez se han introducido los conceptos \ac{TDD} y \ac{BDD} se pasa a describir
+cómo pueden aplicarse estas filosofías al desarrollo de sistemas de
+aprendizaje.
+
+En cada algoritmo de \ac{AA} existe alguna forma de cuantificar la calidad del
+resultado. En regresión lineal se ajusta el valor R2, para problemas de
+clasificación se utiliza la curva \acfi{ROC} y el área bajo la misma ---
+\ac{AUC} --- una matriz de confusión u otro tipo de medidas.
+
+Para empezar a desarrollar un sistema, primero se construye un algoritmo muy
+básico e ignorante. La calidad de este algorimo será puramente aleatoria. A
+partir de aquí, se puede comenzar a desarrollar otro algoritmo que se comporte
+mejor, superando la pura aleatoriedad obtenida anteriormente. Así se comienza un
+ciclo itetarivo en el que se intenta superar a las puntuaciones obtenidas en el
+paso anterior.
+
+\section{Casos de prueba realizados}
+\label{sec:impltests}
+
+En esta sección se introducen los distintos \emph{tests} que se han realizado al
+proyecto.
+
+\subsection{\textsc{DataParserSpec}}
+\label{sec:dataparser}
+
+En este \emph{test} se comprueban dos situaciones con cláusulas \textsc{Given,
+  When, Then}. La primera debe comprobar que cuando no se proporcionan datos
+para entrenar el modelo, el algoritmo no debe hacer nada. La segunda comprueba
+que cuando sí que se proporcionan datos, se leen correctamente. El código se
+lista en \autoref{lst:dataparserspec}.
+
+\begin{listing}[ht]
+  \begin{scalacode}
+class DataParserSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers { def is = s2"""
+  When no data given, do not launch algorithm   ${testResources.start}
+    Given no train data
+    Given no test data
+    Then should do nothing                      ${testResources.end}
+  When data given, launch algorithm             ${dataSet.start}
+    Given Train file: es_ancora-converted-train1
+    Given Test file: es_ancora-converted-test1
+    When Launching
+    Then should read Correctly                  ${dataSet.end}
+  """
+
+  val dataSetName = readAs(".*: (.*)$").and((s: String) => s)
+  val noDataSet = readAs(".*").and((s:String) => "/tmp/aa")
+
+  val testResources =
+    Scenario("NoData").
+      given(noDataSet).
+      given(noDataSet).
+      when() {case train :: test :: _ =>
+
+        val trainResource =
+           if (getClass.getResource(train) == null) ""
+           else getClass.getResource(train).getPath
+        val testResource =
+           if (getClass.getResource(test) == null) ""
+           else getClass.getResource(test).getPath
+
+        val r1 = DataParser.readDataSet(trainResource)
+        val r2 =  DataParser.readDataSet(testResource)
+
+        (r1,r2)
+      }.
+      andThen() {case  _ :: r :: _ => (r._1 must beNone) && (r._2 must beNone) }
+
+  val dataSet = Scenario("DATA").
+      given(dataSetName).
+      given(dataSetName).
+      when(aString) {case _ :: t :: tt :: _ =>
+        val r1 = DataParser.
+                   readDataSet(
+                     getClass.getResource(s"/data/spanish/$t"))
+        val r2 = DataParser.
+                   readDataSet(
+                     getClass.getResource(s"/data/spanish/$tt"))
+
+        (r1,r2)
+      }.
+      andThen() {case _ :: r :: _ => (r._1 must beSome) && (r._2 must beSome)}
+
+}
+  \end{scalacode}
+  \caption{\emph{Test} que comprueba si la entrada de datos es correcta o no}
+  \label{lst:dataparserspec}
+\end{listing}
+
+\subsection{\textsc{DependencyParserCheckBaseLineSpec}}
+\label{sec:dpbaseline}
+
+Este \emph{test} se encarga de establecer un punto de partida para los
+resultados del modelo. Como se vió en la \autoref{sec:tddred}, este punto de
+partida sirve para comprobar que no se están empeorando las predicciones del
+modelo conforme vamos desarrollando el sistema. El punto de partida se establece
+para dos tipos de medidas, la primera, cuyo \emph{test} se puede ojear en el
+Código~\autoref{lst:baseline} comprueba la precisión del modelo fijando unas
+cotas mínimas que deben cumplirse para las medidas de evaluación --- pueden
+consultarse en la \autoref{sec:eval} --- La segunda comprueba que el número de
+características -- \autoref{subsec:featureextraction} -- es siempre el mismo
+cuando se usa el conjunto de datos para desarrollo, el código de este \emph{test}
+se muestra en el Código~\autoref{lst:nfeatures}.
+\begin{listing}[ht]
+  \begin{scalacode}
+class DependencyParserCheckBaselineSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers {def is = s2"""
+  When training the model, set the following baselines  ${featuresBaseline.start}
+    Given Train data set: es_ancora-converted-train1
+    Given Test data set: es_ancora-converted-test1
+    When Genenaring Vocabulary
+    Then Dep. Acc should be at least: 70%
+    and Root Acc should be at least: 50%
+    and Comp. Acc should be at least: 3% ${featuresBaseline.end}
+  """
+
+  val aDataSet = readAs(".*: (.*)$").and((s: String) => s)
+  val myD = readAs(".*: (\\d+).*$").and((s: String) => s.toDouble)
+
+  val featuresBaseline =
+    Scenario("nFeatures").
+      given(aDataSet).
+      given(aDataSet).
+      when(aString){case _ :: test :: train :: _ =>
+        val testSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$test").getPath)
+        val trainSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$train").getPath)
+        val parser = new DependencyParser(trainSentences.get, testSentences.get)
+        parser.getAccuracy
+      }.
+      andThen(myD){case baseline :: r :: _ => r.dependencyAccuracy*100 must be_>(baseline)}.
+      andThen(myD){case baseline :: r :: _ => r.rootAccuracy*100 must be_>(baseline)}.
+      andThen(myD){case baseline :: r :: _ => r.completeAccuracy*100 must be_>(baseline)}
+
+}    
+  \end{scalacode}
+  \caption{Código del \emph{test} DependencyParserCheckBaselineSpec}
+  \label{lst:baseline}
+\end{listing}
+\begin{listing}[ht]
+  \begin{scalacode}
+class DependencyParserCheckNFeaturesSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers {def is = s2"""
+  When training the model, set the following baselines  ${nfeaturesCheck.start}
+    Given Train data set: es_ancora-converted-train1
+    Given Test data set: es_ancora-converted-test1
+    When Genenaring Vocabulary
+    Then the number of features must be: 46468          ${nfeaturesCheck.end}
+  """
+
+  val aDataSet = readAs(".*: (.*)$").and((s: String) => s)
+
+  val nfeaturesCheck =
+    Scenario("nFeatures").
+      given(aDataSet).
+      given(aDataSet).
+      when(aString) { case _ :: test :: train :: _ =>
+        val testSentences = DataParser.readDataSet(
+           getClass.getResource(s"/data/spanish/$test").getPath)
+        val trainSentences = DataParser.readDataSet(
+           getClass.getResource(s"/data/spanish/$train").getPath)
+        val parser = new DependencyParser(trainSentences.get, testSentences.get)
+        parser.nFeatures
+      }.
+      andThen(anInt) { case baseline :: r :: _ => baseline must_== r }
+}
+  \end{scalacode}
+  \caption{Código del \emph{test} DependencyParserCheckNFeaturesSpec}
+  \label{lst:nfeatures}
+\end{listing}
+
+
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************
+%*****************************************

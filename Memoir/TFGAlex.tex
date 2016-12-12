@@ -1,0 +1,154 @@
+% **************************************************************************************************************
+% A Classic Thesis Style
+% An Homage to The Elements of Typographic Style
+%
+% Copyright (C) 2015 André Miede http://www.miede.de
+%
+% If you like the style then I would appreciate a postcard. My address 
+% can be found in the file ClassicThesis.pdf. A collection of the 
+% postcards I received so far is available online at 
+% http://postcards.miede.de
+%
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING.  If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+%
+% **************************************************************************************************************
+\RequirePackage{fix-cm} % fix some latex issues see: http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf
+\documentclass[twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
+                footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
+                BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
+                ngerman,american,%
+                ]{scrreprt}
+
+%********************************************************************
+% Note: Make all your adjustments in here
+%*******************************************************
+\input{classicthesis-config}
+
+%********************************************************************
+% Bibliographies
+%*******************************************************
+\addbibresource{Bibliography.bib}
+
+%********************************************************************
+% Hyphenation
+%*******************************************************
+%\hyphenation{put special hyphenation here}
+
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%*******************************************************
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{spanish} % american ngerman
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
+\pagenumbering{roman}
+\pagestyle{plain}
+%********************************************************************
+% Frontmatter
+%*******************************************************
+\include{FrontBackmatter/DirtyTitlepage}
+\include{FrontBackmatter/Titlepage}
+\include{FrontBackmatter/Titleback}
+\cleardoublepage\include{FrontBackmatter/Dedication}
+\cleardoublepage\include{FrontBackmatter/Foreword}
+\cleardoublepage\include{FrontBackmatter/Abstract}
+%\cleardoublepage\include{FrontBackmatter/Publications}
+\cleardoublepage\include{FrontBackmatter/Acknowledgments}
+\pagestyle{scrheadings}
+\cleardoublepage\include{FrontBackmatter/Contents}
+%********************************************************************
+% Mainmatter
+%*******************************************************
+\cleardoublepage\pagenumbering{arabic}
+%\setcounter{page}{90}
+% use \cleardoublepage here to avoid problems with pdfbookmark
+\cleardoublepage
+
+\ctparttext{La memoria se organiza en cuatro partes.
+
+  La primera, en el \autoref{ch:introduction}, es una introducción al
+  Procesamiento del Lenguaje Natural, en ella se definen los tipos de
+  aplicaciones que permite, así como una descripción del \emph{pipeline} usual
+  que suele seguirse en este tipo de sistemas y el estado del arte.
+
+  En la segunda parte, \autoref{ch:goals} se listan los objetivos del proyecto.
+
+  La tercera parte se compone de los Capítulos~(\ref{ch:scalaintro}
+  \ref{ch:algorithm} \ref{ch:impl} y \ref{ch:tdml}). En ellos se introduce al
+  lenguaje \textsc{Scala}, se explican los detalles técnicos del algoritmo de
+  parseo de dependencias, se discute la implementación y se muestran los casos
+  de prueba realizados, respectivamente.
+
+  Por último, la cuarta parte consta del \autoref{ch:eval} y
+  \autoref{ch:future}, en donde se exponen los resultados obtenidos, se comparan
+  los resultados con el algoritmo original y se proponen trabajos futuros.}
+
+\part{Puesta en escena}
+\include{Chapters/Chapter01}
+\cleardoublepage
+\part{Objetivos}
+\include{Chapters/Chapter02}
+%\addtocontents{toc}{\protect\clearpage} % <--- just debug stuff, ignore
+\ctparttext{Esta parte del trabajo se centra en los pasos seguidos para el
+  desarrollo del proyecto. Se organiza como sigue:
+  
+  En el \autoref{ch:scalaintro} se discuten las características del lenguaje
+  \textsc{Scala}, y por qué ha sido escogido para el desarrollo.
+
+  El \autoref{ch:algorithm} detalla los aspéctos técnicos del algoritmo de
+  parseo de dependencias seleccionado.
+
+  En el \autoref{ch:impl} se narra las distintas etapas seguidas para el
+  desarrollo, desde el análisis hasta la implementación.
+
+  Por último, el \autoref{ch:tdml} explica los distintos casos de prueba
+  llevados a cabo.
+}
+\part{Resolución del Trabajo}
+\include{Chapters/Chapter03}
+\include{Chapters/Chapter04}
+\include{Chapters/Chapter05}
+\include{Chapters/Chapter06}
+\ctparttext{Esta última parte de la memoria se dedica a presentar los resultados
+  obtenidos con el parseador introducido en \autoref{ch:algorithm}, así como
+  comparar los resultados con la implementación original. Por último, se
+  comentarán algunas ideas para trabajos futuros.  }
+\part{Conclusiones y vías futuras}
+\include{Chapters/Chapter07}
+\include{Chapters/Chapter08}
+%\include{multiToC} % <--- just debug stuff, ignore for your documents
+% ********************************************************************
+% Backmatter
+%*******************************************************
+\appendix
+%\renewcommand{\thechapter}{\alph{chapter}}
+\cleardoublepage
+\part{Apéndice}
+%\include{Chapters/Chapter0A}
+%********************************************************************
+% Other Stuff in the Back
+%*******************************************************
+\cleardoublepage\include{FrontBackmatter/Bibliography}
+\cleardoublepage\include{FrontBackmatter/Declaration}
+\cleardoublepage\include{FrontBackmatter/Colophon}
+% ********************************************************************
+% Game Over: Restore, Restart, or Quit?
+%*******************************************************
+\end{document}
+% ********************************************************************

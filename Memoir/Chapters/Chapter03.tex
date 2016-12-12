@@ -1,101 +1,261 @@
 %************************************************
-\chapter{Math Test Chapter}\label{ch:mathtest} % $\mathbb{ZNR}$
+\chapter{Una Introducción a Scala}
+\label{ch:scalaintro}
 %************************************************
-Ei choro aeterno antiopam mea, labitur bonorum pri no. His no decore
-nemore graecis. In eos meis nominavi, liber soluta vim cu. Sea commune
-suavitate interpretaris eu, vix eu libris efficiantur.
 
-\section{Some Formulas}
-Due to the statistical nature of ionisation energy loss, large
-fluctuations can occur in the amount of energy deposited by a particle
-traversing an absorber element\footnote{Examples taken from Walter
-Schmidt's great gallery: \\
-\url{http://home.vrweb.de/~was/mathfonts.html}}.  Continuous processes
-such as multiple
-scattering and energy loss play a relevant role in the longitudinal
-and lateral development of electromagnetic and hadronic
-showers, and in the case of sampling calorimeters the
-measured resolution can be significantly affected by such fluctuations
-in their active layers.  The description of ionisation fluctuations is
-characterised by the significance parameter $\kappa$, which is
-proportional to the ratio of mean energy loss to the maximum allowed
-energy transfer in a single collision with an atomic electron:
-\graffito{You might get unexpected results using math in chapter or
-section heads. Consider the \texttt{pdfspacing} option.}
-\begin{equation}
-\kappa =\frac{\xi}{E_{\textrm{max}}} %\mathbb{ZNR}
-\end{equation}
-$E_{\textrm{max}}$ is the maximum transferable energy in a single
-collision with an atomic electron.
-\[
-E_{\textrm{max}} =\frac{2 m_{\textrm{e}} \beta^2\gamma^2 }{1 +
-2\gamma m_{\textrm{e}}/m_{\textrm{x}} + \left ( m_{\textrm{e}}
-/m_{\textrm{x}}\right)^2}\ ,
-\]
-where $\gamma = E/m_{\textrm{x}}$, $E$ is energy and
-$m_{\textrm{x}}$ the mass of the incident particle,
-$\beta^2 = 1 - 1/\gamma^2$ and $m_{\textrm{e}}$ is the electron mass.
-$\xi$ comes from the Rutherford scattering cross section
-and is defined as:
-\begin{eqnarray*} \xi  = \frac{2\pi z^2 e^4 N_{\textrm{Av}} Z \rho
-\delta x}{m_{\textrm{e}} \beta^2 c^2 A} =  153.4 \frac{z^2}{\beta^2}
-\frac{Z}{A}
-  \rho \delta x \quad\textrm{keV},
-\end{eqnarray*}
-where
+El nombre \textsc{Scala} es una concatenación de dos palabras, \emph{Scalable
+  Language}. A continuación se enumeran algunas de las razones por las que se ha
+elegido este lenguaje, la lista completa puede encontrarse en
+\citeauthor{Dean2015} \cite{Dean2015}.
 
-\begin{tabular}{ll}
-$z$          & charge of the incident particle \\
-$N_{\textrm{Av}}$     & Avogadro's number \\
-$Z$          & atomic number of the material \\
-$A$          & atomic weight of the material \\
-$\rho$       & density \\
-$ \delta x$  & thickness of the material \\
+\section{¿Por qué \textsc{Scala}?}
+\label{sec:whyscala}
+
+Las principales características de \textsc{Scala} que lo hacen un buen candidato
+para este trabajo son las siguientes:
+
+\begin{description}
+\item[Paradigma mixto --- Programación Orientada a Objetos:] \textsc{Scala}
+  soporta al completo el paradigma de la orientación a objetos. Además, mejora
+  el modelo de objetos proporcionado por \textsc{Java} con la introducción de
+  \textsc{Traits}, un modo muy claro de implementar tipos mediante composiciones
+  mixtas. Todo es un objeto en \textsc{Scala}, incluso los tipos numéricos.
+\item [Paradigma mixto --- Programación Funcional:] De igual modo,
+  \textsc{Scala} soporta al completo \acfi{FP}\acused{FP}\marginpar{\ac{FP}:
+    Programación Funcional}. En los últimos años, la \ac{FP} ha resurgido como
+  una de las mejores herramientas para pensar en problemas de concurrencia,
+  \emph{Big Data} y en general para escribir código correcto. Este código
+  correcto, conciso y potente se logra mediante el uso de valores inmutables,
+  funciones de primera clase, funciones sin efectos colaterales, funciones de
+  ``orden superior'' y colecciones de funciones.
+\item [Sintaxis breve, elegante y flexible:] Expresiones que pueden llegar a
+  ser demasiado extensas en \textsc{Java} se hacen concisas en \textsc{Scala}.
+\item [Arquitectura Scalable:] \textsc{Scala} permite escribir desde
+  \emph{scripts} pequeños, que son interpretados, hasta aplicaciones
+  distribuidas de gran envergadura. Hay cuatro mecanismos inherentes al lenguaje
+  permitiendo esta escalabilidad: 1) composiciones mixtas mediante
+  \textsc{Traits}, 2) miembros de tipo abstracto y genéricos; 3) anidamiento de
+  clases y 4) tipos explícitos \textsc{self}.
+\end{description}
+
+\section{Patrones de diseño como miembros de primera clase}
+\label{sec:patterns}
+
+Otra de las ventajas de \textsc{Scala} es que incorpora ciertos patrones de
+diseño en el mismo lenguaje. Por ejemplo, en el Código~\autoref{lst:object} se muestra una
+implementación del patrón.
+
+\begin{listing}[H]
+  \begin{scalacode}
+    object Upper {
+      def upper(strings: String*) = strings.map(_.toUpperCase())
+    }
+    println(Upper.upper("Hello", "World!"))
+  \end{scalacode}
+  \caption{Patrón Singleton en Scala.}
+  \label{lst:object}
+\end{listing}
+
+En la primera línea, \scalainline/object Upper/ crea el objeto
+\emph{singleton}. El patrón \emph{singleton} tiene sentido cuando no es
+necesario guardar ningún estado del objeto ni el objeto interactua con el mundo
+exterior.
+
+Es posible refactorizar el código anterior, como se muestra en
+el Código~\autoref{lst:object2}
+
+\begin{listing}[H]
+  \begin{scalacode}
+    object Upper2 {
+      def main(args: Array[String]) = {
+        val output = args.map(_.toUpperCase()).mkString(" ")
+        println(output)
+      }
+    }
+  \end{scalacode}
+  \caption{Refactorizando Upper}
+  \label{lst:object2}
+\end{listing}
+
+\section{Ventajas del uso de \textsc{Traits}}
+\label{sec:traitsadvantajes}
+
+Uno de los errores más comunes cuando se usa Programación Orientada a Objetos es
+abusar de la herencia. Este error suele cometerse cuando se crean relaciones de
+herencia para añadir estados a las clases derivadas. Para ilustrarlo con un
+ejemplo -- \citet{Dean2015} -- podemos pensar en dos clases, \textsc{Persona} y
+\textsc{Trabajador}. Podría pensarse en establecer una relación de herencia
+entre \textsc{Persona} y \textsc{Trabajador}, pero entonces estaríamos aplicando
+herencia para añadir un \textsc{estado} a un objeto, este no es el objetivo de
+la herencia. Una mejor alternativa sería crear subclases del comportamiento de
+un objeto con el mismo estado. De esta forma, se favorece la composición sobre
+la herencia, es decir, componer unidades de funcionalidades en lugar de crear
+jerarquías de clases. Esto se logra mediante el uso de \textsc{Traits} --
+\autoref{sec:whyscala} -- El código quedaría como en el Código~\autoref{lst:traits}. El
+diagrama de clases para el Código~\ref{lst:traits} sería el de la
+\autoref{fig:traits}.
+\begin{listing}[H]
+  \begin{scalacode}
+    trait PersonState {
+      val name: String
+      val age: Option[Int]
+      val address: Option[Address]
+    }
+
+    case class Person(
+      name: String,
+      age: Option[Int] = None,
+      address: Option[Address] = None) extends PersonState
+
+    trait EmployeeState {
+      val title: String
+      val manager: Option[Employee]
+    }
+
+    case class Employee(
+      name: String,
+      age: Option[Int] = None,        
+      address: Option[Address] = None,
+      title: String = "[unknown]",
+      manager: Option[Employee] = None)
+    extends PersonState with EmployeeState
+  \end{scalacode}
+  \caption{Composición en lugar de herencia}
+  \label{lst:traits}
+\end{listing}
+\begin{figure}[ht]
+  \centering
+  \tikzumlset{fill package=gray!20, fill class=gray!20}
+  \begin{tikzpicture}
+    \umlsimpleclass[x=0,y=1.5]{Trait PersonState}
+    \umlsimpleclass[x=4,y=1.5]{Trait EmployeeState}
+
+    \umlsimpleclass[x=4,y=0]{Employee}
+    \umlsimpleclass[x=0,y=0]{Person}
+
+    \umlVHVinherit{Employee}{Trait PersonState}
+    \umlVHVinherit{Employee}{Trait EmployeeState}
+    
+    \umlinherit[x=0,y=0,anchors=-120 and -120]{Person}{Trait PersonState}
+  \end{tikzpicture}
+  \caption{Diagrama de clases \textsc{Persona} y \textsc{Trabajador}}
+  \label{fig:traits}
+\end{figure}
+Este diseño ha sido el seguido para el proyecto, en concreto, para las
+estructuras de datos que representan las frases del conjunto de test y train,
+cuyo diagrama se puede consultar en la \autoref{fig:classdiag}.
+
+
+\section{Reglas de Visibilidad}
+\label{sec:visibility}
+
+\textsc{Scala} ofrece un amplio abanico de posibilidades en cuanto a la
+visibilidad a la que se exponen las clases, objetos y métodos. Este abanico es
+mucho más amplio que el ofrecido por \textsc{Java} y se puede consultar en la
+\autoref{table:visibility}
+
+\begin{table}[H]
+\centering
+\caption{Reglas de visibilidad en \textsc{Scala}}
+\label{table:visibility}
+\begin{tabular}{llp{4cm}}
+\rowcolor[HTML]{443627} 
+{\color[HTML]{FFFFFF} Nombre} & {\color[HTML]{FFFFFF} Palabra reservada} & {\color[HTML]{FFFFFF} Descripción} \\
+public & ninguna, por defecto &  Visibles en cualquier lugar. \\
+protected & \scalainline/protected/ &  Visibles al tipo que los define, tipos
+                                      derivados y tipos anidados. Solo son
+                                      visibles dentro del mismo paquete y sub paquetes.\\
+private & \scalainline/private/ &  Solo en los tipos que los definen y tipos
+                                  anidados. A nivel de paquete son visibles
+                                  únicamente en el mismo que los define.\\
+scoped protected & \scalainline/protected[scope]/ &  Visibilidad delimitada por
+                                                    el ámbito definido por
+                                                    \textsc{scope}. \textsc{Scope}
+  puede ser un paquete, tipo o \scalainline/this/ --- misma instancia ---\\
+scoped private & \scalainline/private[scope]/ & Similar al anterior, pero los
+                                                objetos derivados no pueden
+                                                acceder.
 \end{tabular}
+\end{table}
 
-$\kappa$ measures the contribution of the collisions with energy
-transfer close to $E_{\textrm{max}}$.  For a given absorber, $\kappa$
-tends
-towards large values if $\delta x$ is large and/or if $\beta$ is
-small.  Likewise, $\kappa$ tends towards zero if $\delta x $ is small
-and/or if $\beta$ approaches $1$.
+\section{Big Data}
+\label{sec:bigdata}
 
-The value of $\kappa$ distinguishes two regimes which occur in the
-description of ionisation fluctuations:
+La principal razón del éxito de \textsc{Scala} en la comunidad del \ac{AA} y
+\emph{Big Data} reside en la facilidad que ofrece para escribir programas
+concurrentes usando el paradigma \ac{FP}. La diferencia entre aplicaciones de
+\emph{Big Data} escritas en \textsc{Java} frente a las escritas en
+\textsc{Scala} mediante \ac{FP} es abismal. En el Código~\autoref{lst:object2} se vió
+un ejemplo de \scalainline/map/, funciones como esta y sus compañeras ---
+\scalainline/flatMap, filter, fold/\dots --- han sido siempre herramientas para
+trabajar con datos. Independientemente del tamaño de los datos, se aplica la
+misma abstracción.
 
-\begin{enumerate}
-\item A large number of collisions involving the loss of all or most
-  of the incident particle energy during the traversal of an absorber.
+Como ejemplo mostraremos dos versiones del clásico \textsc{Hola Mundo} de
+\textsc{Map Reduce}, una en \textsc{Java} -- \autoref{lst:javaWC} -- y otra en
+\textsc{Scala} -- \autoref{lst:scalaWC} -- Los ejemplos son del libro de
+\citeauthor{Dean2015} \cite{Dean2015}. Basta observar el código para notar la
+verbosidad de \textsc{Java} frente a \textsc{Scala}.
 
-  As the total energy transfer is composed of a multitude of small
-  energy losses, we can apply the central limit theorem and describe
-  the fluctuations by a Gaussian distribution.  This case is
-  applicable to non-relativistic particles and is described by the
-  inequality $\kappa > 10 $ (\ie, when the mean energy loss in the
-  absorber is greater than the maximum energy transfer in a single
-  collision).
+\begin{listing}[H]
+  \begin{javacode}
+    class WordCountMapper extends MapReduceBase
+    implements Mapper<IntWritable, Text, Text, IntWritable> {
 
-\item Particles traversing thin counters and incident electrons under
-  any conditions.
+      static final IntWritable one  = new IntWritable(1);
+      // Value will be set in a non-thread-safe way!
+      static final Text word = new Text;
 
-  The relevant inequalities and distributions are $ 0.01 < \kappa < 10
-  $,
-  Vavilov distribution, and $\kappa < 0.01 $, Landau distribution.
-\end{enumerate}
+      @Override
+      public void map(IntWritable key, Text valueDocContents,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        String[] tokens = valueDocContents.toString.split("\\s+");       
+        for (String wordString: tokens) {
+          if (wordString.length > 0) {
+            word.set(wordString.toLowerCase);
+            output.collect(word, one);
+          }
+        }
+      }
+    }
 
+    class WordCountReduce extends MapReduceBase
+    implements Reducer<Text, IntWritable, Text, IntWritable> {
 
-\section{Various Mathematical Examples}
-If $n > 2$, the identity
-\[
-  t[u_1,\dots,u_n] = t\bigl[t[u_1,\dots,u_{n_1}], t[u_2,\dots,u_n]
-  \bigr]
-\]
-defines $t[u_1,\dots,u_n]$ recursively, and it can be shown that the
-alternative definition
-\[
-  t[u_1,\dots,u_n] = t\bigl[t[u_1,u_2],\dots,t[u_{n-1},u_n]\bigr]
-\]
-gives the same result.  
+      public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        int totalCount = 0;
+        while (counts.hasNext) {                                         
+          while (counts.hasNext) {
+            totalCount += counts.next.get;
+          }
+          output.collect(keyWord, new IntWritable(totalCount));
+        }
+      }
+  \end{javacode}
+  \caption{\textsc{WordCount} en \textsc{Java}}
+  \label{lst:javaWC}
+\end{listing}
+
+\begin{listing}[H]
+  \begin{scalacode}
+    class ScaldingWordCount(args : Args) extends Job(args) {
+      TextLine(args("input"))
+      .read
+      .flatMap('line -> 'word) {
+        line: String => line.trim.toLowerCase.split("""\s+""")
+      }
+      .groupBy('word){ group => group.size('count) }
+      .write(Tsv(args("output")))                   
+    }
+  \end{scalacode}
+  \caption{\textsc{WordCount} en \textsc{Scala}}
+  \label{lst:scalaWC}
+\end{listing}
+
+Podríamos decir que estos son los motivos principales -- aunque no los únicos --
+de la elección de este lenguaje de programación en el desarrollo de un parseador
+de dependencias para Español.
 
 %*****************************************
 %*****************************************
