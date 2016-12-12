@@ -1,0 +1,463 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% I, the copyright holder of this work, release this work into the
+%% public domain. This applies worldwide. In some countries this may
+%% not be legally possible; if so: I grant anyone the right to use
+%% this work for any purpose, without any conditions, unless such
+%% conditions are required by law.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+\usetheme[faculty=phil]{fibeamer}
+\usepackage[utf8]{inputenc}
+\usepackage[
+  main=english%, %% By using `czech` or `slovak` as the main locale
+                %% instead of `english`, you can typeset the
+                %% presentation in either Czech or Slovak,
+                %% respectively.
+%  czech, slovak %% The additional keys allow foreign texts to be
+]{babel}        %% typeset as follows:
+%%
+%%   \begin{otherlanguage}{czech}   ... \end{otherlanguage}
+%%   \begin{otherlanguage}{slovak}  ... \end{otherlanguage}
+%%
+%% These macros specify information about the presentation
+\title{Trabajo Fin de Grado} %% that will be typeset on the
+\subtitle{Diseño e implementación de un analizador de dependencias para procesamiento de lenguaje natural en Español} %% title page.
+\author{Alejandro Alcalde Barros}
+%% These additional packages are used within the document:
+\usepackage{ragged2e}  % `\justifying` text
+\usepackage{booktabs}  % Tables
+\usepackage{tabularx}
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{calc, shapes, backgrounds,shapes.geometric,arrows,decorations.markings,babel,positioning,calc}
+\usepackage{amsmath, amssymb}
+\usepackage{url}       % `\url`s
+\usepackage{listings}  % Code listings
+\frenchspacing
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{subcaption}
+
+\begin{document}
+\frame{\maketitle}
+
+\AtBeginSection[]{% Print an outline at the beginning of sections
+  \begin{frame}<beamer>
+    \frametitle{Índice Sección \thesection}
+    \tableofcontents[currentsection]
+  \end{frame}}
+  \section{Introducción al NLP}
+  \label{sec:intro}
+  \begin{frame}[label=intro]{Introducción al NLP}
+    Ciencia que estudia la computación lingüística.
+
+    Sus aplicaciones:
+    \begin{itemize}
+    \item Resúmenes.
+    \item Traducción automática.
+    \item Reconocimiento de voz.
+    \item Sistemas de Diálogo Hablado.
+    \item Clasificación de documentos.
+    \item Análisis de sentimientos.
+    \end{itemize}
+  \end{frame}
+
+  \definecolor{tick}{HTML}{5dc452}
+  \newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
+      (1,.7) -- (.25,.15) -- cycle;}
+  \newcommand*{\ccheck}{\checktikz[tick,rounded corners=.5pt, draw=tick,
+      thin]} %\checktikz[rounded corners=.5pt, draw=red, ultra thin]
+
+  \section{Motivación}
+  \label{sec:motivacion}
+  \begin{frame}[label=moti]{Motivación}
+    \framesubtitle{\emph{Pipelines} actuales}
+    \begin{table}[!b]
+      {\carlitoTLF % Use monospaced lining figures
+        \begin{tabularx}{\textwidth}{lllllll}
+          \textbf{ANNOTATOR} & \textbf{AR} & \textbf{ZH} & \textbf{EN} & \textbf{FR} & \textbf{DE} & \textbf{ES} \\
+          \toprule
+             Tokenize/Segment & \ccheck & \ccheck & \ccheck & \ccheck &  & \ccheck \\
+             Sentence Split & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+             Part of Speech & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+             Lemma &  &  & \ccheck &  &  &  \\
+             Named Entities &  & \ccheck & \ccheck &  & \ccheck & \ccheck \\
+             Constituency Parsing & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+             Dependency Parsing &  & \ccheck & \ccheck & \ccheck & \ccheck &  \\
+             Sentiment Analysis &  &  & \ccheck &  &  &  \\
+             Mention Detection &  & \ccheck & \ccheck &  &  &  \\
+             Coreference &  & \ccheck & \ccheck &  &  &  \\
+             Open IE &  &  & \ccheck &  &  & \\
+          \bottomrule
+        \end{tabularx}}
+    \end{table}
+  \end{frame}
+
+  \section{Algoritmo seleccionado}
+  \label{sec:algot}
+
+  \begin{frame}[label=alg]{Algoritmo Seleccionado para Español}
+    \framesubtitle{Statistical Dependency Analysis With SVMs}
+      \scriptsize
+  \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
+  \begin{algorithmic}[1] % The number tells where the line numbering should start
+    \State \textbf{Input Sentence:} $(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)$
+    \Init
+       \State $i\gets 1$
+       \State ${\cal T}\gets \{(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)\}$
+       \State $\text{no\_construction}\gets \text{true}$
+    \EndInit
+       \While{$|{\cal T}| \geq 1$}
+          \If{$i == |{\cal T}|$}
+             \If{no\_construction == true}
+                \textbf{break}
+             \EndIf
+             \State $\text{no\_construction}\gets \text{true}$
+             \State $i\gets 1$
+          \Else
+             \State $\mathbf{x}\gets \text{getContextualFeatures(${\cal T}, i$)} $
+             \State $y\gets \text{estimateAction(model, $\mathbf{x}$)}$
+             \State construction(${\cal T}, i, y$)
+             \If{$y == \text{\emph{Left} or \emph{Right}}$}
+                $\text{no\_construction}\gets \text{false}$
+             \EndIf
+          \EndIf
+       \EndWhile
+    \end{algorithmic}
+  \end{frame}
+
+  \subsection{SVMs}
+  \label{subsec:SVM}
+  \begin{frame}[label=svm]{SVMs}
+    \framesubtitle{Qué es una SVM}
+    \begin{figure}[ht]
+      \centering
+ \tikzset{
+   common/.style={
+     circle,minimum width=.5ex,draw%draw=white
+   },
+   supportCommon/.style={
+     solid,circle,minimum width=.7ex,thick,draw%draw=white
+   },
+   txtCommon/.style={text=black},%text=white
+   eq/.style={txtCommon,above,right},
+   margin/.style={txtCommon,sloped,midway,above},
+    lNode/.style={common, fill=none},
+    rNode/.style={common, thick, fill},%fill=white},
+    supportR/.style={supportCommon, fill},%fill=white},
+    supportL/.style={supportCommon, fill=none},
+    outerCircle/.style={supportCommon,minimum width=2.8ex,fill=none,draw},
+  }
+  \begin{tikzpicture}[
+        scale=1.8,
+        important line/.style={thick}, dashed line/.style={dashed, thin},
+        every node/.style={color=black},
+    ]   
+    \draw[dashed line, yshift=.7cm]
+       (.2,.2) coordinate (sls) -- (2.5,2.5) coordinate (sle)
+       node[outerCircle] (name) at (2,2){}
+       node[supportL] (name) at (2,2){}
+       node[outerCircle] (name) at (1.5,1.5){}
+       node[supportL] (name) at (1.5,1.5){}
+       node [eq] {$w\cdot x + b > 1$};
+    
+    \draw[important line]
+       (.7,.7) coordinate (lines) -- (3,3) coordinate (linee)
+       node [eq] {$w\cdot x + b = 0$};
+        
+    \draw[dashed line, xshift=.7cm]
+       (.2,.2) coordinate (ils) -- (2.5,2.5) coordinate (ile)
+       node[outerCircle] (name) at (1.8,1.8){}
+       node[supportR] (name) at (1.8,1.8){}
+       node [eq] {$w\cdot x + b < -1$};
+
+    \draw[very thick,<->] ($(sls)+(.2,.2)$) -- ($(ils)+(.2,.2)$) 
+       node[margin] {Margen};        
+        
+    \foreach \Point in {(.9,2.4), (1.3,2.5), (1,2.1), (2,3), (1,2.9)}{
+      \draw \Point node[lNode]{};
+    }        
+        
+    \foreach \Point in {(2.9,1.4), (2.3,.5), (3.3,.1), (2,0.9), (2.5,1)}{
+      \draw \Point node[rNode]{};
+    }        
+  \end{tikzpicture}
+  \caption{Ejemplo SVM}
+\end{figure}
+  \end{frame}
+
+\tikzset
+  {common/.style =
+    {rectangle, rounded corners, minimum width=1cm, minimum height=1cm,
+     text centered, text opacity=1, align=center
+    }
+  ,notarget/.style = {common, draw=none, opacity=0, text opacity=0.5}
+  ,target/.style   = {common, very thick, draw}
+  ,blank/.style    = {common, draw=none}
+  }
+
+  \subsection{Acciones}
+  \label{subsec:acciones}
+  \begin{frame}[label=acciones]{Acciones}
+    \framesubtitle{Desplazar}
+    \begin{figure}[ht]
+  \begin{subfigure}[b]{0.43\textwidth}
+    \begin{tikzpicture}[node distance=1.1cm]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right of=n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+      \node (n4) [notarget, right of=n3] {girl\\\textsc{nn}};
+      \draw [thick,->] (n4) -- ++(1cm,0) node[sloped,above,midway] {\scriptsize\emph{Shift}};
+    \end{tikzpicture}
+    \caption{}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.3\textwidth}
+    \begin{tikzpicture}[node distance=1.1cm]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right of=n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+      \node (n4) [target, right of=n3] {girl\\\textsc{nn}};
+    \end{tikzpicture}
+    \caption{}
+  \end{subfigure}
+  \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el
+    estado antes de aplicar la acción. (b) el resultado tras
+    aplicarla}
+  \label{fig:shiftaction}
+\end{figure}
+\end{frame}
+
+\begin{frame}[label=right]{Acciones}
+  \framesubtitle{Derecha}
+  \begin{figure}[ht]
+  \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
+    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right=of n2] {a\\\textsc{dt}};
+      \node (n4) [target, right=of n3] {girl\\\textsc{nn}};
+      \draw [thick,->] ($(n4.east) + (5mm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Right}};
+    \end{tikzpicture}
+  &
+    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+      \node (non)[blank,right=of n2]{};
+      \node (n3) [target, right=of non] {girl\\\textsc{nn}};
+      \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
+      \draw [thick,->] (n4) -- (n3);
+    \end{tikzpicture}
+  \end{tabular}
+  \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
+    acción. (b) Estado tras aplicar la acción}
+  \label{fig:rightaction}
+\end{figure}
+\end{frame}
+
+\begin{frame}[label=left]{Acciones}
+  \framesubtitle{Izquierda}
+  \begin{figure}[ht]
+  \centering
+  \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
+    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+      \node (n3) [target, right=of n2] {girl\\\textsc{nn}};
+      \node (n4) [notarget, below=5mm of n3] {a\\\textsc{dt}};
+      \draw [thick,->] (n4) -- (n3);
+      \draw [thick,->] ($(n3.east) + (1cm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Left}};
+    \end{tikzpicture}
+ &
+    \begin{tikzpicture}[node distance=.5mm,baseline=(n1)]
+      \node (n1) [notarget] {I\\\textsc{prp}};
+      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+      \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
+      \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
+      \draw [thick,->] (n4) -- (n2);
+      \draw [thick,->] (n3) -- (n4);
+    \end{tikzpicture}
+  \end{tabular}
+  \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
+    acción. (b) Estado tras aplicar la acción}
+  \label{fig:leftaction}
+\end{figure}
+\end{frame}
+
+\subsection{Ejemplo}
+\label{subsec:example}
+\begin{frame}[label=example]{Ejemplo}
+  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+  \footnotesize
+  \setlength{\extrarowheight}{16pt}
+  \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Shift}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+     \node (la) [target, right=of sobre] {la\\\textsc{det}};
+     \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+   \end{tikzpicture}
+
+  \end{tabular}
+\end{figure}
+\end{frame}
+
+\begin{frame}[label=example]{Ejemplo}
+  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{16pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [target] {Sobre\\\textsc{adp}};
+     \node (b1) [blank,right=of sobre] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+     \draw [thick,->] (la) -- (oferta);
+   \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[label=example]{Ejemplo}
+  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{5pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (b1) [blank,right=of sobre] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+     \node (b2) [blank] {};
+     \node (b1) [blank,right=of b2] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+     \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+
+     \draw [thick,->] (la) -- (oferta);
+     \draw [thick,->] (sobre) -- (la);
+   \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[label=example]{Ejemplo}
+  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{5pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Shift}};
+    \end{tikzpicture}
+\\
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+    \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[label=example]{Ejemplo}
+  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{1pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\textsc{Right}};
+    \end{tikzpicture}
+\\
+       \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [notarget, below=.3cm of inter] {de\\\textsc{adp}};
+      \node (b3) [blank,right=of oferta] {};
+      \node (inter) [target, right=of b3] {IBM\\\textsc{noun}};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+      \draw [thick,->] (de) -- (inter);
+    \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+\end{document}
