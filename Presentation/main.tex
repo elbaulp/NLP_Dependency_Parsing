@@ -1,15 +1,16 @@
-\documentclass[utf8]{beamer}
+\documentclass[utf8,draft]{beamer}
 %
 % Choose how your presentation looks.
 %
 % For more themes, color themes and font themes, see:
 % http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
 %
+\overfullrule=5pt
 \mode<presentation>
 {
   \usetheme{Darmstadt}      % or try Darmstadt, Madrid, Warsaw, ...
   \usecolortheme{beaver} % or try albatross, beaver, crane, ...
-  \usefonttheme{serif}  % or try serif, structurebold, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
   \setbeamertemplate{navigation symbols}{}
   \setbeamertemplate{caption}[numbered]
   \setbeamertemplate{footline}[page number]
@@ -23,11 +24,10 @@
 
 \usepackage[spanish]{babel}
 
-\title{Trabajo Fin de Grado} %% that will be typeset on the
-\subtitle{Diseño e implementación de un analizador de dependencias para procesamiento de lenguaje natural en Español} %% title page.
+\subtitle{Trabajo Fin de Grado} %% that will be typeset on the
+\title{DISEÑO E IMPLEMENTACIÓN DE UN ANALIZADOR DE DEPENDENCIAS PARA PROCESAMIENTO DE LENGUAJE NATURAL EN ESPAÑOL} %% title page.
 \author{Alejandro Alcalde Barros}
 %% These additional packages are used within the document:
-
 
 \usepackage{ragged2e}  % `\justifying` text
 \usepackage{booktabs}  % Tables
@@ -43,6 +43,30 @@
 \usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 \usepackage{subcaption}
 
+\usepackage[outputdir=metafiles]{minted}
+\usemintedstyle{tango}
+\usepackage{pgfgantt}
+
+\newminted{scala}{
+   fontsize=\footnotesize,
+   autogobble=true,
+   frame=lines,
+%   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+\newminted{java}{
+   fontsize=\footnotesize,
+   autogobble=true,
+   frame=lines,
+%   framesep=2mm,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
 
 \begin{document}
 \frame{\maketitle}
@@ -52,17 +76,10 @@
     \frametitle{Índice Sección \thesection}
     \tableofcontents[currentsection]
   \end{frame}}
-% \AtBeginSubsection[]{% Print an outline at the beginning of sections
-%   \begin{frame}<beamer>
-%     \frametitle{Índice Sección \thesubsection}
-%     \tableofcontents[currentsubsection]
-%   \end{frame}
-% }
   \section{NLP}
   
-  \begin{frame}[label=intro]{Introducción al NLP}
+  \begin{frame}{Introducción al NLP}
     Ciencia que estudia la computación lingüística.
-
     Sus aplicaciones:
     \begin{itemize}
     \item Resúmenes.
@@ -74,7 +91,7 @@
     \end{itemize}
   \end{frame}
 
-  \subsection{Niveles de Análisis}
+  \subsection*{Niveles de Análisis}
   
   \begin{frame}{Niveles de Análisis}
     \begin{itemize}
@@ -90,7 +107,7 @@
   \newcommand*{\ccheck}{\checktikz[tick,rounded corners=.5pt, draw=tick,
       thin]} %\checktikz[rounded corners=.5pt, draw=red, ultra thin]
 
-  \subsection{Motivación}
+  \subsection*{Motivación}
   
   \begin{frame}[label=moti]{Motivación}
     \framesubtitle{\emph{Pipelines} actuales}
@@ -124,8 +141,6 @@
   \end{itemize}
 \end{frame}
 
-
-  
   \section{Algoritmo seleccionado}
   \begin{frame}[label=alg]{Algoritmo Seleccionado para Español}
     \framesubtitle{Statistical Dependency Analysis With SVMs}
@@ -157,7 +172,7 @@
     \end{algorithmic}
   \end{frame}
 
-  \subsection{SVMs}
+  \subsection*{SVMs}
   \begin{frame}[label=svm]{SVMs}
     \framesubtitle{Qué es una SVM}
     \begin{figure}[ht]
@@ -234,8 +249,11 @@
   \end{frame}
 
   \begin{frame}{SVMs}
-    \framesubtitle{Propiedades}
-    Describir aquí las propiedades de las SVMs
+    \framesubtitle{Ventajas de uso}
+    \begin{itemize}
+    \item Gran poder de generalización.
+    \item Con el \emph{Kernel Trick} se combinan características.
+    \end{itemize}
   \end{frame}
   
 \tikzset
@@ -248,95 +266,111 @@
   ,blank/.style    = {common, draw=none}
   }
 
-  \subsection{Acciones}
+  \subsection*{Acciones}
   
   \begin{frame}[label=acciones]{Acciones}
     \framesubtitle{Desplazar}
     \begin{figure}[ht]
-  \begin{subfigure}[b]{0.43\textwidth}
-    \begin{tikzpicture}[node distance=1.1cm]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [target, right of=n1] {saw\\\textsc{vbd}};
-      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
-      \node (n4) [notarget, right of=n3] {girl\\\textsc{nn}};
-      \draw [thick,->] (n4) -- ++(1cm,0) node[sloped,above,midway] {\scriptsize\emph{Shift}};
-    \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
-  \qquad
-  \begin{subfigure}[b]{0.3\textwidth}
-    \begin{tikzpicture}[node distance=1.1cm]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [notarget, right of=n1] {saw\\\textsc{vbd}};
-      \node (n3) [target, right of=n2] {a\\\textsc{dt}};
-      \node (n4) [target, right of=n3] {girl\\\textsc{nn}};
-    \end{tikzpicture}
-    \caption{}
-  \end{subfigure}
-  \caption{Ejemplo de la acción \textsc{Desplazar}. (a) muestra el
-    estado antes de aplicar la acción. (b) el resultado tras
-    aplicarla}
-  
-\end{figure}
+      \begin{columns}[onlytextwidth]
+        \begin{column}{.5\textwidth}
+          \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=1.1cm]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [target, right of=n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+            \node (n4) [notarget, right of=n3] {girl\\\textsc{nn}};
+            \draw [thick,->] (n4) -- ++(1cm,0) node[sloped,above,midway] {\scriptsize\emph{Shift}};
+          \end{tikzpicture}
+          \caption{}
+          \end{subfigure}
+        \end{column}
+        \begin{column}{.5\textwidth}
+          \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=1.1cm]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [notarget, right of=n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+            \node (n4) [target, right of=n3] {girl\\\textsc{nn}};
+          \end{tikzpicture}
+          \caption{}
+          \end{subfigure}
+        \end{column}
+      \end{columns}
+      \caption{\textsc{Desplazar}. (a) Antes. (b) Después}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[label=right]{Acciones}
   \framesubtitle{Derecha}
+
   \begin{figure}[ht]
-  \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
-    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
-      \node (n3) [target, right=of n2] {a\\\textsc{dt}};
-      \node (n4) [target, right=of n3] {girl\\\textsc{nn}};
-      \draw [thick,->] ($(n4.east) + (5mm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Right}};
-    \end{tikzpicture}
-  &
-    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
-      \node (non)[blank,right=of n2]{};
-      \node (n3) [target, right=of non] {girl\\\textsc{nn}};
-      \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
-      \draw [thick,->] (n4) -- (n3);
-    \end{tikzpicture}
-  \end{tabular}
-  \caption{Ejemplo de la acción \textsc{Derecha}. (a) Estado antes de la
-    acción. (b) Estado tras aplicar la acción}
-  
-\end{figure}
+    \begin{columns}[onlytextwidth]
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right=of n2] {a\\\textsc{dt}};
+            \node (n4) [target, right=of n3] {girl\\\textsc{nn}};
+            \draw [thick,->] ($(n4.east) + (5mm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Right}};
+          \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+            \node (non)[blank,right=of n2]{};
+            \node (n3) [target, right=of non] {girl\\\textsc{nn}};
+            \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
+            \draw [thick,->] (n4) -- (n3);
+          \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+    \end{columns}
+    \caption{\textsc{Derecha}. (a) Antes. (b) Después.}
+  \end{figure}
 \end{frame}
 
-\begin{frame}[label=left]{Acciones}
+\begin{frame}{Acciones}
   \framesubtitle{Izquierda}
   \begin{figure}[ht]
-  \centering
-  \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
-    \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
-      \node (n3) [target, right=of n2] {girl\\\textsc{nn}};
-      \node (n4) [notarget, below=5mm of n3] {a\\\textsc{dt}};
-      \draw [thick,->] (n4) -- (n3);
-      \draw [thick,->] ($(n3.east) + (1cm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Left}};
-    \end{tikzpicture}
- &
-    \begin{tikzpicture}[node distance=.5mm,baseline=(n1)]
-      \node (n1) [notarget] {I\\\textsc{prp}};
-      \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
-      \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
-      \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
-      \draw [thick,->] (n4) -- (n2);
-      \draw [thick,->] (n3) -- (n4);
-    \end{tikzpicture}
-  \end{tabular}
-  \caption{Ejemplo de la acción \textsc{Left}. (a) Estado antes de la
-    acción. (b) Estado tras aplicar la acción}
-  
-\end{figure}
+    \begin{columns}[onlytextwidth]
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right=of n2] {girl\\\textsc{nn}};
+            \node (n4) [notarget, below=5mm of n3] {a\\\textsc{dt}};
+            \draw [thick,->] (n4) -- (n3);
+            \draw [thick,->] ($(n3.east) + (1cm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\emph{Left}};
+            \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=.5mm,baseline=(n1)]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+            \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
+            \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
+            \draw [thick,->] (n4) -- (n2);
+            \draw [thick,->] (n3) -- (n4);
+          \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+    \end{columns}
+    \caption{\textsc{Izquierda}. (a) Antes. (b) Después}
+  \end{figure}
 \end{frame}
 
-\subsection{Ejemplo}
+\subsection*{Ejemplo}
 
 \begin{frame}[label=example]{Ejemplo}
   \framesubtitle{``\emph{Sobre la oferta de IBM}''}
@@ -512,7 +546,7 @@
   \end{figure}
 \end{frame}
 
-\subsection{Selección de Características}
+\subsection*{Selección de Características}
 \begin{frame}{Selección de Características}
 \begin{table}[b!]
   \caption{Descripción del tipo de características y sus valores}
@@ -533,7 +567,7 @@
 \end{frame}
 
 
-\subsection{Resultados}
+\subsection*{Resultados}
 
 
 \begin{frame}{Resultados}
@@ -552,24 +586,170 @@
 
 \section{Implementación}
 
+\subsection*{Planificación}
+\begin{frame}{Planificación}
+  \definecolor{barblue}{RGB}{153,204,254}
+  \definecolor{groupblue}{RGB}{51,102,254}
+  \definecolor{linkred}{RGB}{165,0,33}
+  \renewcommand\sfdefault{phv}
+  \renewcommand\mddefault{mc}
+  \renewcommand\bfdefault{bc}
+  \setganttlinklabel{s-s}{START-TO-START}
+  \setganttlinklabel{f-s}{FINISH-TO-START}
+  \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+  \noindent\resizebox{\textwidth}{!}{
+  \begin{tikzpicture}[x=0cm, y=0cm]
+\begin{ganttchart}[
+  canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+  hgrid style/.style={draw=black!5, line width=.75pt},
+  vgrid={*1{draw=black!5, line width=.75pt}},
+  today=14,
+  today rule/.style={
+    draw=black!64,
+    dash pattern=on 3.5pt off 4.5pt,
+    line width=1.5pt
+  },
+  today label font=\small\scshape,
+  title/.style={draw=none, fill=none},
+  title label font=\scshape\footnotesize,
+  title label node/.append style={below=7pt},
+  include title in canvas=false,
+  bar label font=\mdseries\small\color{black!70},
+  bar label node/.append style={left=2cm},
+  bar/.append style={draw=none, fill=black!63},
+  bar incomplete/.append style={fill=barblue},
+  bar progress label font=\mdseries\footnotesize\color{black!70},
+  group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\scshape\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\scshape,
+    link label node/.append style={below left=-2pt and 0pt},
+  ]{1}{14}
+  \gantttitle{Parseo de Dependencias en Español}{14} \\[grid]
+  \gantttitle{\tiny Septiembre}{4}
+  \gantttitle{\tiny Octubre}{4} 
+  \gantttitle{\tiny Noviembre}{4}
+  \gantttitle{\tiny Diciembre}{2}\\
+  \gantttitle[
+    title label node/.append style={below left=7pt and -3pt}
+  ]{Semana:\quad1}{1}
+  \gantttitlelist{2,...,14}{1} \\
+  \ganttgroup[progress=100]{Progreso}{1}{14} \\
+  \ganttbar[
+    progress=100,
+    name=research
+  ]{Investigación}{1}{4} \\
+  \ganttbar[
+    progress=100,
+    name=design
+  ]{Análisis y Diseño}{5}{5} \\
+  \ganttbar[
+    progress=100,
+    name=impl
+  ]{Implementación}{6}{11} \\
+  \ganttbar[
+    progress=100,
+    name=memoir
+  ]{Memoria}{12}{14} \\    
+  
+  \ganttmilestone{M1: Conocer el campo del NLP}{4}{4}  \\
+  \ganttmilestone{M2: Finalizar Código}{11}{11} \\
+  \ganttmilestone{M3: Finalización TFG}{14}{14}
+  
+  \ganttlink[link type=f-s]{research}{design}
+  \ganttlink[link type=f-s]{design}{impl}
+  \ganttlink[link type=f-s]{impl}{memoir}
+\end{ganttchart}
+\end{tikzpicture}}
+\end{frame}
+
 \begin{frame}{Implementación}
   \framesubtitle{Elección del lenguaje Scala}
-  Ṕoner aquí las ventajas
+  \begin{columns}[onlytextwidth,c]
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Programación OO.
+    \item Programación Funcional.
+    \item Sintaxis breve.
+    \item Escalable.
+    \end{itemize}
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Implementa algunos patrones.
+    \item \textsc{Traits}.
+    \item Amplio abanico reglas de visibilidad.
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
-\subsection{Diagramas de Clases}
-\begin{frame}{Diagramas de Clases}
-  \framesubtitle{Diagramas}
-  Diagramas
+\begin{frame}[fragile]{Implementación}
+  \framesubtitle{Ventajas de \textsc{Scala}}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+      \begin{javacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Java}}
+    class WordCountMapper extends MapReduceBase
+    implements Mapper<IntWritable, Text, Text, IntWritable> {
+
+      static final IntWritable one  = new IntWritable(1);
+      // Value will be set in a non-thread-safe way!
+      static final Text word = new Text;
+
+      @Override
+      public void map(IntWritable key, Text valueDocContents,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        String[] tokens = valueDocContents.toString.split("\\s+");       
+        for (String wordString: tokens) {
+          if (wordString.length > 0) {
+            word.set(wordString.toLowerCase);
+            output.collect(word, one);
+          }
+        }
+      }
+    }
+
+    class WordCountReduce extends MapReduceBase
+    implements Reducer<Text, IntWritable, Text, IntWritable> {
+
+      public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        int totalCount = 0;
+        while (counts.hasNext) {                                         
+          while (counts.hasNext) {
+            totalCount += counts.next.get;
+          }
+          output.collect(keyWord, new IntWritable(totalCount));
+        }
+      }
+      \end{javacode*}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{scalacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Scala}}
+    class ScaldingWordCount(args : Args) extends Job(args) {
+      TextLine(args("input"))
+      .read
+      .flatMap('line -> 'word) {
+        line: String => line.trim.toLowerCase.split("""\s+""")
+      }
+      .groupBy('word){ group => group.size('count) }
+      .write(Tsv(args("output")))                   
+    }
+      \end{scalacode*}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\subsection{Metodología}
+\subsection*{Metodología}
 \begin{frame}{Metodología}
   \framesubtitle{Metodo}
   Explicar TDD, BDD
 \end{frame}
 
-\subsection{TDD para AA}
+\subsection*{TDD para AA}
 \begin{frame}{TDD para AA}
     TDD para AA
 \end{frame}
@@ -580,7 +760,6 @@
 
 \section{Conclusiones}
 \section{TRabajo futuro}
-\section{Diagrama de gantt en implementación}
 
 % Los diagramas de clases lo mismo no hace falta.
 % Background,estado del arte.
