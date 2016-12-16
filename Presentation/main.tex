@@ -1,4 +1,4 @@
-\documentclass[utf8,draft]{beamer}
+\documentclass[utf8]{beamer}
 %
 % Choose how your presentation looks.
 %
@@ -73,14 +73,13 @@
 
 \AtBeginSection[]{% Print an outline at the beginning of sections
   \begin{frame}<beamer>
-    \frametitle{Índice Sección \thesection}
+    \frametitle{Índice}
     \tableofcontents[currentsection]
   \end{frame}}
   \section{NLP}
   
   \begin{frame}{Introducción al NLP}
     Ciencia que estudia la computación lingüística.
-    Sus aplicaciones:
     \begin{itemize}
     \item Resúmenes.
     \item Traducción automática.
@@ -135,7 +134,7 @@
 \begin{frame}{Objetivos}
   \begin{itemize}
   \item Revisión bibliográfica.
-  \item Elección de un parseador y diseño para Scala.
+  \item Elección de un parseador y diseño para \textsc{Scala}.
   \item Implementación y TDD.
   \item Evaluación y comparación de resultados.
   \end{itemize}
@@ -268,8 +267,7 @@
 
   \subsection*{Acciones}
   
-  \begin{frame}[label=acciones]{Acciones}
-    \framesubtitle{Desplazar}
+  \begin{frame}[label=acciones]{Acción Desplazar}
     \begin{figure}[ht]
       \begin{columns}[onlytextwidth]
         \begin{column}{.5\textwidth}
@@ -300,9 +298,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}[label=right]{Acciones}
-  \framesubtitle{Derecha}
-
+\begin{frame}[label=right]{Acción Derecha}
   \begin{figure}[ht]
     \begin{columns}[onlytextwidth]
       \begin{column}{.5\textwidth}
@@ -335,8 +331,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Acciones}
-  \framesubtitle{Izquierda}
+\begin{frame}{Acción Izquierda}
   \begin{figure}[ht]
     \begin{columns}[onlytextwidth]
       \begin{column}{.5\textwidth}
@@ -372,8 +367,7 @@
 
 \subsection*{Ejemplo}
 
-\begin{frame}[label=example]{Ejemplo}
-  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}
   \begin{figure}[ht]
   \footnotesize
   \setlength{\extrarowheight}{16pt}
@@ -401,8 +395,7 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}[label=example]{Ejemplo}
-  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
   \begin{figure}[ht]
     \footnotesize
     \setlength{\extrarowheight}{16pt}
@@ -431,8 +424,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[label=example]{Ejemplo}
-  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
   \begin{figure}[ht]
     \footnotesize
     \setlength{\extrarowheight}{5pt}
@@ -467,8 +459,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[label=example]{Ejemplo}
-  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
   \begin{figure}[ht]
     \footnotesize
     \setlength{\extrarowheight}{5pt}
@@ -506,8 +497,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[label=example]{Ejemplo}
-  \framesubtitle{``\emph{Sobre la oferta de IBM}''}
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
   \begin{figure}[ht]
     \footnotesize
     \setlength{\extrarowheight}{1pt}
@@ -668,6 +658,7 @@
 \end{tikzpicture}}
 \end{frame}
 
+\subsection*{Scala}
 \begin{frame}{Implementación}
   \framesubtitle{Elección del lenguaje Scala}
   \begin{columns}[onlytextwidth,c]
@@ -765,21 +756,71 @@
 
 \subsection*{TDD para AA}
 \begin{frame}{TDD para AA}
-    TDD para AA
+  \framesubtitle{Idea}
+  Aplicar la filosofía TDD a problemas de Aprendizaje:
+  \begin{columns}[onlytextwidth,t]
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item \textsc{R2} \emph{Value}.
+    \item ROC y AUC.
+    \item Matriz confusión.
+    \end{itemize}
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Establecer un \emph{baseline}.
+    \item Intentar mejorarlo en cada iteración.
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Ejemplos de TDD}
-  Poner algunas sentencias GWT    
+\begin{frame}[fragile]{TDD para AA}
+  \framesubtitle{Ejemplo}
+    \begin{scalacode*}{fontsize=\tiny}
+class DependencyParserCheckBaselineSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers {def is = s2"""
+  When training the model, set the following baselines  ${featuresBaseline.start}
+    Given Train data set: es_ancora-converted-train1
+    Given Test data set: es_ancora-converted-test1
+    When Genenaring Vocabulary
+    Then Dep. Acc should be at least: 70%
+    and Root Acc should be at least: 50%
+    and Comp. Acc should be at least: 3%                ${featuresBaseline.end}
+"""
+// ...    
+    \end{scalacode*}
+
 \end{frame}
 
-\section{Conclusiones}
-\section{TRabajo futuro}
+\section[Conclusiones]{Conclusiones y Vías Futuras}
+\begin{frame}{Conclusiones y Vías Futuras}
+  \begin{columns}[onlytextwidth,t]
+    \column{.5\textwidth}
+    Conclusiones
+    \begin{itemize}
+    \item Implementado parseo para Castellano.
+    \item Uso de SVMs.
+    \item \textsc{Scala}.
+    \item TDD para AA.
+    \end{itemize}
+    \column{.5\textwidth}
+    Vías futuras
+    \begin{itemize}
+    \item Más algoritmos.
+    \item Código 100\% funcional.
+    \item Más fases del \emph{Pipeline}.
+    \item \textsc{Spark}.
+    \end{itemize}
+  \end{columns}
+\end{frame}
 
-% Los diagramas de clases lo mismo no hace falta.
-% Background,estado del arte.
+\begin{frame}{Fin}
+  Código disponible en \url{https://github.com/algui91/NLP_Dependency_Parsing}
+  \bigskip
 
-% Van a hacer preguntas subjetivas.
-% Poner en la penultima linea el github.
+  Muchas gracias por su atención.
 
+  --- Alejandro Alcalde.
+\end{frame}
 
 \end{document}
