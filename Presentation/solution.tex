@@ -63,17 +63,16 @@
    fontsize=\footnotesize,
    autogobble=true,
    frame=lines,
-%   framesep=2mm,
    mathescape=true,
    breaklines,
    breakautoindent,
    mathescape
 }
+
 \newminted{java}{
    fontsize=\footnotesize,
    autogobble=true,
    frame=lines,
-%   framesep=2mm,
    mathescape=true,
    breaklines,
    breakautoindent,
@@ -81,7 +80,7 @@
 }
 
 \title[Dep Parsing Castellano]%
-{DISEÑO E IMPLEMENTACIÓN DE UN ANALIZADOR DE DEPENDENCIAS PARA PROCESAMIENTO DE LENGUAJE NATURAL EN ESPAÑOL} %% title page.
+{DISEÃ‘O E IMPLEMENTACIÃ“N DE UN ANALIZADOR DE DEPENDENCIAS PARA PROCESAMIENTO DE LENGUAJE NATURAL EN ESPAÃ‘OL} %% title page.
 
 % \subtitle
 % {Include Only If Paper Has a Subtitle}
@@ -95,7 +94,7 @@
 \institute[ETSIIT] % (optional, but mostly needed)
 {
   \inst{1}%
-  Grado Ingeniería Informática\\
+  Grado IngenierÃ­a InformÃ¡tica\\
   Universidad de Granada
 }
 % - Use the \inst command only if there are several affiliations.
@@ -115,14 +114,14 @@
 % is a graphic format that can be processed by latex or pdflatex,
 % resp., then you can add a logo as follows:
 
-% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \pgfdeclareimage[height=0.5cm]{university-logo}{udg}
 % \logo{\pgfuseimage{university-logo}}
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
 \AtBeginSubsection[]
 {
-  \begin{frame}<beamer>{Índice}
+  \begin{frame}<beamer>{Ãndice}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
@@ -139,7 +138,7 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Índice}
+\begin{frame}{Ãndice}
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
@@ -162,9 +161,9 @@
 % - If you omit details that are vital to the proof/implementation,
 %   just say so once. Everybody will be happy with that.
 
-\section{Motivación}
+\section{MotivaciÃ³n}
 
-\subsection{Falta de Software Español}
+\subsection{Falta de Software EspaÃ±ol}
 
 \definecolor{tick}{HTML}{5dc452}
 \newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
@@ -195,23 +194,23 @@
   \end{table}
 \end{frame}
 
-\subsection{Introducción al NLP}
+\subsection{IntroducciÃ³n al NLP}
 
-\begin{frame}{Qué es el NLP}
-  \begin{block}{Definición}
-    Ciencia que estudia la computación lingüística.
+\begin{frame}{QuÃ© es el NLP}
+  \begin{block}{DefiniciÃ³n}
+    Ciencia que estudia la computaciÃ³n lingÃ¼Ã­stica.
   \end{block}
   \begin{itemize}
-  \item Resúmenes.
-  \item Traducción automática.
+  \item ResÃºmenes.
+  \item TraducciÃ³n automÃ¡tica.
   \item Reconocimiento de voz.
-  \item Sistemas de Diálogo Hablado.
-  \item Clasificación de documentos.
-  \item Análisis de sentimientos.
+  \item Sistemas de DiÃ¡logo Hablado.
+  \item ClasificaciÃ³n de documentos.
+  \item AnÃ¡lisis de sentimientos.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Niveles de Análisis}
+\begin{frame}{Niveles de AnÃ¡lisis}
   \begin{itemize}
   \item Documento.
   \item Sentencia.
@@ -222,14 +221,14 @@
 \section{Objetivos}
 \begin{frame}{Objetivos}
   \begin{itemize}
-  \item Revisión bibliográfica.
-  \item Elección de un parseador y diseño para \textsc{Scala}.
-  \item Implementación y TDD.
-  \item Evaluación y comparación de resultados.
+  \item RevisiÃ³n bibliogrÃ¡fica.
+  \item ElecciÃ³n de un parseador y diseÃ±o para \textsc{Scala}.
+  \item ImplementaciÃ³n y TDD.
+  \item EvaluaciÃ³n y comparaciÃ³n de resultados.
   \end{itemize}
 \end{frame}
 
-\section{Resolución del Trabajo}
+\section{ResoluciÃ³n del Trabajo}
 
 \subsection{Algoritmo}
 
@@ -243,7 +242,7 @@
   ,blank/.style    = {common, draw=none}
 }
 
-\begin{frame}[label=alg]{Algoritmo Seleccionado para Español}
+\begin{frame}[label=alg]{Algoritmo Seleccionado para EspaÃ±ol}
   \framesubtitle{Statistical Dependency Analysis With SVMs}
   \footnotesize
   \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
@@ -273,7 +272,7 @@
   \end{algorithmic}
 \end{frame}
 
-\begin{frame}{Acción Desplazar}
+\begin{frame}{AcciÃ³n Desplazar}
   \begin{figure}[ht]
     \begin{columns}[onlytextwidth]
       \begin{column}{.5\textwidth}
@@ -300,11 +299,11 @@
         \end{subfigure}
       \end{column}
     \end{columns}
-    \caption{\textsc{Desplazar}. (a) Antes. (b) Después}
+    \caption{\textsc{Desplazar}. (a) Antes. (b) DespuÃ©s}
   \end{figure}
 \end{frame}
 
-\begin{frame}[label=right]{Acción Derecha}
+\begin{frame}[label=right]{AcciÃ³n Derecha}
   \begin{figure}[ht]
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm]
@@ -326,11 +325,11 @@
         \draw [thick,->] (n4) -- (n3);
       \end{tikzpicture}
     }
-    \caption{\textsc{Derecha}. (a) Antes. (b) Después.}
+    \caption{\textsc{Derecha}. (a) Antes. (b) DespuÃ©s.}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Acción Izquierda}
+\begin{frame}{AcciÃ³n Izquierda}
   \begin{figure}[ht]
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
@@ -353,7 +352,7 @@
         \draw [thick,->] (n3) -- (n4);
       \end{tikzpicture}
     }
-    \caption{\textsc{Izquierda}. (a) Antes. (b) Después}
+    \caption{\textsc{Izquierda}. (a) Antes. (b) DespuÃ©s}
   \end{figure}
 \end{frame}
 
@@ -526,7 +525,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Selección de Características}
+\begin{frame}{SelecciÃ³n de CaracterÃ­sticas}
   \begin{table}[b!]
     \begin{tabularx}{\textwidth}{lp{.8\textwidth}}
       \toprule
@@ -559,9 +558,9 @@
 \end{frame}
 
 
-\subsection{Implementación}
+\subsection{ImplementaciÃ³n}
 
-\begin{frame}{Implementación}{Planificación}
+\begin{frame}{ImplementaciÃ³n}{PlanificaciÃ³n}
   \definecolor{barblue}{RGB}{153,204,254}
   \definecolor{groupblue}{RGB}{51,102,254}
   \definecolor{linkred}{RGB}{165,0,33}
@@ -617,23 +616,23 @@
   \ganttbar[
     progress=100,
     name=research
-  ]{Investigación}{1}{4} \\
+  ]{InvestigaciÃ³n}{1}{4} \\
   \ganttbar[
     progress=100,
     name=design
-  ]{Análisis y Diseño}{5}{5} \\
+  ]{AnÃ¡lisis y DiseÃ±o}{5}{5} \\
   \ganttbar[
     progress=100,
     name=impl
-  ]{Implementación}{6}{11} \\
+  ]{ImplementaciÃ³n}{6}{11} \\
   \ganttbar[
     progress=100,
     name=memoir
   ]{Memoria}{12}{14} \\    
   
   \ganttmilestone{M1: Conocer el campo del NLP}{4}{4}  \\
-  \ganttmilestone{M2: Finalizar Código}{11}{11} \\
-  \ganttmilestone{M3: Finalización TFG}{14}{14}
+  \ganttmilestone{M2: Finalizar CÃ³digo}{11}{11} \\
+  \ganttmilestone{M3: FinalizaciÃ³n TFG}{14}{14}
   
   \ganttlink[link type=f-s]{research}{design}
   \ganttlink[link type=f-s]{design}{impl}
@@ -642,12 +641,12 @@
 \end{tikzpicture}}
 \end{frame}
 
-\begin{frame}{Implementación}{Por Qué en \textsc{Scala}}
+\begin{frame}{ImplementaciÃ³n}{Por QuÃ© en \textsc{Scala}}
   \begin{columns}[onlytextwidth,c]
     \column{.5\textwidth}
     \begin{itemize}
-    \item Programación OO.
-    \item Programación Funcional.
+    \item ProgramaciÃ³n OO.
+    \item ProgramaciÃ³n Funcional.
     \item Sintaxis breve.
     \item Escalable.
     \end{itemize}
@@ -660,7 +659,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Implementación}{Ventajas de \textsc{Scala}}
+\begin{frame}[fragile]{ImplementaciÃ³n}{Ventajas de \textsc{Scala}}
   \begin{columns}[onlytextwidth]
     \begin{column}{.5\textwidth}
       \begin{javacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Java}}
@@ -715,7 +714,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Metodología: TDD y BDD}
+\begin{frame}{MetodologÃ­a: TDD y BDD}
   \begin{columns}[onlytextwidth,t]
     \column{.5\textwidth}
     \alert{Test-Driven\\ Development}
@@ -735,7 +734,7 @@
 \end{frame}
 
 \begin{frame}{TDD para AA}
-  \begin{block}{Filosofía}
+  \begin{block}{FilosofÃ­a}
     Aplicar \alert{TDD} a problemas de Aprendizaje
   \end{block}
   \begin{columns}[onlytextwidth,t]
@@ -743,12 +742,12 @@
     \begin{itemize}
     \item \textsc{R2} \emph{Value}.
     \item ROC y AUC.
-    \item Matriz confusión.
+    \item Matriz confusiÃ³n.
     \end{itemize}
     \column{.5\textwidth}
     \begin{itemize}
     \item Establecer un \alert{baseline}.
-    \item Intentar mejorarlo \\en cada iteración.
+    \item Intentar mejorarlo \\en cada iteraciÃ³n.
     \end{itemize}
   \end{columns}
 \end{frame}
@@ -772,8 +771,8 @@ class DependencyParserCheckBaselineSpec extends Specification
 
 \end{frame}
 
-\subsection[Conclusiones]{Conclusiones y Vías Futuras}
-\begin{frame}{Conclusiones y Vías Futuras}
+\subsection[Conclusiones]{Conclusiones y VÃ­as Futuras}
+\begin{frame}{Conclusiones y VÃ­as Futuras}
   \begin{columns}[onlytextwidth,t]
     \column{.5\textwidth}
     Conclusiones
@@ -784,21 +783,21 @@ class DependencyParserCheckBaselineSpec extends Specification
     \item \alert{TDD} para AA.
     \end{itemize}
     \column{.5\textwidth}
-    Vías futuras
+    VÃ­as futuras
     \begin{itemize}
-    \item Más algoritmos.
-    \item Código 100\% funcional.
-    \item Más fases del \alert{Pipeline}.
+    \item MÃ¡s algoritmos.
+    \item CÃ³digo 100\% funcional.
+    \item MÃ¡s fases del \alert{Pipeline}.
     \item \textsc{Spark}.
     \end{itemize}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Fin}
-  Código disponible:\\\url{https://github.com/algui91/NLP_Dependency_Parsing}
+  CÃ³digo disponible:\\\url{https://github.com/algui91/NLP_Dependency_Parsing}
   \bigskip
 
-  Muchas gracias por su atención.
+  Muchas gracias por su atenciÃ³n.
 
   --- Alejandro Alcalde.
 \end{frame}
