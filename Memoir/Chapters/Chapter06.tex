@@ -245,8 +245,10 @@ class DependencyParserCheckBaselineSpec extends Specification
       given(aDataSet).
       given(aDataSet).
       when(aString){case _ :: test :: train :: _ =>
-        val testSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$test").getPath)
-        val trainSentences = DataParser.readDataSet(getClass.getResource(s"/data/spanish/$train").getPath)
+        val testSentences = DataParser.readDataSet(
+          getClass.getResource(s"/data/spanish/$test")getPath)
+        val trainSentences = DataParser.readDataSet(
+          getClass.getResource(s"/data/spanish/$train").getPath)
         val parser = new DependencyParser(trainSentences.get, testSentences.get)
         parser.getAccuracy
       }.

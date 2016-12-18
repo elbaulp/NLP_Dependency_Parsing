@@ -1,5 +1,5 @@
 %************************************************
-\chapter{Algoritmo seleccionado: Statistical Dependency Analysis With Support
+\chapter[Algoritmo Seleccionado]{Algoritmo seleccionado: Statistical Dependency Analysis With Support
   Vector Machines}
 \label{ch:algorithm}
 %************************************************
@@ -25,7 +25,7 @@ de entrenamiento sea menos ruidosa, al ser el proceso de anotación más simple.
 \begin{figure}[ht]
 %\resizebox{1.3\textwidth}{!}{%
 \tiny
-\begin{tikzpicture}[every node/.style={align=center}]
+\begin{tikzpicture}[every node/.style={align=center},scale=.9]
   \tikzset{
     edge from parent/.style={
       draw,edge from parent
@@ -407,7 +407,7 @@ acción tomar.
   \caption{Descripción del tipo de características y sus valores}
   \label{table:features}
 
-  \begin{tabular}{ll}
+  \begin{tabularx}{\textwidth}{ll}
     \rowcolor[HTML]{443627} 
     {\color[HTML]{FFFFFF} Tipo} & {\color[HTML]{FFFFFF} Valor}                                                  \\
     pos                         & \ac{POS} \emph{tag}                                                       \\
@@ -416,7 +416,7 @@ acción tomar.
     ch-L-lex                    & Palabra del correspondiente ch-L-pos                                          \\
     ch-R-pos                    & \ac{POS} \emph{tag} del nodo hijo que modifica al padre desde la derecha  \\
     ch-R-lex                    & Palabra del correspondiente ch-R-pos                                         
-  \end{tabular}
+  \end{tabularx}
 \end{table}
 
 \subsection{Agrupando \acp{SVM} para reducir costes}

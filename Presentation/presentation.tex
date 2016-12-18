@@ -1,0 +1,871 @@
+% $Header: /Users/joseph/Documents/LaTeX/beamer/solutions/conference-talks/conference-ornate-20min.en.tex,v 90e850259b8b 2007/01/28 20:48:30 tantau $
+
+\documentclass{beamer}
+
+% This file is a solution template for:
+
+% - Talk at a conference/colloquium.
+% - Talk length is about 20min.
+% - Style is ornate.
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  \usefonttheme[onlylarge]{structuresmallcapsserif}
+  
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  \setbeamertemplate{footline}[page number]
+
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+\usepackage[spanish]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{calc, shapes, backgrounds,shapes.geometric,arrows,decorations.markings,babel,positioning,calc}
+\usepackage{booktabs}  % Tables
+\usepackage{tabularx}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{subcaption}
+
+\usepackage[outputdir=metafiles]{minted}
+\usemintedstyle{tango}
+\usepackage{pgfgantt}
+\usepackage{fontawesome}
+
+\newminted{scala}{
+   fontsize=\footnotesize,
+   autogobble=true,
+   frame=lines,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+
+\newminted{java}{
+   fontsize=\footnotesize,
+   autogobble=true,
+   frame=lines,
+   mathescape=true,
+   breaklines,
+   breakautoindent,
+   mathescape
+}
+
+\title[Dep Parsing Castellano]%
+{DISEÑO E IMPLEMENTACIÓN\\
+  DE UN ANALIZADOR\\
+  DE DEPENDENCIAS \\
+  PARA PROCESAMIENTO \\
+  DE LENGUAJE NATURAL \\
+  EN ESPAÑOL} %% title page.
+
+% \subtitle
+% {Include Only If Paper Has a Subtitle}
+
+\author[A. Alcalde] % (optional, use only with lots of authors)
+{Alejandro Alcalde~\inst{1}}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[ETSIIT] % (optional, but mostly needed)
+{
+  \inst{1}%
+  Grado Ingeniería Informática\\
+  Universidad de Granada
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Diciembre 2016]{\today}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Procesamiento Lenguaje Natural}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{udg}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Índice}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Índice}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Structuring a talk is a difficult task and the following structure
+% may not be suitable. Here are some rules that apply for this
+% solution: 
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+% - A conference audience is likely to know very little of what you
+%   are going to talk about. So *simplify*!
+% - In a 20min talk, getting the main ideas across is hard
+%   enough. Leave out details, even if it means being less precise than
+%   you think necessary.
+% - If you omit details that are vital to the proof/implementation,
+%   just say so once. Everybody will be happy with that.
+
+\section{Motivación e Introducción}
+
+\subsection{Falta de Software Español}
+
+\definecolor{tick}{HTML}{5dc452}
+\newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
+  (1,.7) -- (.25,.15) -- cycle;}
+\newcommand*{\ccheck}{\checktikz[tick,rounded corners=.5pt, draw=tick,
+  thin]} %\checktikz[rounded corners=.5pt, draw=red, ultra thin]
+
+\begin{frame}{Soporte de Idiomas en Pipelines Actuales}
+  % - A title should summarize the slide in an understandable fashion
+  %   for anyone how does not follow everything on the slide itself.
+  \begin{table}[!b]
+    \begin{tabularx}{\textwidth}{lllllll}
+      \textbf{ANNOTATOR} & \textbf{AR} & \textbf{ZH} & \textbf{EN} & \textbf{FR} & \textbf{DE} & \textbf{ES} \\
+      \toprule
+      Tokenize/Segment & \ccheck & \ccheck & \ccheck & \ccheck &  & \ccheck \\
+      Sentence Split & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+      Part of Speech & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+      Lemma &  &  & \ccheck &  &  &  \\
+      Named Entities &  & \ccheck & \ccheck &  & \ccheck & \ccheck \\
+      Constituency Parsing & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck & \ccheck \\
+      Dependency Parsing &  & \ccheck & \ccheck & \ccheck & \ccheck &  \\
+      Sentiment Analysis &  &  & \ccheck &  &  &  \\
+      Mention Detection &  & \ccheck & \ccheck &  &  &  \\
+      Coreference &  & \ccheck & \ccheck &  &  &  \\
+      Open IE &  &  & \ccheck &  &  & \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+\subsection{Introducción al NLP}
+
+\begin{frame}{Qué es el NLP}
+  \begin{block}{Definición}
+    Ciencia que estudia la computación lingüística.
+  \end{block}
+  \begin{itemize}
+  \item Resúmenes.
+  \item Traducción automática.
+  \item Reconocimiento de voz.
+  \item Sistemas de Diálogo Hablado.
+  \item Clasificación de documentos.
+  \item Análisis de sentimientos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Niveles de Análisis}
+  \begin{itemize}
+  \item Documento.
+  \item Sentencia.
+  \item Entidad.
+  \end{itemize}
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}{Objetivos}
+  \begin{itemize}
+  \item Revisión bibliográfica.
+  \item Elección de un parseador y diseño para \textsc{Scala}.
+  \item Implementación y TDD.
+  \item Evaluación y comparación de resultados.
+  \end{itemize}
+\end{frame}
+
+\section{Resolución del Trabajo}
+
+\subsection{Algoritmo}
+
+\tikzset
+{common/.style =
+  {rectangle, rounded corners, minimum width=1cm, minimum height=1cm,
+    text centered, text opacity=1, align=center
+  }
+  ,notarget/.style = {common, draw=none, opacity=0, text opacity=0.5}
+  ,target/.style   = {common, very thick, draw}
+  ,blank/.style    = {common, draw=none}
+}
+
+\begin{frame}[label=alg]{Algoritmo Seleccionado para Español}
+  \framesubtitle{Statistical Dependency Analysis With SVMs}
+  \footnotesize
+  \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
+  \begin{algorithmic}[1] % The number tells where the line numbering should start
+    \State \textbf{Input Sentence:} $(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)$
+    \Init
+       \State $i\gets 1$
+       \State ${\cal T}\gets \{(w_1, p_1),(w_2,p_2),\cdots,(w_n,p_n)\}$
+       \State $\text{no\_construction}\gets \text{true}$
+    \EndInit
+       \While{$|{\cal T}| \geq 1$}
+          \If{$i == |{\cal T}|$}
+             \If{no\_construction == true}
+                \textbf{break}
+             \EndIf
+             \State $\text{no\_construction}\gets \text{true}$
+             \State $i\gets 1$
+          \Else
+             \State $\mathbf{x}\gets \text{getContextualFeatures(${\cal T}, i$)} $
+             \State $y\gets \text{estimateAction(model, $\mathbf{x}$)}$
+             \State construction(${\cal T}, i, y$)
+             \If{$y == \text{Left or Right}$}
+                $\text{no\_construction}\gets \text{false}$
+             \EndIf
+          \EndIf
+       \EndWhile
+  \end{algorithmic}
+\end{frame}
+
+\begin{frame}{Acción Desplazar}
+  \begin{figure}[ht]
+    \begin{columns}[onlytextwidth]
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=1.1cm]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [target, right of=n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+            \node (n4) [notarget, right of=n3] {girl\\\textsc{nn}};
+            \draw [thick,->] (n4) -- ++(1cm,0) node[sloped,above,midway] {\scriptsize\alert{\textsc{Shift}}};
+          \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \begin{subfigure}{.5\textwidth}
+          \begin{tikzpicture}[node distance=1.1cm]
+            \node (n1) [notarget] {I\\\textsc{prp}};
+            \node (n2) [notarget, right of=n1] {saw\\\textsc{vbd}};
+            \node (n3) [target, right of=n2] {a\\\textsc{dt}};
+            \node (n4) [target, right of=n3] {girl\\\textsc{nn}};
+          \end{tikzpicture}
+          \caption{}
+        \end{subfigure}
+      \end{column}
+    \end{columns}
+    \caption{\textsc{Desplazar}. (a) Antes. (b) Después}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[label=right]{Acción Derecha}
+  \begin{figure}[ht]
+    \subcaptionbox{}{
+      \begin{tikzpicture}[node distance=.5mm]
+        \node (n1) [notarget] {I\\\textsc{prp}};
+        \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+        \node (n3) [target, right=of n2] {a\\\textsc{dt}};
+        \node (n4) [target, right=of n3] {girl\\\textsc{nn}};
+        \draw [thick,->] ($(n4.east) + (5mm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\alert{\textsc{Right}}};
+        \node[target,opacity=0,below=5mm of n4] {}; % <- Pseudonode
+      \end{tikzpicture}
+    }
+    \subcaptionbox{}{
+      \begin{tikzpicture}[node distance=.5mm]
+        \node (n1) [notarget] {I\\\textsc{prp}};
+        \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+        \node (non)[blank,right=of n2]{};
+        \node (n3) [target, right=of non] {girl\\\textsc{nn}};
+        \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
+        \draw [thick,->] (n4) -- (n3);
+      \end{tikzpicture}
+    }
+    \caption{\textsc{Derecha}. (a) Antes. (b) Después.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Acción Izquierda}
+  \begin{figure}[ht]
+    \subcaptionbox{}{
+      \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
+        \node (n1) [notarget] {I\\\textsc{prp}};
+        \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+        \node (n3) [target, right=of n2] {girl\\\textsc{nn}};
+        \node (n4) [notarget, below=5mm of n3] {a\\\textsc{dt}};
+        \draw [thick,->] (n4) -- (n3);
+        \draw [thick,->] ($(n3.east) + (1cm,0)$) -- ++(.5cm,0) node[above,midway] {\scriptsize\alert{\textsc{Left}}};
+        \node[target,opacity=0,below=5mm of n4] {}; % <- Pseudonode
+      \end{tikzpicture}
+    }
+    \subcaptionbox{}{
+      \begin{tikzpicture}[node distance=.5mm,baseline=(n1)]
+        \node (n1) [notarget] {I\\\textsc{prp}};
+        \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
+        \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
+        \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
+        \draw [thick,->] (n4) -- (n2);
+        \draw [thick,->] (n3) -- (n4);
+      \end{tikzpicture}
+    }
+    \caption{\textsc{Izquierda}. (a) Antes. (b) Después}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}
+  \begin{figure}[ht]
+  \footnotesize
+  \setlength{\extrarowheight}{16pt}
+  \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\alert{\textsc{Shift}}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+     \node (la) [target, right=of sobre] {la\\\textsc{det}};
+     \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+   \end{tikzpicture}
+
+  \end{tabular}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{16pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [notarget] {Sobre\\\textsc{adp}};
+      \node (la) [target, right=of sobre] {la\\\textsc{det}};
+      \node (oferta) [target, right=of la] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\alert{\textsc{Right}}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+     \node (sobre) [target] {Sobre\\\textsc{adp}};
+     \node (b1) [blank,right=of sobre] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+     \draw [thick,->] (la) -- (oferta);
+   \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{5pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(sobre)]
+      \node (sobre) [target] {Sobre\\\textsc{adp}};
+      \node (b1) [blank,right=of sobre] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (de) [notarget, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\alert{\textsc{Right}}};
+    \end{tikzpicture}
+\\
+   \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+     \node (b2) [blank] {};
+     \node (b1) [blank,right=of b2] {};
+     \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+     \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+     \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+     \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+     \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+     \node (b1) [blank,right=of inter]{};
+
+     \draw [thick,->] (la) -- (oferta);
+     \draw [thick,->] (sobre) -- (la);
+   \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{5pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [notarget, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\alert{\textsc{Shift}}};
+    \end{tikzpicture}
+\\
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+    \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Ejemplo -- ``\emph{Sobre la oferta de IBM}''}  
+  \begin{figure}[ht]
+    \footnotesize
+    \setlength{\extrarowheight}{1pt}
+    \begin{tabular}{p{1\textwidth}}
+    \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [notarget, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [target, right=of oferta] {de\\\textsc{adp}};
+      \node (inter) [target, right=of de] {IBM\\\textsc{noun}};
+      \node (b1) [blank,right=of inter]{};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+
+      \draw [thick,->] (b1.west) -- ++(.5cm,0) node[above,midway]{\tiny\alert{\textsc{Right}}};
+    \end{tikzpicture}
+\\
+       \begin{tikzpicture}[node distance=1mm,baseline=(b2)]
+      \node (b2) [blank] {};
+      \node (b1) [blank,right=of b2] {};
+      \node (la) [notarget,below=.3cm of oferta] {la\\\textsc{det}};
+      \node (oferta) [target, right=of b1] {oferta\\\textsc{noun}};
+      \node (sobre) [notarget,below=.3cm of la] {Sobre\\\textsc{adp}};
+      \node (de) [notarget, below=.3cm of inter] {de\\\textsc{adp}};
+      \node (b3) [blank,right=of oferta] {};
+      \node (inter) [target, right=of b3] {IBM\\\textsc{noun}};
+
+      \draw [thick,->] (la) -- (oferta);
+      \draw [thick,->] (sobre) -- (la);
+      \draw [thick,->] (de) -- (inter);
+    \end{tikzpicture}
+    \end{tabular}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Selección de Características}
+  \begin{table}[b!]
+    \begin{tabularx}{\textwidth}{lp{.8\textwidth}}
+      \toprule
+      Tipo     & Valor                                                                \\
+      \toprule
+      pos      & POS \emph{tag}                                                       \\
+      lex      & La palabra                                                           \\
+      ch-L-pos & Nodo hijo modificando al padre por la izda.                          \\
+      ch-L-lex & Palabra del correspondiente ch-L-pos                                 \\
+      ch-R-pos & Nodo hijo modificando al padre por la drcha                          \\
+      ch-R-lex & Palabra del correspondiente ch-R-pos                                 \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}  
+\end{frame}
+
+\subsection{Resultados}
+
+\begin{frame}{Resultados}
+  \begin{table}[b!]
+    \begin{tabularx}{.82\textwidth}{p{.5\textwidth}|p{.1\textwidth}p{.1\textwidth}}
+      Kernel: $(x'\cdot x'' + 1)^2$, Ctx: $(2,4)$ & TFG & ROHIT \\
+      \toprule
+      Dep. Acc.  & 76\%   & 75\% \\
+      Root Acc.  & 67\%   & 70\% \\
+      Comp. Rate & 15\%   & 11\% \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
+\end{frame}
+
+
+\subsection{Implementación}
+
+\begin{frame}{Implementación}{Planificación}
+  \definecolor{barblue}{RGB}{153,204,254}
+  \definecolor{groupblue}{RGB}{51,102,254}
+  \definecolor{linkred}{RGB}{165,0,33}
+  \renewcommand\sfdefault{phv}
+  \renewcommand\mddefault{mc}
+  \renewcommand\bfdefault{bc}
+  \setganttlinklabel{s-s}{START-TO-START}
+  \setganttlinklabel{f-s}{FINISH-TO-START}
+  \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+  \noindent\resizebox{\textwidth}{!}{
+  \begin{tikzpicture}[x=0cm, y=0cm]
+\begin{ganttchart}[
+  canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+  hgrid style/.style={draw=black!5, line width=.75pt},
+  vgrid={*1{draw=black!5, line width=.75pt}},
+  today=14,
+  today rule/.style={
+    draw=black!64,
+    dash pattern=on 3.5pt off 4.5pt,
+    line width=1.5pt
+  },
+  today label font=\small\scshape,
+  title/.style={draw=none, fill=none},
+  title label font=\scshape\footnotesize,
+  title label node/.append style={below=7pt},
+  include title in canvas=false,
+  bar label font=\mdseries\small\color{black!70},
+  bar label node/.append style={left=2cm},
+  bar/.append style={draw=none, fill=black!63},
+  bar incomplete/.append style={fill=barblue},
+  bar progress label font=\mdseries\footnotesize\color{black!70},
+  group incomplete/.append style={fill=groupblue},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\scshape\small,
+    link/.style={-latex, line width=1.5pt, linkred},
+    link label font=\scriptsize\scshape,
+    link label node/.append style={below left=-2pt and 0pt},
+  ]{1}{14}
+  [grid]
+  \gantttitle{\tiny Septiembre}{4}
+  \gantttitle{\tiny Octubre}{4} 
+  \gantttitle{\tiny Noviembre}{4}
+  \gantttitle{\tiny Diciembre}{2}\\
+  \gantttitle[
+    title label node/.append style={below left=7pt and -3pt}
+  ]{Semana:\quad1}{1}
+  \gantttitlelist{2,...,14}{1} \\
+  \ganttgroup[progress=100]{Progreso}{1}{14} \\
+  \ganttbar[
+    progress=100,
+    name=research
+  ]{Investigación}{1}{4} \\
+  \ganttbar[
+    progress=100,
+    name=design
+  ]{Análisis y Diseño}{5}{5} \\
+  \ganttbar[
+    progress=100,
+    name=impl
+  ]{Implementación}{6}{11} \\
+  \ganttbar[
+    progress=100,
+    name=memoir
+  ]{Memoria}{12}{14} \\    
+  
+  \ganttmilestone{M1: Conocer el campo del NLP}{4}{4}  \\
+  \ganttmilestone{M2: Finalizar Código}{11}{11} \\
+  \ganttmilestone{M3: Finalización TFG}{14}{14}
+  
+  \ganttlink[link type=f-s]{research}{design}
+  \ganttlink[link type=f-s]{design}{impl}
+  \ganttlink[link type=f-s]{impl}{memoir}
+\end{ganttchart}
+\end{tikzpicture}}
+\end{frame}
+
+\begin{frame}{Implementación}{Por Qué en \textsc{Scala}}
+  \begin{columns}[onlytextwidth,c]
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Programación OO.
+    \item Programación \alert{Funcional}.
+    \item Sintaxis breve.
+    \item Escalable.
+    \end{itemize}
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Implementa algunos patrones.
+    \item \textsc{Traits}.
+    \item Amplio abanico reglas de visibilidad.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Implementación}{Ventajas de \textsc{Scala}}
+  \begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+      \begin{javacode*}{fontsize=\fontsize{5.3}{4},label=\textsc{Java}}
+    class WordCountMapper extends MapReduceBase
+    implements Mapper<IntWritable, Text, Text, IntWritable> {
+
+      static final IntWritable one  = new IntWritable(1);
+      // Value will be set in a non-thread-safe way!
+      static final Text word = new Text;
+
+      @Override
+      public void map(IntWritable key, Text valueDocContents,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        String[] tokens = valueDocContents
+           .toString.split("\\s+");       
+        for (String wordString: tokens) {
+          if (wordString.length > 0) {
+            word.set(wordString.toLowerCase);
+            output.collect(word, one);
+          }
+        }
+      }
+    }
+
+    class WordCountReduce extends MapReduceBase
+    implements Reducer<Text, IntWritable, Text, IntWritable> {
+
+      public void reduce(Text keyWord, java.util.Iterator<IntWritable> counts,
+      OutputCollector<Text, IntWritable> output, Reporter reporter) {
+        int totalCount = 0;
+        while (counts.hasNext) {                                         
+          while (counts.hasNext) {
+            totalCount += counts.next.get;
+          }
+          output.collect(keyWord, new IntWritable(totalCount));
+        }
+      }
+      \end{javacode*}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{scalacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Scala}}
+    class ScaldingWordCount(args : Args) extends Job(args) {
+      TextLine(args("input"))
+      .read
+      .flatMap('line -> 'word) {
+        line: String =>
+           line.trim.toLowerCase.split("""\s+""")
+      }
+      .groupBy('word){ group => group.size('count) }
+      .write(Tsv(args("output")))                   
+    }
+      \end{scalacode*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Metodología: TDD y BDD}
+  \begin{columns}[onlytextwidth,t]
+    \column{.5\textwidth}
+    \alert{Test-Driven\\ Development}
+    \begin{itemize}
+    \item Rojo.
+    \item Verde.
+    \item Refactorizar.
+    \end{itemize}
+    \column{.5\textwidth}
+    \alert{Behavior-Driven\\ Development}
+    \begin{itemize}
+    \item \emph{Given}.
+    \item \emph{When}.
+    \item \emph{Then}.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{TDD para AA}
+  \begin{block}{Filosofía}
+    Aplicar \alert{TDD} a problemas de Aprendizaje
+  \end{block}
+  \begin{columns}[onlytextwidth,t]
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item \textsc{R2} \emph{Value}.
+    \item ROC y AUC.
+    \item Matriz confusión.
+    \end{itemize}
+    \column{.5\textwidth}
+    \begin{itemize}
+    \item Establecer un \alert{baseline}.
+    \item Intentar mejorarlo \\en cada iteración.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{TDD para AA}
+  \framesubtitle{Ejemplo}
+    \begin{scalacode*}{fontsize=\tiny}
+class DependencyParserCheckBaselineSpec extends Specification
+  with GWT
+  with StandardRegexStepParsers {def is = s2"""
+  When training the model, set the following baselines ${featuresBaseline.start}
+    Given Train data set: es_ancora-converted-train1
+    Given Test data set: es_ancora-converted-test1
+    When Genenaring Vocabulary
+    Then Dep. Acc should be at least: 70%
+    and Root Acc should be at least: 50%
+    and Comp. Acc should be at least: 3%               ${featuresBaseline.end}
+"""
+// ...    
+    \end{scalacode*}
+
+\end{frame}
+
+\section[Conclusiones]{Conclusiones y Vías Futuras}
+\begin{frame}{Conclusiones y Vías Futuras}
+  \begin{columns}[onlytextwidth,t]
+    \column{.5\textwidth}
+    Conclusiones
+    \begin{itemize}
+    \item Implementado parseo\\ para \alert{Castellano}.
+    \item Uso de \alert{SVMs}.
+    \item \textsc{Scala}.
+    \item \alert{TDD} para AA.
+    \end{itemize}
+    \column{.5\textwidth}
+    Vías futuras
+    \begin{itemize}
+    \item Más algoritmos.
+    \item Código 100\% funcional.
+    \item Más fases del \alert{Pipeline}.
+    \item \textsc{Spark}.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{}{}
+
+  \Huge{\centerline{Gracias por su atención}}
+  \bigskip
+  \centerline{\Huge{\raisebox{-.25\height}\faGithub}~\large{\href{https://github.com/algui91/NLP_Dependency_Parsing}{\alert{algui91/NLP\_Dependency\_Parsing}}}}
+\end{frame}
+
+% \section*{Summary}
+
+% \begin{frame}{Summary}
+
+%   % Keep the summary *very short*.
+%   \begin{itemize}
+%   \item
+%     The \alert{first main message} of your talk in one or two lines.
+%   \item
+%     The \alert{second main message} of your talk in one or two lines.
+%   \item
+%     Perhaps a \alert{third message}, but not more than that.
+%   \end{itemize}
+  
+%   % The following outlook is optional.
+%   \vskip0pt plus.5fill
+%   \begin{itemize}
+%   \item
+%     Outlook
+%     \begin{itemize}
+%     \item
+%       Something you haven't solved.
+%     \item
+%       Something else you haven't solved.
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
+
+
+
+% All of the following is optional and typically not needed. 
+% \appendix
+% \section<presentation>*{\appendixname}
+% \subsection<presentation>*{For Further Reading}
+
+% \begin{frame}[allowframebreaks]
+%   \frametitle<presentation>{For Further Reading}
+    
+%   \begin{thebibliography}{10}
+    
+%   \beamertemplatebookbibitems
+%   % Start with overview books.
+
+%   \bibitem{Author1990}
+%     A.~Author.
+%     \newblock {\em Handbook of Everything}.
+%     \newblock Some Press, 1990.
+ 
+    
+%   \beamertemplatearticlebibitems
+%   % Followed by interesting articles. Keep the list short. 
+
+%   \bibitem{Someone2000}
+%     S.~Someone.
+%     \newblock On this and that.
+%     \newblock {\em Journal of This and That}, 2(1):50--100,
+%     2000.
+%   \end{thebibliography}
+% \end{frame}
+
+\end{document}
