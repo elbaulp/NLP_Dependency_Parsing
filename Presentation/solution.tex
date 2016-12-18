@@ -80,7 +80,7 @@
 }
 
 \title[Dep Parsing Castellano]%
-{DISE√ëO E IMPLEMENTACI√ìN DE UN ANALIZADOR DE DEPENDENCIAS PARA PROCESAMIENTO DE LENGUAJE NATURAL EN ESPA√ëOL} %% title page.
+{DISE—O E IMPLEMENTACI”N DE UN ANALIZADOR DE DEPENDENCIAS PARA PROCESAMIENTO DE LENGUAJE NATURAL EN ESPA—OL} %% title page.
 
 % \subtitle
 % {Include Only If Paper Has a Subtitle}
@@ -94,7 +94,7 @@
 \institute[ETSIIT] % (optional, but mostly needed)
 {
   \inst{1}%
-  Grado Ingenier√≠a Inform√°tica\\
+  Grado IngenierÌa Inform·tica\\
   Universidad de Granada
 }
 % - Use the \inst command only if there are several affiliations.
@@ -121,7 +121,7 @@
 % the beginning of each subsection:
 \AtBeginSubsection[]
 {
-  \begin{frame}<beamer>{√çndice}
+  \begin{frame}<beamer>{Õndice}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
@@ -138,7 +138,7 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{√çndice}
+\begin{frame}{Õndice}
   \tableofcontents
   % You might wish to add the option [pausesections]
 \end{frame}
@@ -161,9 +161,9 @@
 % - If you omit details that are vital to the proof/implementation,
 %   just say so once. Everybody will be happy with that.
 
-\section{Motivaci√≥n}
+\section{MotivaciÛn}
 
-\subsection{Falta de Software Espa√±ol}
+\subsection{Falta de Software EspaÒol}
 
 \definecolor{tick}{HTML}{5dc452}
 \newcommand*{\checktikz}[1][]{\tikz[x=1em, y=1em]\fill[#1] (0,.35) -- (.25,0) --
@@ -194,23 +194,23 @@
   \end{table}
 \end{frame}
 
-\subsection{Introducci√≥n al NLP}
+\subsection{IntroducciÛn al NLP}
 
-\begin{frame}{Qu√© es el NLP}
-  \begin{block}{Definici√≥n}
-    Ciencia que estudia la computaci√≥n ling√º√≠stica.
+\begin{frame}{QuÈ es el NLP}
+  \begin{block}{DefiniciÛn}
+    Ciencia que estudia la computaciÛn ling¸Ìstica.
   \end{block}
   \begin{itemize}
-  \item Res√∫menes.
-  \item Traducci√≥n autom√°tica.
+  \item Res˙menes.
+  \item TraducciÛn autom·tica.
   \item Reconocimiento de voz.
-  \item Sistemas de Di√°logo Hablado.
-  \item Clasificaci√≥n de documentos.
-  \item An√°lisis de sentimientos.
+  \item Sistemas de Di·logo Hablado.
+  \item ClasificaciÛn de documentos.
+  \item An·lisis de sentimientos.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Niveles de An√°lisis}
+\begin{frame}{Niveles de An·lisis}
   \begin{itemize}
   \item Documento.
   \item Sentencia.
@@ -221,14 +221,14 @@
 \section{Objetivos}
 \begin{frame}{Objetivos}
   \begin{itemize}
-  \item Revisi√≥n bibliogr√°fica.
-  \item Elecci√≥n de un parseador y dise√±o para \textsc{Scala}.
-  \item Implementaci√≥n y TDD.
-  \item Evaluaci√≥n y comparaci√≥n de resultados.
+  \item RevisiÛn bibliogr·fica.
+  \item ElecciÛn de un parseador y diseÒo para \textsc{Scala}.
+  \item ImplementaciÛn y TDD.
+  \item EvaluaciÛn y comparaciÛn de resultados.
   \end{itemize}
 \end{frame}
 
-\section{Resoluci√≥n del Trabajo}
+\section{ResoluciÛn del Trabajo}
 
 \subsection{Algoritmo}
 
@@ -242,7 +242,7 @@
   ,blank/.style    = {common, draw=none}
 }
 
-\begin{frame}[label=alg]{Algoritmo Seleccionado para Espa√±ol}
+\begin{frame}[label=alg]{Algoritmo Seleccionado para EspaÒol}
   \framesubtitle{Statistical Dependency Analysis With SVMs}
   \footnotesize
   \algdef{SnE}{Init}{EndInit}{\textbf{Initialize:}}
@@ -272,7 +272,7 @@
   \end{algorithmic}
 \end{frame}
 
-\begin{frame}{Acci√≥n Desplazar}
+\begin{frame}{AcciÛn Desplazar}
   \begin{figure}[ht]
     \begin{columns}[onlytextwidth]
       \begin{column}{.5\textwidth}
@@ -299,11 +299,11 @@
         \end{subfigure}
       \end{column}
     \end{columns}
-    \caption{\textsc{Desplazar}. (a) Antes. (b) Despu√©s}
+    \caption{\textsc{Desplazar}. (a) Antes. (b) DespuÈs}
   \end{figure}
 \end{frame}
 
-\begin{frame}[label=right]{Acci√≥n Derecha}
+\begin{frame}[label=right]{AcciÛn Derecha}
   \begin{figure}[ht]
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm]
@@ -325,11 +325,11 @@
         \draw [thick,->] (n4) -- (n3);
       \end{tikzpicture}
     }
-    \caption{\textsc{Derecha}. (a) Antes. (b) Despu√©s.}
+    \caption{\textsc{Derecha}. (a) Antes. (b) DespuÈs.}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Acci√≥n Izquierda}
+\begin{frame}{AcciÛn Izquierda}
   \begin{figure}[ht]
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm,baseline=(n3)]
@@ -352,7 +352,7 @@
         \draw [thick,->] (n3) -- (n4);
       \end{tikzpicture}
     }
-    \caption{\textsc{Izquierda}. (a) Antes. (b) Despu√©s}
+    \caption{\textsc{Izquierda}. (a) Antes. (b) DespuÈs}
   \end{figure}
 \end{frame}
 
@@ -525,7 +525,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Selecci√≥n de Caracter√≠sticas}
+\begin{frame}{SelecciÛn de CaracterÌsticas}
   \begin{table}[b!]
     \begin{tabularx}{\textwidth}{lp{.8\textwidth}}
       \toprule
@@ -558,9 +558,9 @@
 \end{frame}
 
 
-\subsection{Implementaci√≥n}
+\subsection{ImplementaciÛn}
 
-\begin{frame}{Implementaci√≥n}{Planificaci√≥n}
+\begin{frame}{ImplementaciÛn}{PlanificaciÛn}
   \definecolor{barblue}{RGB}{153,204,254}
   \definecolor{groupblue}{RGB}{51,102,254}
   \definecolor{linkred}{RGB}{165,0,33}
@@ -616,23 +616,23 @@
   \ganttbar[
     progress=100,
     name=research
-  ]{Investigaci√≥n}{1}{4} \\
+  ]{InvestigaciÛn}{1}{4} \\
   \ganttbar[
     progress=100,
     name=design
-  ]{An√°lisis y Dise√±o}{5}{5} \\
+  ]{An·lisis y DiseÒo}{5}{5} \\
   \ganttbar[
     progress=100,
     name=impl
-  ]{Implementaci√≥n}{6}{11} \\
+  ]{ImplementaciÛn}{6}{11} \\
   \ganttbar[
     progress=100,
     name=memoir
   ]{Memoria}{12}{14} \\    
   
   \ganttmilestone{M1: Conocer el campo del NLP}{4}{4}  \\
-  \ganttmilestone{M2: Finalizar C√≥digo}{11}{11} \\
-  \ganttmilestone{M3: Finalizaci√≥n TFG}{14}{14}
+  \ganttmilestone{M2: Finalizar CÛdigo}{11}{11} \\
+  \ganttmilestone{M3: FinalizaciÛn TFG}{14}{14}
   
   \ganttlink[link type=f-s]{research}{design}
   \ganttlink[link type=f-s]{design}{impl}
@@ -641,12 +641,12 @@
 \end{tikzpicture}}
 \end{frame}
 
-\begin{frame}{Implementaci√≥n}{Por Qu√© en \textsc{Scala}}
+\begin{frame}{ImplementaciÛn}{Por QuÈ en \textsc{Scala}}
   \begin{columns}[onlytextwidth,c]
     \column{.5\textwidth}
     \begin{itemize}
-    \item Programaci√≥n OO.
-    \item Programaci√≥n Funcional.
+    \item ProgramaciÛn OO.
+    \item ProgramaciÛn Funcional.
     \item Sintaxis breve.
     \item Escalable.
     \end{itemize}
@@ -659,7 +659,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Implementaci√≥n}{Ventajas de \textsc{Scala}}
+\begin{frame}[fragile]{ImplementaciÛn}{Ventajas de \textsc{Scala}}
   \begin{columns}[onlytextwidth]
     \begin{column}{.5\textwidth}
       \begin{javacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Java}}
@@ -714,7 +714,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Metodolog√≠a: TDD y BDD}
+\begin{frame}{MetodologÌa: TDD y BDD}
   \begin{columns}[onlytextwidth,t]
     \column{.5\textwidth}
     \alert{Test-Driven\\ Development}
@@ -734,7 +734,7 @@
 \end{frame}
 
 \begin{frame}{TDD para AA}
-  \begin{block}{Filosof√≠a}
+  \begin{block}{FilosofÌa}
     Aplicar \alert{TDD} a problemas de Aprendizaje
   \end{block}
   \begin{columns}[onlytextwidth,t]
@@ -742,12 +742,12 @@
     \begin{itemize}
     \item \textsc{R2} \emph{Value}.
     \item ROC y AUC.
-    \item Matriz confusi√≥n.
+    \item Matriz confusiÛn.
     \end{itemize}
     \column{.5\textwidth}
     \begin{itemize}
     \item Establecer un \alert{baseline}.
-    \item Intentar mejorarlo \\en cada iteraci√≥n.
+    \item Intentar mejorarlo \\en cada iteraciÛn.
     \end{itemize}
   \end{columns}
 \end{frame}
@@ -771,8 +771,8 @@ class DependencyParserCheckBaselineSpec extends Specification
 
 \end{frame}
 
-\subsection[Conclusiones]{Conclusiones y V√≠as Futuras}
-\begin{frame}{Conclusiones y V√≠as Futuras}
+\subsection[Conclusiones]{Conclusiones y VÌas Futuras}
+\begin{frame}{Conclusiones y VÌas Futuras}
   \begin{columns}[onlytextwidth,t]
     \column{.5\textwidth}
     Conclusiones
@@ -783,21 +783,21 @@ class DependencyParserCheckBaselineSpec extends Specification
     \item \alert{TDD} para AA.
     \end{itemize}
     \column{.5\textwidth}
-    V√≠as futuras
+    VÌas futuras
     \begin{itemize}
-    \item M√°s algoritmos.
-    \item C√≥digo 100\% funcional.
-    \item M√°s fases del \alert{Pipeline}.
+    \item M·s algoritmos.
+    \item CÛdigo 100\% funcional.
+    \item M·s fases del \alert{Pipeline}.
     \item \textsc{Spark}.
     \end{itemize}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Fin}
-  C√≥digo disponible:\\\url{https://github.com/algui91/NLP_Dependency_Parsing}
+  CÛdigo disponible:\\\url{https://github.com/algui91/NLP_Dependency_Parsing}
   \bigskip
 
-  Muchas gracias por su atenci√≥n.
+  Muchas gracias por su atenciÛn.
 
   --- Alejandro Alcalde.
 \end{frame}
