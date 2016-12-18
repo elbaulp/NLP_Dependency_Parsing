@@ -58,6 +58,7 @@
 \usepackage[outputdir=metafiles]{minted}
 \usemintedstyle{tango}
 \usepackage{pgfgantt}
+\usepackage{fontawesome}
 
 \newminted{scala}{
    fontsize=\footnotesize,
@@ -166,7 +167,7 @@
 % - If you omit details that are vital to the proof/implementation,
 %   just say so once. Everybody will be happy with that.
 
-\section{Motivación}
+\section{Motivación e Introducción}
 
 \subsection{Falta de Software Español}
 
@@ -651,7 +652,7 @@
     \column{.5\textwidth}
     \begin{itemize}
     \item Programación OO.
-    \item Programación Funcional.
+    \item Programación \alert{Funcional}.
     \item Sintaxis breve.
     \item Escalable.
     \end{itemize}
@@ -667,7 +668,7 @@
 \begin{frame}[fragile]{Implementación}{Ventajas de \textsc{Scala}}
   \begin{columns}[onlytextwidth]
     \begin{column}{.5\textwidth}
-      \begin{javacode*}{fontsize=\fontsize{5.2}{4},label=\textsc{Java}}
+      \begin{javacode*}{fontsize=\fontsize{5.3}{4},label=\textsc{Java}}
     class WordCountMapper extends MapReduceBase
     implements Mapper<IntWritable, Text, Text, IntWritable> {
 
@@ -678,7 +679,8 @@
       @Override
       public void map(IntWritable key, Text valueDocContents,
       OutputCollector<Text, IntWritable> output, Reporter reporter) {
-        String[] tokens = valueDocContents.toString.split("\\s+");       
+        String[] tokens = valueDocContents
+           .toString.split("\\s+");       
         for (String wordString: tokens) {
           if (wordString.length > 0) {
             word.set(wordString.toLowerCase);
@@ -709,7 +711,8 @@
       TextLine(args("input"))
       .read
       .flatMap('line -> 'word) {
-        line: String => line.trim.toLowerCase.split("""\s+""")
+        line: String =>
+           line.trim.toLowerCase.split("""\s+""")
       }
       .groupBy('word){ group => group.size('count) }
       .write(Tsv(args("output")))                   
@@ -763,20 +766,20 @@
 class DependencyParserCheckBaselineSpec extends Specification
   with GWT
   with StandardRegexStepParsers {def is = s2"""
-  When training the model, set the following baselines  ${featuresBaseline.start}
+  When training the model, set the following baselines ${featuresBaseline.start}
     Given Train data set: es_ancora-converted-train1
     Given Test data set: es_ancora-converted-test1
     When Genenaring Vocabulary
     Then Dep. Acc should be at least: 70%
     and Root Acc should be at least: 50%
-    and Comp. Acc should be at least: 3%                ${featuresBaseline.end}
+    and Comp. Acc should be at least: 3%               ${featuresBaseline.end}
 """
 // ...    
     \end{scalacode*}
 
 \end{frame}
 
-\subsection[Conclusiones]{Conclusiones y Vías Futuras}
+\section[Conclusiones]{Conclusiones y Vías Futuras}
 \begin{frame}{Conclusiones y Vías Futuras}
   \begin{columns}[onlytextwidth,t]
     \column{.5\textwidth}
@@ -798,42 +801,40 @@ class DependencyParserCheckBaselineSpec extends Specification
   \end{columns}
 \end{frame}
 
-\begin{frame}{Fin}
-  Código disponible:\\\url{https://github.com/algui91/NLP_Dependency_Parsing}
+\begin{frame}{}{}
+
+  \Huge{\centerline{Gracias por su atención}}
   \bigskip
-
-  Muchas gracias por su atención.
-
-  --- Alejandro Alcalde.
+  \centerline{\Huge{\raisebox{-.25\height}\faGithub}~\large{\href{https://github.com/algui91/NLP_Dependency_Parsing}{\alert{algui91/NLP\_Dependency\_Parsing}}}}
 \end{frame}
 
-\section*{Summary}
+% \section*{Summary}
 
-\begin{frame}{Summary}
+% \begin{frame}{Summary}
 
-  % Keep the summary *very short*.
-  \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
+%   % Keep the summary *very short*.
+%   \begin{itemize}
+%   \item
+%     The \alert{first main message} of your talk in one or two lines.
+%   \item
+%     The \alert{second main message} of your talk in one or two lines.
+%   \item
+%     Perhaps a \alert{third message}, but not more than that.
+%   \end{itemize}
   
-  % The following outlook is optional.
-  \vskip0pt plus.5fill
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%   % The following outlook is optional.
+%   \vskip0pt plus.5fill
+%   \begin{itemize}
+%   \item
+%     Outlook
+%     \begin{itemize}
+%     \item
+%       Something you haven't solved.
+%     \item
+%       Something else you haven't solved.
+%     \end{itemize}
+%   \end{itemize}
+% \end{frame}
 
 
 
