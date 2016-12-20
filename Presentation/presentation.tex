@@ -389,10 +389,10 @@
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm]
         \node (n1) [notarget] {I\\\textsc{prp}};
-        \node (n2) [notarget, right=of n1] {saw\\\textsc{vbd}};
+        \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
         \node (non)[blank,right=of n2]{};
         \node (n3) [target, right=of non] {girl\\\textsc{nn}};
-        \node (n4) [target, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
+        \node (n4) [notarget, below=5mm of n3,anchor=north] {a\\\textsc{dt}};
         \draw [thick,->] (n4) -- (n3);
       \end{tikzpicture}
     }
@@ -415,9 +415,9 @@
     }
     \subcaptionbox{}{
       \begin{tikzpicture}[node distance=.5mm,baseline=(n1)]
-        \node (n1) [notarget] {I\\\textsc{prp}};
+        \node (n1) [target] {I\\\textsc{prp}};
         \node (n2) [target, right=of n1] {saw\\\textsc{vbd}};
-        \node (n4) [target, below=5mm of n2] {girl\\\textsc{nn}};
+        \node (n4) [notarget, below=5mm of n2] {girl\\\textsc{nn}};
         \node (n3) [notarget, below=5mm of n4] {a\\\textsc{dt}};
         \draw [thick,->] (n4) -- (n2);
         \draw [thick,->] (n3) -- (n4);
