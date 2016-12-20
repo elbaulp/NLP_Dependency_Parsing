@@ -106,7 +106,7 @@
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
-\date[Diciembre 2016]{\today}
+\date[Diciembre 2016]{}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
@@ -597,6 +597,12 @@
 \end{frame}
 
 \begin{frame}{Selección de Características}
+  \begin{block}{Definición}
+    Una tripleta $(p,k,v)$ donde: \\
+    $p$ es la posición desde los nodos objetivo -- offset --  \\
+    $k$ el tipo de caracteristica \\
+    $v$ su valor.
+  \end{block}
   \begin{table}[b!]
     \begin{tabularx}{\textwidth}{lp{.8\textwidth}}
       \toprule
@@ -616,6 +622,13 @@
 \subsection{Resultados}
 
 \begin{frame}{Resultados}
+  \begin{equation*}
+    \begin{aligned}
+    & \text{\emph{Dep. Acc}} &=& \quad\frac{\text{\# correcto de padres}}{\text{\# total de padres}} \\
+    & \text{\emph{Root Acc}} &=& \quad\frac{\text{\# nodos raíz correctos}}{\text{\# total de frases}} \\
+    & \text{\emph{Comp. Rate}} &=& \quad\frac{\text{\# frases parseadas completamente}}{\text{\# total de frases}} 
+    \end{aligned}
+  \end{equation*}
   \begin{table}[b!]
     \begin{tabularx}{.82\textwidth}{p{.5\textwidth}|p{.1\textwidth}p{.1\textwidth}}
       Kernel: $(x'\cdot x'' + 1)^2$, Ctx: $(2,4)$ & TFG & ROHIT \\
